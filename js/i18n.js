@@ -374,10 +374,22 @@ async function detectCountry() {
     }
 }
 
-// Formatear precio según moneda
+// Formatear precio segun moneda
 function formatPrice(priceInCLP, currency = currentCurrency) {
     const config = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.USD;
-    const convertedPrice = Math.round(priceInCLP * config.rate);
+    let convertedPrice = Math.ceil(priceInCLP * config.rate);
+    
+    // Redondear a valores cerrados segun moneda
+    if (currency === 'USD' || currency === 'EUR') {
+        // Redondear a decenas (ej: 328 -> 330, 297 -> 300)
+        convertedPrice = Math.ceil(convertedPrice / 10) * 10;
+    } else if (currency === 'CLP' || currency === 'COP' || currency === 'ARS') {
+        // Redondear a miles (ej: 220500 -> 221000)
+        convertedPrice = Math.ceil(convertedPrice / 1000) * 1000;
+    } else if (currency === 'MXN' || currency === 'BRL' || currency === 'PEN') {
+        // Redondear a centenas (ej: 4180 -> 4200)
+        convertedPrice = Math.ceil(convertedPrice / 100) * 100;
+    }
     
     return new Intl.NumberFormat(config.format, {
         style: 'currency',
