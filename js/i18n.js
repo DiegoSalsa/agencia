@@ -377,26 +377,38 @@ async function detectCountry() {
 // Formatear precio segun moneda
 function formatPrice(priceInCLP, currency = currentCurrency) {
     const config = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.USD;
-    let convertedPrice = Math.ceil(priceInCLP * config.rate);
+    let convertedPrice = priceInCLP * config.rate;
     
-    // Redondear a valores cerrados segun moneda
+    // Para CLP mantener el valor normal sin redondeo especial
+    if (currency === 'CLP') {
+        return new Intl.NumberFormat(config.format, {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(Math.round(convertedPrice));
+    }
+    
+    // Redondear hacia arriba a valores cerrados segun moneda
     if (currency === 'USD' || currency === 'EUR') {
         // Redondear a decenas (ej: 328 -> 330, 297 -> 300)
         convertedPrice = Math.ceil(convertedPrice / 10) * 10;
-    } else if (currency === 'CLP' || currency === 'COP' || currency === 'ARS') {
-        // Redondear a miles (ej: 220500 -> 221000)
+    } else if (currency === 'COP' || currency === 'ARS') {
+        // Redondear a miles (ej: 990500 -> 991000)
         convertedPrice = Math.ceil(convertedPrice / 1000) * 1000;
     } else if (currency === 'MXN' || currency === 'BRL' || currency === 'PEN') {
         // Redondear a centenas (ej: 4180 -> 4200)
         convertedPrice = Math.ceil(convertedPrice / 100) * 100;
     }
     
-    return new Intl.NumberFormat(config.format, {
-        style: 'currency',
-        currency: currency,
-        minimumFractionDigits: config.decimals,
-        maximumFractionDigits: config.decimals
+    // Formatear numero sin simbolo de moneda
+    const formattedNumber = new Intl.NumberFormat(config.format, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
     }).format(convertedPrice);
+    
+    // Retornar con simbolo y abreviatura
+    return `${config.symbol}${formattedNumber} ${currency}`;
 }
 
 // Obtener traducción
