@@ -50,14 +50,14 @@
             </a>
             
             <div class="hidden md:flex items-center gap-8">
-                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#servicios">Servicios</a>
-                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#portafolio">Portafolio</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#servicios" data-i18n="nav_services">Servicios</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#portafolio" data-i18n="nav_portfolio">Portafolio</a>
                 <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#proceso">Proceso</a>
-                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#precios">Precios</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#precios" data-i18n="nav_pricing">Precios</a>
             </div>
             
             <div class="flex items-center gap-3">
-                <a href="#contacto" class="hidden sm:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-4 bg-primary text-white text-sm font-bold neon-glow transition-all">
+                <a href="#contacto" class="hidden sm:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-4 bg-primary text-white text-sm font-bold neon-glow transition-all" data-i18n="nav_cta">
                     Agendar Llamada
                 </a>
                 <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center text-white">
@@ -124,29 +124,28 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                     </span>
-                    Impulsando la Innovación en Chile
+                    <span data-i18n="hero_badge">🚀 Transformación Digital Premium</span>
                 </div>
                 
                 <!-- Headline -->
                 <h1 class="hero-title text-5xl md:text-7xl font-black leading-[1.1] tracking-[-0.04em] mb-6">
-                    Construimos el Software <br class="hidden md:block"/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-violet-400 to-primary bg-[length:200%_auto] animate-[shimmer_3s_linear_infinite]">Escalable del Mañana</span>
+                    <span data-i18n="hero_title">Creamos Software que</span> <br class="hidden md:block"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-violet-400 to-primary bg-[length:200%_auto] animate-[shimmer_3s_linear_infinite]" data-i18n="hero_title_highlight">Impulsa Negocios</span>
                 </h1>
                 
                 <!-- Subheadline -->
-                <p class="hero-subtitle text-slate-400 text-lg md:text-xl font-normal leading-relaxed max-w-[720px] mb-10">
-                    Soluciones web y SaaS a medida con tecnología de vanguardia. <br class="hidden sm:block"/>
-                    Transformamos ideas complejas en productos digitales de alto rendimiento.
+                <p class="hero-subtitle text-slate-400 text-lg md:text-xl font-normal leading-relaxed max-w-[720px] mb-10" data-i18n="hero_subtitle">
+                    Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.
                 </p>
                 
                 <!-- CTAs -->
                 <div class="hero-cta flex flex-col sm:flex-row gap-4 items-center">
-                    <a href="#contacto" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 bg-primary text-white text-base font-bold shadow-[0_10px_30px_-10px_rgba(75,43,238,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(75,43,238,0.7)] hover:translate-y-[-3px] transition-all duration-300">
-                        Empezar Proyecto
+                    <a href="#portafolio" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 bg-primary text-white text-base font-bold shadow-[0_10px_30px_-10px_rgba(75,43,238,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(75,43,238,0.7)] hover:translate-y-[-3px] transition-all duration-300">
+                        <span data-i18n="hero_cta_primary">Ver Proyectos</span>
                         <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </a>
-                    <a href="#portafolio" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 glass text-white text-base font-bold hover:bg-white/10 transition-all duration-300">
-                        Ver Portafolio
+                    <a href="#precios" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 glass text-white text-base font-bold hover:bg-white/10 transition-all duration-300">
+                        <span data-i18n="hero_cta_secondary">Cotizar Ahora</span>
                         <span class="material-symbols-outlined text-lg group-hover:rotate-45 transition-transform">open_in_new</span>
                     </a>
                 </div>
@@ -514,10 +513,10 @@
             <div class="flex flex-col items-center text-center mb-16 max-w-5xl mx-auto animate-slide-up">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-widest mb-4 pulse-glow">
                     <span class="material-symbols-outlined text-sm">local_offer</span>
-                    Oferta por Tiempo Limitado
+                    <span data-i18n="pricing_badge">Oferta por Tiempo Limitado</span>
                 </div>
-                <h2 class="section-title text-3xl md:text-5xl font-black leading-tight tracking-tighter mb-4">Planes y Precios</h2>
-                <p class="text-slate-400 max-w-lg">Soluciones digitales de alto impacto diseñadas para escalar tu negocio.</p>
+                <h2 class="section-title text-3xl md:text-5xl font-black leading-tight tracking-tighter mb-4" data-i18n="pricing_title">Planes y Precios</h2>
+                <p class="text-slate-400 max-w-lg" data-i18n="pricing_subtitle">Soluciones digitales de alto impacto diseñadas para escalar tu negocio.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto stagger-children">
@@ -525,79 +524,79 @@
                 <div class="pricing-card flex flex-col gap-6 rounded-xl border border-white/10 bg-card-dark p-8 relative">
                     <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full animate-bounce-slow">-20%</div>
                     <div class="flex flex-col gap-2">
-                        <h3 class="text-xl font-bold">Landing Page</h3>
-                        <p class="text-sm text-slate-400">Ideal para lanzamientos y campañas de marketing.</p>
+                        <h3 class="text-xl font-bold" data-i18n="plan_landing">Landing Page</h3>
+                        <p class="text-sm text-slate-400" data-i18n="plan_landing_desc">Ideal para lanzamientos y campañas de marketing.</p>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-lg text-slate-500 line-through">$275.000</span>
-                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$220.000</span>
-                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider" data-i18n="pricing_from">Desde</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="text-lg text-slate-500 line-through" data-price-old="275000">$275.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400" data-price="220000">$220.000</span>
+                            <span class="text-slate-400 text-sm font-medium currency-label">CLP</span>
                         </div>
                     </div>
-                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all">
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all" data-i18n="pricing_contact">
                         Contactar
                     </a>
                     <hr class="border-white/10"/>
                     <div class="flex flex-col gap-4">
                         <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-xl">verified</span>
-                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                            <span class="text-sm font-bold" data-i18n="feature_hosting">Dominio y Hosting GRATIS 1 año</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Diseño Responsivo UX/UI
+                            <span data-i18n="feature_responsive">Diseño Responsivo UX/UI</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Optimización SEO Base
+                            <span data-i18n="feature_seo">Optimización SEO Base</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Formulario de Contacto
+                            <span data-i18n="feature_form">Formulario de Contacto</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Plan 2: Corporativa (Popular) -->
                 <div class="pricing-card flex flex-col gap-6 rounded-xl border-2 border-primary bg-card-dark p-8 relative">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-primary/30">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-primary/30" data-i18n="pricing_popular">
                         Más Popular
                     </div>
                     <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">-21%</div>
                     <div class="flex flex-col gap-2">
-                        <h3 class="text-xl font-bold">Web Corporativa</h3>
-                        <p class="text-sm text-slate-400">Presencia profesional con múltiples secciones.</p>
+                        <h3 class="text-xl font-bold" data-i18n="plan_corp">Web Corporativa</h3>
+                        <p class="text-sm text-slate-400" data-i18n="plan_corp_desc">Presencia profesional con múltiples secciones.</p>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-lg text-slate-500 line-through">$480.000</span>
-                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$380.000</span>
-                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider" data-i18n="pricing_from">Desde</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="text-lg text-slate-500 line-through" data-price-old="480000">$480.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400" data-price="380000">$380.000</span>
+                            <span class="text-slate-400 text-sm font-medium currency-label">CLP</span>
                         </div>
                     </div>
-                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold neon-glow transition-all">
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold neon-glow transition-all" data-i18n="pricing_contact">
                         Contactar
                     </a>
                     <hr class="border-white/10"/>
                     <div class="flex flex-col gap-4">
                         <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-xl">verified</span>
-                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                            <span class="text-sm font-bold" data-i18n="feature_hosting">Dominio y Hosting GRATIS 1 año</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Hasta 5 Secciones Personalizadas
+                            <span data-i18n="feature_sections">Hasta 5 Secciones Personalizadas</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Integración Redes Sociales
+                            <span data-i18n="feature_social">Integración Redes Sociales</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Soporte Técnico 3 Meses
+                            <span data-i18n="feature_support">Soporte Técnico 3 Meses</span>
                         </div>
                     </div>
                 </div>
@@ -606,41 +605,41 @@
                 <div class="pricing-card flex flex-col gap-6 rounded-xl border border-white/10 bg-card-dark p-8 relative">
                     <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">-15%</div>
                     <div class="flex flex-col gap-2">
-                        <h3 class="text-xl font-bold">E-commerce</h3>
-                        <p class="text-sm text-slate-400">Tienda online completa con pagos y gestión.</p>
+                        <h3 class="text-xl font-bold" data-i18n="plan_ecommerce">E-commerce</h3>
+                        <p class="text-sm text-slate-400" data-i18n="plan_ecommerce_desc">Tienda online completa con pagos y gestión.</p>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-lg text-slate-500 line-through">$650.000</span>
-                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$550.000</span>
-                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider" data-i18n="pricing_from">Desde</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="text-lg text-slate-500 line-through" data-price-old="650000">$650.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400" data-price="550000">$550.000</span>
+                            <span class="text-slate-400 text-sm font-medium currency-label">CLP</span>
                         </div>
                     </div>
-                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all">
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all" data-i18n="pricing_contact">
                         Contactar
                     </a>
                     <hr class="border-white/10"/>
                     <div class="flex flex-col gap-4">
                         <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-xl">verified</span>
-                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                            <span class="text-sm font-bold" data-i18n="feature_hosting">Dominio y Hosting GRATIS 1 año</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Pasarela de Pagos (Webpay/Flow)
+                            <span data-i18n="feature_payments">Pasarela de Pagos (Webpay/Flow)</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Panel de Administración
+                            <span data-i18n="feature_admin">Panel de Administración</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Cálculo Automático de Envíos
+                            <span data-i18n="feature_inventory">Gestión de Inventario</span>
                         </div>
                         <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                            Capacitación de Uso
+                            <span data-i18n="feature_support_6">Soporte Técnico 6 Meses</span>
                         </div>
                     </div>
                 </div>
@@ -659,70 +658,70 @@
                         <div class="space-y-6">
                             <!-- Tipo de proyecto -->
                             <div class="space-y-3">
-                                <label class="text-sm font-bold text-white">Tipo de Proyecto</label>
+                                <label class="text-sm font-bold text-white" data-i18n="quoter_project_type">Tipo de Proyecto</label>
                                 <div class="grid grid-cols-1 gap-2">
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="radio" name="projectType" value="landing" data-price="220000" class="accent-primary w-4 h-4" checked>
-                                        <span class="flex-1 font-medium">Landing Page</span>
-                                        <span class="text-slate-400 text-sm">$220.000</span>
+                                        <span class="flex-1 font-medium" data-i18n="plan_landing">Landing Page</span>
+                                        <span class="text-slate-400 text-sm" data-price="220000">$220.000</span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="radio" name="projectType" value="corporativa" data-price="380000" class="accent-primary w-4 h-4">
-                                        <span class="flex-1 font-medium">Web Corporativa</span>
-                                        <span class="text-slate-400 text-sm">$380.000</span>
+                                        <span class="flex-1 font-medium" data-i18n="plan_corp">Web Corporativa</span>
+                                        <span class="text-slate-400 text-sm" data-price="380000">$380.000</span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="radio" name="projectType" value="ecommerce" data-price="550000" class="accent-primary w-4 h-4">
-                                        <span class="flex-1 font-medium">E-commerce</span>
-                                        <span class="text-slate-400 text-sm">$550.000</span>
+                                        <span class="flex-1 font-medium" data-i18n="plan_ecommerce">E-commerce</span>
+                                        <span class="text-slate-400 text-sm" data-price="550000">$550.000</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Secciones adicionales -->
                             <div class="space-y-3">
-                                <label class="text-sm font-bold text-white">Secciones Adicionales</label>
+                                <label class="text-sm font-bold text-white" data-i18n="quoter_sections">Secciones Adicionales</label>
                                 <div class="flex items-center gap-4">
                                     <button type="button" id="sections-minus" class="w-10 h-10 rounded-lg border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all">-</button>
                                     <span id="sections-count" class="text-2xl font-bold w-12 text-center">0</span>
                                     <button type="button" id="sections-plus" class="w-10 h-10 rounded-lg border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all">+</button>
-                                    <span class="text-slate-400 text-sm">× $25.000 c/u</span>
+                                    <span class="text-slate-400 text-sm">× <span data-price="25000">$25.000</span> c/u</span>
                                 </div>
                             </div>
 
                             <!-- Funcionalidades extra -->
                             <div class="space-y-3">
-                                <label class="text-sm font-bold text-white">Funcionalidades Extra</label>
+                                <label class="text-sm font-bold text-white" data-i18n="quoter_extras">Funcionalidades Extra</label>
                                 <div class="space-y-2">
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="checkbox" name="extras" value="45000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Blog / Noticias</span>
-                                        <span class="text-slate-400 text-xs">+$45.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_blog">Blog / Noticias</span>
+                                        <span class="text-slate-400 text-xs">+<span data-price="45000">$45.000</span></span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="checkbox" name="extras" value="25000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Chat en Vivo / WhatsApp</span>
-                                        <span class="text-slate-400 text-xs">+$25.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_chat">Chat en Vivo / WhatsApp</span>
+                                        <span class="text-slate-400 text-xs">+<span data-price="25000">$25.000</span></span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="checkbox" name="extras" value="120000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Sistema de Reservas</span>
-                                        <span class="text-slate-400 text-xs">+$120.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_booking">Sistema de Reservas</span>
+                                        <span class="text-slate-400 text-xs">+<span data-price="120000">$120.000</span></span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="checkbox" name="extras" value="60000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Multi-idioma</span>
-                                        <span class="text-slate-400 text-xs">+$60.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_multilang">Multi-idioma</span>
+                                        <span class="text-slate-400 text-xs">+<span data-price="60000">$60.000</span></span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
                                         <input type="checkbox" name="extras" value="150000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Panel Administrador Pro</span>
-                                        <span class="text-slate-400 text-xs">+$150.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_admin_pro">Panel Administrador Pro</span>
+                                        <span class="text-slate-400 text-xs">+<span data-price="150000">$150.000</span></span>
                                     </label>
                                     <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all group">
                                         <input type="checkbox" name="extras" value="85000" class="accent-primary w-4 h-4 extra-checkbox">
-                                        <span class="flex-1 text-sm">Gestor de Contenido</span>
-                                        <span class="text-slate-400 text-xs group-hover:text-primary transition-colors">+$85.000</span>
+                                        <span class="flex-1 text-sm" data-i18n="extra_cms">Gestor de Contenido</span>
+                                        <span class="text-slate-400 text-xs group-hover:text-primary transition-colors">+<span data-price="85000">$85.000</span></span>
                                     </label>
                                 </div>
                             </div>
@@ -731,19 +730,19 @@
                         <!-- Resumen del precio -->
                         <div class="flex flex-col">
                             <div class="flex-1 bg-gradient-to-br from-primary/10 to-violet-600/10 rounded-xl border border-primary/20 p-6 flex flex-col">
-                                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Resumen</h4>
+                                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6" data-i18n="quoter_summary">Resumen</h4>
                                 
                                 <div class="space-y-3 flex-1">
                                     <div class="flex justify-between text-sm">
-                                        <span class="text-slate-400">Proyecto base:</span>
-                                        <span id="summary-base" class="text-white font-medium">$160.000</span>
+                                        <span class="text-slate-400" data-i18n="quoter_base">Proyecto base:</span>
+                                        <span id="summary-base" class="text-white font-medium">$220.000</span>
                                     </div>
                                     <div class="flex justify-between text-sm">
-                                        <span class="text-slate-400">Secciones adicionales:</span>
+                                        <span class="text-slate-400" data-i18n="quoter_sections_cost">Secciones adicionales:</span>
                                         <span id="summary-sections" class="text-white font-medium">$0</span>
                                     </div>
                                     <div class="flex justify-between text-sm">
-                                        <span class="text-slate-400">Funcionalidades extra:</span>
+                                        <span class="text-slate-400" data-i18n="quoter_extras_cost">Funcionalidades extra:</span>
                                         <span id="summary-extras" class="text-white font-medium">$0</span>
                                     </div>
                                     <hr class="border-white/10 my-4"/>
@@ -751,18 +750,18 @@
 
                                 <div class="mt-auto">
                                     <div class="flex justify-between items-end mb-6">
-                                        <span class="text-slate-300 font-medium">Total Estimado:</span>
+                                        <span class="text-slate-300 font-medium" data-i18n="quoter_total">Total Estimado:</span>
                                         <div class="text-right">
-                                            <span id="quote-total" class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">$160.000</span>
-                                            <span class="text-slate-400 text-sm block">CLP + IVA</span>
+                                            <span id="quote-total" class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">$220.000</span>
+                                            <span class="text-slate-400 text-sm block currency-label">CLP + IVA</span>
                                         </div>
                                     </div>
                                     
                                     <a href="#contacto" class="flex w-full items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold neon-glow transition-all hover:scale-[1.02]">
                                         <span class="material-symbols-outlined">mail</span>
-                                        Solicitar Cotización Formal
+                                        <span data-i18n="quoter_cta">Solicitar Cotización Formal</span>
                                     </a>
-                                    <p class="text-center text-slate-500 text-xs mt-3">* Precio referencial. Cotización final según requerimientos específicos.</p>
+                                    <p class="text-center text-slate-500 text-xs mt-3" data-i18n="quoter_note">* Precio referencial. Cotización final según requerimientos específicos.</p>
                                 </div>
                             </div>
                         </div>
@@ -878,6 +877,8 @@
         </div>
     </footer>
 
+    <!-- i18n System -->
+    <script src="js/i18n.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>

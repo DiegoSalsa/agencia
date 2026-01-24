@@ -296,12 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let sections_additional = 0;
     const PRICE_PER_SECTION = 25000;
     
-    function formatPrice(price) {
-        return '$' + price.toLocaleString('es-CL');
-    }
-    
     function calculateQuote() {
-        // Precio base según tipo de proyecto
+        // Precio base según tipo de proyecto (en CLP)
         let basePrice = 220000;
         const selectedProject = document.querySelector('input[name="projectType"]:checked');
         if (selectedProject) {
@@ -322,12 +318,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // Total
         const total = basePrice + sectionsPrice + extrasPrice;
         
+        // Usar i18n para formatear si está disponible
+        const formatFn = window.i18n ? window.i18n.formatPrice : (p) => '$' + p.toLocaleString('es-CL');
+        
         // Actualizar UI
-        if (summaryBase) summaryBase.textContent = formatPrice(basePrice);
-        if (summarySections) summarySections.textContent = formatPrice(sectionsPrice);
-        if (summaryExtras) summaryExtras.textContent = formatPrice(extrasPrice);
-        if (quoteTotal) quoteTotal.textContent = formatPrice(total);
+        if (summaryBase) summaryBase.textContent = formatFn(basePrice);
+        if (summarySections) summarySections.textContent = formatFn(sectionsPrice);
+        if (summaryExtras) summaryExtras.textContent = formatFn(extrasPrice);
+        if (quoteTotal) quoteTotal.textContent = formatFn(total);
     }
+    
+    // Exponer función para que i18n pueda llamarla
+    window.updateQuote = calculateQuote;
     
     // Event listeners para el cotizador
     projectTypeInputs.forEach(input => {
@@ -358,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
         checkbox.addEventListener('change', calculateQuote);
     });
     
-    // Calcular precio inicial
-    calculateQuote();
+    // Calcular precio inicial después de que i18n esté listo
+    setTimeout(calculateQuote, 500);
 
 });
