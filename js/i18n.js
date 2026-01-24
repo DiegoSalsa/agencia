@@ -40,7 +40,7 @@ const TRANSLATIONS = {
         nav_cta: 'Comenzar Proyecto',
         
         // Hero
-        hero_badge: '🚀 Transformación Digital Premium',
+        hero_badge: 'Transformacion Digital Premium',
         hero_title: 'Creamos Software que',
         hero_title_highlight: 'Impulsa Negocios',
         hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
@@ -48,86 +48,86 @@ const TRANSLATIONS = {
         hero_cta_secondary: 'Cotizar Ahora',
         
         // Tech Stack
-        tech_title: 'Nuestro Ecosistema Tecnológico',
+        tech_title: 'Nuestro Ecosistema Tecnologico',
         tech_1_title: 'Stack Moderno',
-        tech_1_desc: 'React, Next.js y TypeScript para interfaces fluidas y rápidas.',
+        tech_1_desc: 'React, Next.js y TypeScript para interfaces fluidas y rapidas.',
         tech_2_title: 'Cloud Native',
         tech_2_desc: 'AWS & Vercel: infraestructuras escalables y optimizadas.',
         tech_3_title: 'Data & AI',
-        tech_3_desc: 'Integración de inteligencia artificial y análisis de datos.',
+        tech_3_desc: 'Integracion de inteligencia artificial y analisis de datos.',
         tech_4_title: 'Seguridad Primero',
-        tech_4_desc: 'Arquitecturas blindadas con los más altos estándares.',
+        tech_4_desc: 'Arquitecturas blindadas con los mas altos estandares.',
         
         // Portfolio
         portfolio_webs_title: 'Nuestras Webs',
         portfolio_webs_subtitle: 'Experiencias digitales que convierten y cautivan.',
         portfolio_saas_title: 'Soluciones SaaS',
-        portfolio_saas_subtitle: 'Software robusto diseñado para escalar sin límites.',
+        portfolio_saas_subtitle: 'Software robusto disenado para escalar sin limites.',
         
         // Services
         services_tag: 'Experiencia',
         services_title: 'Soluciones digitales premium para',
         services_title_2: 'escalar marcas modernas.',
         service_1_title: 'Desarrollo Web Moderno',
-        service_1_desc: 'Creamos interfaces de alto rendimiento y responsivas que entregan experiencias de usuario excepcionales. Enfocados en velocidad, accesibilidad y código limpio.',
+        service_1_desc: 'Creamos interfaces de alto rendimiento y responsivas que entregan experiencias de usuario excepcionales. Enfocados en velocidad, accesibilidad y codigo limpio.',
         service_2_title: 'Mantenimiento',
-        service_2_desc: 'Soporte dedicado 24/7, parches de seguridad y optimización continua de rendimiento.',
+        service_2_desc: 'Soporte dedicado 24/7, parches de seguridad y optimizacion continua de rendimiento.',
         service_3_title: 'Soluciones SaaS',
-        service_3_desc: 'Arquitecturas multi-inquilino escalables diseñadas para un crecimiento rápido. Manejamos la complejidad técnica para que usted se enfoque en su hoja de ruta.',
-        learn_more: 'Saber más',
+        service_3_desc: 'Arquitecturas multi-inquilino escalables disenadas para un crecimiento rapido. Manejamos la complejidad tecnica para que usted se enfoque en su hoja de ruta.',
+        learn_more: 'Saber mas',
         explore: 'Explorar',
         
         // Process
-        process_tag: 'Metodología Premium',
-        process_title: 'Cómo Trabajamos',
-        process_subtitle: 'Transformamos ideas complejas en productos digitales de clase mundial a través de un proceso ágil y transparente.',
+        process_tag: 'Metodologia Premium',
+        process_title: 'Como Trabajamos',
+        process_subtitle: 'Transformamos ideas complejas en productos digitales de clase mundial a traves de un proceso agil y transparente.',
         process_1_title: 'Descubrimiento',
-        process_1_desc: 'Iniciamos con reuniones estratégicas para entender tu visión y definir objetivos.',
-        process_2_title: 'Diseño & UX',
+        process_1_desc: 'Iniciamos con reuniones estrategicas para entender tu vision y definir objetivos.',
+        process_2_title: 'Diseno & UX',
         process_2_desc: 'Creamos prototipos de alta fidelidad centrados en el usuario final.',
         process_3_title: 'Desarrollo',
-        process_3_desc: 'Implementamos con arquitecturas escalables y código limpio bajo metodología Agile.',
+        process_3_desc: 'Implementamos con arquitecturas escalables y codigo limpio bajo metodologia Agile.',
         process_4_title: 'Lanzamiento',
         process_4_desc: 'Deploy optimizado con monitoreo continuo y soporte post-lanzamiento.',
         
         // Stats
         stat_1_label: 'Proyectos Exitosos',
-        stat_1_trend: '+12% este año',
+        stat_1_trend: '+12% este ano',
         stat_2_label: 'Tiempo Entrega',
         stat_2_note: 'vs promedio industria',
-        stat_3_label: 'Satisfacción',
+        stat_3_label: 'Satisfaccion',
         
         // Pricing
         pricing_badge: 'Oferta por Tiempo Limitado',
         pricing_title: 'Planes y Precios',
-        pricing_subtitle: 'Soluciones digitales de alto impacto diseñadas para escalar tu negocio.',
+        pricing_subtitle: 'Soluciones digitales de alto impacto disenadas para escalar tu negocio.',
         pricing_from: 'Desde',
         pricing_contact: 'Contactar',
-        pricing_popular: 'Más Popular',
+        pricing_popular: 'Mas Popular',
         
         // Plan names
         plan_landing: 'Landing Page',
-        plan_landing_desc: 'Ideal para lanzamientos y campañas de marketing.',
+        plan_landing_desc: 'Ideal para lanzamientos y campanas de marketing.',
         plan_corp: 'Web Corporativa',
-        plan_corp_desc: 'Presencia profesional con múltiples secciones.',
+        plan_corp_desc: 'Presencia profesional con multiples secciones.',
         plan_ecommerce: 'E-commerce',
-        plan_ecommerce_desc: 'Tienda online completa con pagos y gestión.',
+        plan_ecommerce_desc: 'Tienda online completa con pagos y gestion.',
         
         // Features
-        feature_hosting: 'Dominio y Hosting GRATIS 1 año',
-        feature_responsive: 'Diseño Responsivo UX/UI',
-        feature_seo: 'Optimización SEO Base',
+        feature_hosting: 'Dominio y Hosting GRATIS 1 ano',
+        feature_responsive: 'Diseno Responsivo UX/UI',
+        feature_seo: 'Optimizacion SEO Base',
         feature_form: 'Formulario de Contacto',
         feature_sections: 'Hasta 5 Secciones Personalizadas',
-        feature_social: 'Integración Redes Sociales',
-        feature_support: 'Soporte Técnico 3 Meses',
+        feature_social: 'Integracion Redes Sociales',
+        feature_support: 'Soporte Tecnico 3 Meses',
         feature_payments: 'Pasarela de Pagos (Webpay/Flow)',
-        feature_admin: 'Panel de Administración',
-        feature_inventory: 'Gestión de Inventario',
-        feature_support_6: 'Soporte Técnico 6 Meses',
+        feature_admin: 'Panel de Administracion',
+        feature_inventory: 'Gestion de Inventario',
+        feature_support_6: 'Soporte Tecnico 6 Meses',
         
         // Quoter
-        quoter_title: 'Cotizador Instantáneo',
+        quoter_title: 'Cotizador Instantaneo',
         quoter_subtitle: 'Calcula el precio de tu proyecto en segundos',
         quoter_project_type: 'Tipo de Proyecto',
         quoter_sections: 'Secciones Adicionales',
@@ -137,8 +137,8 @@ const TRANSLATIONS = {
         quoter_sections_cost: 'Secciones adicionales:',
         quoter_extras_cost: 'Funcionalidades extra:',
         quoter_total: 'Total Estimado',
-        quoter_cta: 'Solicitar Cotización Formal',
-        quoter_note: 'Precio referencial. El valor final puede variar según requerimientos específicos.',
+        quoter_cta: 'Solicitar Cotizacion Formal',
+        quoter_note: 'Precio referencial. El valor final puede variar segun requerimientos especificos.',
         
         // Extras
         extra_blog: 'Blog / Noticias',
@@ -147,6 +147,20 @@ const TRANSLATIONS = {
         extra_multilang: 'Multi-idioma',
         extra_admin_pro: 'Panel Administrador Pro',
         extra_cms: 'Gestor de Contenido',
+        
+        // Contact
+        contact_tag: 'Conversemos',
+        contact_title: 'Construyamos algo increible',
+        contact_name: 'Nombre completo',
+        contact_email: 'Email',
+        contact_message: 'Cuentanos sobre tu proyecto...',
+        contact_send: 'Enviar Mensaje',
+        
+        // Footer
+        footer_desc: 'Ingenieria de software de alta gama para visionarios. Transformamos desafios complejos en soluciones elegantes.',
+        footer_services: 'Plataforma',
+        footer_company: 'Compania',
+        footer_rights: 'Todos los derechos reservados.',
         
         // Contact
         contact_tag: 'Conversemos',
@@ -181,7 +195,7 @@ const TRANSLATIONS = {
         nav_cta: 'Start Project',
         
         // Hero
-        hero_badge: '🚀 Premium Digital Transformation',
+        hero_badge: 'Premium Digital Transformation',
         hero_title: 'We Create Software that',
         hero_title_highlight: 'Drives Business',
         hero_subtitle: 'High-end web development, scalable SaaS solutions, and digital experiences that turn visitors into customers.',
@@ -291,23 +305,20 @@ const TRANSLATIONS = {
         
         // Contact
         contact_tag: "Let's Talk",
-        contact_title: 'Ready to transform your digital presence?',
-        contact_subtitle: 'Tell us about your project and we will respond within 24 hours.',
+        contact_title: 'Build Something Amazing Together',
         contact_name: 'Full name',
         contact_email: 'Email',
-        contact_phone: 'Phone (optional)',
         contact_message: 'Tell us about your project...',
         contact_send: 'Send Message',
+        
+        // Footer
+        footer_desc: 'High-end software engineering for visionaries. We transform complex challenges into elegant solutions.',
+        footer_services: 'Platform',
+        footer_company: 'Company',
+        footer_rights: 'All rights reserved.',
         contact_info_title: 'Contact Information',
         contact_response: 'Response within 24h',
         contact_schedule: 'Schedule a call',
-        
-        // Footer
-        footer_desc: 'We transform ideas into world-class digital products.',
-        footer_services: 'Services',
-        footer_company: 'Company',
-        footer_contact: 'Contact',
-        footer_rights: 'All rights reserved.',
         
         // Language selector
         lang_select: 'Language',
