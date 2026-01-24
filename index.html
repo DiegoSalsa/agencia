@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Agencia Software Chile | Desarrollo Web & SaaS Premium</title>
+    <meta name="description" content="Soluciones web y SaaS a medida con tecnología de vanguardia. Transformamos ideas complejas en productos digitales de alto rendimiento."/>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0a0a",
+                        "surface-dark": "#131022",
+                        "card-dark": "#161616",
+                        "border-dark": "#2b2839",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body class="bg-background-dark font-display text-white antialiased overflow-x-hidden">
+
+    <!-- ========== HEADER ========== -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 transition-shadow">
+        <nav class="flex w-full max-w-[1200px] items-center justify-between glass rounded-full px-6 py-2">
+            <a href="#hero" class="flex items-center gap-2">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                </div>
+                <h2 class="text-white text-lg font-extrabold tracking-tight">Agency.</h2>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#servicios">Servicios</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#portafolio">Portafolio</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#proceso">Proceso</a>
+                <a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#precios">Precios</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="#contacto" class="hidden sm:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-4 bg-primary text-white text-sm font-bold neon-glow transition-all">
+                    Agendar Llamada
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] bg-background-dark/95 backdrop-blur-lg md:hidden">
+        <div class="flex flex-col h-full p-6">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-white text-lg font-extrabold">Agency.</h2>
+                <button id="close-menu-btn" class="text-white">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6">
+                <a class="text-2xl font-bold hover:text-primary transition-colors" href="#servicios">Servicios</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors" href="#portafolio">Portafolio</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors" href="#proceso">Proceso</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors" href="#precios">Precios</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors" href="#contacto">Contacto</a>
+            </nav>
+            <a href="#contacto" class="mt-auto w-full py-4 bg-primary text-white text-center font-bold rounded-xl">
+                Agendar Llamada
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <!-- ========== HERO SECTION ========== -->
+        <section id="hero" class="relative flex min-h-screen flex-col items-center justify-center pt-20 pb-20 overflow-hidden">
+            <!-- Animated Background -->
+            <div class="hero-background">
+                <!-- Animated Grid -->
+                <div class="hero-grid"></div>
+                
+                <!-- Floating Orbs -->
+                <div class="hero-orb hero-orb-1"></div>
+                <div class="hero-orb hero-orb-2"></div>
+                <div class="hero-orb hero-orb-3"></div>
+                
+                <!-- Particles -->
+                <div class="particles-container" id="particles"></div>
+                
+                <!-- Light Beams -->
+                <div class="light-beam" style="left: 10%; animation-delay: 0s;"></div>
+                <div class="light-beam" style="left: 25%; animation-delay: 2s;"></div>
+                <div class="light-beam" style="left: 45%; animation-delay: 4s;"></div>
+                <div class="light-beam" style="left: 65%; animation-delay: 1s;"></div>
+                <div class="light-beam" style="left: 80%; animation-delay: 3s;"></div>
+                <div class="light-beam" style="left: 90%; animation-delay: 5s;"></div>
+            </div>
+            
+            <!-- Hero Glow -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl pointer-events-none hero-glow"></div>
+            
+            <div class="flex flex-col items-center text-center px-6 max-w-[960px] relative z-10">
+                <!-- Badge -->
+                <div class="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    Impulsando la Innovación en Chile
+                </div>
+                
+                <!-- Headline -->
+                <h1 class="hero-title text-5xl md:text-7xl font-black leading-[1.1] tracking-[-0.04em] mb-6">
+                    Construimos el Software <br class="hidden md:block"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-violet-400 to-primary bg-[length:200%_auto] animate-[shimmer_3s_linear_infinite]">Escalable del Mañana</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="hero-subtitle text-slate-400 text-lg md:text-xl font-normal leading-relaxed max-w-[720px] mb-10">
+                    Soluciones web y SaaS a medida con tecnología de vanguardia. <br class="hidden sm:block"/>
+                    Transformamos ideas complejas en productos digitales de alto rendimiento.
+                </p>
+                
+                <!-- CTAs -->
+                <div class="hero-cta flex flex-col sm:flex-row gap-4 items-center">
+                    <a href="#contacto" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 bg-primary text-white text-base font-bold shadow-[0_10px_30px_-10px_rgba(75,43,238,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(75,43,238,0.7)] hover:translate-y-[-3px] transition-all duration-300">
+                        Empezar Proyecto
+                        <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                    <a href="#portafolio" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 glass text-white text-base font-bold hover:bg-white/10 transition-all duration-300">
+                        Ver Portafolio
+                        <span class="material-symbols-outlined text-lg group-hover:rotate-45 transition-transform">open_in_new</span>
+                    </a>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+                    <span class="text-slate-500 text-xs uppercase tracking-widest">Scroll</span>
+                    <span class="material-symbols-outlined text-slate-500">expand_more</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TECH STACK ========== -->
+        <section class="py-24 border-t border-b border-white/5 animate-on-scroll">
+            <div class="max-w-[1200px] mx-auto px-6 text-center">
+                <p class="text-slate-500 text-sm font-semibold uppercase tracking-[0.2em] mb-12">Nuestro Ecosistema Tecnológico</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                    <!-- Stack Moderno -->
+                    <div class="tech-card flex flex-col items-start gap-4 p-6 rounded-xl border border-white/10 bg-card-dark">
+                        <div class="tech-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl float-icon">code_blocks</span>
+                        </div>
+                        <h3 class="text-white font-bold text-lg">Stack Moderno</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">React, Next.js y TypeScript para interfaces fluidas y rápidas.</p>
+                    </div>
+                    <!-- Cloud Native -->
+                    <div class="tech-card flex flex-col items-start gap-4 p-6 rounded-xl border border-white/10 bg-card-dark">
+                        <div class="tech-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl float-icon" style="animation-delay: 0.5s">cloud</span>
+                        </div>
+                        <h3 class="text-white font-bold text-lg">Cloud Native</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">AWS & Vercel: infraestructuras escalables y optimizadas.</p>
+                    </div>
+                    <!-- Data & AI -->
+                    <div class="tech-card flex flex-col items-start gap-4 p-6 rounded-xl border border-white/10 bg-card-dark">
+                        <div class="tech-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl float-icon" style="animation-delay: 1s">psychology</span>
+                        </div>
+                        <h3 class="text-white font-bold text-lg">Data & AI</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Integración de inteligencia artificial y análisis de datos.</p>
+                    </div>
+                    <!-- Seguridad Primero -->
+                    <div class="tech-card flex flex-col items-start gap-4 p-6 rounded-xl border border-white/10 bg-card-dark">
+                        <div class="tech-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl float-icon" style="animation-delay: 1.5s">security</span>
+                        </div>
+                        <h3 class="text-white font-bold text-lg">Seguridad Primero</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Arquitecturas blindadas con los más altos estándares.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PORTAFOLIO SECTION ========== -->
+        <section id="portafolio" class="w-full max-w-[1200px] mx-auto px-6 py-32 space-y-24 animate-on-scroll">
+            <!-- Webs -->
+            <div class="space-y-8 carousel-container">
+                <div class="flex items-end justify-between px-2">
+                    <div class="space-y-2">
+                        <h2 class="section-title text-3xl font-black text-white tracking-tight">Nuestras Webs</h2>
+                        <p class="text-slate-400">Experiencias digitales que convierten y cautivan.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="carousel-prev w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="carousel-next w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-track flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <img alt="E-commerce project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz8U__CybfWBoJAPP_vslz1PHxX5eSmXNcgpw0wNFcKMocxYKMjKnanOR65rs4GVjrWBrzTvf7MRoPGhlhTZAM_e6lCPnpfsaJzRpG_4nRwAz0YonLcZHylQZfT65MxiprRUJs-neaElxN6lERYLkE5ZfZ7vcyu65cly2_V4o6cuqeUPvgAjoBocWbshOTbaDQQCk7HuIwMGCwak_A6uL4LtMpm5802l9lFwPlz4JmCg4y08TULEnKYAwown-Ryz6_LwqJ2gwSalg"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider">E-commerce</span>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-bold text-lg px-1">Plataforma Global Retail</h3>
+                        <p class="text-slate-500 text-sm px-1">Optimización de conversión +140%</p>
+                    </div>
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <img alt="Corporate project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKCEKe_Zmtq9fNv7PspzBev3bg9h9JYjXbCtDsa_il8q6hH2SnnobUstEbPJ_vwbNOw8bMlc5yeqKwl_-0d5NBITsKu6rh3sKYm-UavUhXqLpQe0vZx4pdn3H2gpVfPDLC-BdIsrjZsspxwZSBhC4lEoX-Cp0r2kr3Dr0U9pqf7DUB-o9ts_W_ydteStttu25fY09WOfDjKZ1SsvD4gF9umi0z007gzu2hUdnVhcBHw26ytkgHPaVbsem4WaHoJY9Fq7NxJ2Ev82U"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider">Corporate</span>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-bold text-lg px-1">Inmobiliaria de Lujo</h3>
+                        <p class="text-slate-500 text-sm px-1">Experiencia inmersiva 3D integrada</p>
+                    </div>
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <img alt="Portfolio project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPkxfa0qz1maHMTJ4hMEOyH9tF-cKa4zUzVObIL3m66qWdkGt7iWbEutnO656bN5O3XSEON5vcsmBFLrO-sCbyLtRQ2A_FULM2fbcoXng4ZOzaNWtLnyGt3jkkgHA8QwXkSCY7vvbaV64ZwvBv_5u1in1rEtrD1OiYyVfLGUzkXa6S2Eblpna2IUG_CtoHnK2J3x2HvO0TdAPMbDCr39_pvxpSW-MQn6PiSAtrV2Sfh5TYhobT09CJzemO7A74wahhUCwD7AdiF1g"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider">Creative</span>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-bold text-lg px-1">Galería Digital Interactiva</h3>
+                        <p class="text-slate-500 text-sm px-1">Performance Web Core Vitals A+</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SaaS -->
+            <div class="space-y-8 carousel-container">
+                <div class="flex items-end justify-between px-2">
+                    <div class="space-y-2">
+                        <h2 class="section-title text-3xl font-black text-white tracking-tight">Soluciones SaaS</h2>
+                        <p class="text-slate-400">Software robusto diseñado para escalar sin límites.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="carousel-prev w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="carousel-next w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-track flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+                            <img alt="Fintech project" class="w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-mICSKNONw7VQ6WdivIPAmEevxKXI0QE_K6BWRfVjWOwEIcArvd1TrssuvZkd_e4jqRoepQp2E_zw6E3URACHIGV6ENpWfU8ZtJhbYtd7w_7j7N8M6tgc4iQ5bHJhbG5EreZq6tP4GQtrVadZZ8yinGiMspoKC2Ym1KeSEIe76twUarO7QhwlGglro8LB76FPJ2PHeLFxTcoKJpN__95FK4vP6dIdggyOAMcopFxPaRBRqaPk6OgHvsSIiBsAdMCNT8HdD5JkFR4"/>
+                            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                                <div class="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-md flex items-center justify-center mb-4 border border-primary/30">
+                                    <span class="material-symbols-outlined text-primary">payments</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">NexusPay Fintech</h3>
+                                <p class="text-slate-400 text-sm">Core bancario escalable con micro-pagos en tiempo real.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+                            <img alt="Logistics project" class="w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEfBVdZ1Hig5eb623-4UMgrOlirPFkcdKFyBgokkiUVjPqQ-xeuUAoVkUR6Q-a2ZF_Fc2nLyOYjr-HJnvWaMj5uOE8WfHUhRivr2OEc-nG7cm9cwLOdn0Ea9zX5pGzdhC7VZHZmKw9ItD46Yhj1LgTkHqZgLdkXE56YuhpdPKXkfPtn4D0oIzAmKhdP5VB3dms5HgXvSvffSIdNL4Mt8pHbK8Trj7lsxP0Uq6SxpJBbLR0mIJn4_fSxKdkR25WKjYTFh_l53oWJIc"/>
+                            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                                <div class="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-md flex items-center justify-center mb-4 border border-primary/30">
+                                    <span class="material-symbols-outlined text-primary">inventory_2</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">LogiTrack Pro</h3>
+                                <p class="text-slate-400 text-sm">Gestión inteligente de flotas con IA.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] snap-start group">
+                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 glass mb-4">
+                            <div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+                            <img alt="Healthcare project" class="w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG6QX3A39re-fU7mNTnFXqURbJYb6FfrvJdZsgzahDHqz3VNXRmSAz7BkzRSOYlu0Du4_CNr-A_xHOYybbJ3rXrhQVV_WQAfNOU5kyavEOdattcemg6VCGexSQ2yXlWPAVYhMR2Mj-9y8xo1mZhbqzTSCXaC6TlyQKmNdJgiBpx_PM23iZFVXRoNJhUZ_oY6Pu4tx9dggCNh3vU1W5NPsGtTDBsRfuke9VjTYgCDLkOJ6ZwJ3KaSr8T4wIWpeQvqVR1UFReQ_D8AU"/>
+                            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                                <div class="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-md flex items-center justify-center mb-4 border border-primary/30">
+                                    <span class="material-symbols-outlined text-primary">health_metrics</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">HealthFlow AI</h3>
+                                <p class="text-slate-400 text-sm">Gestión clínica con diagnósticos asistidos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SERVICIOS SECTION ========== -->
+        <section id="servicios" class="py-20 px-6 animate-on-scroll">
+            <div class="max-w-[1200px] mx-auto">
+                <!-- Section Header -->
+                <div class="mb-16 animate-slide-up">
+                    <p class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4">Experiencia</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-extrabold leading-tight tracking-tight mb-6">
+                        Soluciones digitales premium para <br class="hidden md:block"/> escalar marcas modernas.
+                    </h2>
+                </div>
+                
+                <!-- Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 stagger-children">
+                    <!-- Card 1: Desarrollo Web -->
+                    <div class="md:col-span-8 bento-card-gradient bento-card-border rounded-xl p-8 relative overflow-hidden group bento-card">
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[320px]">
+                            <div>
+                                <span class="material-symbols-outlined text-primary text-4xl mb-6 float-icon">desktop_cloud</span>
+                                <h3 class="text-2xl font-bold text-white mb-4">Desarrollo Web Moderno</h3>
+                                <p class="text-slate-400 text-lg leading-relaxed max-w-md">
+                                    Creamos interfaces de alto rendimiento y responsivas que entregan experiencias de usuario excepcionales. Enfocados en velocidad, accesibilidad y código limpio.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center text-white/50 text-sm font-semibold group-hover:text-primary transition-colors cursor-pointer">
+                                Saber más <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+                            </div>
+                        </div>
+                        <div class="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[240px]">code</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2: Mantenimiento -->
+                    <div class="md:col-span-4 bento-card-gradient bento-card-border rounded-xl p-8 relative overflow-hidden group bento-card">
+                        <div class="relative z-10 flex flex-col h-full justify-between">
+                            <div>
+                                <span class="material-symbols-outlined text-primary text-4xl mb-6 float-icon" style="animation-delay: 0.3s">shield</span>
+                                <h3 class="text-2xl font-bold text-white mb-4">Mantenimiento</h3>
+                                <p class="text-slate-400 text-base leading-relaxed">
+                                    Soporte dedicado 24/7, parches de seguridad y optimización continua de rendimiento.
+                                </p>
+                            </div>
+                            <div class="mt-6 flex items-center text-white/50 text-sm font-semibold group-hover:text-primary transition-colors cursor-pointer">
+                                Explorar <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3: SaaS -->
+                    <div class="md:col-span-12 bento-card-gradient bento-card-border rounded-xl p-8 md:p-12 relative overflow-hidden group flex flex-col md:flex-row items-center gap-12 bento-card">
+                        <div class="flex-1 z-10">
+                            <span class="material-symbols-outlined text-primary text-5xl mb-6 float-icon" style="animation-delay: 0.6s">layers</span>
+                            <h3 class="text-3xl font-bold text-white mb-6">Soluciones SaaS</h3>
+                            <p class="text-slate-400 text-lg leading-relaxed max-w-2xl mb-8">
+                                Arquitecturas multi-inquilino escalables diseñadas para un crecimiento rápido. Manejamos la complejidad técnica para que usted se enfoque en su hoja de ruta.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <span class="px-4 py-2 bg-white/5 rounded-full text-xs font-semibold text-white/70 hover:bg-primary/20 hover:text-primary transition-all cursor-default">Multi-Tenancy</span>
+                                <span class="px-4 py-2 bg-white/5 rounded-full text-xs font-semibold text-white/70 hover:bg-primary/20 hover:text-primary transition-all cursor-default">Escalabilidad Cloud</span>
+                                <span class="px-4 py-2 bg-white/5 rounded-full text-xs font-semibold text-white/70 hover:bg-primary/20 hover:text-primary transition-all cursor-default">Diseño de APIs</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/3 aspect-video bg-white/5 rounded-lg border border-white/10 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+                            <div class="w-full h-full p-6 flex flex-col gap-3">
+                                <div class="h-4 w-1/2 bg-white/10 rounded animate-pulse"></div>
+                                <div class="h-24 w-full bg-white/10 rounded animate-pulse" style="animation-delay: 0.2s"></div>
+                                <div class="flex gap-2">
+                                    <div class="h-8 w-8 bg-white/10 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                                    <div class="h-8 w-8 bg-white/10 rounded-full animate-pulse" style="animation-delay: 0.6s"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROCESO SECTION ========== -->
+        <section id="proceso" class="py-20 px-6 border-t border-white/5 animate-on-scroll">
+            <div class="max-w-4xl mx-auto text-center mb-16 animate-slide-up">
+                <h4 class="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">Metodología Premium</h4>
+                <h2 class="section-title text-4xl md:text-5xl font-bold tracking-tight mb-6">Cómo Trabajamos</h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Transformamos ideas complejas en productos digitales de clase mundial a través de un proceso ágil y transparente.
+                </p>
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+                    <!-- Step 1 -->
+                    <div class="group flex flex-col items-center lg:items-start text-center lg:text-left process-step">
+                        <div class="relative mb-8">
+                            <div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-3xl float-icon">search</span>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs step-glow pulse-ring">01</div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Descubrimiento</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Iniciamos con reuniones estratégicas para entender tu visión y definir objetivos.
+                        </p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="group flex flex-col items-center lg:items-start text-center lg:text-left process-step">
+                        <div class="relative mb-8">
+                            <div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-3xl float-icon" style="animation-delay: 0.3s">polyline</span>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs step-glow pulse-ring" style="animation-delay: 0.5s">02</div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Diseño & UX</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Creamos prototipos de alta fidelidad centrados en el usuario final.
+                        </p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="group flex flex-col items-center lg:items-start text-center lg:text-left process-step">
+                        <div class="relative mb-8">
+                            <div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-3xl float-icon" style="animation-delay: 0.6s">terminal</span>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs step-glow pulse-ring" style="animation-delay: 1s">03</div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Desarrollo</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Implementamos con arquitecturas escalables y código limpio bajo metodología Agile.
+                        </p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="group flex flex-col items-center lg:items-start text-center lg:text-left process-step">
+                        <div class="relative mb-8">
+                            <div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs step-glow">04</div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Lanzamiento</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            QA riguroso y despliegue monitoreado. Te acompañamos post-lanzamiento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="max-w-5xl mx-auto mt-20 animate-on-scroll">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 stagger-children">
+                    <div class="stat-card flex flex-col gap-2 rounded-xl p-8 glass-card text-center sm:text-left">
+                        <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Proyectos Exitosos</p>
+                        <p class="text-white tracking-tight text-4xl font-bold counter-number" data-target="150">0</p>
+                        <span class="text-[#0bda6c] text-sm font-bold flex items-center justify-center sm:justify-start">
+                            <span class="material-symbols-outlined text-xs mr-1">trending_up</span>+12% este año
+                        </span>
+                    </div>
+                    <div class="stat-card flex flex-col gap-2 rounded-xl p-8 glass-card text-center sm:text-left">
+                        <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Tiempo Entrega</p>
+                        <p class="text-white tracking-tight text-4xl font-bold counter-number" data-target="20" data-prefix="-" data-suffix="%">0%</p>
+                        <p class="text-slate-500 text-xs">vs promedio industria</p>
+                    </div>
+                    <div class="stat-card flex flex-col gap-2 rounded-xl p-8 glass-card text-center sm:text-left">
+                        <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Satisfacción</p>
+                        <p class="text-white tracking-tight text-4xl font-bold counter-number" data-target="99" data-suffix="%">0%</p>
+                        <div class="flex items-center justify-center sm:justify-start gap-1 mt-1 stars-container">
+                            <span class="material-symbols-outlined text-yellow-500 text-sm star-icon">grade</span>
+                            <span class="material-symbols-outlined text-yellow-500 text-sm star-icon" style="animation-delay: 0.1s">grade</span>
+                            <span class="material-symbols-outlined text-yellow-500 text-sm star-icon" style="animation-delay: 0.2s">grade</span>
+                            <span class="material-symbols-outlined text-yellow-500 text-sm star-icon" style="animation-delay: 0.3s">grade</span>
+                            <span class="material-symbols-outlined text-yellow-500 text-sm star-icon" style="animation-delay: 0.4s">grade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PRECIOS SECTION ========== -->
+        <section id="precios" class="py-20 px-6 border-t border-white/5 animate-on-scroll">
+            <div class="flex flex-col items-center text-center mb-16 max-w-5xl mx-auto animate-slide-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-widest mb-4 pulse-glow">
+                    <span class="material-symbols-outlined text-sm">local_offer</span>
+                    Oferta por Tiempo Limitado
+                </div>
+                <h2 class="section-title text-3xl md:text-5xl font-black leading-tight tracking-tighter mb-4">Planes y Precios</h2>
+                <p class="text-slate-400 max-w-lg">Soluciones digitales de alto impacto diseñadas para escalar tu negocio.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto stagger-children">
+                <!-- Plan 1: Landing -->
+                <div class="pricing-card flex flex-col gap-6 rounded-xl border border-white/10 bg-card-dark p-8 relative">
+                    <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full animate-bounce-slow">-20%</div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="text-xl font-bold">Landing Page</h3>
+                        <p class="text-sm text-slate-400">Ideal para lanzamientos y campañas de marketing.</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-lg text-slate-500 line-through">$275.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$220.000</span>
+                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all">
+                        Contactar
+                    </a>
+                    <hr class="border-white/10"/>
+                    <div class="flex flex-col gap-4">
+                        <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Diseño Responsivo UX/UI
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Optimización SEO Base
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Formulario de Contacto
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Corporativa (Popular) -->
+                <div class="pricing-card flex flex-col gap-6 rounded-xl border-2 border-primary bg-card-dark p-8 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-primary/30">
+                        Más Popular
+                    </div>
+                    <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">-21%</div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="text-xl font-bold">Web Corporativa</h3>
+                        <p class="text-sm text-slate-400">Presencia profesional con múltiples secciones.</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-lg text-slate-500 line-through">$480.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$380.000</span>
+                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold neon-glow transition-all">
+                        Contactar
+                    </a>
+                    <hr class="border-white/10"/>
+                    <div class="flex flex-col gap-4">
+                        <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Hasta 5 Secciones Personalizadas
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Gestor de Contenidos (CMS)
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Integración Redes Sociales
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Soporte Técnico 3 Meses
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan 3: E-commerce -->
+                <div class="pricing-card flex flex-col gap-6 rounded-xl border border-white/10 bg-card-dark p-8 relative">
+                    <div class="absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">-15%</div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="text-xl font-bold">E-commerce</h3>
+                        <p class="text-sm text-slate-400">Tienda online completa con pagos y gestión.</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Desde</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-lg text-slate-500 line-through">$650.000</span>
+                            <span class="text-3xl md:text-4xl font-black tracking-tight text-green-400">$550.000</span>
+                            <span class="text-slate-400 text-sm font-medium">CLP</span>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 border-2 border-primary text-primary hover:bg-primary hover:text-white text-base font-bold transition-all">
+                        Contactar
+                    </a>
+                    <hr class="border-white/10"/>
+                    <div class="flex flex-col gap-4">
+                        <div class="benefit-highlight rounded-lg px-4 py-3 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="text-sm font-bold">Dominio y Hosting GRATIS 1 año</span>
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Pasarela de Pagos (Webpay/Flow)
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Panel de Administración
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cálculo Automático de Envíos
+                        </div>
+                        <div class="text-sm font-medium flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Capacitación de Uso
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cotizador Automático -->
+            <div class="max-w-4xl mx-auto mt-20">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3">Cotizador Instantáneo</h3>
+                    <p class="text-slate-400">Personaliza tu proyecto y obtén un presupuesto estimado al instante.</p>
+                </div>
+                
+                <div class="bg-card-dark rounded-2xl border border-white/10 p-8 md:p-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Opciones del cotizador -->
+                        <div class="space-y-6">
+                            <!-- Tipo de proyecto -->
+                            <div class="space-y-3">
+                                <label class="text-sm font-bold text-white">Tipo de Proyecto</label>
+                                <div class="grid grid-cols-1 gap-2">
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="radio" name="projectType" value="landing" data-price="220000" class="accent-primary w-4 h-4" checked>
+                                        <span class="flex-1 font-medium">Landing Page</span>
+                                        <span class="text-slate-400 text-sm">$220.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="radio" name="projectType" value="corporativa" data-price="380000" class="accent-primary w-4 h-4">
+                                        <span class="flex-1 font-medium">Web Corporativa</span>
+                                        <span class="text-slate-400 text-sm">$380.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="radio" name="projectType" value="ecommerce" data-price="550000" class="accent-primary w-4 h-4">
+                                        <span class="flex-1 font-medium">E-commerce</span>
+                                        <span class="text-slate-400 text-sm">$550.000</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Secciones adicionales -->
+                            <div class="space-y-3">
+                                <label class="text-sm font-bold text-white">Secciones Adicionales</label>
+                                <div class="flex items-center gap-4">
+                                    <button type="button" id="sections-minus" class="w-10 h-10 rounded-lg border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all">-</button>
+                                    <span id="sections-count" class="text-2xl font-bold w-12 text-center">0</span>
+                                    <button type="button" id="sections-plus" class="w-10 h-10 rounded-lg border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all">+</button>
+                                    <span class="text-slate-400 text-sm">× $25.000 c/u</span>
+                                </div>
+                            </div>
+
+                            <!-- Funcionalidades extra -->
+                            <div class="space-y-3">
+                                <label class="text-sm font-bold text-white">Funcionalidades Extra</label>
+                                <div class="space-y-2">
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="checkbox" name="extras" value="30000" class="accent-primary w-4 h-4 extra-checkbox">
+                                        <span class="flex-1 text-sm">Blog / Noticias</span>
+                                        <span class="text-slate-400 text-xs">+$30.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="checkbox" name="extras" value="40000" class="accent-primary w-4 h-4 extra-checkbox">
+                                        <span class="flex-1 text-sm">Chat en Vivo / WhatsApp</span>
+                                        <span class="text-slate-400 text-xs">+$40.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="checkbox" name="extras" value="50000" class="accent-primary w-4 h-4 extra-checkbox">
+                                        <span class="flex-1 text-sm">Sistema de Reservas</span>
+                                        <span class="text-slate-400 text-xs">+$50.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="checkbox" name="extras" value="60000" class="accent-primary w-4 h-4 extra-checkbox">
+                                        <span class="flex-1 text-sm">Multi-idioma</span>
+                                        <span class="text-slate-400 text-xs">+$60.000</span>
+                                    </label>
+                                    <label class="quote-option cursor-pointer flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+                                        <input type="checkbox" name="extras" value="80000" class="accent-primary w-4 h-4 extra-checkbox">
+                                        <span class="flex-1 text-sm">Panel Administrador Avanzado</span>
+                                        <span class="text-slate-400 text-xs">+$80.000</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resumen del precio -->
+                        <div class="flex flex-col">
+                            <div class="flex-1 bg-gradient-to-br from-primary/10 to-violet-600/10 rounded-xl border border-primary/20 p-6 flex flex-col">
+                                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Resumen</h4>
+                                
+                                <div class="space-y-3 flex-1">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Proyecto base:</span>
+                                        <span id="summary-base" class="text-white font-medium">$160.000</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Secciones adicionales:</span>
+                                        <span id="summary-sections" class="text-white font-medium">$0</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Funcionalidades extra:</span>
+                                        <span id="summary-extras" class="text-white font-medium">$0</span>
+                                    </div>
+                                    <hr class="border-white/10 my-4"/>
+                                </div>
+
+                                <div class="mt-auto">
+                                    <div class="flex justify-between items-end mb-6">
+                                        <span class="text-slate-300 font-medium">Total Estimado:</span>
+                                        <div class="text-right">
+                                            <span id="quote-total" class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">$160.000</span>
+                                            <span class="text-slate-400 text-sm block">CLP + IVA</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="#contacto" class="flex w-full items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold neon-glow transition-all hover:scale-[1.02]">
+                                        <span class="material-symbols-outlined">mail</span>
+                                        Solicitar Cotización Formal
+                                    </a>
+                                    <p class="text-center text-slate-500 text-xs mt-3">* Precio referencial. Cotización final según requerimientos específicos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACTO SECTION ========== -->
+        <section id="contacto" class="py-20 px-6 border-t border-white/5 animate-on-scroll">
+            <div class="flex flex-col items-center text-center mb-12 animate-slide-up">
+                <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">¿Listo para empezar?</span>
+                <h2 class="section-title text-3xl md:text-5xl font-black leading-tight tracking-tighter mb-4">Construyamos algo increíble</h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-card-dark rounded-xl border border-white/10 p-8 md:p-12 contact-form-card">
+                <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold tracking-wide text-slate-300">Nombre</label>
+                        <input name="nombre" class="w-full rounded-lg border border-white/10 bg-background-dark/50 text-white focus:border-primary h-14 px-4 outline-none transition-all placeholder:text-slate-500" placeholder="Tu nombre completo" type="text" required/>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold tracking-wide text-slate-300">Email</label>
+                        <input name="email" class="w-full rounded-lg border border-white/10 bg-background-dark/50 text-white focus:border-primary h-14 px-4 outline-none transition-all placeholder:text-slate-500" placeholder="correo@empresa.cl" type="email" required/>
+                    </div>
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-bold tracking-wide text-slate-300">Tipo de Proyecto</label>
+                        <select name="tipo" class="w-full rounded-lg border border-white/10 bg-background-dark/50 text-white focus:border-primary h-14 px-4 outline-none transition-all appearance-none">
+                            <option>Landing Page</option>
+                            <option>Web Corporativa</option>
+                            <option>E-commerce</option>
+                            <option>Desarrollo SaaS</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-bold tracking-wide text-slate-300">Mensaje</label>
+                        <textarea name="mensaje" class="w-full rounded-lg border border-white/10 bg-background-dark/50 text-white focus:border-primary p-4 outline-none transition-all placeholder:text-slate-500" placeholder="Cuéntanos sobre tu proyecto..." rows="4" required></textarea>
+                    </div>
+                    <div class="md:col-span-2 pt-4">
+                        <button type="submit" class="w-full cursor-pointer items-center justify-center rounded-lg h-14 bg-primary text-white text-lg font-bold neon-glow shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="w-full border-t border-white/5 bg-background-dark pt-20 pb-12">
+        <div class="mx-auto max-w-[1200px] px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="flex flex-col gap-6 md:col-span-1">
+                    <div class="flex items-center gap-2">
+                        <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                        </div>
+                        <h2 class="text-white text-xl font-extrabold tracking-tight">Agency.</h2>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Ingeniería de software de alta gama para visionarios. Transformamos desafíos complejos en soluciones elegantes.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 hover:text-primary hover:border-primary/50 transition-all" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 hover:text-primary hover:border-primary/50 transition-all" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 hover:text-primary hover:border-primary/50 transition-all" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H14.07l-5.214-6.817L3.99 21.75H.68l7.73-8.835L.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-bold text-sm tracking-widest uppercase">Plataforma</h3>
+                    <ul class="flex flex-col gap-2 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="#servicios">Servicios</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#portafolio">Portafolio</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#precios">Precios</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#proceso">Proceso</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-bold text-sm tracking-widest uppercase">Compañía</h3>
+                    <ul class="flex flex-col gap-2 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="#">Sobre Nosotros</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Carreras</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-bold text-sm tracking-widest uppercase">Soporte</h3>
+                    <ul class="flex flex-col gap-2 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="#">Centro de Ayuda</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#contacto">Contacto</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-600 text-sm">© 2026 Agency Software Chile. Todos los derechos reservados.</p>
+                <div class="flex items-center gap-6">
+                    <a class="text-slate-600 hover:text-slate-400 text-xs font-medium transition-colors" href="#">Términos</a>
+                    <a class="text-slate-600 hover:text-slate-400 text-xs font-medium transition-colors" href="#">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
