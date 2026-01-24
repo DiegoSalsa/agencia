@@ -401,14 +401,13 @@ function formatPrice(priceInCLP, currency = currentCurrency) {
         convertedPrice = Math.ceil(convertedPrice / 100) * 100;
     }
     
-    // Formatear numero sin simbolo de moneda
-    const formattedNumber = new Intl.NumberFormat(config.format, {
+    // Formatear con simbolo de moneda
+    return new Intl.NumberFormat(config.format, {
+        style: 'currency',
+        currency: currency,
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(convertedPrice);
-    
-    // Retornar con simbolo y abreviatura
-    return `${config.symbol}${formattedNumber} ${currency}`;
 }
 
 // Obtener traducción
@@ -444,6 +443,11 @@ function updatePrices() {
     document.querySelectorAll('[data-price-old]').forEach(el => {
         const basePriceCLP = parseInt(el.dataset.priceOld);
         el.textContent = formatPrice(basePriceCLP);
+    });
+    
+    // Actualizar labels de moneda
+    document.querySelectorAll('.currency-label').forEach(el => {
+        el.textContent = currentCurrency;
     });
     
     // Actualizar cotizador
