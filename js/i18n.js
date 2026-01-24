@@ -3,11 +3,11 @@
    Detección de país, moneda e idioma
    ======================================== */
 
-// Configuración de monedas por región
+// Configuracion de monedas por region
 const CURRENCY_CONFIG = {
     CLP: { symbol: '$', name: 'CLP', rate: 1, decimals: 0, format: 'es-CL' },
-    USD: { symbol: '$', name: 'USD', rate: 0.0011, decimals: 0, format: 'en-US' },
-    EUR: { symbol: '€', name: 'EUR', rate: 0.0010, decimals: 0, format: 'de-DE' },
+    USD: { symbol: '$', name: 'USD', rate: 0.00149, decimals: 0, format: 'en-US' },
+    EUR: { symbol: '€', name: 'EUR', rate: 0.00135, decimals: 0, format: 'de-DE' },
     MXN: { symbol: '$', name: 'MXN', rate: 0.019, decimals: 0, format: 'es-MX' },
     ARS: { symbol: '$', name: 'ARS', rate: 0.97, decimals: 0, format: 'es-AR' },
     COP: { symbol: '$', name: 'COP', rate: 4.5, decimals: 0, format: 'es-CO' },
