@@ -458,38 +458,35 @@ function updatePageContent() {
 // Crear selector de idioma/moneda
 function createLocaleSelector() {
     const selector = document.createElement('div');
-    selector.className = 'locale-selector fixed bottom-6 right-6 z-50 flex flex-col gap-2';
+    selector.className = 'locale-selector fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2';
     selector.innerHTML = `
-        <div class="locale-toggle bg-card-dark/90 backdrop-blur-md border border-white/10 rounded-full p-2 cursor-pointer hover:border-primary/50 transition-all shadow-xl" id="locale-toggle">
+        <div class="locale-toggle bg-card-dark/90 backdrop-blur-md border border-white/10 rounded-full p-3 cursor-pointer hover:border-primary/50 transition-all shadow-xl" id="locale-toggle">
             <span class="material-symbols-outlined text-white text-xl">language</span>
         </div>
-        <div class="locale-menu hidden flex-col gap-2 bg-card-dark/95 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl min-w-[200px]" id="locale-menu">
-            <div class="mb-2">
-                <label class="text-xs text-slate-400 uppercase tracking-wider font-bold">${t('lang_select')}</label>
-                <div class="flex gap-2 mt-2">
+        <div class="locale-menu hidden flex-col gap-4 bg-[#0f0f0f] backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl min-w-[220px]" id="locale-menu" style="background: #0f0f0f;">
+            <div>
+                <label class="text-xs text-slate-400 uppercase tracking-wider font-bold block mb-2">${t('lang_select')}</label>
+                <div class="flex gap-2">
                     <button class="lang-btn flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${currentLang === 'es' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-lang="es">
-                        🇪🇸 ES
+                        ES
                     </button>
                     <button class="lang-btn flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${currentLang === 'en' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-lang="en">
-                        🇺🇸 EN
+                        EN
                     </button>
                 </div>
             </div>
             <div>
-                <label class="text-xs text-slate-400 uppercase tracking-wider font-bold">${t('currency_select')}</label>
-                <select id="currency-select" class="w-full mt-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:border-primary outline-none">
-                    <option value="CLP" ${currentCurrency === 'CLP' ? 'selected' : ''}>🇨🇱 CLP - Peso Chileno</option>
-                    <option value="USD" ${currentCurrency === 'USD' ? 'selected' : ''}>🇺🇸 USD - US Dollar</option>
-                    <option value="EUR" ${currentCurrency === 'EUR' ? 'selected' : ''}>🇪🇺 EUR - Euro</option>
-                    <option value="MXN" ${currentCurrency === 'MXN' ? 'selected' : ''}>🇲🇽 MXN - Peso Mexicano</option>
-                    <option value="ARS" ${currentCurrency === 'ARS' ? 'selected' : ''}>🇦🇷 ARS - Peso Argentino</option>
-                    <option value="COP" ${currentCurrency === 'COP' ? 'selected' : ''}>🇨🇴 COP - Peso Colombiano</option>
-                    <option value="PEN" ${currentCurrency === 'PEN' ? 'selected' : ''}>🇵🇪 PEN - Sol Peruano</option>
-                    <option value="BRL" ${currentCurrency === 'BRL' ? 'selected' : ''}>🇧🇷 BRL - Real Brasileño</option>
-                </select>
-            </div>
-            <div class="text-[10px] text-slate-500 mt-2 text-center">
-                📍 Detectado: ${userCountry}
+                <label class="text-xs text-slate-400 uppercase tracking-wider font-bold block mb-2">${t('currency_select')}</label>
+                <div class="grid grid-cols-2 gap-2" id="currency-buttons">
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'CLP' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="CLP">CLP</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'USD' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="USD">USD</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'EUR' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="EUR">EUR</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'MXN' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="MXN">MXN</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'ARS' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="ARS">ARS</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'COP' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="COP">COP</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'PEN' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="PEN">PEN</button>
+                    <button class="currency-btn px-3 py-2 rounded-lg text-xs font-medium transition-all ${currentCurrency === 'BRL' ? 'bg-primary text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}" data-currency="BRL">BRL</button>
+                </div>
             </div>
         </div>
     `;
@@ -499,6 +496,7 @@ function createLocaleSelector() {
     // Event listeners
     document.getElementById('locale-toggle').addEventListener('click', () => {
         document.getElementById('locale-menu').classList.toggle('hidden');
+        document.getElementById('locale-menu').classList.toggle('flex');
     });
     
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -507,14 +505,17 @@ function createLocaleSelector() {
         });
     });
     
-    document.getElementById('currency-select').addEventListener('change', (e) => {
-        setCurrency(e.target.value);
+    document.querySelectorAll('.currency-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            setCurrency(btn.dataset.currency);
+        });
     });
     
     // Cerrar al hacer click afuera
     document.addEventListener('click', (e) => {
         if (!selector.contains(e.target)) {
             document.getElementById('locale-menu').classList.add('hidden');
+            document.getElementById('locale-menu').classList.remove('flex');
         }
     });
 }
@@ -532,8 +533,15 @@ function updateLanguageSelector() {
 }
 
 function updateCurrencySelector() {
-    const select = document.getElementById('currency-select');
-    if (select) select.value = currentCurrency;
+    document.querySelectorAll('.currency-btn').forEach(btn => {
+        if (btn.dataset.currency === currentCurrency) {
+            btn.classList.remove('bg-white/5', 'text-slate-300', 'hover:bg-white/10');
+            btn.classList.add('bg-primary', 'text-white');
+        } else {
+            btn.classList.remove('bg-primary', 'text-white');
+            btn.classList.add('bg-white/5', 'text-slate-300', 'hover:bg-white/10');
+        }
+    });
 }
 
 // Inicializar sistema i18n
