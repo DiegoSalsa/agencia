@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Briefing {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  status      String   @default("nuevo")
+  type        String
+  clientName  String
+  clientEmail String   @default("")
+  summary     String?
+  contactData String
+  contentData String
+  designData  String
+  extraData   String
+}
