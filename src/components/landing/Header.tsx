@@ -70,7 +70,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--surface-hover)] transition-all cursor-pointer"
+              className="hidden md:flex w-10 h-10 rounded-xl items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--surface-hover)] transition-all cursor-pointer"
               aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -103,9 +103,11 @@ export default function Header() {
               ))}
             </div>
 
-            <Link href="/formulario" className="hidden md:flex btn-primary text-sm !py-2.5 !px-5 !rounded-xl cursor-pointer">
-              {t('nav_cta')}
-            </Link>
+            <div className="hidden md:block">
+              <Link href="/formulario" className="btn-primary text-sm !py-2.5 !px-5 !rounded-xl cursor-pointer">
+                {t('nav_cta')}
+              </Link>
+            </div>
 
             <button onClick={openMobile} className="md:hidden flex items-center justify-center w-10 h-10 text-[var(--text)] cursor-pointer" aria-label="Open menu">
               <Menu size={22} />
