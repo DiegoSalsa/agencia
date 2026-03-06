@@ -1,177 +1,223 @@
 'use client';
 
-import { useRef, useCallback } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
-import { ChevronLeft, ChevronRight, ExternalLink, BarChart3, CreditCard, Truck, HeartPulse } from 'lucide-react';
 
-interface PortfolioItem {
-  href?: string;
-  image: string;
-  tag: string;
+interface Project {
+  href: string;
   title: string;
-  description: string;
-  isLocal?: boolean;
+  descKey: string;
+  tag: string;
+  tagColor: string;
+  gradient: string;
+  thumbnail?: string;
 }
 
-const webProjects: PortfolioItem[] = [
+const projects: Project[] = [
   {
-    href: 'https://www.floreriawildgarden.cl/',
-    image: '/img/portfolio/eccomerce1.webp',
-    tag: 'E-commerce',
+    href: 'https://pagina-podomed-clinical.vercel.app',
+    title: 'PodomedClinical',
+    descKey: 'portfolio_1_desc',
+    tag: 'Landing Page',
+    tagColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+    gradient: 'from-blue-600/40 via-cyan-600/30 to-blue-800/40',
+    thumbnail: '/img/FotosPaginas/PodoMedLanding.png',
+  },
+  {
+    href: 'https://jessica-belmar-podologia.vercel.app',
+    title: 'Jessica Belmar',
+    descKey: 'portfolio_2_desc',
+    tag: 'Landing Page',
+    tagColor: 'bg-sky-500/15 text-sky-400 border-sky-500/30',
+    gradient: 'from-sky-600/40 via-blue-600/30 to-indigo-800/40',
+    thumbnail: '/img/FotosPaginas/JessicaBelmarPodologia.png',
+  },
+  {
+    href: 'https://www.floreriawildgarden.cl',
     title: 'Florería Wildgarden',
-    description: 'E-commerce de flores y arreglos florales',
-    isLocal: true,
+    descKey: 'portfolio_3_desc',
+    tag: 'Landing Page',
+    tagColor: 'bg-pink-500/15 text-pink-400 border-pink-500/30',
+    gradient: 'from-pink-600/40 via-rose-600/30 to-fuchsia-800/40',
+    thumbnail: '/img/FotosPaginas/FloreriaWildGarden.png',
   },
   {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKCEKe_Zmtq9fNv7PspzBev3bg9h9JYjXbCtDsa_il8q6hH2SnnobUstEbPJ_vwbNOw8bMlc5yeqKwl_-0d5NBITsKu6rh3sKYm-UavUhXqLpQe0vZx4pdn3H2gpVfPDLC-BdIsrjZsspxwZSBhC4lEoX-Cp0r2kr3Dr0U9pqf7DUB-o9ts_W_ydteStttu25fY09WOfDjKZ1SsvD4gF9umi0z007gzu2hUdnVhcBHw26ytkgHPaVbsem4WaHoJY9Fq7NxJ2Ev82U',
-    tag: 'Corporate',
-    title: 'Inmobiliaria de Lujo',
-    description: 'Experiencia inmersiva 3D integrada',
+    href: 'https://stride-landing-v1.vercel.app',
+    title: 'Stride',
+    descKey: 'portfolio_4_desc',
+    tag: 'Demo',
+    tagColor: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+    gradient: 'from-amber-600/40 via-orange-600/30 to-red-800/40',
+    thumbnail: '/img/FotosPaginas/StrideLanding.png',
   },
   {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBPkxfa0qz1maHMTJ4hMEOyH9tF-cKa4zUzVObIL3m66qWdkGt7iWbEutnO656bN5O3XSEON5vcsmBFLrO-sCbyLtRQ2A_FULM2fbcoXng4ZOzaNWtLnyGt3jkkgHA8QwXkSCY7vvbaV64ZwvBv_5u1in1rEtrD1OiYyVfLGUzkXa6S2Eblpna2IUG_CtoHnK2J3x2HvO0TdAPMbDCr39_pvxpSW-MQn6PiSAtrV2Sfh5TYhobT09CJzemO7A74wahhUCwD7AdiF1g',
-    tag: 'Creative',
-    title: 'Galería Digital Interactiva',
-    description: 'Performance Web Core Vitals A+',
+    href: 'https://sushi-weld.vercel.app',
+    title: 'Sushi Landing',
+    descKey: 'portfolio_5_desc',
+    tag: 'Demo',
+    tagColor: 'bg-red-500/15 text-red-400 border-red-500/30',
+    gradient: 'from-red-600/40 via-amber-600/30 to-orange-800/40',
+    thumbnail: '/img/FotosPaginas/SushiDemo.png',
+  },
+  {
+    href: 'https://pagina-bioimpacto.vercel.app',
+    title: 'BioImpacto',
+    descKey: 'portfolio_6_desc',
+    tag: 'Web Corporativa',
+    tagColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+    gradient: 'from-emerald-600/40 via-teal-600/30 to-green-800/40',
+    thumbnail: '/img/FotosPaginas/Bioimpacto.png',
+  },
+  {
+    href: 'https://satisfaccion-clientes-alpha.vercel.app',
+    title: 'Satisfacción Clientes',
+    descKey: 'portfolio_7_desc',
+    tag: 'SaaS',
+    tagColor: 'bg-violet-500/15 text-violet-400 border-violet-500/30',
+    gradient: 'from-violet-600/40 via-purple-600/30 to-indigo-800/40',
+    thumbnail: '/img/FotosPaginas/ValoraLocal.png',
   },
 ];
 
-const saasProjects: PortfolioItem[] = [
-  {
-    href: 'https://www.valoralocal.cl/',
-    image: '/img/portfolio/saas1.webp',
-    tag: 'Analytics',
-    title: 'ValoraLocal',
-    description: 'Plataforma inteligente de encuestas NPS para medir y potenciar la satisfacción del cliente en tiempo real.',
-    isLocal: true,
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-mICSKNONw7VQ6WdivIPAmEevxKXI0QE_K6BWRfVjWOwEIcArvd1TrssuvZkd_e4jqRoepQp2E_zw6E3URACHIGV6ENpWfU8ZtJhbYtd7w_7j7N8M6tgc4iQ5bHJhbG5EreZq6tP4GQtrVadZZ8yinGiMspoKC2Ym1KeSEIe76twUarO7QhwlGglro8LB76FPJ2PHeLFxTcoKJpN__95FK4vP6dIdggyOAMcopFxPaRBRqaPk6OgHvsSIiBsAdMCNT8HdD5JkFR4',
-    tag: 'Fintech',
-    title: 'NexusPay Fintech',
-    description: 'Core bancario escalable con micro-pagos en tiempo real.',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDEfBVdZ1Hig5eb623-4UMgrOlirPFkcdKFyBgokkiUVjPqQ-xeuUAoVkUR6Q-a2ZF_Fc2nLyOYjr-HJnvWaMj5uOE8WfHUhRivr2OEc-nG7cm9cwLOdn0Ea9zX5pGzdhC7VZHZmKw9ItD46Yhj1LgTkHqZgLdkXE56YuhpdPKXkfPtn4D0oIzAmKhdP5VB3dms5HgXvSvffSIdNL4Mt8pHbK8Trj7lsxP0Uq6SxpJBbLR0mIJn4_fSxKdkR25WKjYTFh_l53oWJIc',
-    tag: 'Logistics',
-    title: 'LogiTrack Pro',
-    description: 'Gestión inteligente de flotas con IA.',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBG6QX3A39re-fU7mNTnFXqURbJYb6FfrvJdZsgzahDHqz3VNXRmSAz7BkzRSOYlu0Du4_CNr-A_xHOYybbJ3rXrhQVV_WQAfNOU5kyavEOdattcemg6VCGexSQ2yXlWPAVYhMR2Mj-9y8xo1mZhbqzTSCXaC6TlyQKmNdJgiBpx_PM23iZFVXRoNJhUZ_oY6Pu4tx9dggCNh3vU1W5NPsGtTDBsRfuke9VjTYgCDLkOJ6ZwJ3KaSr8T4wIWpeQvqVR1UFReQ_D8AU',
-    tag: 'Healthcare',
-    title: 'HealthFlow AI',
-    description: 'Gestión clínica con diagnósticos asistidos.',
-  },
-];
-
-const saasIcons: Record<string, React.ReactNode> = {
-  Analytics: <BarChart3 className="w-6 h-6 text-primary" />,
-  Fintech: <CreditCard className="w-6 h-6 text-primary" />,
-  Logistics: <Truck className="w-6 h-6 text-primary" />,
-  Healthcare: <HeartPulse className="w-6 h-6 text-primary" />,
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08 },
+  }),
 };
-
-function Carousel({ title, subtitle, items, isSaas }: { title: string; subtitle: string; items: PortfolioItem[]; isSaas?: boolean }) {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const scroll = useCallback((dir: number) => {
-    trackRef.current?.scrollBy({ left: dir * 400, behavior: 'smooth' });
-  }, []);
-
-  return (
-    <div className="space-y-8">
-      <div className="flex items-end justify-between px-2">
-        <div className="space-y-1">
-          <h2 className="text-display-sm text-text-primary">{title}</h2>
-          <p className="text-text-muted text-sm">{subtitle}</p>
-        </div>
-        <div className="flex gap-2">
-          <button onClick={() => scroll(-1)} className="w-10 h-10 rounded-full border border-border-default flex items-center justify-center text-text-muted hover:text-text-primary hover:border-border-hover transition-all">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button onClick={() => scroll(1)} className="w-10 h-10 rounded-full border border-border-default flex items-center justify-center text-text-muted hover:text-text-primary hover:border-border-hover transition-all">
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-      </div>
-
-      <div ref={trackRef} className="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
-        {items.map((item, i) => {
-          const Wrapper = item.href ? 'a' : 'div';
-          const wrapperProps = item.href ? { href: item.href, target: '_blank' as const, rel: 'noopener noreferrer' } : {};
-
-          return (
-            <Wrapper key={i} {...wrapperProps} className={`min-w-full md:min-w-[calc(33.333%-14px)] snap-start group ${item.href ? 'cursor-pointer' : ''}`}>
-              <div className={`relative ${isSaas ? 'aspect-[4/3]' : 'aspect-video'} rounded-2xl overflow-hidden border border-border-default bg-surface mb-4`}>
-                {isSaas && <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-violet-600/5 to-transparent group-hover:from-primary/25 transition-all duration-500 z-10" />}
-                {item.isLocal ? (
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${isSaas ? 'opacity-80' : ''}`}
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${isSaas && !item.isLocal ? 'mix-blend-overlay opacity-40' : ''}`}
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                {!isSaas && (
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <span className="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-semibold uppercase tracking-wider">{item.tag}</span>
-                  </div>
-                )}
-                {item.href && !isSaas && (
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                    <ExternalLink className="w-5 h-5 text-white" />
-                  </div>
-                )}
-
-                {isSaas && (
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
-                    <div className="w-12 h-12 rounded-xl bg-surface/30 backdrop-blur-md flex items-center justify-center mb-3 border border-white/20 group-hover:scale-105 transition-transform">
-                      {saasIcons[item.tag]}
-                    </div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">{item.title}</h3>
-                      {item.href && (
-                        <ExternalLink className="w-4 h-4 text-white/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-                      )}
-                    </div>
-                    <p className="text-white/70 text-sm">{item.description}</p>
-                  </div>
-                )}
-              </div>
-              {!isSaas && (
-                <>
-                  <h3 className="text-text-primary font-bold text-lg px-1 group-hover:text-primary transition-colors">{item.title}</h3>
-                  <p className="text-text-muted text-sm px-1">{item.description}</p>
-                </>
-              )}
-            </Wrapper>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 export default function Portfolio() {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
 
   return (
-    <section id="portafolio" ref={ref} className={`w-full max-w-[1200px] mx-auto px-6 py-28 space-y-20 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
-      <Carousel title={t('portfolio_webs_title')} subtitle={t('portfolio_webs_subtitle')} items={webProjects} />
-      <Carousel title={t('portfolio_saas_title')} subtitle={t('portfolio_saas_subtitle')} items={saasProjects} isSaas />
+    <section id="portafolio" ref={ref} className="relative py-24 px-6 overflow-hidden">
+      {/* Dark background like Pricing */}
+      <div className="absolute inset-0 bg-[#07060b]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(75,43,238,0.08),transparent_60%)]" />
+      {/* Grid pattern for dark section */}
+      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      {/* Radial glows */}
+      <div className="absolute top-[10%] left-[5%] w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(109,40,217,0.1)_0%,transparent_55%)]" />
+      <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.06)_0%,transparent_55%)]" />
+      {/* Floating shapes */}
+      <svg className="geo-float absolute top-20 right-[8%] w-28 h-28 opacity-[0.04]" style={{ animationDelay: '2s' }} viewBox="0 0 100 100" fill="none">
+        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
+      </svg>
+      <svg className="geo-float absolute bottom-[25%] left-[10%] w-20 h-20 opacity-[0.03]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
+        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="3" />
+      </svg>
+      <div className="geo-float absolute bottom-20 left-[12%] w-16 h-16 border border-white/[0.06] rotate-45 rounded-lg" style={{ animationDelay: '4s' }} />
+      <div className="geo-float absolute top-[50%] right-[4%] w-12 h-12 border border-white/[0.05] -rotate-12 rounded-md" style={{ animationDelay: '1s' }} />
+      {/* Gradient line accents */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/10 to-transparent" />
+      <div
+        className="absolute inset-0 opacity-[0.012]"
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+        }}
+      />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          custom={0}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400 mb-4">{t('portfolio_tag')}</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">{t('portfolio_title')}</h2>
+          <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">{t('portfolio_subtitle')}</p>
+        </motion.div>
+
+        {/* Featured row: first 3 large */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+          {projects.slice(0, 3).map((project, i) => (
+            <motion.a
+              key={project.title}
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/5 cursor-pointer"
+              initial="hidden"
+              animate={isVisible ? 'visible' : 'hidden'}
+              variants={fadeUp}
+              custom={i + 1}
+            >
+              {/* Thumbnail area */}
+              <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+                {project.thumbnail && (
+                  <Image src={project.thumbnail} alt={project.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+                )}
+                {/* Tag overlay */}
+                <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-semibold border backdrop-blur-md ${project.tagColor}`}>
+                  {project.tag}
+                </span>
+                {/* External link icon */}
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-black/30 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ExternalLink size={14} className="text-white" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col flex-1">
+                <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-violet-300 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-white/35 leading-relaxed">{t(project.descKey)}</p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+
+        {/* Second row: 4 cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {projects.slice(3).map((project, i) => (
+            <motion.a
+              key={project.title}
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/5 cursor-pointer"
+              initial="hidden"
+              animate={isVisible ? 'visible' : 'hidden'}
+              variants={fadeUp}
+              custom={i + 4}
+            >
+              {/* Thumbnail area */}
+              <div className={`relative h-36 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+                {project.thumbnail && (
+                  <Image src={project.thumbnail} alt={project.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+                )}
+                {/* Tag overlay */}
+                <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-semibold border backdrop-blur-md ${project.tagColor}`}>
+                  {project.tag}
+                </span>
+                <div className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-black/30 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ExternalLink size={12} className="text-white" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 flex flex-col flex-1">
+                <h3 className="text-base font-bold text-white mb-1 group-hover:text-violet-300 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-white/35 leading-relaxed line-clamp-2">{t(project.descKey)}</p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

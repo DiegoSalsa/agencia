@@ -2,12 +2,12 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import { type Lang, type Currency, TRANSLATIONS, CURRENCY_CONFIG, COUNTRY_CURRENCY, COUNTRY_LANG, formatPrice as formatPriceFn, detectCountry } from '@/lib/i18n';
+import { getCookie, setCookie } from '@/lib/cookies';
 
 interface I18nContextType {
   lang: Lang;
   currency: Currency;
   setLang: (lang: Lang) => void;
-  setCurrency: (currency: Currency) => void;
   t: (key: string) => string;
   formatPrice: (priceInCLP: number) => string;
 }
@@ -19,8 +19,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [currency, setCurrencyState] = useState<Currency>('CLP');
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('userLang') as Lang | null;
-    const savedCurrency = localStorage.getItem('userCurrency') as Currency | null;
+    const savedLang = getCookie('userLang') as Lang | null;
+    const savedCurrency = getCookie('userCurrency') as Currency | null;
 
     if (savedLang && savedCurrency) {
       setLangState(savedLang);
@@ -29,20 +29,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       detectCountry().then(({ currency: c, lang: l }) => {
         setLangState(l);
         setCurrencyState(c);
-        localStorage.setItem('userLang', l);
-        localStorage.setItem('userCurrency', c);
+        setCookie('userLang', l, 30);
+        setCookie('userCurrency', c, 30);
       });
     }
   }, []);
 
   const setLang = useCallback((l: Lang) => {
     setLangState(l);
-    localStorage.setItem('userLang', l);
-  }, []);
-
-  const setCurrency = useCallback((c: Currency) => {
-    setCurrencyState(c);
-    localStorage.setItem('userCurrency', c);
+    setCookie('userLang', l, 30);
   }, []);
 
   const t = useCallback((key: string) => {
@@ -54,7 +49,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [currency]);
 
   return (
-    <I18nContext.Provider value={{ lang, currency, setLang, setCurrency, t, formatPrice }}>
+    <I18nContext.Provider value={{ lang, currency, setLang, t, formatPrice }}>
       {children}
     </I18nContext.Provider>
   );

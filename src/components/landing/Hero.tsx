@@ -1,61 +1,232 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Eye, MessageCircle, ChevronDown } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+
+const whatsappContacts = [
+  { name: 'Lucas', phone: '+56956994930', label: '+56 9 5699 4930' },
+  { name: 'Diego', phone: '+56934908579', label: '+56 9 3490 8579' },
+];
+
+const technologies = [
+  { name: 'React', icon: '⚛️' },
+  { name: 'Next.js', icon: '▲' },
+  { name: 'TypeScript', icon: 'TS' },
+  { name: 'JavaScript', icon: 'JS' },
+  { name: 'HTML5', icon: '🌐' },
+  { name: 'CSS3', icon: '🎨' },
+  { name: 'Tailwind CSS', icon: '💨' },
+  { name: 'Framer Motion', icon: '🎬' },
+  { name: 'Vite', icon: '⚡' },
+  { name: 'Node.js', icon: '⬢' },
+  { name: 'Python', icon: '🐍' },
+  { name: 'Java', icon: '☕' },
+  { name: 'Express', icon: '🚂' },
+  { name: 'GraphQL', icon: '◈' },
+  { name: 'REST API', icon: '🔗' },
+  { name: 'PostgreSQL', icon: '🐘' },
+  { name: 'MongoDB', icon: '🍃' },
+  { name: 'MySQL', icon: '🐬' },
+  { name: 'SQLite', icon: '📦' },
+  { name: 'Prisma', icon: '◆' },
+  { name: 'Redis', icon: '🔴' },
+  { name: 'Vercel', icon: '▲' },
+  { name: 'AWS', icon: '☁️' },
+  { name: 'Docker', icon: '🐳' },
+  { name: 'GitHub Actions', icon: '🔄' },
+  { name: 'Cloudflare', icon: '🛡️' },
+  { name: 'Linux', icon: '🐧' },
+  { name: 'OAuth2', icon: '🔐' },
+  { name: 'JWT', icon: '🪙' },
+  { name: 'Git', icon: '📂' },
+  { name: 'Figma', icon: '🖌️' },
+  { name: 'ESLint', icon: '✅' },
+  { name: 'Zod', icon: '🛡️' },
+];
+
+const doubled = [...technologies, ...technologies];
+
+function TechMarqueeRow({ reverse = false }: { reverse?: boolean }) {
+  const items = reverse ? [...doubled].reverse() : doubled;
+  return (
+    <div className="relative group/marquee overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-[var(--bg)] to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-[var(--bg)] to-transparent pointer-events-none" />
+      <div className={`flex w-fit ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'} group-hover/marquee:[animation-play-state:paused]`}>
+        {items.map((tech, i) => (
+          <div
+            key={`${reverse ? 'b' : 't'}-${i}`}
+            className="flex items-center gap-2 px-4 py-2 mx-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.04)] transition-all duration-300 cursor-default shrink-0"
+          >
+            <span className="text-sm leading-none select-none">{tech.icon}</span>
+            <span className="text-xs font-medium text-[var(--text-tertiary)] whitespace-nowrap">{tech.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
   const { t } = useI18n();
+  const [wspOpen, setWspOpen] = useState(false);
 
   return (
-    <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center pt-24 pb-20 overflow-hidden">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/[0.07] rounded-full blur-[120px]" />
+    <section id="hero" className="relative flex flex-col items-center justify-center pt-24 pb-8 overflow-hidden">
+      {/* Enhanced background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+        {/* Main radial glow — boosted */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.15)_0%,rgba(var(--primary-rgb),0.05)_40%,transparent_70%)]" />
+        {/* Secondary accent glow */}
+        <div className="absolute top-[60%] left-[20%] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(var(--primary-rgb),0.06)_0%,transparent_60%)]" />
+        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.05)_0%,transparent_60%)]" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
       </div>
 
-      <div className="flex flex-col items-center text-center px-6 max-w-[960px] relative z-10">
-        {/* Badge */}
-        <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-widest mb-8">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-          </span>
-          <span>{t('hero_badge')}</span>
-        </div>
+      {/* Floating geometric shapes inspired by logo angular lines */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="geo-float absolute top-[15%] left-[8%] w-20 h-20 border border-[rgba(var(--primary-rgb),0.1)] rotate-45 rounded-lg" style={{ animationDelay: '0s' }} />
+        <div className="geo-float absolute top-[25%] right-[12%] w-14 h-14 border border-[rgba(var(--primary-rgb),0.08)] rotate-12 rounded-md" style={{ animationDelay: '2s' }} />
+        <div className="geo-float absolute bottom-[30%] left-[15%] w-10 h-10 bg-[rgba(var(--primary-rgb),0.04)] rotate-[30deg] rounded-sm" style={{ animationDelay: '4s' }} />
+        <div className="geo-float absolute bottom-[25%] right-[8%] w-16 h-16 border border-[rgba(var(--primary-rgb),0.06)] -rotate-12 rounded-lg" style={{ animationDelay: '1s' }} />
+        {/* Angular line like logo P shape */}
+        <svg className="geo-float absolute top-[20%] right-[20%] w-24 h-24 opacity-[0.05]" style={{ animationDelay: '3s' }} viewBox="0 0 100 100" fill="none">
+          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+        </svg>
+        <svg className="geo-float absolute bottom-[35%] left-[25%] w-16 h-16 opacity-[0.04]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
+          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="3" className="text-[var(--primary)]" />
+        </svg>
+      </div>
 
+      {/* Top Tech Marquee Row */}
+      <motion.div
+        className="w-full mb-10 relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <TechMarqueeRow />
+      </motion.div>
+
+      <div className="flex flex-col items-center text-center px-6 max-w-[900px] relative z-10">
         {/* Headline */}
-        <h1 className="hero-title text-display-lg md:text-display-xl mb-6 text-text-primary">
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] mb-6 text-[var(--text)]"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           {t('hero_title')}{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">
+          <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)]">
             {t('hero_title_highlight')}
           </span>
-        </h1>
+        </motion.h1>
 
-        {/* Subheadline */}
-        <p className="hero-subtitle text-text-secondary text-lg md:text-xl font-normal leading-relaxed max-w-[680px] mb-12">
+        {/* Subtitle */}
+        <motion.p
+          className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl leading-relaxed max-w-[640px] mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           {t('hero_subtitle')}
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="hero-cta flex flex-col sm:flex-row gap-4 items-center">
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 items-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {/* Primary: Cotiza */}
+          <Link
+            href="/formulario"
+            className="btn-primary group text-base !h-13 !px-8 cursor-pointer"
+          >
+            {t('hero_cta_primary')}
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          {/* Secondary: Portafolio */}
           <a
             href="#portafolio"
-            className="group btn-primary flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 text-base font-semibold"
+            className="btn-secondary group text-base !h-13 !px-8 cursor-pointer"
           >
-            <span>{t('hero_cta_primary')}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Eye size={18} />
+            {t('hero_cta_secondary')}
           </a>
-          <a
-            href="#precios"
-            className="group btn-secondary flex min-w-[200px] items-center justify-center gap-2 rounded-xl h-14 px-8 text-base font-semibold"
-          >
-            <span>{t('hero_cta_secondary')}</span>
-            <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-          </a>
-        </div>
+
+          {/* WhatsApp with selector */}
+          <div className="relative">
+            <button
+              onClick={() => setWspOpen(!wspOpen)}
+              className="flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-xl bg-[#25D366]/10 text-[#25D366] font-semibold text-base hover:bg-[#25D366]/20 transition-all cursor-pointer border border-[#25D366]/20"
+            >
+              <MessageCircle size={20} />
+              WhatsApp
+              <ChevronDown size={18} className={`transition-transform ${wspOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            <AnimatePresence>
+              {wspOpen && (
+                <motion.div
+                  className="absolute top-full mt-2 left-0 right-0 bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-lg overflow-hidden z-20 min-w-[220px]"
+                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {whatsappContacts.map((c) => (
+                    <a
+                      key={c.phone}
+                      href={`https://wa.me/${c.phone.replace(/\+/g, '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
+                      onClick={() => setWspOpen(false)}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
+                        <MessageCircle size={14} className="text-[#25D366]" />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-sm font-medium text-[var(--text)]">{c.name}</p>
+                        <p className="text-xs text-[var(--text-tertiary)]">{c.label}</p>
+                      </div>
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        {/* 50% upfront note */}
+        <motion.p
+          className="mt-8 text-xs text-[var(--text-tertiary)]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          {t('hero_payment_note')}
+        </motion.p>
       </div>
+
+      {/* Bottom Tech Marquee Row */}
+      <motion.div
+        className="w-full mt-6 relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <TechMarqueeRow reverse />
+      </motion.div>
     </section>
   );
 }

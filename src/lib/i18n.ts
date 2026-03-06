@@ -50,40 +50,75 @@ export const BASE_PRICES = {
   },
 };
 
+export type PlanKey = 'landing' | 'corporate' | 'ecommerce';
+
+export const REGIONAL_PRICES: Record<Currency, Record<PlanKey, number>> = {
+  CLP: { landing: 220000, corporate: 380000, ecommerce: 550000 },
+  USD: { landing: 350, corporate: 600, ecommerce: 900 },
+  EUR: { landing: 350, corporate: 600, ecommerce: 900 },
+  MXN: { landing: 6900, corporate: 11900, ecommerce: 17900 },
+  ARS: { landing: 350000, corporate: 600000, ecommerce: 900000 },
+  COP: { landing: 1400000, corporate: 2400000, ecommerce: 3600000 },
+  PEN: { landing: 1300, corporate: 2200, ecommerce: 3300 },
+  BRL: { landing: 1900, corporate: 3300, ecommerce: 4900 },
+};
+
+export function getRegionalPrice(plan: PlanKey, currency: Currency): string {
+  const price = REGIONAL_PRICES[currency]?.[plan] ?? REGIONAL_PRICES.USD[plan];
+  const config = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.USD;
+  return new Intl.NumberFormat(config.format, {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+
+const DISCOUNT_MULTIPLIER = 1.4; // fake "original" price = 40% higher
+
+export function getOriginalPrice(plan: PlanKey, currency: Currency): string {
+  const price = REGIONAL_PRICES[currency]?.[plan] ?? REGIONAL_PRICES.USD[plan];
+  const original = Math.round(price * DISCOUNT_MULTIPLIER / 1000) * 1000 || Math.round(price * DISCOUNT_MULTIPLIER);
+  const config = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.USD;
+  return new Intl.NumberFormat(config.format, {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(original);
+}
+
 export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
   es: {
     // Header
     nav_portfolio: 'Portafolio',
     nav_services: 'Servicios',
-    nav_pricing: 'Precios',
+    nav_pricing: 'Planes',
+    nav_process: 'Proceso',
     nav_contact: 'Contacto',
-    nav_cta: 'Comenzar Proyecto',
+    nav_cta: 'Cotiza tu Proyecto',
 
     // Hero
     hero_badge: 'Transformación Digital Premium',
     hero_title: 'Creamos Software que',
     hero_title_highlight: 'Impulsa Negocios',
     hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
-    hero_cta_primary: 'Ver Proyectos',
-    hero_cta_secondary: 'Cotizar Ahora',
+    hero_cta_primary: 'Cotiza tu Proyecto',
+    hero_cta_secondary: 'Ver Portafolio',
     hero_cta_briefing: 'Completar Cuestionario',
-
-    // Tech Stack
-    tech_title: 'Nuestro Ecosistema Tecnológico',
-    tech_1_title: 'Stack Moderno',
-    tech_1_desc: 'React, Next.js y TypeScript para interfaces fluidas y rápidas.',
-    tech_2_title: 'Cloud Native',
-    tech_2_desc: 'AWS & Vercel: infraestructuras escalables y optimizadas.',
-    tech_3_title: 'Data & AI',
-    tech_3_desc: 'Integración de inteligencia artificial y análisis de datos.',
-    tech_4_title: 'Seguridad Primero',
-    tech_4_desc: 'Arquitecturas blindadas con los más altos estándares.',
+    hero_payment_note: '50% al inicio · 50% al entregar',
 
     // Portfolio
-    portfolio_webs_title: 'Nuestras Webs',
-    portfolio_webs_subtitle: 'Experiencias digitales que convierten y cautivan.',
-    portfolio_saas_title: 'Soluciones SaaS',
-    portfolio_saas_subtitle: 'Software robusto diseñado para escalar sin límites.',
+    portfolio_tag: 'Nuestro Trabajo',
+    portfolio_title: 'Proyectos Reales',
+    portfolio_subtitle: 'Cada proyecto refleja nuestra dedicación al detalle y al rendimiento.',
+    portfolio_1_desc: 'Landing profesional para clínica de podología — diseño limpio, optimizada para conversión.',
+    portfolio_2_desc: 'Sitio web para podóloga clínica en Ñuñoa — diseño enfocado en confianza y contacto.',
+    portfolio_3_desc: 'Tienda online de florería artesanal — experiencia visual cuidada y pedidos directos.',
+    portfolio_4_desc: 'Demo de landing moderna para marca deportiva — diseño audaz y dinámico.',
+    portfolio_5_desc: 'Demo de landing para restaurante japonés — estética elegante y menú interactivo.',
+    portfolio_6_desc: 'Web corporativa de soluciones agroindustriales — información clara y profesional.',
+    portfolio_7_desc: 'Plataforma SaaS de encuestas de satisfacción — dashboards y análisis en tiempo real.',
 
     // Services
     services_tag: 'Experiencia',
@@ -119,21 +154,26 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     stat_3_label: 'Satisfacción',
 
     // Pricing
-    pricing_badge: 'Oferta por Tiempo Limitado',
+    pricing_tag: 'Inversión',
     pricing_title: 'Planes y Precios',
     pricing_subtitle: 'Soluciones digitales de alto impacto diseñadas para escalar tu negocio.',
     pricing_from: 'Desde',
     pricing_contact: 'Contactar',
     pricing_popular: 'Más Popular',
+    pricing_cta: 'Comenzar Proyecto',
     pricing_cta_briefing: 'Iniciar Briefing',
+    pricing_payment_note: '50% al inicio · 50% a la entrega',
 
     // Plan names
     plan_landing: 'Landing Page',
     plan_landing_desc: 'Ideal para lanzamientos y campañas de marketing.',
+    plan_landing_subtitle: 'Impacto inmediato',
     plan_corp: 'Web Corporativa',
     plan_corp_desc: 'Presencia profesional con múltiples secciones.',
+    plan_corp_subtitle: 'Presencia profesional',
     plan_ecommerce: 'E-commerce',
     plan_ecommerce_desc: 'Tienda online completa con pagos y gestión.',
+    plan_ecommerce_subtitle: 'Vende en línea',
 
     // Features
     feature_hosting: 'Dominio y Hosting GRATIS 1 año',
@@ -148,32 +188,21 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_inventory: 'Gestión de Inventario',
     feature_support_6: 'Soporte Técnico 6 Meses',
 
-    // CTA Quote
-    cta_quote_title: '¿Proyecto a medida?',
-    cta_quote_desc: 'Completa nuestro briefing y recibe una propuesta personalizada en 24 horas.',
-    cta_quote_button: 'Solicitar Briefing',
-    contact_project_type: 'Tipo de Proyecto',
-
-    // Extras
-    extra_blog: 'Blog / Noticias',
-    extra_chat: 'Chat en Vivo / WhatsApp',
-    extra_booking: 'Sistema de Reservas',
-    extra_multilang: 'Multi-idioma',
-    extra_admin_pro: 'Panel Administrador Pro',
-    extra_cms: 'Gestor de Contenido',
+    // CTA Banner
+    cta_badge: 'Empecemos',
+    cta_title: '¿Tienes un proyecto en mente?',
+    cta_subtitle: 'Cuéntanos tu idea y te entregaremos una cotización personalizada sin compromiso.',
+    cta_button: 'Cotizar Gratis',
 
     // Contact
     contact_tag: 'Conversemos',
     contact_title: '¿Listo para transformar tu presencia digital?',
-    contact_subtitle: 'Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas.',
-    contact_name: 'Nombre completo',
-    contact_email: 'Email',
-    contact_phone: 'Teléfono (opcional)',
-    contact_message: 'Cuéntanos sobre tu proyecto...',
-    contact_send: 'Enviar Mensaje',
+    contact_subtitle: 'Escríbenos por cualquier canal y te responderemos en menos de 24 horas.',
+    contact_email_title: 'Email',
+    contact_wsp_title: 'WhatsApp',
+    contact_ig_title: 'Instagram',
+    contact_fb_title: 'Facebook',
     contact_info_title: 'Información de Contacto',
-    contact_response: 'Respuesta en menos de 24h',
-    contact_schedule: 'Agenda una llamada',
 
     // Footer
     footer_desc: 'Transformamos ideas en productos digitales de clase mundial.',
@@ -190,35 +219,32 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     // Header
     nav_portfolio: 'Portfolio',
     nav_services: 'Services',
-    nav_pricing: 'Pricing',
+    nav_pricing: 'Plans',
+    nav_process: 'Process',
     nav_contact: 'Contact',
-    nav_cta: 'Start Project',
+    nav_cta: 'Get a Quote',
 
     // Hero
     hero_badge: 'Premium Digital Transformation',
     hero_title: 'We Create Software that',
     hero_title_highlight: 'Drives Business',
     hero_subtitle: 'High-end web development, scalable SaaS solutions, and digital experiences that turn visitors into customers.',
-    hero_cta_primary: 'View Projects',
-    hero_cta_secondary: 'Get a Quote',
+    hero_cta_primary: 'Get a Quote',
+    hero_cta_secondary: 'View Portfolio',
     hero_cta_briefing: 'Complete Questionnaire',
-
-    // Tech Stack
-    tech_title: 'Our Technology Ecosystem',
-    tech_1_title: 'Modern Stack',
-    tech_1_desc: 'React, Next.js and TypeScript for fluid and fast interfaces.',
-    tech_2_title: 'Cloud Native',
-    tech_2_desc: 'AWS & Vercel: scalable and optimized infrastructures.',
-    tech_3_title: 'Data & AI',
-    tech_3_desc: 'Artificial intelligence integration and data analytics.',
-    tech_4_title: 'Security First',
-    tech_4_desc: 'Armored architectures with the highest standards.',
+    hero_payment_note: '50% upfront · 50% on delivery',
 
     // Portfolio
-    portfolio_webs_title: 'Our Websites',
-    portfolio_webs_subtitle: 'Digital experiences that convert and captivate.',
-    portfolio_saas_title: 'SaaS Solutions',
-    portfolio_saas_subtitle: 'Robust software designed to scale without limits.',
+    portfolio_tag: 'Our Work',
+    portfolio_title: 'Real Projects',
+    portfolio_subtitle: 'Each project reflects our dedication to detail and performance.',
+    portfolio_1_desc: 'Professional landing for a podiatry clinic — clean design, optimized for conversion.',
+    portfolio_2_desc: 'Website for a clinical podiatrist in Ñuñoa — trust-focused design with easy contact.',
+    portfolio_3_desc: 'Artisan flower shop online store — curated visual experience and direct orders.',
+    portfolio_4_desc: 'Modern landing demo for a sports brand — bold and dynamic design.',
+    portfolio_5_desc: 'Landing demo for a Japanese restaurant — elegant aesthetic and interactive menu.',
+    portfolio_6_desc: 'Corporate website for agro-industrial solutions — clear and professional information.',
+    portfolio_7_desc: 'SaaS satisfaction survey platform — dashboards and real-time analytics.',
 
     // Services
     services_tag: 'Experience',
@@ -254,21 +280,26 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     stat_3_label: 'Satisfaction',
 
     // Pricing
-    pricing_badge: 'Limited Time Offer',
+    pricing_tag: 'Investment',
     pricing_title: 'Plans & Pricing',
     pricing_subtitle: 'High-impact digital solutions designed to scale your business.',
     pricing_from: 'From',
     pricing_contact: 'Contact Us',
     pricing_popular: 'Most Popular',
+    pricing_cta: 'Start Project',
     pricing_cta_briefing: 'Start Briefing',
+    pricing_payment_note: '50% upfront · 50% on delivery',
 
     // Plan names
     plan_landing: 'Landing Page',
     plan_landing_desc: 'Ideal for launches and marketing campaigns.',
+    plan_landing_subtitle: 'Instant impact',
     plan_corp: 'Corporate Website',
     plan_corp_desc: 'Professional presence with multiple sections.',
+    plan_corp_subtitle: 'Professional presence',
     plan_ecommerce: 'E-commerce',
     plan_ecommerce_desc: 'Complete online store with payments and management.',
+    plan_ecommerce_subtitle: 'Sell online',
 
     // Features
     feature_hosting: 'FREE Domain and Hosting for 1 year',
@@ -283,32 +314,21 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_inventory: 'Inventory Management',
     feature_support_6: '6 Months Technical Support',
 
-    // CTA Quote
-    cta_quote_title: 'Custom project?',
-    cta_quote_desc: 'Complete our briefing and receive a personalized proposal within 24 hours.',
-    cta_quote_button: 'Request Briefing',
-    contact_project_type: 'Project Type',
-
-    // Extras
-    extra_blog: 'Blog / News',
-    extra_chat: 'Live Chat / WhatsApp',
-    extra_booking: 'Booking System',
-    extra_multilang: 'Multi-language',
-    extra_admin_pro: 'Pro Admin Panel',
-    extra_cms: 'Content Manager',
+    // CTA Banner
+    cta_badge: "Let's Start",
+    cta_title: 'Have a project in mind?',
+    cta_subtitle: 'Tell us your idea and we\'ll deliver a custom quote with no strings attached.',
+    cta_button: 'Get Free Quote',
 
     // Contact
     contact_tag: "Let's Talk",
     contact_title: 'Ready to transform your digital presence?',
-    contact_subtitle: 'Tell us about your project and we will respond within 24 hours.',
-    contact_name: 'Full name',
-    contact_email: 'Email',
-    contact_phone: 'Phone (optional)',
-    contact_message: 'Tell us about your project...',
-    contact_send: 'Send Message',
+    contact_subtitle: 'Reach out on any channel and we\'ll respond within 24 hours.',
+    contact_email_title: 'Email',
+    contact_wsp_title: 'WhatsApp',
+    contact_ig_title: 'Instagram',
+    contact_fb_title: 'Facebook',
     contact_info_title: 'Contact Information',
-    contact_response: 'Response within 24h',
-    contact_schedule: 'Schedule a call',
 
     // Footer
     footer_desc: 'We transform ideas into world-class digital products.',

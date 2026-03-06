@@ -1,0 +1,119 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MessageCircle, Instagram, Facebook, X } from 'lucide-react';
+
+const whatsappContacts = [
+  { name: 'Lucas', phone: '56956994930', label: '+56 9 5699 4930' },
+  { name: 'Diego', phone: '56934908579', label: '+56 9 3490 8579' },
+];
+
+export default function SocialFloater() {
+  const [visible, setVisible] = useState(true);
+  const [wspOpen, setWspOpen] = useState(false);
+
+  useEffect(() => {
+    const footer = document.getElementById('footer');
+    const contact = document.getElementById('contacto');
+    if (!footer && !contact) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isAnyVisible = entries.some((e) => e.isIntersecting);
+        setVisible(!isAnyVisible);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footer) observer.observe(footer);
+    if (contact) observer.observe(contact);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+        >
+          {/* WhatsApp Selector Popup */}
+          <AnimatePresence>
+            {wspOpen && (
+              <motion.div
+                className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden mb-2 w-56"
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="px-4 py-3 border-b border-[var(--border)] flex items-center justify-between">
+                  <span className="text-sm font-semibold text-[var(--text)]">WhatsApp</span>
+                  <button onClick={() => setWspOpen(false)} className="text-[var(--text-tertiary)] hover:text-[var(--text)] cursor-pointer">
+                    <X size={14} />
+                  </button>
+                </div>
+                {whatsappContacts.map((c) => (
+                  <a
+                    key={c.phone}
+                    href={`https://wa.me/${c.phone}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-[#25D366]/10 flex items-center justify-center shrink-0">
+                      <MessageCircle size={14} className="text-[#25D366]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-[var(--text)]">{c.name}</p>
+                      <p className="text-[11px] text-[var(--text-tertiary)]">{c.label}</p>
+                    </div>
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Buttons */}
+          <div className="flex flex-col gap-2.5">
+            {/* WhatsApp */}
+            <button
+              onClick={() => setWspOpen(!wspOpen)}
+              className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={22} />
+            </button>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/purocodecl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              aria-label="Instagram"
+            >
+              <Instagram size={22} />
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com/PuroCode.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-[#1877F2] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              aria-label="Facebook"
+            >
+              <Facebook size={22} />
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

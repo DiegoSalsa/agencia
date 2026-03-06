@@ -1,13 +1,14 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
-import TechStack from '@/components/landing/TechStack';
-import Portfolio from '@/components/landing/Portfolio';
-import Services from '@/components/landing/Services';
-import Process from '@/components/landing/Process';
-import Pricing from '@/components/landing/Pricing';
-import Contact from '@/components/landing/Contact';
-import Footer from '@/components/landing/Footer';
-import LocaleSelector from '@/components/shared/LocaleSelector';
+
+const Services = dynamic(() => import('@/components/landing/Services'));
+const Portfolio = dynamic(() => import('@/components/landing/Portfolio'));
+const Process = dynamic(() => import('@/components/landing/Process'));
+const Pricing = dynamic(() => import('@/components/landing/Pricing'));
+const Contact = dynamic(() => import('@/components/landing/Contact'));
+const Footer = dynamic(() => import('@/components/landing/Footer'));
+import SocialFloater from '@/components/shared/SocialFloater';
 
 export default function Home() {
   return (
@@ -15,15 +16,20 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TechStack />
+        <div className="bg-[var(--bg-secondary)] section-ambient">
+          <Services />
+        </div>
         <Portfolio />
-        <Services />
-        <Process />
+        <div className="bg-[var(--bg-secondary)] section-ambient">
+          <Process />
+        </div>
         <Pricing />
-        <Contact />
+        <div className="section-ambient">
+          <Contact />
+        </div>
       </main>
       <Footer />
-      <LocaleSelector />
+      <SocialFloater />
     </>
   );
 }

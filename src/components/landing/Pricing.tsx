@@ -1,126 +1,224 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Globe, Building2, ShoppingCart, Check, ArrowRight, Sparkles } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
+import { getRegionalPrice, getOriginalPrice, type PlanKey } from '@/lib/i18n';
 import { useInView } from '@/hooks/useInView';
-import { Check, ArrowRight, Sparkles } from 'lucide-react';
 
 const plans = [
   {
+    key: 'landing' as PlanKey,
     nameKey: 'plan_landing',
     descKey: 'plan_landing_desc',
-    price: 220000,
-    popular: false,
+    subtitleKey: 'plan_landing_subtitle',
     briefingType: 'landing',
+    icon: Globe,
+    gradient: 'from-violet-600 to-indigo-600',
+    gradientLight: 'from-violet-500/20 to-indigo-500/20',
+    glow: 'group-hover:shadow-violet-500/20',
+    accent: 'text-violet-400',
+    accentBg: 'bg-violet-500/10',
+    popular: false,
     features: ['feature_hosting', 'feature_responsive', 'feature_seo', 'feature_form'],
   },
   {
+    key: 'corporate' as PlanKey,
     nameKey: 'plan_corp',
     descKey: 'plan_corp_desc',
-    price: 380000,
-    popular: true,
+    subtitleKey: 'plan_corp_subtitle',
     briefingType: 'web-corporativa',
+    icon: Building2,
+    gradient: 'from-blue-600 to-cyan-600',
+    gradientLight: 'from-blue-500/20 to-cyan-500/20',
+    glow: 'group-hover:shadow-blue-500/20',
+    accent: 'text-blue-400',
+    accentBg: 'bg-blue-500/10',
+    popular: true,
     features: ['feature_hosting', 'feature_sections', 'feature_social', 'feature_support'],
   },
   {
+    key: 'ecommerce' as PlanKey,
     nameKey: 'plan_ecommerce',
     descKey: 'plan_ecommerce_desc',
-    price: 550000,
-    popular: false,
+    subtitleKey: 'plan_ecommerce_subtitle',
     briefingType: 'ecommerce',
+    icon: ShoppingCart,
+    gradient: 'from-emerald-600 to-teal-600',
+    gradientLight: 'from-emerald-500/20 to-teal-500/20',
+    glow: 'group-hover:shadow-emerald-500/20',
+    accent: 'text-emerald-400',
+    accentBg: 'bg-emerald-500/10',
+    popular: false,
     features: ['feature_hosting', 'feature_payments', 'feature_admin', 'feature_inventory', 'feature_support_6'],
   },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.12 },
+  }),
+};
+
 export default function Pricing() {
-  const { t, formatPrice } = useI18n();
+  const { t, currency } = useI18n();
   const { ref, isVisible } = useInView();
-  const { ref: ctaRef, isVisible: ctaVisible } = useInView();
 
   return (
-    <section id="precios" ref={ref} className={`py-24 px-6 border-t border-border-default animate-on-scroll ${isVisible ? 'visible' : ''}`}>
-      {/* Header */}
-      <div className={`flex flex-col items-center text-center mb-16 max-w-3xl mx-auto animate-slide-up ${isVisible ? 'visible' : ''}`}>
-        <p className="text-primary text-sm font-semibold tracking-[0.15em] uppercase mb-3">{t('pricing_badge')}</p>
-        <h2 className="text-display-md md:text-display-lg text-text-primary mb-4">{t('pricing_title')}</h2>
-        <p className="text-text-secondary max-w-lg">{t('pricing_subtitle')}</p>
-      </div>
+    <section id="planes" ref={ref} className="relative py-24 px-6 overflow-hidden">
+      {/* Always-dark background */}
+      <div className="absolute inset-0 bg-[#07060b]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(75,43,238,0.1),transparent_60%)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-600/[0.06] rounded-full blur-[120px]" />
+      {/* Grid pattern for dark section */}
+      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      {/* Extra glow */}
+      <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.06)_0%,transparent_55%)]" />
+      {/* Floating shapes */}
+      <svg className="geo-float absolute top-16 left-[6%] w-24 h-24 opacity-[0.04]" style={{ animationDelay: '0.5s' }} viewBox="0 0 100 100" fill="none">
+        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
+      </svg>
+      <svg className="geo-float absolute bottom-[20%] right-[15%] w-16 h-16 opacity-[0.03]" style={{ animationDelay: '4s' }} viewBox="0 0 100 100" fill="none">
+        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="3" />
+      </svg>
+      <div className="geo-float absolute bottom-16 right-[8%] w-14 h-14 border border-white/[0.06] rotate-[20deg] rounded-lg" style={{ animationDelay: '3s' }} />
+      <div className="geo-float absolute top-[45%] left-[3%] w-10 h-10 border border-white/[0.05] -rotate-[15deg] rounded-sm" style={{ animationDelay: '2s' }} />
+      {/* Gradient line accents */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/10 to-transparent" />
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+        }}
+      />
 
-      {/* Pricing Cards */}
-      <div className={`grid grid-cols-1 md:grid-cols-3 gap-5 max-w-6xl mx-auto stagger-children ${isVisible ? 'visible' : ''}`}>
-        {plans.map((plan) => (
-          <div
-            key={plan.nameKey}
-            className={`card-base flex flex-col gap-6 rounded-2xl p-8 relative ${
-              plan.popular ? 'border-primary ring-1 ring-primary/20' : ''
-            }`}
-          >
-            {plan.popular && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-semibold uppercase tracking-widest px-4 py-1 rounded-full">
-                {t('pricing_popular')}
-              </div>
-            )}
+      <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div
+          className="flex flex-col items-center text-center mb-16 max-w-3xl mx-auto"
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          custom={0}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/[0.08] border border-violet-500/20 text-violet-400 text-xs font-medium tracking-wider uppercase mb-6">
+            <Sparkles size={12} />
+            {t('pricing_tag')}
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+            {t('pricing_title')}
+          </h2>
+          <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            {t('pricing_subtitle')}
+          </p>
+        </motion.div>
 
-            <div className="flex flex-col gap-1">
-              <h3 className="text-lg font-bold text-text-primary">{t(plan.nameKey)}</h3>
-              <p className="text-sm text-text-muted">{t(plan.descKey)}</p>
-            </div>
-
-            <div className="flex flex-col">
-              <span className="text-xs text-text-muted font-medium uppercase tracking-wider">{t('pricing_from')}</span>
-              <span className="text-3xl font-bold tracking-tight text-text-primary">{formatPrice(plan.price)}</span>
-            </div>
-
-            <div className="flex gap-2">
-              <a
-                href="#contacto"
-                className={`flex flex-1 cursor-pointer items-center justify-center rounded-xl h-12 text-sm font-semibold transition-all ${
-                  plan.popular ? 'btn-primary' : 'btn-secondary'
-                }`}
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          {plans.map((plan, i) => {
+            const Icon = plan.icon;
+            return (
+              <motion.div
+                key={plan.key}
+                initial="hidden"
+                animate={isVisible ? 'visible' : 'hidden'}
+                variants={fadeUp}
+                custom={i + 1}
               >
-                {t('pricing_contact')}
-              </a>
               <Link
                 href={`/formulario/${plan.briefingType}`}
-                className="flex items-center justify-center rounded-xl h-12 w-12 border border-border-default text-primary hover:bg-primary/10 hover:border-primary/30 transition-all"
-                title={t('pricing_cta_briefing')}
+                className={`group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-2 hover:shadow-2xl ${plan.glow} cursor-pointer h-full`}
               >
-                <Sparkles className="w-5 h-5" />
-              </Link>
-            </div>
+                {/* Popular badge */}
+                {plan.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                    <div
+                      className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.gradient} text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-blue-500/25`}
+                    >
+                      ★ {t('pricing_popular')}
+                    </div>
+                  </div>
+                )}
 
-            <hr className="border-border-default" />
+                {/* Top gradient line */}
+                <div
+                  className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${plan.gradientLight} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                />
 
-            <div className="flex flex-col gap-3">
-              {plan.features.map((fKey) => (
-                <div key={fKey} className="text-sm font-medium flex items-center gap-3 text-text-secondary">
-                  <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>{t(fKey)}</span>
+                <div className="p-7 flex flex-col flex-1">
+                  {/* Icon + subtitle */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div
+                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} p-[1px] shadow-lg shadow-black/20`}
+                    >
+                      <div className="w-full h-full rounded-2xl bg-[#0d0c14] flex items-center justify-center">
+                        <Icon size={22} className="text-white/90" />
+                      </div>
+                    </div>
+                    <span
+                      className={`text-[11px] font-medium tracking-wider uppercase ${plan.accent} ${plan.accentBg} px-2.5 py-1 rounded-md`}
+                    >
+                      {t(plan.subtitleKey)}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                    {t(plan.nameKey)}
+                  </h3>
+                  <p className="text-white/35 text-sm leading-relaxed mb-6">{t(plan.descKey)}</p>
+
+                  {/* Features */}
+                  <ul className="space-y-2.5 mb-8">
+                    {plan.features.map((fKey) => (
+                      <li key={fKey} className="flex items-center gap-2.5 text-sm text-white/50">
+                        <Check size={14} className={`${plan.accent} shrink-0`} />
+                        {t(fKey)}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Price + discount + CTA */}
+                  <div className="mt-auto">
+                    <div className="flex items-baseline gap-2 mb-0.5">
+                      <span className="text-xs text-white/30 uppercase tracking-wider">
+                        {t('pricing_from')}
+                      </span>
+                      <span className="text-sm text-white/30 line-through decoration-red-400/60">
+                        {getOriginalPrice(plan.key, currency)}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5 mb-1">
+                      <span className="text-3xl font-extrabold text-white tracking-tight">
+                        {getRegionalPrice(plan.key, currency)}
+                      </span>
+                      <span className="text-sm text-white/30 font-medium">{currency}</span>
+                      <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
+                        -40%
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-white/25 mb-4">
+                      {t('pricing_payment_note')}
+                    </p>
+
+                    <div
+                      className={`w-full py-3.5 rounded-xl bg-gradient-to-r ${plan.gradient} opacity-80 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20 group-hover:shadow-xl`}
+                    >
+                      {t('pricing_cta')}
+                      <ArrowRight size={15} />
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* CTA Section — replaces cotizador */}
-      <div ref={ctaRef} className={`max-w-4xl mx-auto mt-20 animate-on-scroll ${ctaVisible ? 'visible' : ''}`}>
-        <div className="relative rounded-2xl border border-border-default bg-gradient-to-br from-primary/5 via-surface to-surface p-10 md:p-14 text-center overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/[0.06] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-          <div className="relative z-10">
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              <Sparkles className="w-7 h-7 text-primary" />
-            </div>
-            <h3 className="text-display-sm text-text-primary mb-3">{t('cta_quote_title')}</h3>
-            <p className="text-text-secondary max-w-xl mx-auto mb-8">{t('cta_quote_desc')}</p>
-            <Link
-              href="/formulario"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl h-14 px-8 btn-primary text-base font-semibold"
-            >
-              <span>{t('cta_quote_button')}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+              </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
