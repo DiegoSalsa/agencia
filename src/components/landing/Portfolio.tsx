@@ -4,6 +4,7 @@ import { useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
+import { ChevronLeft, ChevronRight, ExternalLink, BarChart3, CreditCard, Truck, HeartPulse } from 'lucide-react';
 
 interface PortfolioItem {
   href?: string;
@@ -66,6 +67,13 @@ const saasProjects: PortfolioItem[] = [
   },
 ];
 
+const saasIcons: Record<string, React.ReactNode> = {
+  Analytics: <BarChart3 className="w-6 h-6 text-primary" />,
+  Fintech: <CreditCard className="w-6 h-6 text-primary" />,
+  Logistics: <Truck className="w-6 h-6 text-primary" />,
+  Healthcare: <HeartPulse className="w-6 h-6 text-primary" />,
+};
+
 function Carousel({ title, subtitle, items, isSaas }: { title: string; subtitle: string; items: PortfolioItem[]; isSaas?: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -74,87 +82,78 @@ function Carousel({ title, subtitle, items, isSaas }: { title: string; subtitle:
   }, []);
 
   return (
-    <div className="space-y-8 carousel-container">
+    <div className="space-y-8">
       <div className="flex items-end justify-between px-2">
-        <div className="space-y-2">
-          <h2 className="section-title text-3xl font-black text-white tracking-tight">{title}</h2>
-          <p className="text-slate-400">{subtitle}</p>
+        <div className="space-y-1">
+          <h2 className="text-display-sm text-text-primary">{title}</h2>
+          <p className="text-text-muted text-sm">{subtitle}</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => scroll(-1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
-            <span className="material-symbols-outlined">chevron_left</span>
+          <button onClick={() => scroll(-1)} className="w-10 h-10 rounded-full border border-border-default flex items-center justify-center text-text-muted hover:text-text-primary hover:border-border-hover transition-all">
+            <ChevronLeft className="w-5 h-5" />
           </button>
-          <button onClick={() => scroll(1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-all">
-            <span className="material-symbols-outlined">chevron_right</span>
+          <button onClick={() => scroll(1)} className="w-10 h-10 rounded-full border border-border-default flex items-center justify-center text-text-muted hover:text-text-primary hover:border-border-hover transition-all">
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      <div ref={trackRef} className="carousel-track flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
+      <div ref={trackRef} className="flex gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
         {items.map((item, i) => {
           const Wrapper = item.href ? 'a' : 'div';
           const wrapperProps = item.href ? { href: item.href, target: '_blank' as const, rel: 'noopener noreferrer' } : {};
 
           return (
-            <Wrapper key={i} {...wrapperProps} className={`min-w-full md:min-w-[calc(33.333%-16px)] snap-start group ${item.href ? 'cursor-pointer' : ''}`}>
-              <div className={`relative ${isSaas ? 'aspect-[4/3]' : 'aspect-video'} rounded-2xl overflow-hidden border border-white/10 glass mb-4`}>
-                {isSaas && <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-violet-600/10 to-transparent group-hover:from-primary/30 transition-all duration-500" />}
+            <Wrapper key={i} {...wrapperProps} className={`min-w-full md:min-w-[calc(33.333%-14px)] snap-start group ${item.href ? 'cursor-pointer' : ''}`}>
+              <div className={`relative ${isSaas ? 'aspect-[4/3]' : 'aspect-video'} rounded-2xl overflow-hidden border border-border-default bg-surface mb-4`}>
+                {isSaas && <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-violet-600/5 to-transparent group-hover:from-primary/25 transition-all duration-500 z-10" />}
                 {item.isLocal ? (
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className={`object-cover transition-transform duration-500 group-hover:scale-110 ${isSaas ? 'opacity-90 group-hover:scale-105 duration-700' : 'opacity-80'}`}
+                    className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${isSaas ? 'opacity-80' : ''}`}
                   />
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={item.image}
                     alt={item.title}
-                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isSaas && !item.isLocal ? 'mix-blend-overlay opacity-40 group-hover:scale-105 duration-700' : 'opacity-80'}`}
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${isSaas && !item.isLocal ? 'mix-blend-overlay opacity-40' : ''}`}
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                 {!isSaas && (
-                  <div className="absolute bottom-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider">{item.tag}</span>
+                  <div className="absolute bottom-4 left-4 z-10">
+                    <span className="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-[10px] font-semibold uppercase tracking-wider">{item.tag}</span>
                   </div>
                 )}
                 {item.href && !isSaas && (
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="material-symbols-outlined text-white">open_in_new</span>
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <ExternalLink className="w-5 h-5 text-white" />
                   </div>
                 )}
 
                 {isSaas && (
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/30 to-violet-600/30 backdrop-blur-md flex items-center justify-center mb-4 border border-primary/40 group-hover:scale-110 transition-transform">
-                      <span className="material-symbols-outlined text-primary text-2xl">
-                        {item.tag === 'Analytics' ? 'sentiment_satisfied' : item.tag === 'Fintech' ? 'payments' : item.tag === 'Logistics' ? 'inventory_2' : 'health_metrics'}
-                      </span>
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
+                    <div className="w-12 h-12 rounded-xl bg-surface/30 backdrop-blur-md flex items-center justify-center mb-3 border border-white/20 group-hover:scale-105 transition-transform">
+                      {saasIcons[item.tag]}
                     </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{item.title}</h3>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">{item.title}</h3>
                       {item.href && (
-                        <span className="material-symbols-outlined text-white/50 text-sm group-hover:text-primary group-hover:translate-x-1 transition-all">open_in_new</span>
+                        <ExternalLink className="w-4 h-4 text-white/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                       )}
                     </div>
-                    <p className="text-slate-300 text-sm mb-3">{item.description}</p>
-                    {item.tag === 'Analytics' && (
-                      <div className="flex gap-2 flex-wrap">
-                        <span className="px-2 py-1 rounded-full bg-white/10 text-[10px] font-medium text-slate-300">Analytics</span>
-                        <span className="px-2 py-1 rounded-full bg-white/10 text-[10px] font-medium text-slate-300">NPS Score</span>
-                        <span className="px-2 py-1 rounded-full bg-white/10 text-[10px] font-medium text-slate-300">Dashboard</span>
-                      </div>
-                    )}
+                    <p className="text-white/70 text-sm">{item.description}</p>
                   </div>
                 )}
               </div>
               {!isSaas && (
                 <>
-                  <h3 className="text-white font-bold text-lg px-1 group-hover:text-primary transition-colors">{item.title}</h3>
-                  <p className="text-slate-500 text-sm px-1">{item.description}</p>
+                  <h3 className="text-text-primary font-bold text-lg px-1 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-text-muted text-sm px-1">{item.description}</p>
                 </>
               )}
             </Wrapper>
@@ -170,7 +169,7 @@ export default function Portfolio() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section id="portafolio" ref={ref} className={`w-full max-w-[1200px] mx-auto px-6 py-32 space-y-24 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
+    <section id="portafolio" ref={ref} className={`w-full max-w-[1200px] mx-auto px-6 py-28 space-y-20 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
       <Carousel title={t('portfolio_webs_title')} subtitle={t('portfolio_webs_subtitle')} items={webProjects} />
       <Carousel title={t('portfolio_saas_title')} subtitle={t('portfolio_saas_subtitle')} items={saasProjects} isSaas />
     </section>

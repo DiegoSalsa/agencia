@@ -148,19 +148,11 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_inventory: 'Gestión de Inventario',
     feature_support_6: 'Soporte Técnico 6 Meses',
 
-    // Quoter
-    quoter_title: 'Cotizador Instantáneo',
-    quoter_subtitle: 'Calcula el precio de tu proyecto en segundos',
-    quoter_project_type: 'Tipo de Proyecto',
-    quoter_sections: 'Secciones Adicionales',
-    quoter_extras: 'Funcionalidades Extra',
-    quoter_summary: 'Resumen',
-    quoter_base: 'Proyecto base:',
-    quoter_sections_cost: 'Secciones adicionales:',
-    quoter_extras_cost: 'Funcionalidades extra:',
-    quoter_total: 'Total Estimado',
-    quoter_cta: 'Solicitar Cotización Formal',
-    quoter_note: 'Precio referencial. El valor final puede variar según requerimientos específicos.',
+    // CTA Quote
+    cta_quote_title: '¿Proyecto a medida?',
+    cta_quote_desc: 'Completa nuestro briefing y recibe una propuesta personalizada en 24 horas.',
+    cta_quote_button: 'Solicitar Briefing',
+    contact_project_type: 'Tipo de Proyecto',
 
     // Extras
     extra_blog: 'Blog / Noticias',
@@ -291,19 +283,11 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_inventory: 'Inventory Management',
     feature_support_6: '6 Months Technical Support',
 
-    // Quoter
-    quoter_title: 'Instant Quote Calculator',
-    quoter_subtitle: 'Calculate your project price in seconds',
-    quoter_project_type: 'Project Type',
-    quoter_sections: 'Additional Sections',
-    quoter_extras: 'Extra Features',
-    quoter_summary: 'Summary',
-    quoter_base: 'Base project:',
-    quoter_sections_cost: 'Additional sections:',
-    quoter_extras_cost: 'Extra features:',
-    quoter_total: 'Estimated Total',
-    quoter_cta: 'Request Formal Quote',
-    quoter_note: 'Reference price. Final value may vary according to specific requirements.',
+    // CTA Quote
+    cta_quote_title: 'Custom project?',
+    cta_quote_desc: 'Complete our briefing and receive a personalized proposal within 24 hours.',
+    cta_quote_button: 'Request Briefing',
+    contact_project_type: 'Project Type',
 
     // Extras
     extra_blog: 'Blog / News',
