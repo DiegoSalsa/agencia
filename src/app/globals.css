@@ -37,14 +37,13 @@
 
 /* ========== Base ========== */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ========== Utility Classes ========== */
@@ -136,14 +135,21 @@ body {
 /* ========== Navbar Glass ========== */
 .nav-glass {
   background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .dark .nav-glass {
-  background: rgba(9, 9, 11, 0.8);
+  background: rgba(9, 9, 11, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  .nav-glass {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
 
 /* ========== Pricing Card Highlight ========== */
@@ -184,12 +190,16 @@ body {
 
 /* Geometric angle decoration inspired by logo */
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(3deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 .geo-float {
   animation: float-slow 8s ease-in-out infinite;
   will-change: transform;
+  transform: translateZ(0);
+}
+@media (max-width: 767px) {
+  .geo-float { animation: none; }
 }
 
 /* ========== Selection ========== */
