@@ -75,7 +75,7 @@ export default function Hero() {
   const [wspOpen, setWspOpen] = useState(false);
 
   return (
-    <section id="hero" className="relative flex flex-col items-center justify-center pt-24 pb-8 overflow-hidden">
+    <section id="hero" className="relative flex flex-col items-center justify-center pt-20 sm:pt-24 pb-6 sm:pb-8 overflow-hidden">
       {/* Enhanced background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-pattern opacity-40" />
@@ -105,7 +105,7 @@ export default function Hero() {
 
       {/* Top Tech Marquee Row */}
       <motion.div
-        className="w-full mb-10 relative z-10"
+        className="w-full mb-5 sm:mb-10 relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.1 }}
@@ -113,10 +113,10 @@ export default function Hero() {
         <TechMarqueeRow />
       </motion.div>
 
-      <div className="flex flex-col items-center text-center px-6 max-w-[900px] relative z-10">
+      <div className="flex flex-col items-center text-center px-4 sm:px-6 max-w-[900px] relative z-10">
         {/* Headline */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] mb-6 text-[var(--text)]"
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold leading-[1.08] tracking-[-0.035em] mb-4 sm:mb-6 text-[var(--text)]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -130,7 +130,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl leading-relaxed max-w-[640px] mb-12"
+          className="text-[var(--text-secondary)] text-sm sm:text-lg md:text-xl leading-relaxed max-w-[640px] mb-6 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -140,7 +140,7 @@ export default function Hero() {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 items-center"
+          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 items-center w-full sm:w-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -148,7 +148,7 @@ export default function Hero() {
           {/* Primary: Cotiza */}
           <Link
             href="/formulario"
-            className="btn-primary group text-base !h-13 !px-8 cursor-pointer"
+            className="btn-primary group text-sm sm:text-base !h-11 sm:!h-13 !px-6 sm:!px-8 w-full sm:w-auto cursor-pointer"
           >
             {t('hero_cta_primary')}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -157,7 +157,7 @@ export default function Hero() {
           {/* Secondary: Portafolio */}
           <a
             href="#portafolio"
-            className="btn-secondary group text-base !h-13 !px-8 cursor-pointer"
+            className="btn-secondary group text-sm sm:text-base !h-11 sm:!h-13 !px-6 sm:!px-8 w-full sm:w-auto cursor-pointer"
           >
             <Eye size={18} />
             {t('hero_cta_secondary')}
@@ -167,7 +167,7 @@ export default function Hero() {
           <div className="relative">
             <button
               onClick={() => setWspOpen(!wspOpen)}
-              className="flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-xl bg-[#25D366]/10 text-[#25D366] font-semibold text-base hover:bg-[#25D366]/20 transition-all cursor-pointer border border-[#25D366]/20"
+              className="flex items-center justify-center gap-2.5 h-11 sm:h-[52px] px-6 sm:px-8 rounded-xl bg-[#25D366]/10 text-[#25D366] font-semibold text-sm sm:text-base hover:bg-[#25D366]/20 transition-all cursor-pointer border border-[#25D366]/20 w-full sm:w-auto"
             >
               <MessageCircle size={20} />
               WhatsApp
@@ -209,7 +209,7 @@ export default function Hero() {
 
         {/* 50% upfront note */}
         <motion.p
-          className="mt-8 text-xs text-[var(--text-tertiary)]"
+          className="mt-4 sm:mt-8 text-xs text-[var(--text-tertiary)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -220,7 +220,7 @@ export default function Hero() {
 
       {/* Bottom Tech Marquee Row */}
       <motion.div
-        className="w-full mt-6 relative z-10"
+        className="w-full mt-4 sm:mt-6 relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}

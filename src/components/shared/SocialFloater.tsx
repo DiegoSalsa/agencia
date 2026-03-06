@@ -36,7 +36,7 @@ export default function SocialFloater() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end"
+          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3 items-end"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
@@ -80,11 +80,11 @@ export default function SocialFloater() {
           </AnimatePresence>
 
           {/* Buttons */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2">
             {/* WhatsApp */}
             <button
               onClick={() => setWspOpen(!wspOpen)}
-              className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
               aria-label="WhatsApp"
             >
               <MessageCircle size={22} />
@@ -95,7 +95,7 @@ export default function SocialFloater() {
               href="https://www.instagram.com/purocodecl/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
               aria-label="Instagram"
             >
               <Instagram size={22} />
@@ -106,7 +106,7 @@ export default function SocialFloater() {
               href="https://www.facebook.com/PuroCode.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-[#1877F2] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1877F2] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
               aria-label="Facebook"
             >
               <Facebook size={22} />

@@ -103,7 +103,7 @@ export default function Header() {
               ))}
             </div>
 
-            <Link href="/formulario" className="hidden sm:flex btn-primary text-sm !py-2.5 !px-5 !rounded-xl cursor-pointer">
+            <Link href="/formulario" className="hidden md:flex btn-primary text-sm !py-2.5 !px-5 !rounded-xl cursor-pointer">
               {t('nav_cta')}
             </Link>
 
