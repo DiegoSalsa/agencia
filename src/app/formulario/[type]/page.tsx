@@ -337,7 +337,7 @@ function BriefingFormContent({ config }: { config: BriefingTypeConfig }) {
 
 export default function BriefingPage() {
     const params = useParams();
-    const type = (params.type as string)?.toUpperCase();
+    const type = (params.type as string)?.toUpperCase().replace(/-/g, '_');
     const config = getBriefingConfig(type || "");
 
     if (!config) {
