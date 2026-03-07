@@ -293,7 +293,7 @@ export function FieldRenderer({ field }: FieldRendererProps) {
                                     ? "bg-amber-500/10 border border-amber-500/30 text-amber-300"
                                     : "bg-emerald-500/10 border border-emerald-500/30 text-emerald-300"
                             }`}>
-                                <span>{over ? "⚠️" : "✅"}</span>
+                                {over ? <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" /> : <Check className="w-4 h-4 shrink-0 mt-0.5" />}
                                 <span>
                                     {over
                                         ? `Has seleccionado ${count}. Las primeras ${field.maxFree} están incluidas, cada adicional tiene costo extra.`

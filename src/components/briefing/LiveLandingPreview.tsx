@@ -465,9 +465,9 @@ export function LiveLandingPreview() {
                                 <div className="space-y-2">
                                     <SectionTitle icon={<BarChart3 size={10} />} title={t.stats} color={accentColor} textClass={textClass} headingClass={style.headingClass} />
                                     <div className="grid grid-cols-3 gap-2 text-center">
-                                        {[{ n: "150+", l: "Proyectos" }, { n: "98%", l: "Satisfacción" }, { n: "5★", l: "Rating" }].map(({ n, l }) => (
+                                        {[{ n: "150+", l: "Proyectos" }, { n: "98%", l: "Satisfacción" }, { n: "5", l: "Rating", icon: true }].map(({ n, l, icon }) => (
                                             <div key={l}>
-                                                <div className="text-sm font-bold" style={{ color: accentColor }}>{n}</div>
+                                                <div className="text-sm font-bold flex items-center justify-center gap-0.5" style={{ color: accentColor }}>{n}{icon && <Star size={10} className="fill-current" />}</div>
                                                 <div className={`text-[8px] ${subtextClass}`}>{l}</div>
                                             </div>
                                         ))}

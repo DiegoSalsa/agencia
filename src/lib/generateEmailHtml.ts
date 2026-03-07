@@ -122,7 +122,7 @@ export function generateEmailHtml(data: BriefingData): string {
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #4361EE, #7C3AED); border-radius: 16px 16px 0 0; padding: 40px 32px; text-align: center;">
             <h1 style="color: white; font-size: 28px; font-weight: 800; margin: 0 0 8px 0;">
-                📋 Briefing Recibido
+                Briefing Recibido
             </h1>
             <p style="color: rgba(255,255,255,0.8); font-size: 16px; margin: 0;">
                 ${TYPE_LABELS[data.type] || data.type}
@@ -146,15 +146,15 @@ export function generateEmailHtml(data: BriefingData): string {
 
             <!-- Quick summary -->
             <div style="display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap;">
-                ${designStyle ? `<span style="background: #ede9fe; color: #7c3aed; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">🎨 ${translateValue(designStyle)}</span>` : ""}
-                ${urgency && urgency !== "normal" ? `<span style="background: #fef3c7; color: #d97706; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">⏰ ${translateValue(urgency)}</span>` : ""}
-                ${primaryColor ? `<span style="background: #f3f4f6; color: #374151; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">🎨 ${primaryColor}</span>` : ""}
+                ${designStyle ? `<span style="background: #ede9fe; color: #7c3aed; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">${translateValue(designStyle)}</span>` : ""}
+                ${urgency && urgency !== "normal" ? `<span style="background: #fef3c7; color: #d97706; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">${translateValue(urgency)}</span>` : ""}
+                ${primaryColor ? `<span style="background: #f3f4f6; color: #374151; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">${primaryColor}</span>` : ""}
             </div>
 
             ${sections.length > 0 ? `
             <!-- Sections selected -->
             <div style="margin-bottom: 24px;">
-                <h3 style="color: #374151; font-size: 15px; margin: 0 0 8px 0;">📑 Secciones seleccionadas:</h3>
+                <h3 style="color: #374151; font-size: 15px; margin: 0 0 8px 0;">Secciones seleccionadas:</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                     ${sections.map((s: string) => `<span style="background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 6px; font-size: 12px;">${translateValue(s)}</span>`).join("")}
                 </div>
@@ -163,7 +163,7 @@ export function generateEmailHtml(data: BriefingData): string {
             ${features.length > 0 ? `
             <!-- Features -->
             <div style="margin-bottom: 24px;">
-                <h3 style="color: #374151; font-size: 15px; margin: 0 0 8px 0;">⚡ Extras solicitados:</h3>
+                <h3 style="color: #374151; font-size: 15px; margin: 0 0 8px 0;">Extras solicitados:</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                     ${features.map((f: string) => `<span style="background: #fce7f3; color: #be185d; padding: 4px 10px; border-radius: 6px; font-size: 12px;">${translateValue(f)}</span>`).join("")}
                 </div>
@@ -175,7 +175,7 @@ export function generateEmailHtml(data: BriefingData): string {
                 const pricing = calculatePrice(pricingFormData);
                 return `
                 <div style="background: #ecfdf5; border-radius: 12px; padding: 20px; margin-bottom: 28px; border-left: 4px solid #10b981;">
-                    <h3 style="color: #065f46; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">💰 Cotización Estimada</h3>
+                    <h3 style="color: #065f46; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">Cotización Estimada</h3>
                     <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
                         ${pricing.breakdown.map(item => `
                             <tr>
@@ -200,7 +200,7 @@ export function generateEmailHtml(data: BriefingData): string {
             <!-- Footer note -->
             <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
                 <p style="color: #9ca3af; font-size: 12px; margin: 0;">
-                    📎 Se adjuntan los archivos Word (.docx) y Excel (.xlsx) con el detalle completo del briefing.
+                    Se adjuntan los archivos Word (.docx) y Excel (.xlsx) con el detalle completo del briefing.
                 </p>
                 <p style="color: #d1d5db; font-size: 11px; margin: 8px 0 0;">
                     Generado automáticamente — ${new Date().toLocaleDateString("es-CL", { year: "numeric", month: "long", day: "numeric" })}

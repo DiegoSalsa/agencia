@@ -142,7 +142,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">
-            Hola, {project.clientFirstName} 👋
+            Hola, {project.clientFirstName}
           </h1>
           <p className="text-slate-400 text-sm mt-1">
             Bienvenido a tu portal de cliente

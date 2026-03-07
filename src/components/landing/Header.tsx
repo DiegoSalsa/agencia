@@ -98,7 +98,7 @@ export default function Header() {
                       : 'text-[var(--text-secondary)] hover:text-[var(--text)]'
                   }`}
                 >
-                  {l === 'es' ? '🇪🇸 ES' : '🇬🇧 EN'}
+                  {l === 'es' ? 'ES' : 'EN'}
                 </button>
               ))}
             </div>
@@ -160,7 +160,7 @@ export default function Header() {
                             : 'bg-[var(--surface-hover)] text-[var(--text-secondary)] hover:bg-[var(--border)]'
                         }`}
                       >
-                        {l === 'es' ? '🇪🇸 ES' : '🇬🇧 EN'}
+                        {l === 'es' ? 'ES' : 'EN'}
                       </button>
                     ))}
                   </div>

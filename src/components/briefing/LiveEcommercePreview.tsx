@@ -9,7 +9,7 @@ import {
     Package, Check, Truck, Sun, Moon, Globe,
     ChevronDown, ShoppingBag, ArrowRight, Eye, Filter,
     Grid3X3, LayoutList, Home, FileText, HelpCircle, Mail,
-    Shield
+    Shield, Lock, Flame, Landmark, Banknote
 } from "lucide-react";
 
 // ── Types ──
@@ -33,28 +33,28 @@ type FlowStep = "product" | "cart" | "checkout" | "confirmation";
 function getPlaceholderProducts(industry: string): ProductItem[] {
     const productSets: Record<string, ProductItem[]> = {
         moda_vestuario: [
-            { id: 1, name: "Chaqueta Premium", price: 89990, originalPrice: 119990, image: "🧥", category: "Outerwear", rating: 4.8, reviews: 124, variants: ["S", "M", "L", "XL"], badge: "Oferta" },
-            { id: 2, name: "Zapatillas Running", price: 69990, image: "👟", category: "Calzado", rating: 4.6, reviews: 89, variants: ["38", "39", "40", "41", "42"] },
-            { id: 3, name: "Polera Básica", price: 19990, image: "👕", category: "Camisetas", rating: 4.5, reviews: 256 },
-            { id: 4, name: "Jeans Slim Fit", price: 45990, image: "👖", category: "Pantalones", rating: 4.7, reviews: 178, variants: ["28", "30", "32", "34"] },
-            { id: 5, name: "Bolso de Cuero", price: 59990, image: "👜", category: "Accesorios", rating: 4.9, reviews: 67, badge: "Nuevo" },
-            { id: 6, name: "Gorro Beanie", price: 15990, image: "🧢", category: "Accesorios", rating: 4.3, reviews: 45 },
+            { id: 1, name: "Chaqueta Premium", price: 89990, originalPrice: 119990, image: "", category: "Outerwear", rating: 4.8, reviews: 124, variants: ["S", "M", "L", "XL"], badge: "Oferta" },
+            { id: 2, name: "Zapatillas Running", price: 69990, image: "", category: "Calzado", rating: 4.6, reviews: 89, variants: ["38", "39", "40", "41", "42"] },
+            { id: 3, name: "Polera Básica", price: 19990, image: "", category: "Camisetas", rating: 4.5, reviews: 256 },
+            { id: 4, name: "Jeans Slim Fit", price: 45990, image: "", category: "Pantalones", rating: 4.7, reviews: 178, variants: ["28", "30", "32", "34"] },
+            { id: 5, name: "Bolso de Cuero", price: 59990, image: "", category: "Accesorios", rating: 4.9, reviews: 67, badge: "Nuevo" },
+            { id: 6, name: "Gorro Beanie", price: 15990, image: "", category: "Accesorios", rating: 4.3, reviews: 45 },
         ],
         tecnologia_electronica: [
-            { id: 1, name: "Audífonos Bluetooth", price: 49990, originalPrice: 69990, image: "🎧", category: "Audio", rating: 4.7, reviews: 312, badge: "Oferta" },
-            { id: 2, name: "Smartwatch Pro", price: 129990, image: "⌚", category: "Wearables", rating: 4.5, reviews: 189, variants: ["Negro", "Blanco", "Azul"] },
-            { id: 3, name: "Teclado Mecánico", price: 79990, image: "⌨️", category: "Periféricos", rating: 4.8, reviews: 234 },
-            { id: 4, name: "Mouse Gamer", price: 34990, image: "🖱️", category: "Periféricos", rating: 4.6, reviews: 156 },
-            { id: 5, name: "Webcam HD", price: 39990, image: "📷", category: "Accesorios", rating: 4.4, reviews: 98, badge: "Nuevo" },
-            { id: 6, name: "Hub USB-C", price: 24990, image: "🔌", category: "Accesorios", rating: 4.3, reviews: 67 },
+            { id: 1, name: "Audífonos Bluetooth", price: 49990, originalPrice: 69990, image: "", category: "Audio", rating: 4.7, reviews: 312, badge: "Oferta" },
+            { id: 2, name: "Smartwatch Pro", price: 129990, image: "", category: "Wearables", rating: 4.5, reviews: 189, variants: ["Negro", "Blanco", "Azul"] },
+            { id: 3, name: "Teclado Mecánico", price: 79990, image: "", category: "Periféricos", rating: 4.8, reviews: 234 },
+            { id: 4, name: "Mouse Gamer", price: 34990, image: "", category: "Periféricos", rating: 4.6, reviews: 156 },
+            { id: 5, name: "Webcam HD", price: 39990, image: "", category: "Accesorios", rating: 4.4, reviews: 98, badge: "Nuevo" },
+            { id: 6, name: "Hub USB-C", price: 24990, image: "", category: "Accesorios", rating: 4.3, reviews: 67 },
         ],
         default: [
-            { id: 1, name: "Producto Destacado", price: 39990, originalPrice: 54990, image: "⭐", category: "Destacados", rating: 4.8, reviews: 156, badge: "Oferta" },
-            { id: 2, name: "Producto Premium", price: 79990, image: "💎", category: "Premium", rating: 4.7, reviews: 89, variants: ["Opción A", "Opción B"] },
-            { id: 3, name: "Producto Básico", price: 19990, image: "📦", category: "Básicos", rating: 4.5, reviews: 234 },
-            { id: 4, name: "Producto Nuevo", price: 44990, image: "🆕", category: "Novedades", rating: 4.6, reviews: 45, badge: "Nuevo" },
-            { id: 5, name: "Producto Popular", price: 29990, image: "🔥", category: "Populares", rating: 4.9, reviews: 567 },
-            { id: 6, name: "Producto Exclusivo", price: 99990, image: "👑", category: "Exclusivos", rating: 4.8, reviews: 23 },
+            { id: 1, name: "Producto Destacado", price: 39990, originalPrice: 54990, image: "", category: "Destacados", rating: 4.8, reviews: 156, badge: "Oferta" },
+            { id: 2, name: "Producto Premium", price: 79990, image: "", category: "Premium", rating: 4.7, reviews: 89, variants: ["Opción A", "Opción B"] },
+            { id: 3, name: "Producto Básico", price: 19990, image: "", category: "Básicos", rating: 4.5, reviews: 234 },
+            { id: 4, name: "Producto Nuevo", price: 44990, image: "", category: "Novedades", rating: 4.6, reviews: 45, badge: "Nuevo" },
+            { id: 5, name: "Producto Popular", price: 29990, image: "", category: "Populares", rating: 4.9, reviews: 567 },
+            { id: 6, name: "Producto Exclusivo", price: 99990, image: "", category: "Exclusivos", rating: 4.8, reviews: 23 },
         ],
     };
     return productSets[industry] || productSets.default;
@@ -141,12 +141,12 @@ export function LiveEcommercePreview() {
     const heroOverlay = isDark ? "rgba(15,23,42,0.8)" : style.heroOverlay;
 
     // ── Payment method icons ──
-    const paymentIcons: Record<string, string> = {
-        transbank_webpay: "💳",
-        mercadopago: "🟡",
-        transferencia_bancaria: "🏦",
-        contra_entrega: "🤝",
-        otro_medio: "💰",
+    const paymentIcons: Record<string, React.ReactNode> = {
+        transbank_webpay: <CreditCard size={10} />,
+        mercadopago: <CreditCard size={10} />,
+        transferencia_bancaria: <Landmark size={10} />,
+        contra_entrega: <Truck size={10} />,
+        otro_medio: <Banknote size={10} />,
     };
 
     const handleProductClick = useCallback((product: ProductItem) => {
@@ -228,7 +228,7 @@ export function LiveEcommercePreview() {
                     <div className="absolute inset-0 flex items-center justify-center text-center p-3" style={{ background: heroOverlay }}>
                         <div>
                             <p className="text-[13px] font-bold text-white mb-0.5" style={{ textShadow: readableTextShadow }}>
-                                {lang === "ES" ? "🔥 Ofertas de Temporada" : "🔥 Season Sale"}
+                                <span className="inline-flex items-center gap-1"><Flame size={12} /> {lang === "ES" ? "Ofertas de Temporada" : "Season Sale"}</span>
                             </p>
                             <p className="text-[9px] text-white/80 mb-1.5" style={{ textShadow: readableTextShadow }}>
                                 {lang === "ES" ? "Hasta 40% de descuento en productos seleccionados" : "Up to 40% off selected items"}
@@ -271,7 +271,7 @@ export function LiveEcommercePreview() {
                     >
                         {/* Image */}
                         <div className={`relative flex items-center justify-center ${viewGrid ? "h-20" : "w-20 h-20 flex-shrink-0"}`} style={{ background: isDark ? "#334155" : "#f8fafc" }}>
-                            <span className="text-2xl">{product.image}</span>
+                            <Package size={24} style={{ color: subtext }} />
                             {product.badge && (
                                 <span className="absolute top-1 left-1 px-1 py-0.5 rounded text-[7px] font-semibold text-white" style={{ background: product.badge === "Oferta" ? "#ef4444" : accentColor }}>{product.badge}</span>
                             )}
@@ -379,7 +379,7 @@ export function LiveEcommercePreview() {
         <div className="p-2" style={{ color: text }}>
             {/* Product image */}
             <div className="relative rounded-lg flex items-center justify-center h-32 mb-2" style={{ background: isDark ? "#334155" : "#f8fafc" }}>
-                <span className="text-5xl">{product.image}</span>
+                <Package size={48} style={{ color: subtext }} />
                 {hasZoom && (
                     <button className="absolute bottom-1.5 right-1.5 p-1 rounded-full" style={{ background: `${primaryColor}20` }}>
                         <Eye size={10} style={{ color: primaryColor }} />
@@ -485,7 +485,7 @@ export function LiveEcommercePreview() {
                         {products.filter(p => p.id !== product.id).slice(0, 3).map(p => (
                             <div key={p.id} onClick={() => setSelectedProduct(p)} className="flex-shrink-0 w-20 rounded-md overflow-hidden cursor-pointer" style={{ background: card, border: `1px solid ${divider}` }}>
                                 <div className="h-12 flex items-center justify-center" style={{ background: isDark ? "#334155" : "#f8fafc" }}>
-                                    <span className="text-lg">{p.image}</span>
+                                    <Package size={18} style={{ color: subtext }} />
                                 </div>
                                 <div className="p-1">
                                     <p className="text-[7px] truncate" style={{ color: text }}>{p.name}</p>
@@ -510,7 +510,7 @@ export function LiveEcommercePreview() {
             {[product, products[1]].map((item, i) => (
                 <div key={i} className="flex gap-2 p-1.5 rounded-lg mb-1.5" style={{ background: card, border: `1px solid ${divider}` }}>
                     <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0" style={{ background: isDark ? "#334155" : "#f8fafc" }}>
-                        <span className="text-lg">{item.image}</span>
+                        <Package size={18} style={{ color: subtext }} />
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-[9px] font-medium truncate">{item.name}</p>
@@ -647,7 +647,7 @@ export function LiveEcommercePreview() {
                                 <div className="w-3 h-3 rounded-full flex items-center justify-center" style={{ border: `1.5px solid ${i === 0 ? primaryColor : subtext}` }}>
                                     {i === 0 && <div className="w-1.5 h-1.5 rounded-full" style={{ background: primaryColor }} />}
                                 </div>
-                                <span className="text-[8px]">{paymentIcons[pm] || "💰"}</span>
+                                <span className="text-[8px] flex items-center">{paymentIcons[pm] || <Banknote size={8} />}</span>
                                 <span className="text-[8px]" style={{ color: text }}>{labels[pm] || pm}</span>
                             </div>
                         );
@@ -857,7 +857,7 @@ export function LiveEcommercePreview() {
             {paymentMethods.length > 0 && (
                 <div className="flex justify-center gap-1.5 mb-1">
                     {paymentMethods.map(pm => (
-                        <span key={pm} className="text-[10px]">{paymentIcons[pm] || "💰"}</span>
+                        <span key={pm} className="text-[10px] flex items-center">{paymentIcons[pm] || <Banknote size={10} />}</span>
                     ))}
                 </div>
             )}
@@ -878,7 +878,7 @@ export function LiveEcommercePreview() {
                     <div className="w-2 h-2 rounded-full bg-green-500/80" />
                 </div>
                 <div className="flex-1 bg-slate-700/60 rounded-md px-2 py-0.5 flex items-center gap-1">
-                    <span className="text-[9px] text-green-400">🔒</span>
+                    <Lock size={9} className="text-green-400" />
                     <span className="text-[9px] text-white/50 truncate">
                         {formData.domainName || `${businessName.toLowerCase().replace(/\s+/g, "")}.cl`}
                         {viewMode === "flow" ? `/${flowStep === "product" ? "producto" : flowStep}` : viewMode === "sitemap" ? "/sitemap" : ""}

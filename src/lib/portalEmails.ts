@@ -35,7 +35,7 @@ function emailWrapper(content: string): string {
 export function generateMagicLinkEmail(firstName: string, url: string): string {
   return emailWrapper(`
     <h2 style="margin:0 0 16px;font-size:20px;font-weight:700;color:#e2e8f0;">
-      Hola ${firstName} 👋
+      Hola ${firstName}
     </h2>
     <p style="margin:0 0 24px;font-size:15px;color:#94a3b8;line-height:1.6;">
       Recibimos tu solicitud de acceso al portal de clientes. Haz clic en el botón para acceder:

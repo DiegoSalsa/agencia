@@ -127,28 +127,28 @@ export function generateClientEmailHtml(data: BriefingData): string {
 
     const sectionsList = sections
         .map((s) => SECTION_LABELS[s] || s.replace(/_/g, " "))
-        .map((s) => `<li style="padding: 4px 0; color: #4b5563;">✅ ${s}</li>`)
+        .map((s) => `<li style="padding: 4px 0; color: #4b5563;">&#10003; ${s}</li>`)
         .join("");
 
     const featuresList = features
         .map((f) => FEATURE_LABELS[f] || f.replace(/_/g, " "))
-        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">⚡ ${f}</li>`)
+        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">&#9679; ${f}</li>`)
         .join("");
 
     // ECOMMERCE-specific lists
     const paymentList = paymentMethods
         .map((p) => PAYMENT_LABELS[p] || p.replace(/_/g, " "))
-        .map((p) => `<li style="padding: 4px 0; color: #4b5563;">💳 ${p}</li>`)
+        .map((p) => `<li style="padding: 4px 0; color: #4b5563;">&#9679; ${p}</li>`)
         .join("");
 
     const ecommerceFeaturesList = ecommerceFeatures
         .map((f) => ECOMMERCE_FEATURE_LABELS[f] || f.replace(/_/g, " "))
-        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">🛒 ${f}</li>`)
+        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">&#9679; ${f}</li>`)
         .join("");
 
     const marketingList = marketingFeatures
         .map((f) => MARKETING_FEATURE_LABELS[f] || f.replace(/_/g, " "))
-        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">📢 ${f}</li>`)
+        .map((f) => `<li style="padding: 4px 0; color: #4b5563;">&#9679; ${f}</li>`)
         .join("");
 
     const styleLabel = STYLE_LABELS[designStyle] || designStyle || "No especificado";
@@ -173,7 +173,7 @@ export function generateClientEmailHtml(data: BriefingData): string {
         <!-- Header -->
         <div style="background: linear-gradient(135deg, ${primaryColor}, #7C3AED); border-radius: 16px 16px 0 0; padding: 40px 32px; text-align: center;">
             <h1 style="color: white; font-size: 26px; font-weight: 800; margin: 0 0 8px 0;">
-                ¡Gracias por confiar en nosotros! 🎉
+                ¡Gracias por confiar en nosotros!
             </h1>
             <p style="color: rgba(255,255,255,0.85); font-size: 15px; margin: 0;">
                 Hemos recibido tu briefing correctamente
@@ -197,7 +197,7 @@ export function generateClientEmailHtml(data: BriefingData): string {
             <!-- Summary Box -->
             <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid #e2e8f0;">
                 <h2 style="color: #1e293b; font-size: 18px; font-weight: 700; margin: 0 0 16px 0;">
-                    📋 Resumen de tu solicitud
+                    Resumen de tu solicitud
                 </h2>
 
                 <!-- Quick info -->
@@ -208,11 +208,11 @@ export function generateClientEmailHtml(data: BriefingData): string {
                     </tr>
                     <tr>
                         <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Objetivo</td>
-                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">🎯 ${goalLabel}</td>
+                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${goalLabel}</td>
                     </tr>
                     <tr>
                         <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Estilo visual</td>
-                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">🎨 ${styleLabel}</td>
+                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${styleLabel}</td>
                     </tr>
                     ${mainCTA ? `<tr>
                         <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Acción principal</td>
@@ -283,13 +283,13 @@ export function generateClientEmailHtml(data: BriefingData): string {
             <!-- What happens next -->
             <div style="background: linear-gradient(135deg, #eff6ff, #f0f4ff); border-radius: 12px; padding: 20px; margin-bottom: 24px; border-left: 4px solid ${primaryColor};">
                 <h3 style="color: #1e293b; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">
-                    🚀 ¿Qué sigue ahora?
+                    ¿Qué sigue ahora?
                 </h3>
                 <ol style="margin: 0; padding: 0 0 0 20px; color: #4b5563; font-size: 14px; line-height: 1.8;">
                     <li>Nuestro equipo revisará tu briefing en detalle</li>
                     <li>Te contactaremos para aclarar cualquier duda</li>
                     <li>Recibirás una propuesta con el plan de trabajo</li>
-                    <li>¡Comenzamos a construir tu página! 💪</li>
+                    <li>¡Comenzamos a construir tu página!</li>
                 </ol>
             </div>
 
@@ -298,7 +298,7 @@ export function generateClientEmailHtml(data: BriefingData): string {
                 Si tienes alguna pregunta o quieres agregar algo más a tu proyecto, no dudes en respondernos a este mismo correo.
             </p>
             <p style="color: #374151; font-size: 15px; font-weight: 600; margin: 16px 0 0 0;">
-                ¡Estamos emocionados de trabajar contigo! ✨
+                ¡Estamos emocionados de trabajar contigo!
             </p>
 
             <!-- Footer -->

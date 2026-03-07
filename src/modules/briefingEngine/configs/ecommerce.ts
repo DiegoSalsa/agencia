@@ -685,7 +685,7 @@ export const ecommerceConfig: BriefingTypeConfig = {
                     type: "multiselect",
                     required: false,
                     dataGroup: "extra",
-                    paidBadge: "💰 Cada herramienta de marketing tiene costo adicional",
+                    paidBadge: "Cada herramienta de marketing tiene costo adicional",
                     helperText: "Todas las integraciones usan tus propias cuentas — nosotros solo las conectamos",
                     options: [
                         { value: "newsletter_email", label: "Email marketing / Newsletter" },
@@ -752,7 +752,7 @@ export const ecommerceConfig: BriefingTypeConfig = {
                     type: "multiselect",
                     required: false,
                     dataGroup: "extra",
-                    paidBadge: "💰 Cada funcionalidad extra tiene costo adicional",
+                    paidBadge: "Cada funcionalidad extra tiene costo adicional",
                     helperText: "Agrega las funcionalidades que necesites",
                     options: [
                         { value: "resenas_valoraciones", label: "Reseñas y valoraciones de productos" },

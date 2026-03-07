@@ -139,9 +139,9 @@ export default function Pricing() {
                 {plan.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
                     <div
-                      className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.gradient} text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-blue-500/25`}
+                      className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.gradient} text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-blue-500/25 flex items-center gap-1`}
                     >
-                      ★ {t('pricing_popular')}
+                      <Sparkles className="w-3 h-3" /> {t('pricing_popular')}
                     </div>
                   </div>
                 )}
