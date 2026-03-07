@@ -4,6 +4,8 @@ import React, { useCallback } from "react";
 import { FieldConfig } from "@/types/briefing";
 import { useBriefingForm } from "@/modules/briefingEngine/context";
 import { Check, AlertTriangle } from "lucide-react";
+import { DeliverySelector } from "@/components/briefing/DeliverySelector";
+import { DomainChecker } from "@/components/briefing/DomainChecker";
 
 interface FieldRendererProps {
     field: FieldConfig;
@@ -165,6 +167,7 @@ export function FieldRenderer({ field }: FieldRendererProps) {
                     />
                     {error && <ErrorText text={error} />}
                     {!error && field.helperText && <HelperText text={field.helperText} />}
+                    {field.id === "domainName" && <DomainChecker />}
                 </div>
             );
 
@@ -387,6 +390,14 @@ export function FieldRenderer({ field }: FieldRendererProps) {
                         {field.required && <span className="text-red-400 text-xs">*</span>}
                     </button>
                     {field.helperText && <HelperText text={field.helperText} />}
+                </div>
+            );
+
+        case "delivery":
+            return (
+                <div className="space-y-2">
+                    <Label field={field} />
+                    <DeliverySelector />
                 </div>
             );
 

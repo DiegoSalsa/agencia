@@ -171,11 +171,12 @@ const DESIGN_PRICES: Record<string, { label: string; price: number }> = {
     creativo: { label: "Diseño creativo", price: 12_000 },
 };
 
-const DEADLINE_PRICES: Record<string, { label: string; price: number }> = {
-    sin_prisa: { label: "Sin prisa", price: 0 },
-    normal: { label: "2-4 semanas", price: 0 },
-    pronto: { label: "1-2 semanas", price: 15_000 },
-    urgente: { label: "Esta semana", price: 30_000 },
+// Urgency surcharge percentages (integrated with deliveryCalculator)
+const URGENCY_SURCHARGE: Record<string, { label: string; percent: number }> = {
+    normal: { label: "Normal", percent: 0 },
+    prioridad: { label: "Prioridad", percent: 15 },
+    express: { label: "Express", percent: 30 },
+    urgente: { label: "Urgente", percent: 50 },
 };
 
 const CONTENT_PRICES = {
@@ -398,11 +399,12 @@ export function calculatePrice(
     }
 
     // ── Urgencia (shared) ──
-    const deadline = (formData.deadline as string) || "";
-    const deadlineInfo = DEADLINE_PRICES[deadline];
-    if (deadlineInfo && deadlineInfo.price > 0) {
-        breakdown.push({ category: "urgencia", label: `Entrega: ${deadlineInfo.label}`, amount: deadlineInfo.price });
-        total += deadlineInfo.price;
+    const urgency = (formData.urgency as string) || "normal";
+    const urgencyInfo = URGENCY_SURCHARGE[urgency];
+    if (urgencyInfo && urgencyInfo.percent > 0) {
+        const surchargeAmount = Math.round(total * urgencyInfo.percent / 100);
+        breakdown.push({ category: "urgencia", label: `Entrega ${urgencyInfo.label} (+${urgencyInfo.percent}%)`, amount: surchargeAmount });
+        total += surchargeAmount;
     }
 
     // Item count

@@ -3,7 +3,8 @@
 import React, { useMemo } from "react";
 import { useBriefingForm } from "@/modules/briefingEngine/context";
 import { calculatePrice, formatCLP } from "@/lib/pricingEngine";
-import { Receipt, Sparkles, TrendingUp } from "lucide-react";
+import { calculateDelivery } from "@/lib/deliveryCalculator";
+import { Receipt, Sparkles, TrendingUp, Clock } from "lucide-react";
 
 interface PriceSummaryProps {
     /** Modo compacto para mostrar en el sticky/nav */
@@ -15,6 +16,13 @@ export function PriceSummary({ compact = false }: PriceSummaryProps) {
     const type = config?.type || "LANDING";
 
     const pricing = useMemo(() => calculatePrice(formData, type), [formData, type]);
+
+    const delivery = useMemo(() => {
+        const urgency = (formData.urgency as string) || "normal";
+        const estimate = calculateDelivery(type, formData, pricing.totalMin);
+        const selected = estimate.urgencyOptions.find((o) => o.id === urgency);
+        return selected || estimate.urgencyOptions[0];
+    }, [type, formData, pricing.totalMin]);
 
     // Cada tipo usa distintos campos para determinar datos mínimos
     const hasMinimumData = type === "ECOMMERCE"
@@ -85,6 +93,16 @@ export function PriceSummary({ compact = false }: PriceSummaryProps) {
                             </span>
                         </div>
                     </div>
+                    {delivery && (
+                        <div className="flex items-center gap-1.5 mt-2">
+                            <Clock size={11} className="text-white/30" />
+                            <span className="text-[11px] text-white/40">
+                                {delivery.daysMin === delivery.daysMax
+                                    ? `${delivery.daysMin} ${delivery.dayType}`
+                                    : `${delivery.daysMin}-${delivery.daysMax} ${delivery.dayType}`}
+                            </span>
+                        </div>
+                    )}
                 </div>
 
                 {/* Disclaimer */}
