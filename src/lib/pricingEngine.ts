@@ -24,16 +24,16 @@ export interface PricingResult {
 
 const SECTION_PRICES: Record<string, { label: string; price: number }> = {
     hero: { label: "Hero / Banner principal", price: 0 },
-    servicios: { label: "Servicios", price: 5_000 },
+    servicios: { label: "Servicios", price: 4_000 },
     proceso: { label: "Proceso", price: 3_000 },
     sobre_mi: { label: "Sobre nosotros", price: 3_000 },
-    portafolio: { label: "Portafolio / Galería", price: 8_000 },
+    portafolio: { label: "Portafolio / Galería", price: 6_000 },
     testimonios: { label: "Testimonios", price: 3_000 },
-    equipo: { label: "Equipo", price: 5_000 },
-    precios: { label: "Precios / Planes", price: 5_000 },
+    equipo: { label: "Equipo", price: 4_000 },
+    precios: { label: "Precios / Planes", price: 4_000 },
     faq: { label: "Preguntas frecuentes", price: 3_000 },
-    blog: { label: "Blog / Noticias", price: 10_000 },
-    contacto: { label: "Formulario de contacto", price: 5_000 },
+    blog: { label: "Blog / Noticias", price: 8_000 },
+    contacto: { label: "Formulario de contacto", price: 4_000 },
     ubicacion: { label: "Mapa / Ubicación", price: 3_000 },
     estadisticas: { label: "Estadísticas", price: 3_000 },
     clientes: { label: "Logos de clientes", price: 3_000 },
@@ -45,15 +45,15 @@ const SECTION_PRICES: Record<string, { label: string; price: number }> = {
 
 const PAGE_PRICES: Record<string, { label: string; price: number }> = {
     inicio: { label: "Página de Inicio", price: 0 },
-    servicios: { label: "Servicios / Productos", price: 25_000 },
-    nosotros: { label: "Nosotros", price: 15_000 },
-    contacto: { label: "Contacto", price: 25_000 },
-    portafolio: { label: "Portafolio", price: 30_000 },
-    galeria: { label: "Galería", price: 20_000 },
-    blog: { label: "Blog", price: 45_000 },
-    faq: { label: "Preguntas frecuentes", price: 15_000 },
-    casos_exito: { label: "Casos de éxito", price: 35_000 },
-    precios: { label: "Precios", price: 25_000 },
+    servicios: { label: "Servicios / Productos", price: 18_000 },
+    nosotros: { label: "Nosotros", price: 12_000 },
+    contacto: { label: "Contacto", price: 12_000 },
+    portafolio: { label: "Portafolio", price: 25_000 },
+    galeria: { label: "Galería", price: 15_000 },
+    blog: { label: "Blog", price: 35_000 },
+    faq: { label: "Preguntas frecuentes", price: 8_000 },
+    casos_exito: { label: "Casos de éxito", price: 28_000 },
+    precios: { label: "Precios", price: 15_000 },
 };
 
 // ══════════════════════════════════════════════════════════
@@ -66,62 +66,62 @@ const ECOMMERCE_PAGE_PRICES: Record<string, { label: string; price: number }> = 
     producto_detalle: { label: "Página de Producto", price: 0 },
     carrito: { label: "Carrito de Compras", price: 0 },
     checkout: { label: "Checkout / Pago", price: 0 },
-    cuenta_usuario: { label: "Mi Cuenta / Panel", price: 35_000 },
-    nosotros: { label: "Nosotros", price: 15_000 },
-    contacto: { label: "Contacto", price: 10_000 },
-    blog: { label: "Blog", price: 45_000 },
-    faq: { label: "Preguntas Frecuentes", price: 15_000 },
+    cuenta_usuario: { label: "Mi Cuenta / Panel", price: 30_000 },
+    nosotros: { label: "Nosotros", price: 10_000 },
+    contacto: { label: "Contacto", price: 8_000 },
+    blog: { label: "Blog", price: 40_000 },
+    faq: { label: "Preguntas Frecuentes", price: 8_000 },
     politicas: { label: "Políticas", price: 5_000 },
-    tracking_pedidos: { label: "Seguimiento de Pedidos", price: 40_000 },
+    tracking_pedidos: { label: "Seguimiento de Pedidos", price: 38_000 },
 };
 
 const PRODUCT_COUNT_PRICES: Record<string, { label: string; price: number }> = {
     "1_20": { label: "1-20 productos", price: 0 },
-    "21_50": { label: "21-50 productos", price: 50_000 },
-    "51_200": { label: "51-200 productos", price: 120_000 },
-    "201_500": { label: "201-500 productos", price: 250_000 },
-    "500_plus": { label: "500+ productos", price: 450_000 },
+    "21_50": { label: "21-50 productos", price: 45_000 },
+    "51_200": { label: "51-200 productos", price: 100_000 },
+    "201_500": { label: "201-500 productos", price: 220_000 },
+    "500_plus": { label: "500+ productos", price: 400_000 },
 };
 
 const PAYMENT_METHOD_PRICES: Record<string, { label: string; price: number }> = {
-    transbank_webpay: { label: "Transbank (Webpay)", price: 50_000 },
-    mercadopago: { label: "MercadoPago", price: 35_000 },
-    transferencia_bancaria: { label: "Transferencia bancaria", price: 15_000 },
+    transbank_webpay: { label: "Transbank (Webpay)", price: 45_000 },
+    mercadopago: { label: "MercadoPago", price: 30_000 },
+    transferencia_bancaria: { label: "Transferencia bancaria", price: 10_000 },
     contra_entrega: { label: "Pago contra entrega", price: 0 },
-    otro_medio: { label: "Otro medio de pago", price: 20_000 },
+    otro_medio: { label: "Otro medio de pago", price: 15_000 },
 };
 
 const SHIPPING_MODEL_PRICES: Record<string, { label: string; price: number }> = {
-    tarifa_plana: { label: "Envío tarifa plana", price: 15_000 },
-    por_zona_distancia: { label: "Envío por zona/distancia", price: 40_000 },
-    gratis_sobre_monto: { label: "Envío gratis sobre monto", price: 25_000 },
-    retiro_en_tienda: { label: "Retiro en tienda", price: 10_000 },
+    tarifa_plana: { label: "Envío tarifa plana", price: 12_000 },
+    por_zona_distancia: { label: "Envío por zona/distancia", price: 35_000 },
+    gratis_sobre_monto: { label: "Envío gratis sobre monto", price: 22_000 },
+    retiro_en_tienda: { label: "Retiro en tienda", price: 8_000 },
     solo_digital: { label: "Sin envío (digital)", price: 0 },
 };
 
 const ACCOUNT_SYSTEM_PRICES: Record<string, { label: string; price: number }> = {
-    registro_completo: { label: "Sistema de cuentas", price: 40_000 },
-    ambos_registro_e_invitado: { label: "Cuentas + invitado", price: 55_000 },
+    registro_completo: { label: "Sistema de cuentas", price: 35_000 },
+    ambos_registro_e_invitado: { label: "Cuentas + invitado", price: 48_000 },
     solo_invitado: { label: "Solo invitado", price: 0 },
 };
 
 const INVENTORY_PRICES: Record<string, { label: string; price: number }> = {
     sin_control: { label: "Sin control de stock", price: 0 },
-    stock_basico: { label: "Stock básico", price: 20_000 },
-    stock_avanzado: { label: "Stock avanzado", price: 50_000 },
+    stock_basico: { label: "Stock básico", price: 18_000 },
+    stock_avanzado: { label: "Stock avanzado", price: 45_000 },
 };
 
 const ECOMMERCE_FEATURE_PRICES: Record<string, { label: string; price: number }> = {
-    resenas_valoraciones: { label: "Reseñas / Valoraciones", price: 25_000 },
-    comparador_productos: { label: "Comparador de productos", price: 40_000 },
-    zoom_producto: { label: "Zoom de producto", price: 15_000 },
-    productos_relacionados: { label: "Productos relacionados", price: 20_000 },
-    filtros_avanzados: { label: "Filtros avanzados", price: 35_000 },
-    busqueda_inteligente: { label: "Búsqueda inteligente", price: 45_000 },
-    notificaciones_stock: { label: "Notificaciones de stock", price: 20_000 },
-    chat_en_vivo: { label: "Chat en vivo", price: 25_000 },
-    multi_idioma: { label: "Multi-idioma", price: 60_000 },
-    dark_mode: { label: "Modo oscuro / claro", price: 15_000 },
+    resenas_valoraciones: { label: "Reseñas / Valoraciones", price: 22_000 },
+    comparador_productos: { label: "Comparador de productos", price: 35_000 },
+    zoom_producto: { label: "Zoom de producto", price: 12_000 },
+    productos_relacionados: { label: "Productos relacionados", price: 18_000 },
+    filtros_avanzados: { label: "Filtros avanzados", price: 30_000 },
+    busqueda_inteligente: { label: "Búsqueda inteligente", price: 38_000 },
+    notificaciones_stock: { label: "Notificaciones de stock", price: 18_000 },
+    chat_en_vivo: { label: "Chat en vivo", price: 22_000 },
+    multi_idioma: { label: "Multi-idioma", price: 50_000 },
+    dark_mode: { label: "Modo oscuro / claro", price: 12_000 },
     pwa_app_movil: { label: "PWA / App móvil", price: 80_000 },
 };
 
@@ -335,14 +335,24 @@ export function calculatePrice(
 
     } else if (isWeb) {
         // ── Páginas (WEB_CORPORATIVA) ──
+        // Las primeras 5 páginas están incluidas en el precio base
+        const INCLUDED_PAGES = 5;
         const pages = (formData.pages as string[]) || [];
+        // Sort pages by price ascending so cheapest are "included" first
+        const sortedPages = [...pages]
+            .map((id) => ({ id, ...(PAGE_PRICES[id] || { label: id, price: 0 }) }))
+            .sort((a, b) => a.price - b.price);
         let pagesTotal = 0;
-        for (const pageId of pages) {
-            const info = PAGE_PRICES[pageId];
-            if (info && info.price > 0) pagesTotal += info.price;
+        let extraCount = 0;
+        for (let i = 0; i < sortedPages.length; i++) {
+            if (i < INCLUDED_PAGES) continue; // included in base
+            if (sortedPages[i].price > 0) {
+                pagesTotal += sortedPages[i].price;
+                extraCount++;
+            }
         }
         if (pagesTotal > 0) {
-            breakdown.push({ category: "paginas", label: `${pages.length} páginas`, amount: pagesTotal });
+            breakdown.push({ category: "paginas", label: `${extraCount} páginas extra (${INCLUDED_PAGES} incluidas)`, amount: pagesTotal });
             total += pagesTotal;
         }
     } else {
