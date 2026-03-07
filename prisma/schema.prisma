@@ -20,3 +20,68 @@ model Briefing {
   designData  String
   extraData   String
 }
+
+// ── Portal de Clientes ────────────────────────────────────
+
+model ClientProject {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Datos del cliente
+  clientFirstName  String
+  clientLastNameP  String
+  clientLastNameM  String?
+  clientEmail      String   @unique
+
+  // Datos del proyecto
+  projectName   String
+  projectUrl    String?
+  projectType   String       // "LANDING" | "WEB_CORPORATIVA" | "ECOMMERCE"
+  status        String   @default("development")
+  // Valores: "development" | "delivered" | "maintenance" | "paused"
+  deliveryDate  String?
+  technologies  String       // JSON: '["Next.js","Tailwind","Vercel"]'
+
+  // Documentos — JSON: '[{"name":"Briefing.pdf","url":"/docs/..."}]'
+  documents     String?
+
+  // Notas internas (solo visible en admin)
+  adminNotes    String?
+
+  // Relaciones
+  changes       ChangeRequest[]
+  tokens        MagicToken[]
+}
+
+model ChangeRequest {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  description    String
+  priority       String        // "low" | "medium" | "high" | "urgent"
+  status         String   @default("pending")
+  // Valores: "pending" | "accepted" | "in_progress" | "completed" | "cancelled"
+
+  price          Int?          // CLP — precio real asignado por admin
+  estimatedPrice Int?          // CLP — estimación automática del sistema
+
+  completionDate String?
+  adminNotes     String?       // Notas internas de PuroCode
+  clientNotes    String?       // Respuesta visible para el cliente
+
+  // Relación
+  projectId      String
+  project        ClientProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model MagicToken {
+  id         String   @id @default(uuid())
+  token      String   @unique
+  expiresAt  DateTime
+  used       Boolean  @default(false)
+
+  projectId  String
+  project    ClientProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
