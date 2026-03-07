@@ -224,7 +224,7 @@ export async function POST(request: NextRequest) {
                 console.log(`[Submit] Sending admin email to: ${emailFrom} with ${attachments.length} attachments...`);
                 const adminResult = await sendEmail({
                     to: emailFrom,
-                    subject: sanitizeSubject(`Nuevo Briefing – ${businessName}`),
+                    subject: sanitizeSubject(`Nuevo Briefing ${TYPE_LABELS[type] || type} de ${safeClientName}`),
                     html: adminHtml,
                     attachments,
                 });
@@ -244,7 +244,7 @@ export async function POST(request: NextRequest) {
                     console.log(`[Submit] Sending client email to: ${safeClientEmail}...`);
                     const clientResult = await sendEmail({
                         to: safeClientEmail,
-                        subject: sanitizeSubject(`¡Recibimos tu proyecto ${businessName}! ✨`),
+                        subject: sanitizeSubject(`Recibimos tu proyecto ${businessName}`),
                         html: clientHtml,
                     });
                     result.clientEmailSent = clientResult.success;

@@ -97,11 +97,11 @@ const GOAL_LABELS: Record<string, string> = {
     otro: "Otro",
 };
 
-const DEADLINE_LABELS: Record<string, string> = {
-    urgente: "Lo antes posible (1-3 días)",
-    pronto: "Esta semana",
-    normal: "En 1-2 semanas",
-    sin_prisa: "Sin prisa",
+const URGENCY_LABELS: Record<string, string> = {
+    normal: "Normal",
+    prioridad: "Prioridad",
+    express: "Express",
+    urgente: "Urgente",
 };
 
 /**
@@ -115,7 +115,7 @@ export function generateClientEmailHtml(data: BriefingData): string {
     const features = (data.extraData.features as string[]) || [];
     const designStyle = (data.designData.designStyle as string) || "";
     const mainGoal = (data.contentData.mainGoal as string) || "";
-    const deadline = (data.extraData.deadline as string) || "";
+    const urgency = (data.extraData.urgency as string) || "normal";
     const mainCTA = (data.contentData.mainCTA as string) || "";
 
     // ECOMMERCE-specific data
@@ -155,10 +155,10 @@ export function generateClientEmailHtml(data: BriefingData): string {
     const goalLabel = isEcommerce
         ? (storeObjective ? storeObjective.replace(/_/g, " ") : "No especificado")
         : (GOAL_LABELS[mainGoal] || mainGoal || "No especificado");
-    const deadlineLabel = DEADLINE_LABELS[deadline] || deadline || "No especificado";
+    const urgencyLabel = URGENCY_LABELS[urgency] || urgency || "Normal";
 
     // Solo el primer nombre para el saludo del correo
-    const firstName = data.clientName.trim().split(/\s+/)[0];
+    const firstName = (data.contactData.firstName as string) || data.clientName.trim().split(/\s+/)[0];
 
     return `
 <!DOCTYPE html>
@@ -219,8 +219,8 @@ export function generateClientEmailHtml(data: BriefingData): string {
                         <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${mainCTA.replace(/_/g, " ")}</td>
                     </tr>` : ""}
                     <tr>
-                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Plazo solicitado</td>
-                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">📅 ${deadlineLabel}</td>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Urgencia</td>
+                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 600;">${urgencyLabel}</td>
                     </tr>
                 </table>
 

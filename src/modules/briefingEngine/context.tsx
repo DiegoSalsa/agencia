@@ -138,7 +138,11 @@ export function BriefingFormProvider({ children }: { children: ReactNode }) {
 
             const payload = {
                 type: state.config.type,
-                clientName: (state.formData.clientName as string) || "Sin nombre",
+                clientName: [
+                    state.formData.firstName,
+                    state.formData.lastNameP,
+                    state.formData.lastNameM,
+                ].filter(Boolean).join(" ").trim() || "Sin nombre",
                 clientEmail: (state.formData.email as string) || "",
                 contactData,
                 contentData,

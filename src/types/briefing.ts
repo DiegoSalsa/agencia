@@ -9,7 +9,8 @@ export type FieldType =
     | "checkbox"
     | "color"
     | "file"
-    | "radio";
+    | "radio"
+    | "delivery";
 
 export interface FieldOption {
     value: string;

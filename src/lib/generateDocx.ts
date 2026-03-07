@@ -21,7 +21,9 @@ interface BriefingData {
 
 // Field labels for human-readable output
 const FIELD_LABELS: Record<string, string> = {
-    clientName: "Nombre y Apellido",
+    firstName: "Nombre",
+    lastNameP: "Apellido paterno",
+    lastNameM: "Apellido materno",
     businessName: "Nombre del negocio",
     industry: "Rubro / Industria",
     email: "Correo electrónico",
@@ -47,7 +49,7 @@ const FIELD_LABELS: Record<string, string> = {
     hasDomain: "¿Tiene dominio?",
     domainName: "Nombre de dominio",
     socialMedia: "Redes sociales",
-    deadline: "Plazo de entrega",
+    urgency: "Urgencia",
     budget: "Presupuesto",
     additionalNotes: "Notas adicionales",
 };

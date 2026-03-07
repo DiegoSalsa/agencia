@@ -15,11 +15,27 @@ export const landingConfig: BriefingTypeConfig = {
             icon: "Building2",
             fields: [
                 {
-                    id: "clientName",
-                    label: "Tu nombre y apellido",
+                    id: "firstName",
+                    label: "Tu nombre",
                     type: "text",
-                    placeholder: "Ej: Juan Pérez",
+                    placeholder: "Ej: Juan",
                     required: true,
+                    dataGroup: "contact",
+                },
+                {
+                    id: "lastNameP",
+                    label: "Apellido paterno",
+                    type: "text",
+                    placeholder: "Ej: Pérez",
+                    required: true,
+                    dataGroup: "contact",
+                },
+                {
+                    id: "lastNameM",
+                    label: "Apellido materno (opcional)",
+                    type: "text",
+                    placeholder: "Ej: González",
+                    required: false,
                     dataGroup: "contact",
                 },
                 {
@@ -345,17 +361,11 @@ export const landingConfig: BriefingTypeConfig = {
                     dataGroup: "extra",
                 },
                 {
-                    id: "deadline",
+                    id: "urgency",
                     label: "¿Para cuándo necesitas la página?",
-                    type: "select",
+                    type: "delivery",
                     required: true,
                     dataGroup: "extra",
-                    options: [
-                        { value: "urgente", label: "🔥 Esta semana" },
-                        { value: "pronto", label: "⚡ En 1-2 semanas" },
-                        { value: "normal", label: "📅 En 2-3 semanas" },
-                        { value: "sin_prisa", label: "🐢 Sin prisa, cuando esté listo" },
-                    ],
                 },
                 {
                     id: "additionalNotes",

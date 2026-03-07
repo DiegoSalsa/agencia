@@ -13,7 +13,9 @@ import { calculatePrice, formatCLP } from "./pricingEngine";
 import { FormData } from "@/types/briefing";
 
 const FIELD_LABELS: Record<string, string> = {
-    clientName: "Nombre y Apellido",
+    firstName: "Nombre",
+    lastNameP: "Apellido paterno",
+    lastNameM: "Apellido materno",
     businessName: "Nombre del negocio",
     industry: "Rubro / Industria",
     email: "Correo electrónico",
@@ -39,7 +41,7 @@ const FIELD_LABELS: Record<string, string> = {
     hasDomain: "¿Tiene dominio?",
     domainName: "Dominio",
     socialMedia: "Redes sociales",
-    deadline: "Plazo de entrega",
+    urgency: "Urgencia",
     budget: "Presupuesto",
     additionalNotes: "Notas adicionales",
 };
@@ -105,7 +107,7 @@ export function generateEmailHtml(data: BriefingData): string {
     const primaryColor = (data.designData.primaryColor as string) || "#4361EE";
     const sections = (data.contentData.sections as string[]) || [];
     const designStyle = (data.designData.designStyle as string) || "";
-    const deadline = (data.extraData.deadline as string) || "";
+    const urgency = (data.extraData.urgency as string) || "";
     const features = (data.extraData.features as string[]) || [];
 
     return `
@@ -145,7 +147,7 @@ export function generateEmailHtml(data: BriefingData): string {
             <!-- Quick summary -->
             <div style="display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap;">
                 ${designStyle ? `<span style="background: #ede9fe; color: #7c3aed; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">🎨 ${translateValue(designStyle)}</span>` : ""}
-                ${deadline ? `<span style="background: #fef3c7; color: #d97706; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">⏰ ${translateValue(deadline)}</span>` : ""}
+                ${urgency && urgency !== "normal" ? `<span style="background: #fef3c7; color: #d97706; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">⏰ ${translateValue(urgency)}</span>` : ""}
                 ${primaryColor ? `<span style="background: #f3f4f6; color: #374151; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;">🎨 ${primaryColor}</span>` : ""}
             </div>
 

@@ -18,11 +18,27 @@ export const ecommerceConfig: BriefingTypeConfig = {
             icon: "Store",
             fields: [
                 {
-                    id: "clientName",
-                    label: "Tu nombre y apellido",
+                    id: "firstName",
+                    label: "Tu nombre",
                     type: "text",
-                    placeholder: "Ej: María González",
+                    placeholder: "Ej: María",
                     required: true,
+                    dataGroup: "contact",
+                },
+                {
+                    id: "lastNameP",
+                    label: "Apellido paterno",
+                    type: "text",
+                    placeholder: "Ej: González",
+                    required: true,
+                    dataGroup: "contact",
+                },
+                {
+                    id: "lastNameM",
+                    label: "Apellido materno (opcional)",
+                    type: "text",
+                    placeholder: "Ej: López",
+                    required: false,
                     dataGroup: "contact",
                 },
                 {
@@ -774,17 +790,11 @@ export const ecommerceConfig: BriefingTypeConfig = {
                     helperText: "Solo si ya tienes uno registrado",
                 },
                 {
-                    id: "deadline",
+                    id: "urgency",
                     label: "¿Para cuándo necesitas la tienda?",
-                    type: "select",
+                    type: "delivery",
                     required: false,
                     dataGroup: "extra",
-                    options: [
-                        { value: "urgente", label: "Lo antes posible (esta semana)" },
-                        { value: "pronto", label: "En 1-2 semanas" },
-                        { value: "normal", label: "En 2-4 semanas" },
-                        { value: "sin_prisa", label: "Sin prisa, cuando esté listo" },
-                    ],
                 },
                 {
                     id: "additionalNotes",

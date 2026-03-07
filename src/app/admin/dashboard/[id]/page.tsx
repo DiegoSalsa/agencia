@@ -45,7 +45,8 @@ const typeConfig: Record<string, { label: string; color: string; price: string }
 };
 
 const fieldLabels: Record<string, string> = {
-    clientName: "Nombre del cliente", businessName: "Nombre del negocio", industry: "Rubro",
+    firstName: "Nombre", lastNameP: "Apellido paterno", lastNameM: "Apellido materno",
+    businessName: "Nombre del negocio", industry: "Rubro",
     email: "Email", phone: "Teléfono", mainGoal: "Objetivo principal",
     targetAudience: "Público objetivo", mainCTA: "Acción principal (CTA)",
     uniqueValue: "Valor diferencial", sections: "Secciones", sectionNotes: "Notas de secciones",
@@ -53,7 +54,7 @@ const fieldLabels: Record<string, string> = {
     referenceUrls: "URLs de referencia", hasLogo: "Tiene logo", hasPhotos: "Tiene fotos",
     hasTexts: "Tiene textos", additionalContent: "Contenido adicional", features: "Funcionalidades",
     hasDomain: "Tiene dominio", domainName: "Nombre de dominio", socialMedia: "Redes sociales",
-    deadline: "Plazo", budget: "Presupuesto", additionalNotes: "Notas adicionales",
+    urgency: "Urgencia", budget: "Presupuesto", additionalNotes: "Notas adicionales",
     instagramUrl: "Instagram", facebookUrl: "Facebook", websiteUrl: "Sitio web actual",
     storeObjective: "Objetivo de la tienda", competitorUrls: "URLs de competencia",
     expectedRevenue: "Facturación mensual esperada", productCount: "Cantidad de productos",
