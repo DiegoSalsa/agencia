@@ -13,6 +13,7 @@ export default function SocialFloater() {
   const [visible, setVisible] = useState(true);
   const [wspOpen, setWspOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [nearBottom, setNearBottom] = useState(false);
 
   useEffect(() => {
     const footer = document.getElementById('footer');
@@ -36,6 +37,9 @@ export default function SocialFloater() {
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 600);
+      // Hide floater when near the bottom of the page (mobile bounce fix)
+      const distanceFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+      setNearBottom(distanceFromBottom < 150);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -47,7 +51,7 @@ export default function SocialFloater() {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {visible && !nearBottom && (
         <motion.div
           className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3 items-end"
           initial={{ opacity: 0, y: 20 }}
