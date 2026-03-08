@@ -315,8 +315,8 @@ function BriefingFormContent({ config }: { config: BriefingTypeConfig }) {
 
                     {/* Live Preview — reads from context, no props needed */}
                     {showPreview && hasPreview(config.type) && (
-                        <div className="animate-fadeIn lg:sticky lg:top-24 self-start">
-                            <div className="mb-3 flex items-center justify-between">
+                        <div className="animate-fadeIn lg:sticky lg:top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto thin-scrollbar">
+                            <div className="mb-3 flex items-center justify-between sticky top-0 z-10 bg-slate-950/90 backdrop-blur-sm py-2">
                                 <h3 className="text-sm font-medium text-white/60">Vista previa en tiempo real</h3>
                                 <button
                                     onClick={() => setFullscreenPreview(true)}
