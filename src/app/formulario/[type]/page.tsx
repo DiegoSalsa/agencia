@@ -315,7 +315,7 @@ function BriefingFormContent({ config }: { config: BriefingTypeConfig }) {
 
                     {/* Live Preview — reads from context, no props needed */}
                     {showPreview && hasPreview(config.type) && (
-                        <div className="animate-fadeIn lg:sticky lg:top-24">
+                        <div className="animate-fadeIn lg:sticky lg:top-24 self-start">
                             <div className="mb-3 flex items-center justify-between">
                                 <h3 className="text-sm font-medium text-white/60">Vista previa en tiempo real</h3>
                                 <button

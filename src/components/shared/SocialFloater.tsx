@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Instagram, Facebook, X } from 'lucide-react';
+import { MessageCircle, Instagram, Facebook, X, ChevronUp } from 'lucide-react';
 
 const whatsappContacts = [
   { name: 'Lucas', phone: '56956994930', label: '+56 9 5699 4930' },
@@ -12,6 +12,7 @@ const whatsappContacts = [
 export default function SocialFloater() {
   const [visible, setVisible] = useState(true);
   const [wspOpen, setWspOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const footer = document.getElementById('footer');
@@ -31,6 +32,18 @@ export default function SocialFloater() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 600);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <AnimatePresence>
@@ -81,6 +94,23 @@ export default function SocialFloater() {
 
           {/* Buttons */}
           <div className="flex flex-col gap-2">
+            {/* Scroll to top */}
+            <AnimatePresence>
+              {showScrollTop && (
+                <motion.button
+                  onClick={scrollToTop}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[var(--text-secondary)] flex items-center justify-center shadow-lg hover:scale-110 hover:text-[var(--text)] transition-all cursor-pointer"
+                  aria-label="Volver arriba"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronUp size={22} />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
             {/* WhatsApp */}
             <button
               onClick={() => setWspOpen(!wspOpen)}

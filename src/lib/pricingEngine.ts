@@ -184,6 +184,10 @@ const CONTENT_PRICES = {
     needsTexts: { label: "Redacción de textos", price: 10_000 },
 };
 
+// ── Included pages (maxFree from configs) ──
+const MAX_FREE_PAGES_WEB = 6;
+const MAX_FREE_PAGES_ECOMMERCE = 6;
+
 // ── Base prices ──
 const BASE_PRICE_LANDING = 220_000;
 const BASE_PRICE_WEB = 380_000;
@@ -237,15 +241,21 @@ export function calculatePrice(
             total += 35_000;
         }
 
-        // ── Páginas ecommerce ──
+        // ── Páginas ecommerce (primeras N incluidas) ──
         const pages = (formData.pages as string[]) || [];
+        const pagePricesEc = pages
+            .map(pid => ECOMMERCE_PAGE_PRICES[pid]?.price || 0)
+            .filter(p => p > 0)
+            .sort((a, b) => b - a);
+        const extraPagesEc = pagePricesEc.length - MAX_FREE_PAGES_ECOMMERCE;
         let pagesTotal = 0;
-        for (const pageId of pages) {
-            const info = ECOMMERCE_PAGE_PRICES[pageId];
-            if (info && info.price > 0) pagesTotal += info.price;
+        if (extraPagesEc > 0) {
+            for (let i = pagePricesEc.length - extraPagesEc; i < pagePricesEc.length; i++) {
+                pagesTotal += pagePricesEc[i];
+            }
         }
         if (pagesTotal > 0) {
-            breakdown.push({ category: "paginas", label: `${pages.length} páginas`, amount: pagesTotal });
+            breakdown.push({ category: "paginas", label: `${extraPagesEc} páginas adicionales`, amount: pagesTotal });
             total += pagesTotal;
         }
 
@@ -334,25 +344,21 @@ export function calculatePrice(
         }
 
     } else if (isWeb) {
-        // ── Páginas (WEB_CORPORATIVA) ──
-        // Las primeras 5 páginas están incluidas en el precio base
-        const INCLUDED_PAGES = 5;
+        // ── Páginas (WEB_CORPORATIVA — primeras N incluidas) ──
         const pages = (formData.pages as string[]) || [];
-        // Sort pages by price ascending so cheapest are "included" first
-        const sortedPages = [...pages]
-            .map((id) => ({ id, ...(PAGE_PRICES[id] || { label: id, price: 0 }) }))
-            .sort((a, b) => a.price - b.price);
+        const pagePricesWeb = pages
+            .map(pid => PAGE_PRICES[pid]?.price || 0)
+            .filter(p => p > 0)
+            .sort((a, b) => b - a);
+        const extraPagesWeb = pagePricesWeb.length - MAX_FREE_PAGES_WEB;
         let pagesTotal = 0;
-        let extraCount = 0;
-        for (let i = 0; i < sortedPages.length; i++) {
-            if (i < INCLUDED_PAGES) continue; // included in base
-            if (sortedPages[i].price > 0) {
-                pagesTotal += sortedPages[i].price;
-                extraCount++;
+        if (extraPagesWeb > 0) {
+            for (let i = pagePricesWeb.length - extraPagesWeb; i < pagePricesWeb.length; i++) {
+                pagesTotal += pagePricesWeb[i];
             }
         }
         if (pagesTotal > 0) {
-            breakdown.push({ category: "paginas", label: `${extraCount} páginas extra (${INCLUDED_PAGES} incluidas)`, amount: pagesTotal });
+            breakdown.push({ category: "paginas", label: `${extraPagesWeb} páginas adicionales`, amount: pagesTotal });
             total += pagesTotal;
         }
     } else {
