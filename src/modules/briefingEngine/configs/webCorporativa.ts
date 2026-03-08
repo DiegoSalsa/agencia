@@ -182,8 +182,8 @@ export const webCorporativaConfig: BriefingTypeConfig = {
                     type: "multiselect",
                     required: true,
                     dataGroup: "content",
-                    maxFree: 6,
-                    helperText: "Inicio + 5 páginas incluidas. Cada página adicional tiene costo extra",
+                    maxFree: 5,
+                    helperText: "Inicio + 4 páginas incluidas. Cada página adicional tiene costo extra",
                     options: [
                         { value: "inicio", label: "Inicio (hero, intro, destacados)" },
                         { value: "servicios", label: "Servicios / Productos (detalle por servicio)" },
