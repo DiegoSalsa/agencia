@@ -210,6 +210,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     footer_company: 'Empresa',
     footer_contact: 'Contacto',
     footer_rights: 'Todos los derechos reservados.',
+    footer_terms: 'Términos de Servicio',
+    footer_privacy: 'Política de Privacidad',
 
     // Language selector
     lang_select: 'Idioma',
@@ -336,6 +338,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     footer_company: 'Company',
     footer_contact: 'Contact',
     footer_rights: 'All rights reserved.',
+    footer_terms: 'Terms of Service',
+    footer_privacy: 'Privacy Policy',
 
     // Language selector
     lang_select: 'Language',

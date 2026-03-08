@@ -13,35 +13,24 @@ export default function SocialFloater() {
   const [visible, setVisible] = useState(true);
   const [wspOpen, setWspOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [nearBottom, setNearBottom] = useState(false);
-
-  useEffect(() => {
-    const footer = document.getElementById('footer');
-    const contact = document.getElementById('contacto');
-    if (!footer && !contact) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const isAnyVisible = entries.some((e) => e.isIntersecting);
-        setVisible(!isAnyVisible);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (footer) observer.observe(footer);
-    if (contact) observer.observe(contact);
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 600);
-      // Hide floater when near the bottom of the page (mobile bounce fix)
-      const distanceFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-      setNearBottom(distanceFromBottom < 150);
+
+      // Hide floater when the bottom of the viewport reaches the contact or footer section
+      const contact = document.getElementById('contacto');
+      const footer = document.getElementById('footer');
+      const target = contact || footer;
+      if (!target) return;
+
+      const targetTop = target.getBoundingClientRect().top;
+      // Hide when the target section enters the bottom 200px of the viewport
+      setVisible(targetTop > window.innerHeight - 100);
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // run once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -51,7 +40,7 @@ export default function SocialFloater() {
 
   return (
     <AnimatePresence>
-      {visible && !nearBottom && (
+      {visible && (
         <motion.div
           className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3 items-end"
           initial={{ opacity: 0, y: 20 }}

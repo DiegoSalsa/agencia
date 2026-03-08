@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Instagram, Facebook, MessageCircle } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 
@@ -75,12 +76,19 @@ export default function Footer() {
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_company')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
               <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#contacto">{t('nav_contact')}</a></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors" href="/terminos">{t('footer_terms')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors" href="/privacidad">{t('footer_privacy')}</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="pt-6 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[var(--text-tertiary)] text-sm">&copy; {new Date().getFullYear()} PuroCode. {t('footer_rights')}</p>
+          <div className="flex gap-4 text-xs text-[var(--text-tertiary)]">
+            <Link href="/terminos" className="hover:text-[var(--text-secondary)] transition-colors">{t('footer_terms')}</Link>
+            <span>·</span>
+            <Link href="/privacidad" className="hover:text-[var(--text-secondary)] transition-colors">{t('footer_privacy')}</Link>
+          </div>
         </div>
       </div>
     </footer>
