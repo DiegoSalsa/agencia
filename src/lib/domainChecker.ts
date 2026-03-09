@@ -2,7 +2,7 @@
 // Uses Porkbun API for availability check + price filtering.
 // If a domain's registration price exceeds the threshold, it's shown as "not available".
 
-const PORKBUN_API_URL = "https://api.porkbun.com/api/json/v3/domain/check";
+const PORKBUN_API_URL = "https://api.porkbun.com/api/json/v3/domain/checkAvailability";
 
 const EXTENSIONS = [".com", ".cl", ".net", ".io"];
 

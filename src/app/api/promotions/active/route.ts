@@ -41,10 +41,10 @@ export async function GET() {
                 endsAt: p.endsAt,
             }));
 
-        return NextResponse.json({ ok: true, data: activePromos });
+        return NextResponse.json(activePromos);
     } catch (error) {
         console.error("[Promotions Active GET]", error);
-        return NextResponse.json({ ok: true, data: [] });
+        return NextResponse.json([]);
     }
 }
 

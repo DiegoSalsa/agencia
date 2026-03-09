@@ -50,15 +50,11 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json({
-            ok: true,
-            data: {
-                code: discountCode.code,
-                type: discountCode.type,
-                value: discountCode.value,
-                label: discountCode.type === "percent"
-                    ? `-${discountCode.value}%`
-                    : `-$${discountCode.value.toLocaleString("es-CL")} CLP`,
-            },
+            type: discountCode.type,
+            value: discountCode.value,
+            label: discountCode.type === "percent"
+                ? `-${discountCode.value}%`
+                : `-$${discountCode.value.toLocaleString("es-CL")} CLP`,
         });
     } catch (error) {
         console.error("[Validate Code POST]", error);
