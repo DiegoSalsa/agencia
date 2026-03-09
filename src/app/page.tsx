@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
+import { PromoProvider } from '@/context/PromoContext';
 
 const Services = dynamic(() => import('@/components/landing/Services'));
 const Portfolio = dynamic(() => import('@/components/landing/Portfolio'));
@@ -14,7 +15,7 @@ import SocialFloater from '@/components/shared/SocialFloater';
 
 export default function Home() {
   return (
-    <>
+    <PromoProvider>
       <PromoBanner />
       <Header />
       <main>
@@ -34,6 +35,6 @@ export default function Home() {
       <Footer />
       <SocialFloater />
       <PromoPopup />
-    </>
+    </PromoProvider>
   );
 }

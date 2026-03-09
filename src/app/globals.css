@@ -217,8 +217,8 @@ body {
 .mobile-menu { transform:translateX(100%); transition:transform 0.3s ease; }
 .mobile-menu.active { transform:translateX(0); }
 
-#main-header { transition:all 0.4s cubic-bezier(0.4,0,0.2,1); }
-#main-header.scrolled { background:rgba(10,10,10,0.95); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); }
+#main-header { transition:all 0.5s cubic-bezier(0.4,0,0.2,1); }
+#main-header.scrolled { will-change:transform; }
 
 .contact-form-card { position:relative; overflow:hidden; transition:all 0.4s ease; }
 .contact-form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--primary),#a78bfa,var(--primary)); background-size:200% 100%; animation:borderGlow 3s linear infinite; }

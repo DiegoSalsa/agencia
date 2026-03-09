@@ -2,56 +2,34 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { X, Zap, ArrowRight, Users, Clock, Check } from "lucide-react";
-
-interface ActivePromo {
-    id: string;
-    title: string;
-    slug: string;
-    description: string | null;
-    price: number;
-    originalPrice: number;
-    remainingSlots: number;
-    totalSlots: number;
-    showPopup: boolean;
-    popupTitle: string | null;
-    popupBody: string | null;
-    endsAt: string | null;
-}
+import Image from "next/image";
+import { X, ArrowRight, Users, Clock, Check } from "lucide-react";
+import { usePromo } from "@/context/PromoContext";
 
 export default function PromoPopup() {
-    const [promo, setPromo] = useState<ActivePromo | null>(null);
+    const { promos, loading } = usePromo();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        // Only show once per session
+        if (loading) return;
+
         const wasShown = sessionStorage.getItem("promo_popup_shown");
         if (wasShown) return;
 
-        // Fetch promo after delay (3s)
+        const p = promos.find((d) => d.showPopup);
+        if (!p) return;
+
         const timer = setTimeout(() => {
-            fetch("/api/promotions/active")
-                .then((r) => r.json())
-                .then((promos: ActivePromo[]) => {
-                    if (Array.isArray(promos) && promos.length > 0) {
-                        const p = promos.find((d: ActivePromo) => d.showPopup);
-                        if (p) {
-                            setPromo(p);
-                            setVisible(true);
-                            sessionStorage.setItem("promo_popup_shown", "1");
-                        }
-                    }
-                })
-                .catch(() => { });
+            setVisible(true);
+            sessionStorage.setItem("promo_popup_shown", "1");
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [promos, loading]);
 
-    const handleClose = () => {
-        setVisible(false);
-    };
+    const handleClose = () => setVisible(false);
 
+    const promo = promos.find((d) => d.showPopup);
     if (!promo || !visible) return null;
 
     const discount = Math.round(
@@ -67,36 +45,39 @@ export default function PromoPopup() {
 
     return (
         <div
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn"
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeInOverlay"
             onClick={handleClose}
         >
             <div
-                className="relative w-full max-w-md bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                className="relative w-full max-w-md bg-[rgba(9,9,11,0.92)] backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden animate-fadeIn"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     onClick={handleClose}
-                    className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-colors"
+                    className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-colors cursor-pointer"
                 >
                     <X size={16} />
                 </button>
 
-                {/* Gradient header */}
-                <div className="bg-gradient-to-br from-emerald-600/20 via-emerald-500/10 to-violet-500/10 px-6 pt-6 pb-4 border-b border-white/5">
-                    <div className="flex items-center gap-2 mb-3">
-                        <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                            <Zap size={20} className="text-emerald-400" />
+                {/* Top gradient line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
+
+                {/* Header */}
+                <div className="bg-gradient-to-br from-violet-600/15 via-purple-500/10 to-emerald-500/10 px-6 pt-6 pb-4 border-b border-white/[0.06]">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20 p-1.5">
+                            <Image src="/img/logo.svg" alt="PuroCode" width={24} height={24} className="w-full h-full" />
                         </div>
                         <div>
                             <h2 className="text-lg font-bold text-white">
                                 {promo.popupTitle || "¡Oferta Especial!"}
                             </h2>
-                            <p className="text-xs text-white/40">Tiempo limitado</p>
+                            <p className="text-xs text-white/40">PuroCode · Tiempo limitado</p>
                         </div>
                     </div>
 
-                    <p className="text-sm text-white/50">
+                    <p className="text-sm text-white/50 leading-relaxed">
                         {promo.popupBody || promo.description || "Obtén tu landing page profesional a precio reducido"}
                     </p>
                 </div>
@@ -105,21 +86,21 @@ export default function PromoPopup() {
                 <div className="px-6 py-5">
                     {/* Price */}
                     <div className="flex items-baseline gap-3 mb-4">
-                        <span className="text-3xl font-extrabold text-emerald-400">
+                        <span className="text-3xl font-extrabold text-white">
                             ${promo.price.toLocaleString("es-CL")}
                         </span>
-                        <span className="text-lg text-white/30 line-through">
+                        <span className="text-lg text-white/30 line-through decoration-red-400/60">
                             ${promo.originalPrice.toLocaleString("es-CL")}
                         </span>
-                        <span className="text-xs font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-md">
+                        <span className="text-xs font-bold text-violet-300 bg-violet-500/15 px-2 py-0.5 rounded-md">
                             -{discount}%
                         </span>
                     </div>
 
                     {/* Features */}
-                    <ul className="space-y-2 mb-5">
+                    <ul className="space-y-2.5 mb-5">
                         {features.map((f) => (
-                            <li key={f} className="flex items-center gap-2 text-sm text-white/50">
+                            <li key={f} className="flex items-center gap-2.5 text-sm text-white/50">
                                 <Check size={14} className="text-emerald-400 flex-shrink-0" />
                                 {f}
                             </li>
@@ -144,7 +125,7 @@ export default function PromoPopup() {
                     <Link
                         href="/formulario/oferta"
                         onClick={handleClose}
-                        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
+                        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-violet-600 to-emerald-500 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-violet-500/20 transition-all"
                     >
                         Quiero esta oferta
                         <ArrowRight size={15} />
@@ -152,7 +133,7 @@ export default function PromoPopup() {
 
                     <button
                         onClick={handleClose}
-                        className="w-full mt-2 py-2 text-xs text-white/30 hover:text-white/50 transition-colors text-center"
+                        className="w-full mt-2 py-2 text-xs text-white/30 hover:text-white/50 transition-colors text-center cursor-pointer"
                     >
                         No, gracias
                     </button>

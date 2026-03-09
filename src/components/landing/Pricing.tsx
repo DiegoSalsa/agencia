@@ -1,26 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Globe, Building2, ShoppingCart, Check, ArrowRight, Sparkles, Flame, Clock, Users } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { getRegionalPrice, getOriginalPrice, type PlanKey } from '@/lib/i18n';
 import { useInView } from '@/hooks/useInView';
-
-interface ActivePromo {
-  id: string;
-  title: string;
-  slug: string;
-  description: string | null;
-  price: number;
-  originalPrice: number;
-  remainingSlots: number;
-  totalSlots: number;
-  bannerText: string | null;
-  showPricingCard: boolean;
-  endsAt: string | null;
-}
+import { usePromo } from '@/context/PromoContext';
 
 const plans = [
   {
@@ -82,17 +68,8 @@ const fadeUp = {
 export default function Pricing() {
   const { t, currency } = useI18n();
   const { ref, isVisible } = useInView();
-  const [promo, setPromo] = useState<ActivePromo | null>(null);
-
-  useEffect(() => {
-    fetch('/api/promotions/active')
-      .then(r => r.json())
-      .then((promos: ActivePromo[]) => {
-        const p = promos.find(p => p.showPricingCard);
-        if (p) setPromo(p);
-      })
-      .catch(() => {});
-  }, []);
+  const { promos } = usePromo();
+  const promo = promos.find(p => p.showPricingCard) || null;
 
   const discountPercent = promo ? Math.round((1 - promo.price / promo.originalPrice) * 100) : 0;
   const daysLeft = promo?.endsAt ? Math.max(0, Math.ceil((new Date(promo.endsAt).getTime() - Date.now()) / 86400000)) : null;
@@ -159,15 +136,15 @@ export default function Pricing() {
           >
             <Link
               href="/formulario/oferta"
-              className="group relative block rounded-2xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 via-emerald-900/20 to-teal-950/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-emerald-400/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10"
+              className="group relative block rounded-2xl border-2 border-violet-500/30 bg-gradient-to-br from-violet-950/40 via-purple-900/20 to-emerald-950/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-emerald-400/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10"
             >
               {/* Animated glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-teal-500/10 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-500/5 via-purple-500/10 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
 
               {/* Badge */}
               <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-10">
-                <div className="px-5 py-1.5 rounded-b-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-emerald-500/25 flex items-center gap-1.5">
+                <div className="px-5 py-1.5 rounded-b-xl bg-gradient-to-r from-violet-500 to-emerald-500 text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-violet-500/25 flex items-center gap-1.5">
                   <Flame className="w-3 h-3" /> Oferta Especial
                 </div>
               </div>
@@ -215,7 +192,7 @@ export default function Pricing() {
                       <span className="text-sm text-white/30 font-medium">CLP</span>
                     </div>
                   </div>
-                  <div className="w-full py-3 px-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 opacity-90 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 group-hover:shadow-xl">
+                  <div className="w-full py-3 px-8 rounded-xl bg-gradient-to-r from-violet-500 to-emerald-500 opacity-90 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-violet-500/20 group-hover:shadow-xl">
                     Aprovechar oferta
                     <ArrowRight size={15} />
                   </div>

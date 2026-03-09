@@ -41,7 +41,11 @@ export async function GET() {
                 endsAt: p.endsAt,
             }));
 
-        return NextResponse.json(activePromos);
+        return NextResponse.json(activePromos, {
+            headers: {
+                "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+            },
+        });
     } catch (error) {
         console.error("[Promotions Active GET]", error);
         return NextResponse.json([]);

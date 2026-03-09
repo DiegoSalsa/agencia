@@ -42,12 +42,16 @@ export default function Header() {
     <>
       <header
         id="main-header"
-        className={`fixed left-0 right-0 z-50 flex justify-center px-4 py-4 transition-all duration-300 ${
-          scrolled ? 'py-2' : ''
+        className={`fixed left-0 right-0 z-50 flex justify-center px-4 transition-all duration-500 ${
+          scrolled ? 'py-1.5 scrolled' : 'py-4'
         }`}
         style={{ top: 'var(--promo-banner-height, 0px)' }}
       >
-        <nav className="nav-glass flex w-full max-w-[1200px] items-center justify-between rounded-2xl px-6 py-2.5">
+        <nav className={`flex w-full max-w-[1200px] items-center justify-between px-6 transition-all duration-500 ${
+          scrolled
+            ? 'py-2 rounded-xl bg-[rgba(9,9,11,0.85)] dark:bg-[rgba(9,9,11,0.9)] backdrop-blur-xl border border-white/[0.06] shadow-lg shadow-black/20'
+            : 'py-2.5 rounded-2xl nav-glass'
+        }`}>
           {/* Logo */}
           <Link href="/#hero" className="flex items-center gap-2.5">
             <Image src="/img/logo.svg" alt="PuroCode Logo" width={32} height={32} className="h-8 w-auto" />
