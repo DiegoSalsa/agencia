@@ -12,39 +12,39 @@ const whatsappContacts = [
 ];
 
 const technologies = [
-  { name: 'React', icon: 'Re' },
-  { name: 'Next.js', icon: '▲' },
-  { name: 'TypeScript', icon: 'TS' },
-  { name: 'JavaScript', icon: 'JS' },
-  { name: 'HTML5', icon: 'H5' },
-  { name: 'CSS3', icon: 'C3' },
-  { name: 'Tailwind CSS', icon: 'TW' },
-  { name: 'Framer Motion', icon: 'FM' },
-  { name: 'Vite', icon: 'Vi' },
-  { name: 'Node.js', icon: '⬢' },
-  { name: 'Python', icon: 'Py' },
-  { name: 'Java', icon: 'Jv' },
-  { name: 'Express', icon: 'Ex' },
-  { name: 'GraphQL', icon: '◈' },
-  { name: 'REST API', icon: 'AP' },
-  { name: 'PostgreSQL', icon: 'PG' },
-  { name: 'MongoDB', icon: 'MG' },
-  { name: 'MySQL', icon: 'My' },
-  { name: 'SQLite', icon: 'SL' },
-  { name: 'Prisma', icon: '◆' },
-  { name: 'Redis', icon: 'Rd' },
-  { name: 'Vercel', icon: '▲' },
-  { name: 'AWS', icon: 'AW' },
-  { name: 'Docker', icon: 'Dk' },
-  { name: 'GitHub Actions', icon: 'GA' },
-  { name: 'Cloudflare', icon: 'CF' },
-  { name: 'Linux', icon: 'Lx' },
-  { name: 'OAuth2', icon: 'OA' },
-  { name: 'JWT', icon: 'JW' },
-  { name: 'Git', icon: 'Gt' },
-  { name: 'Figma', icon: 'Fg' },
-  { name: 'ESLint', icon: 'EL' },
-  { name: 'Zod', icon: 'Zd' },
+  { name: 'React', icon: 'Re', color: '#61DAFB' },
+  { name: 'Next.js', icon: '▲', color: '#ffffff' },
+  { name: 'TypeScript', icon: 'TS', color: '#3178C6' },
+  { name: 'JavaScript', icon: 'JS', color: '#F7DF1E' },
+  { name: 'HTML5', icon: 'H5', color: '#E34F26' },
+  { name: 'CSS3', icon: 'C3', color: '#1572B6' },
+  { name: 'Tailwind CSS', icon: 'TW', color: '#06B6D4' },
+  { name: 'Framer Motion', icon: 'FM', color: '#BB4BF6' },
+  { name: 'Vite', icon: 'Vi', color: '#646CFF' },
+  { name: 'Node.js', icon: '⬢', color: '#5FA04E' },
+  { name: 'Python', icon: 'Py', color: '#3776AB' },
+  { name: 'Java', icon: 'Jv', color: '#ED8B00' },
+  { name: 'Express', icon: 'Ex', color: '#ffffff' },
+  { name: 'GraphQL', icon: '◈', color: '#E10098' },
+  { name: 'REST API', icon: 'AP', color: '#6BA539' },
+  { name: 'PostgreSQL', icon: 'PG', color: '#4169E1' },
+  { name: 'MongoDB', icon: 'MG', color: '#47A248' },
+  { name: 'MySQL', icon: 'My', color: '#4479A1' },
+  { name: 'SQLite', icon: 'SL', color: '#003B57' },
+  { name: 'Prisma', icon: '◆', color: '#2D3748' },
+  { name: 'Redis', icon: 'Rd', color: '#DC382D' },
+  { name: 'Vercel', icon: '▲', color: '#ffffff' },
+  { name: 'AWS', icon: 'AW', color: '#FF9900' },
+  { name: 'Docker', icon: 'Dk', color: '#2496ED' },
+  { name: 'GitHub Actions', icon: 'GA', color: '#2088FF' },
+  { name: 'Cloudflare', icon: 'CF', color: '#F38020' },
+  { name: 'Linux', icon: 'Lx', color: '#FCC624' },
+  { name: 'OAuth2', icon: 'OA', color: '#EB5424' },
+  { name: 'JWT', icon: 'JW', color: '#D63AFF' },
+  { name: 'Git', icon: 'Gt', color: '#F05032' },
+  { name: 'Figma', icon: 'Fg', color: '#A259FF' },
+  { name: 'ESLint', icon: 'EL', color: '#4B32C3' },
+  { name: 'Zod', icon: 'Zd', color: '#3068B7' },
 ];
 
 const doubled = [...technologies, ...technologies];
@@ -61,7 +61,7 @@ function TechMarqueeRow({ reverse = false }: { reverse?: boolean }) {
             key={`${reverse ? 'b' : 't'}-${i}`}
             className="flex items-center gap-2 px-4 py-2 mx-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.04)] transition-all duration-300 cursor-default shrink-0"
           >
-            <span className="text-sm leading-none select-none">{tech.icon}</span>
+            <span className="text-sm font-bold leading-none select-none" style={{ color: tech.color }}>{tech.icon}</span>
             <span className="text-xs font-medium text-[var(--text-tertiary)] whitespace-nowrap">{tech.name}</span>
           </div>
         ))}
