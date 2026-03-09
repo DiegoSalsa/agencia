@@ -54,7 +54,7 @@ export default function Header() {
         }`}>
           {/* Logo */}
           <Link href="/#hero" className="flex items-center gap-2.5">
-            <Image src="/img/logo.svg" alt="PuroCode Logo" width={32} height={32} className="h-8 w-auto" />
+            <Image src="/img/logo.svg" alt="PuroCode Logo" width={32} height={32} className="h-8 w-auto" priority />
             <span className="font-bold text-lg tracking-tight text-[var(--text)]">PuroCode</span>
           </Link>
 

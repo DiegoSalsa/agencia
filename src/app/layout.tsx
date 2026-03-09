@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { organizationJsonLd, websiteJsonLd, professionalServiceJsonLd } from "@/lib/seo";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
 import PageTransition from "@/components/shared/PageTransition";
+import CookieConsent from "@/components/shared/CookieConsent";
 import "./globals.css";
 
 const inter = Inter({
@@ -99,7 +100,6 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/img/favicon/site.webmanifest" />
         <meta name="theme-color" content="#6d28d9" />
-        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -114,11 +114,19 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-display bg-[var(--bg)] text-[var(--text)] antialiased overflow-x-hidden`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[var(--primary)] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm"
+        >
+          Saltar al contenido
+        </a>
         <ThemeProvider>
           <I18nProvider>
             <PageTransition>{children}</PageTransition>
           </I18nProvider>
         </ThemeProvider>
+        <GoogleAnalytics />
+        <CookieConsent />
       </body>
     </html>
   );

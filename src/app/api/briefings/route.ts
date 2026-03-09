@@ -99,8 +99,8 @@ export async function GET(request: NextRequest) {
         // Filters
         const type = searchParams.get("type");
         const status = searchParams.get("status");
-        const page = parseInt(searchParams.get("page") || "1");
-        const limit = parseInt(searchParams.get("limit") || "20");
+        const page = Math.max(parseInt(searchParams.get("page") || "1") || 1, 1);
+        const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 100);
 
         const where: Record<string, string> = {};
         if (type) where.type = type;

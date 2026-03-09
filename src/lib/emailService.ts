@@ -133,7 +133,7 @@ function createGmailAppPass(): nodemailer.Transporter | null {
         secure: smtpPort === 465,
         auth: { user, pass },
         tls: {
-            rejectUnauthorized: false,
+            rejectUnauthorized: process.env.NODE_ENV === 'production',
         },
     });
 }

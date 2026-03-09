@@ -120,20 +120,47 @@ export default function PrivacidadPage() {
           <section>
             <h2 className="text-xl font-semibold text-[var(--text)] mb-3">6. Cookies y Tecnologías Similares</h2>
             <p>
-              Nuestro sitio utiliza cookies estrictamente necesarias para el funcionamiento del servicio:
+              Nuestro sitio utiliza distintos tipos de cookies:
             </p>
-            <ul className="list-disc pl-6 mt-2 space-y-1">
+
+            <h3 className="text-base font-semibold text-[var(--text)] mt-4 mb-2">Cookies esenciales</h3>
+            <ul className="list-disc pl-6 space-y-1">
               <li>
                 <strong>Cookie de sesión del portal:</strong> Una cookie HttpOnly segura para mantener la sesión
                 de clientes autenticados en el portal. Expira a los 7 días.
+              </li>
+              <li>
+                <strong>Preferencia de cookies:</strong> Almacena su elección sobre el uso de cookies
+                analíticas (<code className="text-xs">cookie_consent</code>). Expira en 1 año.
               </li>
               <li>
                 <strong>Preferencias de idioma y tema:</strong> Se almacenan localmente en su navegador
                 (localStorage) y no se envían a nuestros servidores.
               </li>
             </ul>
+
+            <h3 className="text-base font-semibold text-[var(--text)] mt-4 mb-2">Cookies analíticas (opcionales)</h3>
+            <p>
+              Con su consentimiento, utilizamos <strong>Google Analytics 4</strong> para comprender cómo
+              los usuarios interactúan con nuestro sitio y mejorar la experiencia. Google Analytics
+              establece las siguientes cookies:
+            </p>
+            <ul className="list-disc pl-6 mt-2 space-y-1">
+              <li>
+                <code className="text-xs">_ga</code>: Identifica usuarios únicos. Expira a los 2 años.
+              </li>
+              <li>
+                <code className="text-xs">_ga_*</code>: Mantiene el estado de la sesión. Expira a los 2 años.
+              </li>
+            </ul>
             <p className="mt-2">
-              No utilizamos cookies de rastreo, publicidad ni analíticas de terceros.
+              Estas cookies <strong>solo se activan si usted acepta las cookies analíticas</strong> a través
+              del banner de consentimiento que aparece en su primera visita. Puede cambiar su preferencia
+              en cualquier momento limpiando las cookies de su navegador.
+            </p>
+            <p className="mt-2">
+              No utilizamos cookies de publicidad ni compartimos datos analíticos con terceros
+              más allá de Google Analytics.
             </p>
           </section>
 

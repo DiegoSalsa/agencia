@@ -1,9 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+// ── Simple rate limiter for code validation ──
+const codeAttempts = new Map<string, { count: number; resetAt: number }>();
+function checkCodeRateLimit(ip: string): boolean {
+    const now = Date.now();
+    const entry = codeAttempts.get(ip);
+    if (!entry || now > entry.resetAt) {
+        codeAttempts.set(ip, { count: 1, resetAt: now + 60_000 });
+        return true;
+    }
+    entry.count++;
+    return entry.count <= 5;
+}
+
 // ── POST: Validate a discount code (public) ──
 export async function POST(request: NextRequest) {
     try {
+        // Rate limit: 5 attempts per minute per IP
+        const forwarded = request.headers.get("x-forwarded-for");
+        const ip = forwarded?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
+        if (!checkCodeRateLimit(ip)) {
+            return NextResponse.json(
+                { ok: false, error: "Demasiados intentos. Espera un momento." },
+                { status: 429 }
+            );
+        }
+
         const body = await request.json();
         const { code, promotionId } = body;
 

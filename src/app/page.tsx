@@ -21,7 +21,7 @@ export default function Home() {
     <PromoProvider>
       <PromoBanner />
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <div className="bg-[var(--bg-secondary)] section-ambient">
           <Services />

@@ -3,7 +3,11 @@ import bcrypt from "bcryptjs";
 
 // ── Secret for signing tokens ──
 function getSecret(): string {
-    return process.env.JWT_SECRET || process.env.ADMIN_PASSWORD || "fallback-secret-change-me";
+    const secret = process.env.JWT_SECRET;
+    if (!secret || secret.length < 16) {
+        throw new Error("JWT_SECRET env variable is missing or too short (min 16 chars)");
+    }
+    return secret;
 }
 
 // ── Token payload ──

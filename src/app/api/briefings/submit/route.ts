@@ -76,7 +76,13 @@ export async function POST(request: NextRequest) {
             return errorResponse("VALIDATION_ERROR", "Error al leer los datos del formulario.", 400);
         }
 
-        const { type, clientName, clientEmail, contactData, contentData, designData, extraData } = body;
+        const { type, clientName, clientEmail, contactData, contentData, designData, extraData, website } = body;
+
+        // ── Stage: honeypot check ──
+        if (website) {
+            // Honeypot field filled — silently reject (bot)
+            return NextResponse.json({ ok: true, id: "ok" });
+        }
 
         // ── Stage: validate ──
         stage = "validate";

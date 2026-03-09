@@ -1,8 +1,25 @@
-import Script from "next/script";
+"use client";
 
-const GA_ID = "G-JJJ4VZW6M9";
+import Script from "next/script";
+import { useState, useEffect } from "react";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA4_ID || "G-JJJ4VZW6M9";
 
 export default function GoogleAnalytics() {
+  const [hasConsent, setHasConsent] = useState(false);
+
+  useEffect(() => {
+    function checkConsent() {
+      const consent = localStorage.getItem("cookie_consent");
+      setHasConsent(consent === "all");
+    }
+    checkConsent();
+    window.addEventListener("consent-updated", checkConsent);
+    return () => window.removeEventListener("consent-updated", checkConsent);
+  }, []);
+
+  if (!hasConsent || !GA_ID) return null;
+
   return (
     <>
       <Script
