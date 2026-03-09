@@ -130,7 +130,7 @@ export default function PromoPopup() {
                     <div className="flex items-center gap-4 mb-5 text-xs text-white/40">
                         <div className="flex items-center gap-1.5">
                             <Users size={12} className="text-amber-400" />
-                            <span><strong className="text-amber-400">{promo.remainingSlots}</strong> / {promo.totalSlots} cupos</span>
+                            <span><strong className="text-amber-400">{promo.remainingSlots}</strong> cupos disponibles</span>
                         </div>
                         {promo.endsAt && (
                             <div className="flex items-center gap-1.5">
