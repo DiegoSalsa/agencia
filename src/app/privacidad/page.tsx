@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import Footer from '@/components/landing/Footer';
 
 export default function PrivacidadPage() {
   return (
@@ -202,6 +203,8 @@ export default function PrivacidadPage() {
           </section>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

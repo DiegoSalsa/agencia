@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import Footer from '@/components/landing/Footer';
 
 export default function TerminosPage() {
   return (
@@ -197,6 +198,8 @@ export default function TerminosPage() {
           </section>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
