@@ -42,7 +42,7 @@ export default function PromoBanner() {
     );
 
     return (
-        <div ref={bannerRef} className="relative z-[55] bg-gradient-to-r from-violet-600 via-purple-500 to-emerald-500 text-white">
+        <div ref={bannerRef} className="sticky top-0 z-[55] bg-gradient-to-r from-violet-600 via-purple-500 to-emerald-500 text-white">
             <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-sm">
                 <Zap size={14} className="flex-shrink-0 animate-pulse" />
                 <span className="font-medium truncate">
