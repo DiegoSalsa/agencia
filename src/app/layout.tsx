@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { I18nProvider } from "@/context/I18nContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { organizationJsonLd, websiteJsonLd, professionalServiceJsonLd } from "@/lib/seo";
+import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import PageTransition from "@/components/shared/PageTransition";
 import "./globals.css";
 
 const inter = Inter({
@@ -95,6 +97,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <link rel="manifest" href="/img/favicon/site.webmanifest" />
+        <meta name="theme-color" content="#6d28d9" />
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -110,7 +115,9 @@ export default function RootLayout({
         className={`${inter.variable} font-display bg-[var(--bg)] text-[var(--text)] antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
-          <I18nProvider>{children}</I18nProvider>
+          <I18nProvider>
+            <PageTransition>{children}</PageTransition>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

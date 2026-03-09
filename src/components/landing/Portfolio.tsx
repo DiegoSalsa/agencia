@@ -73,7 +73,7 @@ const projects: Project[] = [
   },
   {
     href: 'https://satisfaccion-clientes-alpha.vercel.app',
-    title: 'Satisfacción Clientes',
+    title: 'ValoraLocal',
     descKey: 'portfolio_7_desc',
     tag: 'SaaS',
     tagColor: 'bg-violet-500/15 text-violet-400 border-violet-500/30',

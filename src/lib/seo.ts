@@ -17,9 +17,9 @@ export const organizationJsonLd = {
     url: `${SITE_URL}/#contacto`,
   },
   sameAs: [
-    // Add your social media URLs here
-    // "https://instagram.com/purocode",
-    // "https://linkedin.com/company/purocode",
+    "https://www.instagram.com/purocodecl/",
+    "https://www.facebook.com/PuroCode.com",
+    "https://wa.me/56956994930",
   ],
   address: {
     "@type": "PostalAddress",

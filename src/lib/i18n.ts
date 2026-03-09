@@ -102,6 +102,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     hero_badge: 'Transformación Digital Premium',
     hero_title: 'Creamos Software que',
     hero_title_highlight: 'Impulsa Negocios',
+    hero_title_highlights: 'Impulsa Negocios,Convierte Visitantes,Escala tu Marca',
     hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
     hero_cta_primary: 'Cotiza tu Proyecto',
     hero_cta_secondary: 'Ver Portafolio',
@@ -194,6 +195,28 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     cta_subtitle: 'Cuéntanos tu idea y te entregaremos una cotización personalizada sin compromiso.',
     cta_button: 'Cotizar Gratis',
 
+    // Trust strip
+    trust_title: 'Empresas que confían en nosotros',
+
+    // FAQ
+    faq_tag: 'FAQ',
+    faq_title: 'Preguntas Frecuentes',
+    faq_subtitle: 'Resolvemos las dudas más comunes sobre nuestros servicios de desarrollo web.',
+    faq_q1: '¿Cuánto cuesta crear una página web?',
+    faq_a1: 'Nuestros precios varían según el tipo de proyecto. Una Landing Page parte desde $220.000 CLP, un sitio web corporativo desde $380.000 CLP y un e-commerce desde $620.000 CLP. Todos incluyen dominio y hosting gratuito por 1 año. Puedes cotizar gratis en nuestro formulario.',
+    faq_q2: '¿Cuánto tiempo toma desarrollar mi sitio web?',
+    faq_a2: 'Los tiempos dependen de la complejidad del proyecto. Una Landing Page se entrega en 5-7 días hábiles, un sitio corporativo en 10-15 días y un e-commerce en 15-25 días. Proyectos SaaS se planifican caso a caso.',
+    faq_q3: '¿Qué tecnologías utilizan?',
+    faq_a3: 'Trabajamos con las tecnologías más modernas del mercado: Next.js, React, TypeScript, Tailwind CSS, Node.js, Prisma y PostgreSQL. Desplegamos en Vercel y AWS para máximo rendimiento y escalabilidad.',
+    faq_q4: '¿Incluyen hosting y dominio?',
+    faq_a4: 'Sí, todos nuestros planes incluyen dominio .cl o .com y hosting gratuito durante el primer año. Después del primer año, te ayudamos con la renovación a precios competitivos.',
+    faq_q5: '¿Cómo es el proceso de trabajo?',
+    faq_a5: 'Nuestro proceso tiene 4 etapas: 1) Briefing donde recopilamos tus necesidades, 2) Diseño donde creamos mockups para tu aprobación, 3) Desarrollo donde construimos tu sitio, y 4) Entrega con capacitación incluida. Siempre mantienes comunicación directa con el equipo.',
+    faq_q6: '¿Ofrecen mantenimiento después de la entrega?',
+    faq_a6: 'Sí, todos los planes incluyen soporte técnico (3 a 6 meses según el plan). Además ofrecemos planes de mantenimiento mensual que incluyen actualizaciones, backups, monitoreo de seguridad y cambios menores.',
+    faq_q7: '¿Puedo ver ejemplos de trabajos anteriores?',
+    faq_a7: 'Por supuesto. Puedes ver nuestro portafolio completo en la sección de arriba con proyectos reales como BioImpacto, PodomedClinical, Florería Wildgarden y ValoraLocal, entre otros.',
+
     // Contact
     contact_tag: 'Conversemos',
     contact_title: '¿Listo para transformar tu presencia digital?',
@@ -230,6 +253,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     hero_badge: 'Premium Digital Transformation',
     hero_title: 'We Create Software that',
     hero_title_highlight: 'Drives Business',
+    hero_title_highlights: 'Drives Business,Converts Visitors,Scales Your Brand',
     hero_subtitle: 'High-end web development, scalable SaaS solutions, and digital experiences that turn visitors into customers.',
     hero_cta_primary: 'Get a Quote',
     hero_cta_secondary: 'View Portfolio',
@@ -321,6 +345,28 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     cta_title: 'Have a project in mind?',
     cta_subtitle: 'Tell us your idea and we\'ll deliver a custom quote with no strings attached.',
     cta_button: 'Get Free Quote',
+
+    // Trust strip
+    trust_title: 'Companies that trust us',
+
+    // FAQ
+    faq_tag: 'FAQ',
+    faq_title: 'Frequently Asked Questions',
+    faq_subtitle: 'We answer the most common questions about our web development services.',
+    faq_q1: 'How much does it cost to build a website?',
+    faq_a1: 'Our prices vary by project type. A Landing Page starts at ~$250 USD, a corporate website from ~$420 USD, and an e-commerce from ~$690 USD. All plans include free domain and hosting for 1 year. You can get a free quote through our form.',
+    faq_q2: 'How long does it take to develop my website?',
+    faq_a2: 'Timelines depend on project complexity. A Landing Page is delivered in 5-7 business days, a corporate site in 10-15 days, and an e-commerce in 15-25 days. SaaS projects are planned on a case-by-case basis.',
+    faq_q3: 'What technologies do you use?',
+    faq_a3: 'We work with the most modern technologies: Next.js, React, TypeScript, Tailwind CSS, Node.js, Prisma, and PostgreSQL. We deploy on Vercel and AWS for maximum performance and scalability.',
+    faq_q4: 'Is hosting and domain included?',
+    faq_a4: 'Yes, all our plans include a .cl or .com domain and free hosting for the first year. After the first year, we help you with renewal at competitive prices.',
+    faq_q5: 'What is the work process like?',
+    faq_a5: 'Our process has 4 stages: 1) Briefing where we gather your needs, 2) Design where we create mockups for your approval, 3) Development where we build your site, and 4) Delivery with training included. You always have direct communication with the team.',
+    faq_q6: 'Do you offer maintenance after delivery?',
+    faq_a6: 'Yes, all plans include technical support (3 to 6 months depending on the plan). We also offer monthly maintenance plans that include updates, backups, security monitoring, and minor changes.',
+    faq_q7: 'Can I see examples of previous work?',
+    faq_a7: 'Absolutely. You can see our full portfolio in the section above with real projects like BioImpacto, PodomedClinical, Florería Wildgarden, and ValoraLocal, among others.',
 
     // Contact
     contact_tag: "Let's Talk",

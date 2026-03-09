@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Eye, MessageCircle, ChevronDown } from 'lucide-react';
@@ -73,6 +73,16 @@ function TechMarqueeRow({ reverse = false }: { reverse?: boolean }) {
 export default function Hero() {
   const { t } = useI18n();
   const [wspOpen, setWspOpen] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(0);
+
+  const highlights = (t('hero_title_highlights') || t('hero_title_highlight')).split(',');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightIndex((prev) => (prev + 1) % highlights.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [highlights.length]);
 
   return (
     <section id="hero" className="relative flex flex-col items-center justify-center pt-20 sm:pt-24 pb-6 sm:pb-8 overflow-hidden">
@@ -123,8 +133,19 @@ export default function Hero() {
         >
           {t('hero_title')}{' '}
           <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)]">
-            {t('hero_title_highlight')}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)] inline-block">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={highlightIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                className="inline-block"
+              >
+                {highlights[highlightIndex]}
+              </motion.span>
+            </AnimatePresence>
           </span>
         </motion.h1>
 
