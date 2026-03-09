@@ -11,7 +11,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const SITE_URL = "https://purocode.com";
+const SITE_URL = "https://www.purocode.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

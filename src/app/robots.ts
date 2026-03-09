@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/api/", "/mi-sitio/"],
       },
     ],
-    sitemap: "https://purocode.com/sitemap.xml",
+    sitemap: "https://www.purocode.com/sitemap.xml",
   };
 }

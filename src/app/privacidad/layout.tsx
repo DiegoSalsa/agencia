@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Política de privacidad de PuroCode. Conoce cómo recopilamos, usamos y protegemos tus datos personales.",
   alternates: {
-    canonical: "https://purocode.com/privacidad",
+    canonical: "https://www.purocode.com/privacidad",
   },
   robots: {
     index: true,

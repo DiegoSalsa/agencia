@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Términos y condiciones de servicio de PuroCode. Lee las condiciones que aplican al uso de nuestros servicios de desarrollo web.",
   alternates: {
-    canonical: "https://purocode.com/terminos",
+    canonical: "https://www.purocode.com/terminos",
   },
   robots: {
     index: true,

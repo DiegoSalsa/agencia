@@ -1,4 +1,4 @@
-const SITE_URL = "https://purocode.com";
+const SITE_URL = "https://www.purocode.com";
 
 /* ── Organization ── */
 export const organizationJsonLd = {
