@@ -42,9 +42,10 @@ export default function Header() {
     <>
       <header
         id="main-header"
-        className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 flex justify-center px-4 py-4 transition-all duration-300 ${
           scrolled ? 'py-2' : ''
         }`}
+        style={{ top: 'var(--promo-banner-height, 0px)' }}
       >
         <nav className="nav-glass flex w-full max-w-[1200px] items-center justify-between rounded-2xl px-6 py-2.5">
           {/* Logo */}

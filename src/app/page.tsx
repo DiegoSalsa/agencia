@@ -8,11 +8,14 @@ const Process = dynamic(() => import('@/components/landing/Process'));
 const Pricing = dynamic(() => import('@/components/landing/Pricing'));
 const Contact = dynamic(() => import('@/components/landing/Contact'));
 const Footer = dynamic(() => import('@/components/landing/Footer'));
+const PromoBanner = dynamic(() => import('@/components/landing/PromoBanner'));
+const PromoPopup = dynamic(() => import('@/components/landing/PromoPopup'));
 import SocialFloater from '@/components/shared/SocialFloater';
 
 export default function Home() {
   return (
     <>
+      <PromoBanner />
       <Header />
       <main>
         <Hero />
@@ -30,6 +33,7 @@ export default function Home() {
       </main>
       <Footer />
       <SocialFloater />
+      <PromoPopup />
     </>
   );
 }

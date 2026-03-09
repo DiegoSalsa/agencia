@@ -54,7 +54,7 @@ export interface BriefingTypeConfig {
     enabled: boolean;
 }
 
-export type BriefingType = "LANDING" | "WEB_CORPORATIVA" | "ECOMMERCE";
+export type BriefingType = "LANDING" | "WEB_CORPORATIVA" | "ECOMMERCE" | "OFERTA";
 
 export type BriefingStatus = "nuevo" | "revisado" | "en_progreso" | "completado";
 

@@ -85,3 +85,63 @@ model MagicToken {
   projectId  String
   project    ClientProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
+
+// ── Sistema de Ofertas / Promociones ──────────────────────
+
+model Promotion {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Identificación
+  title          String              // "Landing Page Profesional"
+  slug           String   @unique    // "landing-170k" — used in URLs
+  description    String?             // Texto marketing corto
+
+  // Precios
+  price          Int                 // Precio oferta en CLP (170000)
+  originalPrice  Int                 // Precio original en CLP (220000)
+
+  // Cupos (cosmético)
+  totalSlots     Int      @default(10)
+  remainingSlots Int      @default(6)
+
+  // Control de visibilidad
+  isActive       Boolean  @default(true)
+  showBanner     Boolean  @default(true)   // top bar en landing
+  showPopup      Boolean  @default(true)   // popup modal
+  showPricingCard Boolean @default(true)   // card en sección planes
+
+  // Contenido del banner/popup
+  bannerText     String?             // "🔥 Oferta por tiempo limitado"
+  popupTitle     String?             // "¡No te lo pierdas!"
+  popupBody      String?             // Texto del popup
+
+  // Formulario asociado
+  formType       String   @default("LANDING") // Tipo de briefing
+  fixedSections  String?  // JSON: '["hero","servicios","portafolio","faq","contacto"]'
+
+  // Fechas opcionales
+  startsAt       DateTime?
+  endsAt         DateTime?
+
+  // Relaciones
+  codes          DiscountCode[]
+}
+
+model DiscountCode {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+
+  code        String   @unique          // "PUROCODE20", "AMIGO10"
+  type        String   @default("percent") // "percent" | "fixed"
+  value       Int                       // 20 (%) o 10000 (CLP)
+
+  maxUses     Int      @default(0)      // 0 = ilimitado
+  usedCount   Int      @default(0)
+  isActive    Boolean  @default(true)
+
+  // Restricción opcional a una promo
+  promotionId String?
+  promotion   Promotion? @relation(fields: [promotionId], references: [id], onDelete: SetNull)
+}

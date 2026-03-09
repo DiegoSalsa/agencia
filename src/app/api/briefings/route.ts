@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const validTypes = ["LANDING", "WEB_CORPORATIVA", "ECOMMERCE"];
+        const validTypes = ["LANDING", "WEB_CORPORATIVA", "ECOMMERCE", "OFERTA"];
         if (!validTypes.includes(type)) {
             return NextResponse.json(
                 { error: "Invalid briefing type" },

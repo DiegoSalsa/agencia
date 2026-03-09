@@ -1,11 +1,26 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Globe, Building2, ShoppingCart, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { Globe, Building2, ShoppingCart, Check, ArrowRight, Sparkles, Flame, Clock, Users } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { getRegionalPrice, getOriginalPrice, type PlanKey } from '@/lib/i18n';
 import { useInView } from '@/hooks/useInView';
+
+interface ActivePromo {
+  id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  price: number;
+  originalPrice: number;
+  remainingSlots: number;
+  totalSlots: number;
+  bannerText: string | null;
+  showPricingCard: boolean;
+  endsAt: string | null;
+}
 
 const plans = [
   {
@@ -67,6 +82,20 @@ const fadeUp = {
 export default function Pricing() {
   const { t, currency } = useI18n();
   const { ref, isVisible } = useInView();
+  const [promo, setPromo] = useState<ActivePromo | null>(null);
+
+  useEffect(() => {
+    fetch('/api/promotions/active')
+      .then(r => r.json())
+      .then((promos: ActivePromo[]) => {
+        const p = promos.find(p => p.showPricingCard);
+        if (p) setPromo(p);
+      })
+      .catch(() => {});
+  }, []);
+
+  const discountPercent = promo ? Math.round((1 - promo.price / promo.originalPrice) * 100) : 0;
+  const daysLeft = promo?.endsAt ? Math.max(0, Math.ceil((new Date(promo.endsAt).getTime() - Date.now()) / 86400000)) : null;
 
   return (
     <section id="planes" ref={ref} className="relative py-24 px-6 overflow-hidden">
@@ -118,6 +147,83 @@ export default function Pricing() {
             {t('pricing_subtitle')}
           </p>
         </motion.div>
+
+        {/* Promo Card */}
+        {promo && (
+          <motion.div
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+            variants={fadeUp}
+            custom={0.5}
+            className="mb-8"
+          >
+            <Link
+              href="/formulario/oferta"
+              className="group relative block rounded-2xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 via-emerald-900/20 to-teal-950/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-emerald-400/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10"
+            >
+              {/* Animated glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-teal-500/10 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+
+              {/* Badge */}
+              <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-10">
+                <div className="px-5 py-1.5 rounded-b-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-emerald-500/25 flex items-center gap-1.5">
+                  <Flame className="w-3 h-3" /> Oferta Especial
+                </div>
+              </div>
+
+              <div className="p-8 pt-10 flex flex-col md:flex-row items-center gap-8">
+                {/* Left: Info */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-tight">
+                    {promo.title}
+                  </h3>
+                  {promo.description && (
+                    <p className="text-white/40 text-sm mb-4 max-w-lg">{promo.description}</p>
+                  )}
+                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm">
+                    {promo.remainingSlots > 0 && (
+                      <span className="flex items-center gap-1.5 text-emerald-400/80">
+                        <Users size={14} />
+                        <span className="font-semibold">{promo.remainingSlots}</span> cupos restantes
+                      </span>
+                    )}
+                    {daysLeft !== null && (
+                      <span className="flex items-center gap-1.5 text-amber-400/80">
+                        <Clock size={14} />
+                        {daysLeft > 0 ? `${daysLeft} días restantes` : 'Último día'}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right: Price + CTA */}
+                <div className="flex flex-col items-center gap-3 shrink-0">
+                  <div className="text-center">
+                    <div className="flex items-center gap-2 justify-center mb-1">
+                      <span className="text-lg text-white/30 line-through decoration-red-400/60">
+                        ${promo.originalPrice.toLocaleString('es-CL')}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full">
+                        -{discountPercent}%
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5 justify-center">
+                      <span className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+                        ${promo.price.toLocaleString('es-CL')}
+                      </span>
+                      <span className="text-sm text-white/30 font-medium">CLP</span>
+                    </div>
+                  </div>
+                  <div className="w-full py-3 px-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 opacity-90 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 group-hover:shadow-xl">
+                    Aprovechar oferta
+                    <ArrowRight size={15} />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        )}
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">

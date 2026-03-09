@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { useBriefingForm } from "@/modules/briefingEngine/context";
 import { calculatePrice, formatCLP } from "@/lib/pricingEngine";
 import { calculateDelivery } from "@/lib/deliveryCalculator";
-import { Receipt, Sparkles, TrendingUp, Clock } from "lucide-react";
+import { Receipt, Sparkles, TrendingUp, Clock, Tag } from "lucide-react";
+import { DiscountCodeInput } from "./DiscountCodeInput";
 
 interface PriceSummaryProps {
     /** Modo compacto para mostrar en el sticky/nav */
@@ -12,10 +13,36 @@ interface PriceSummaryProps {
 }
 
 export function PriceSummary({ compact = false }: PriceSummaryProps) {
-    const { formData, config } = useBriefingForm();
+    const { formData, config, updateField } = useBriefingForm();
     const type = config?.type || "LANDING";
 
     const pricing = useMemo(() => calculatePrice(formData, type), [formData, type]);
+
+    const [discount, setDiscount] = useState<{ type: "percent" | "fixed"; value: number; label: string } | null>(null);
+
+    const handleDiscount = useCallback((d: { type: "percent" | "fixed"; value: number; label: string } | null) => {
+        setDiscount(d);
+        // Store discount info in form data so it's sent with the submission
+        if (d) {
+            updateField("discountCode", "applied");
+            updateField("discountType", d.type);
+            updateField("discountValue", String(d.value));
+            updateField("discountLabel", d.label);
+        } else {
+            updateField("discountCode", "");
+            updateField("discountType", "");
+            updateField("discountValue", "");
+            updateField("discountLabel", "");
+        }
+    }, [updateField]);
+
+    const discountedTotal = useMemo(() => {
+        if (!discount) return null;
+        if (discount.type === "percent") {
+            return Math.round(pricing.totalMin * (1 - discount.value / 100));
+        }
+        return Math.max(0, pricing.totalMin - discount.value);
+    }, [discount, pricing.totalMin]);
 
     const delivery = useMemo(() => {
         const urgency = (formData.urgency as string) || "normal";
@@ -88,9 +115,20 @@ export function PriceSummary({ compact = false }: PriceSummaryProps) {
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-white/80">Inversión estimada</span>
                         <div className="text-right">
-                            <span className="text-lg font-bold text-emerald-400">
-                                Desde {formatCLP(pricing.totalMin)}
-                            </span>
+                            {discountedTotal !== null ? (
+                                <>
+                                    <span className="text-sm text-white/30 line-through mr-2">
+                                        {formatCLP(pricing.totalMin)}
+                                    </span>
+                                    <span className="text-lg font-bold text-emerald-400">
+                                        Desde {formatCLP(discountedTotal)}
+                                    </span>
+                                </>
+                            ) : (
+                                <span className="text-lg font-bold text-emerald-400">
+                                    Desde {formatCLP(pricing.totalMin)}
+                                </span>
+                            )}
                         </div>
                     </div>
                     {delivery && (
@@ -104,6 +142,17 @@ export function PriceSummary({ compact = false }: PriceSummaryProps) {
                         </div>
                     )}
                 </div>
+
+                {/* Discount Code */}
+                {type !== "OFERTA" && (
+                    <div className="px-5 py-4 border-t border-white/5">
+                        <div className="flex items-center gap-1.5 mb-3">
+                            <Tag size={12} className="text-white/30" />
+                            <span className="text-[11px] text-white/40 font-medium">¿Tienes un código de descuento?</span>
+                        </div>
+                        <DiscountCodeInput onApply={handleDiscount} />
+                    </div>
+                )}
 
                 {/* Disclaimer */}
                 <div className="px-5 py-3 bg-white/[0.02] border-t border-white/5">

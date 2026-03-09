@@ -16,6 +16,7 @@ const TYPE_LABELS: Record<string, string> = {
     LANDING: "Landing Page",
     WEB_CORPORATIVA: "Web Corporativa",
     ECOMMERCE: "E-commerce",
+    OFERTA: "Oferta Landing",
 };
 
 function sanitizeStr(str: string, maxLen = 2000): string {
@@ -83,7 +84,7 @@ export async function POST(request: NextRequest) {
             return errorResponse("VALIDATION_ERROR", "type y clientName son obligatorios.", 400);
         }
 
-        const validTypes = ["LANDING", "WEB_CORPORATIVA", "ECOMMERCE"];
+        const validTypes = ["LANDING", "WEB_CORPORATIVA", "ECOMMERCE", "OFERTA"];
         if (!validTypes.includes(type)) {
             return errorResponse("VALIDATION_ERROR", "Tipo de briefing inválido.", 400);
         }

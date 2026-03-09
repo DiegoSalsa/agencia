@@ -27,6 +27,8 @@ import {
     ExternalLink,
     AlertTriangle,
     X,
+    Megaphone,
+    Tag,
 } from "lucide-react";
 import { BriefingRecord, BriefingStatus } from "@/types/briefing";
 
@@ -42,6 +44,7 @@ const typeConfig: Record<string, { label: string; color: string; price: string }
     LANDING: { label: "Landing Page", color: "bg-cyan-500/15 text-cyan-400 border-cyan-500/25", price: "$220.000" },
     WEB_CORPORATIVA: { label: "Web Corporativa", color: "bg-amber-500/15 text-amber-400 border-amber-500/25", price: "$380.000" },
     ECOMMERCE: { label: "E-commerce", color: "bg-rose-500/15 text-rose-400 border-rose-500/25", price: "$550.000" },
+    OFERTA: { label: "Oferta Landing", color: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25", price: "$170.000" },
 };
 
 type SortKey = "date-desc" | "date-asc" | "name-asc" | "name-desc" | "status";
@@ -262,6 +265,13 @@ export default function AdminDashboard() {
                             >
                                 <Users size={14} />
                                 <span className="hidden sm:inline">Proyectos</span>
+                            </Link>
+                            <Link
+                                href="/admin/dashboard/promotions"
+                                className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-xs hover:bg-emerald-500/20 transition-all"
+                            >
+                                <Megaphone size={14} />
+                                <span className="hidden sm:inline">Ofertas</span>
                             </Link>
                             <a
                                 href="/formulario"
