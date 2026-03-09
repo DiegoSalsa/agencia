@@ -43,23 +43,23 @@ export default function PromoBanner() {
 
     return (
         <div ref={bannerRef} className="sticky top-0 z-[55] bg-gradient-to-r from-violet-600 via-purple-500 to-emerald-500 text-white">
-            <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-sm">
-                <Zap size={14} className="flex-shrink-0 animate-pulse" />
-                <span className="font-medium truncate">
-                    {promo.bannerText || `🔥 Landing Page Profesional a $${promo.price.toLocaleString("es-CL")} CLP`}
+            <div className="max-w-7xl mx-auto px-4 pr-10 sm:pr-4 py-2 sm:py-2.5 flex items-center justify-center gap-2 sm:gap-3 text-sm relative">
+                <Zap size={14} className="flex-shrink-0 animate-pulse hidden sm:block" />
+                <span className="font-medium text-xs sm:text-sm text-center leading-tight">
+                    {promo.bannerText || `🔥 Landing a $${promo.price.toLocaleString("es-CL")} CLP`}
                 </span>
                 <span className="hidden sm:inline text-white/70 text-xs">
                     (-{discount}% · {promo.remainingSlots} cupos)
                 </span>
                 <Link
                     href="/formulario/oferta"
-                    className="flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                    className="flex items-center gap-1 px-2.5 sm:px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-[11px] sm:text-xs font-semibold transition-colors flex-shrink-0 whitespace-nowrap"
                 >
                     Ver oferta <ArrowRight size={12} />
                 </Link>
                 <button
                     onClick={handleDismiss}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer"
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-white/20 rounded-full transition-colors cursor-pointer"
                     aria-label="Cerrar banner"
                 >
                     <X size={14} />
