@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import {
-    ArrowLeft,
     Plus,
     Trash2,
     Pencil,
@@ -19,77 +16,15 @@ import {
     X,
     Copy,
 } from "lucide-react";
-
-interface Promotion {
-    id: string;
-    title: string;
-    slug: string;
-    description: string | null;
-    price: number;
-    originalPrice: number;
-    totalSlots: number;
-    remainingSlots: number;
-    isActive: boolean;
-    showBanner: boolean;
-    showPopup: boolean;
-    showPricingCard: boolean;
-    bannerText: string | null;
-    popupTitle: string | null;
-    popupBody: string | null;
-    formType: string;
-    fixedSections: string[];
-    startsAt: string | null;
-    endsAt: string | null;
-    createdAt: string;
-    _count?: { codes: number };
-}
-
-interface DiscountCode {
-    id: string;
-    code: string;
-    type: "percent" | "fixed";
-    value: number;
-    maxUses: number;
-    usedCount: number;
-    isActive: boolean;
-    promotionId: string | null;
-}
-
-const defaultSections = ["hero", "servicios", "portafolio", "faq", "contacto"];
-
-const emptyPromo = {
-    title: "",
-    slug: "",
-    description: "",
-    price: 170000,
-    originalPrice: 220000,
-    totalSlots: 10,
-    remainingSlots: 10,
-    isActive: true,
-    showBanner: true,
-    showPopup: true,
-    showPricingCard: true,
-    bannerText: "🔥 Landing Page Profesional a $170.000 CLP",
-    popupTitle: "¡Oferta Especial!",
-    popupBody: "Landing page profesional con todo incluido.",
-    formType: "LANDING",
-    fixedSections: defaultSections,
-    startsAt: "",
-    endsAt: "",
-};
-
-const emptyCode = {
-    code: "",
-    type: "percent" as "percent" | "fixed",
-    value: 10,
-    maxUses: 0,
-    isActive: true,
-    promotionId: null as string | null,
-};
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { useToast } from "@/context/ToastContext";
+import { LoadingState, EmptyState, ConfirmModal } from "@/components/admin";
+import { EMPTY_PROMO_FORM, EMPTY_CODE_FORM, DEFAULT_PROMO_SECTIONS } from "@/lib/admin/constants";
+import type { Promotion, DiscountCode } from "@/types/admin";
 
 export default function PromotionsAdmin() {
-    const router = useRouter();
-    const [token, setToken] = useState("");
+    const { token, isLoading: authLoading, authHeaders } = useAdminAuth();
+    const toast = useToast();
     const [loading, setLoading] = useState(true);
     const [promos, setPromos] = useState<Promotion[]>([]);
     const [codes, setCodes] = useState<DiscountCode[]>([]);
@@ -98,12 +33,13 @@ export default function PromotionsAdmin() {
     // Forms
     const [showPromoForm, setShowPromoForm] = useState(false);
     const [editingPromo, setEditingPromo] = useState<string | null>(null);
-    const [promoForm, setPromoForm] = useState(emptyPromo);
+    const [promoForm, setPromoForm] = useState(EMPTY_PROMO_FORM);
     const [showCodeForm, setShowCodeForm] = useState(false);
-    const [codeForm, setCodeForm] = useState(emptyCode);
+    const [codeForm, setCodeForm] = useState(EMPTY_CODE_FORM);
     const [saving, setSaving] = useState(false);
 
-    const headers = useCallback(() => ({ "Content-Type": "application/json", "x-admin-token": token }), [token]);
+    // Delete confirmation
+    const [deleteTarget, setDeleteTarget] = useState<{ type: "promo" | "code"; id: string } | null>(null);
 
     const fetchData = useCallback(async (adminToken: string) => {
         setLoading(true);
@@ -112,24 +48,21 @@ export default function PromotionsAdmin() {
                 fetch("/api/admin/promotions", { headers: { "x-admin-token": adminToken } }),
                 fetch("/api/admin/codes", { headers: { "x-admin-token": adminToken } }),
             ]);
-            if (promosRes.status === 401) { router.push("/admin"); return; }
             const promosData = await promosRes.json();
             const codesData = await codesRes.json();
             setPromos(promosData.data || []);
             setCodes(codesData.data || []);
         } catch (err) {
             console.error("Error fetching promotions:", err);
+            toast.error("Error al cargar los datos");
         } finally {
             setLoading(false);
         }
-    }, [router]);
+    }, [toast]);
 
     useEffect(() => {
-        const storedToken = sessionStorage.getItem("admin_token");
-        if (!storedToken) { router.push("/admin"); return; }
-        setToken(storedToken);
-        fetchData(storedToken);
-    }, [fetchData, router]);
+        if (!authLoading && token) fetchData(token);
+    }, [authLoading, token, fetchData]);
 
     /* ─── Promo CRUD ─── */
     const savePromo = async () => {
@@ -144,39 +77,55 @@ export default function PromotionsAdmin() {
             if (editingPromo) {
                 await fetch(`/api/admin/promotions/${editingPromo}`, {
                     method: "PATCH",
-                    headers: headers(),
+                    headers: authHeaders(),
                     body: JSON.stringify(body),
                 });
+                toast.success("Promoción actualizada");
             } else {
                 await fetch("/api/admin/promotions", {
                     method: "POST",
-                    headers: headers(),
+                    headers: authHeaders(),
                     body: JSON.stringify(body),
                 });
+                toast.success("Promoción creada");
             }
             setShowPromoForm(false);
             setEditingPromo(null);
-            setPromoForm(emptyPromo);
+            setPromoForm(EMPTY_PROMO_FORM);
             await fetchData(token);
         } catch (err) {
             console.error("Error saving promo:", err);
+            toast.error("Error al guardar la promoción");
         } finally {
             setSaving(false);
         }
     };
 
-    const deletePromo = async (id: string) => {
-        if (!confirm("¿Eliminar esta promoción?")) return;
-        await fetch(`/api/admin/promotions/${id}`, { method: "DELETE", headers: headers() });
-        await fetchData(token);
+    const confirmDelete = async () => {
+        if (!deleteTarget) return;
+        try {
+            if (deleteTarget.type === "promo") {
+                await fetch(`/api/admin/promotions/${deleteTarget.id}`, { method: "DELETE", headers: authHeaders() });
+                toast.success("Promoción eliminada");
+            } else {
+                await fetch(`/api/admin/codes/${deleteTarget.id}`, { method: "DELETE", headers: authHeaders() });
+                toast.success("Código eliminado");
+            }
+            await fetchData(token);
+        } catch {
+            toast.error("Error al eliminar");
+        } finally {
+            setDeleteTarget(null);
+        }
     };
 
     const togglePromoActive = async (id: string, isActive: boolean) => {
         await fetch(`/api/admin/promotions/${id}`, {
             method: "PATCH",
-            headers: headers(),
+            headers: authHeaders(),
             body: JSON.stringify({ isActive: !isActive }),
         });
+        toast.info(isActive ? "Promoción desactivada" : "Promoción activada");
         await fetchData(token);
     };
 
@@ -197,7 +146,7 @@ export default function PromotionsAdmin() {
             popupTitle: promo.popupTitle || "",
             popupBody: promo.popupBody || "",
             formType: promo.formType,
-            fixedSections: promo.fixedSections || defaultSections,
+            fixedSections: promo.fixedSections || DEFAULT_PROMO_SECTIONS,
             startsAt: promo.startsAt ? promo.startsAt.split("T")[0] : "",
             endsAt: promo.endsAt ? promo.endsAt.split("T")[0] : "",
         });
@@ -211,85 +160,73 @@ export default function PromotionsAdmin() {
         try {
             await fetch("/api/admin/codes", {
                 method: "POST",
-                headers: headers(),
+                headers: authHeaders(),
                 body: JSON.stringify(codeForm),
             });
+            toast.success("Código creado");
             setShowCodeForm(false);
-            setCodeForm(emptyCode);
+            setCodeForm(EMPTY_CODE_FORM);
             await fetchData(token);
         } catch (err) {
             console.error("Error saving code:", err);
+            toast.error("Error al crear el código");
         } finally {
             setSaving(false);
         }
     };
 
-    const deleteCode = async (id: string) => {
-        if (!confirm("¿Eliminar este código?")) return;
-        await fetch(`/api/admin/codes/${id}`, { method: "DELETE", headers: headers() });
-        await fetchData(token);
-    };
-
     const toggleCodeActive = async (id: string, isActive: boolean) => {
         await fetch(`/api/admin/codes/${id}`, {
             method: "PATCH",
-            headers: headers(),
+            headers: authHeaders(),
             body: JSON.stringify({ isActive: !isActive }),
         });
+        toast.info(isActive ? "Código desactivado" : "Código activado");
         await fetchData(token);
     };
 
-    if (loading) {
-        return (
-            <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
-            </main>
-        );
+    if (loading || authLoading) {
+        return <LoadingState message="Cargando ofertas..." />
     }
 
     return (
-        <main className="min-h-screen bg-slate-950">
-            {/* Header */}
-            <div className="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-xl border-b border-white/5">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center gap-3">
-                            <Link href="/admin/dashboard" className="p-2 text-white/40 hover:text-white rounded-lg hover:bg-white/5 transition-all">
-                                <ArrowLeft size={16} />
-                            </Link>
-                            <div className="h-5 w-px bg-white/10" />
-                            <div className="flex items-center gap-2">
-                                <Megaphone size={16} className="text-emerald-400" />
-                                <span className="text-sm font-semibold text-white">Ofertas y Códigos</span>
-                            </div>
-                        </div>
-                        {/* Tabs */}
-                        <div className="flex items-center gap-1 bg-white/[0.03] rounded-lg p-1 border border-white/5">
-                            <button
-                                onClick={() => setTab("promos")}
-                                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${tab === "promos" ? "bg-emerald-500/20 text-emerald-400" : "text-white/40 hover:text-white/60"}`}
-                            >
-                                Promociones ({promos.length})
-                            </button>
-                            <button
-                                onClick={() => setTab("codes")}
-                                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${tab === "codes" ? "bg-violet-500/20 text-violet-400" : "text-white/40 hover:text-white/60"}`}
-                            >
-                                Códigos ({codes.length})
-                            </button>
-                        </div>
+        <div>
+            {/* Page header with tabs */}
+            <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-emerald-500/10 rounded-lg">
+                        <Megaphone size={20} className="text-emerald-400" />
                     </div>
+                    <div>
+                        <h1 className="text-xl font-bold text-white">Ofertas y Códigos</h1>
+                        <p className="text-white/40 text-sm">{promos.length} promociones · {codes.length} códigos</p>
+                    </div>
+                </div>
+                {/* Tabs */}
+                <div className="flex items-center gap-1 bg-white/[0.03] rounded-lg p-1 border border-white/5">
+                    <button
+                        onClick={() => setTab("promos")}
+                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${tab === "promos" ? "bg-emerald-500/20 text-emerald-400" : "text-white/40 hover:text-white/60"}`}
+                    >
+                        Promociones ({promos.length})
+                    </button>
+                    <button
+                        onClick={() => setTab("codes")}
+                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${tab === "codes" ? "bg-violet-500/20 text-violet-400" : "text-white/40 hover:text-white/60"}`}
+                    >
+                        Códigos ({codes.length})
+                    </button>
                 </div>
             </div>
 
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+            <div>
                 {/* ─── PROMOTIONS TAB ─── */}
                 {tab === "promos" && (
                     <div className="space-y-6">
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold text-white">Promociones</h2>
                             <button
-                                onClick={() => { setShowPromoForm(true); setEditingPromo(null); setPromoForm(emptyPromo); }}
+                                onClick={() => { setShowPromoForm(true); setEditingPromo(null); setPromoForm(EMPTY_PROMO_FORM); }}
                                 className="flex items-center gap-2 px-4 py-2 bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 rounded-xl text-sm font-medium hover:bg-emerald-500/25 transition-all"
                             >
                                 <Plus size={15} /> Nueva Promoción
@@ -473,7 +410,7 @@ export default function PromotionsAdmin() {
                                                         className="p-2 rounded-lg text-white/30 hover:text-indigo-400 hover:bg-indigo-500/10 transition-all" title="Editar">
                                                         <Pencil size={14} />
                                                     </button>
-                                                    <button onClick={() => deletePromo(promo.id)}
+                                                    <button onClick={() => setDeleteTarget({ type: 'promo', id: promo.id })}
                                                         className="p-2 rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-all" title="Eliminar">
                                                         <Trash2 size={14} />
                                                     </button>
@@ -493,7 +430,7 @@ export default function PromotionsAdmin() {
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold text-white">Códigos de Descuento</h2>
                             <button
-                                onClick={() => { setShowCodeForm(true); setCodeForm(emptyCode); }}
+                                onClick={() => { setShowCodeForm(true); setCodeForm(EMPTY_CODE_FORM); }}
                                 className="flex items-center gap-2 px-4 py-2 bg-violet-500/15 border border-violet-500/25 text-violet-400 rounded-xl text-sm font-medium hover:bg-violet-500/25 transition-all"
                             >
                                 <Plus size={15} /> Nuevo Código
@@ -594,7 +531,7 @@ export default function PromotionsAdmin() {
                                                     className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all">
                                                     {code.isActive ? <EyeOff size={14} /> : <Eye size={14} />}
                                                 </button>
-                                                <button onClick={() => deleteCode(code.id)}
+                                                <button onClick={() => setDeleteTarget({ type: 'code', id: code.id })}
                                                     className="p-2 rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-all">
                                                     <Trash2 size={14} />
                                                 </button>
@@ -607,6 +544,20 @@ export default function PromotionsAdmin() {
                     </div>
                 )}
             </div>
-        </main>
+
+            {/* Delete confirmation modal */}
+            <ConfirmModal
+                open={!!deleteTarget}
+                title={deleteTarget?.type === "promo" ? "Eliminar Promoción" : "Eliminar Código"}
+                message={deleteTarget?.type === "promo"
+                    ? "¿Estás seguro de que deseas eliminar esta promoción? Se eliminarán también los códigos asociados."
+                    : "¿Estás seguro de que deseas eliminar este código de descuento?"
+                }
+                confirmLabel="Eliminar"
+                variant="danger"
+                onConfirm={confirmDelete}
+                onCancel={() => setDeleteTarget(null)}
+            />
+        </div>
     );
 }

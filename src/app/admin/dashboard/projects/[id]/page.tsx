@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -9,92 +9,32 @@ import {
   Save,
   Globe,
   Calendar,
-  Code2,
-  CheckCircle2,
-  Wrench,
-  Pause,
-  Clock,
   Trash2,
   RefreshCw,
-  AlertCircle,
-  XCircle,
-  ArrowRight,
   MessageSquare,
 } from "lucide-react";
-
-// ── Types ──────────────────────────────────────────────────
-interface ChangeRequest {
-  id: string;
-  description: string;
-  priority: string;
-  status: string;
-  price: number | null;
-  estimatedPrice: number | null;
-  completionDate: string | null;
-  adminNotes: string | null;
-  clientNotes: string | null;
-  createdAt: string;
-}
-
-interface ProjectDetail {
-  id: string;
-  clientFirstName: string;
-  clientLastNameP: string;
-  clientLastNameM: string | null;
-  clientEmail: string;
-  projectName: string;
-  projectUrl: string | null;
-  projectType: string;
-  status: string;
-  deliveryDate: string | null;
-  technologies: string[];
-  documents: { name: string; url: string }[];
-  adminNotes: string | null;
-  createdAt: string;
-  changes: ChangeRequest[];
-}
-
-// ── Config ─────────────────────────────────────────────────
-const STATUSES = [
-  { value: "development", label: "En Desarrollo", icon: <Code2 size={14} /> },
-  { value: "delivered", label: "Entregado", icon: <CheckCircle2 size={14} /> },
-  { value: "maintenance", label: "Mantenimiento", icon: <Wrench size={14} /> },
-  { value: "paused", label: "Pausado", icon: <Pause size={14} /> },
-];
-
-const CHANGE_STATUSES = [
-  { value: "pending", label: "Pendiente", color: "text-yellow-400" },
-  { value: "accepted", label: "Aceptada", color: "text-blue-400" },
-  { value: "in_progress", label: "En Progreso", color: "text-purple-400" },
-  { value: "completed", label: "Completada", color: "text-emerald-400" },
-  { value: "cancelled", label: "Cancelada", color: "text-slate-400" },
-];
-
-const PRIORITY_LABELS: Record<string, { label: string; color: string }> = {
-  low: { label: "Baja", color: "text-slate-400" },
-  medium: { label: "Media", color: "text-blue-400" },
-  high: { label: "Alta", color: "text-amber-400" },
-  urgent: { label: "Urgente", color: "text-red-400" },
-};
-
-const STATUS_BADGE: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
-  pending: { label: "Pendiente", color: "bg-yellow-500/15 text-yellow-400 border-yellow-500/25", icon: <Clock size={12} /> },
-  accepted: { label: "Aceptada", color: "bg-blue-500/15 text-blue-400 border-blue-500/25", icon: <CheckCircle2 size={12} /> },
-  in_progress: { label: "En Progreso", color: "bg-purple-500/15 text-purple-400 border-purple-500/25", icon: <ArrowRight size={12} /> },
-  completed: { label: "Completada", color: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25", icon: <CheckCircle2 size={12} /> },
-  cancelled: { label: "Cancelada", color: "bg-slate-500/15 text-slate-400 border-slate-500/25", icon: <XCircle size={12} /> },
-};
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { useToast } from "@/context/ToastContext";
+import { LoadingState, NotFoundState, ConfirmModal } from "@/components/admin";
+import {
+  PROJECT_STATUS_OPTIONS,
+  CHANGE_STATUS_OPTIONS,
+  CHANGE_STATUS_CONFIG,
+  PRIORITY_CONFIG,
+  INPUT_CLASS,
+} from "@/lib/admin/constants";
+import type { ProjectDetail, ChangeRequest } from "@/types/admin";
 
 export default function AdminProjectDetailPage() {
-  const router = useRouter();
   const params = useParams();
   const projectId = params.id as string;
+  const { token, isLoading: authLoading, authHeaders } = useAdminAuth();
+  const toast = useToast();
 
   const [project, setProject] = useState<ProjectDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [token, setToken] = useState("");
-  const [message, setMessage] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   // Editable fields
   const [status, setStatus] = useState("");
@@ -113,7 +53,6 @@ export default function AdminProjectDetailPage() {
       const res = await fetch(`/api/admin/projects/${projectId}`, {
         headers: { "x-admin-token": adminToken },
       });
-      if (res.status === 401) { router.push("/admin"); return; }
       const data = await res.json();
       if (data.ok) {
         setProject(data.project);
@@ -126,25 +65,18 @@ export default function AdminProjectDetailPage() {
     } finally {
       setLoading(false);
     }
-  }, [projectId, router]);
+  }, [projectId]);
 
   useEffect(() => {
-    const t = sessionStorage.getItem("admin_token");
-    if (!t) { router.push("/admin"); return; }
-    setToken(t);
-    fetchProject(t);
-  }, [fetchProject, router]);
+    if (!authLoading && token) fetchProject(token);
+  }, [authLoading, token, fetchProject]);
 
   const handleSave = async () => {
     setSaving(true);
-    setMessage(null);
     try {
       const res = await fetch(`/api/admin/projects/${projectId}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-token": token,
-        },
+        headers: authHeaders(),
         body: JSON.stringify({
           status,
           adminNotes: adminNotes || null,
@@ -153,27 +85,26 @@ export default function AdminProjectDetailPage() {
       });
       const data = await res.json();
       if (data.ok) {
-        setMessage("Guardado correctamente");
+        toast.success("Guardado correctamente");
         setProject(data.project);
-        setTimeout(() => setMessage(null), 3000);
       }
     } catch {
-      setMessage("Error al guardar");
+      toast.error("Error al guardar");
     } finally {
       setSaving(false);
     }
   };
 
   const handleDelete = async () => {
-    if (!confirm("¿Eliminar este proyecto? Esta acción no se puede deshacer.")) return;
     try {
       await fetch(`/api/admin/projects/${projectId}`, {
         method: "DELETE",
-        headers: { "x-admin-token": token },
+        headers: authHeaders(),
       });
-      router.push("/admin/dashboard/projects");
+      toast.success("Proyecto eliminado");
+      window.location.href = "/admin/dashboard/projects";
     } catch {
-      setMessage("Error al eliminar");
+      toast.error("Error al eliminar");
     }
   };
 
@@ -182,10 +113,7 @@ export default function AdminProjectDetailPage() {
     try {
       const res = await fetch(`/api/admin/projects/${projectId}/changes`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-token": token,
-        },
+        headers: authHeaders(),
         body: JSON.stringify({
           changeId,
           status: changeStatus || undefined,
@@ -196,10 +124,11 @@ export default function AdminProjectDetailPage() {
       const data = await res.json();
       if (data.ok) {
         setEditingChange(null);
+        toast.success("Solicitud actualizada");
         fetchProject(token);
       }
     } catch {
-      console.error("Error updating change");
+      toast.error("Error al actualizar solicitud");
     } finally {
       setSavingChange(false);
     }
@@ -212,49 +141,38 @@ export default function AdminProjectDetailPage() {
     setChangeClientNotes(change.clientNotes || "");
   };
 
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <Loader2 size={24} className="animate-spin text-indigo-400" />
-      </main>
-    );
+  if (loading || authLoading) {
+    return <LoadingState message="Cargando proyecto..." />;
   }
 
   if (!project) {
-    return (
-      <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <p className="text-slate-400">Proyecto no encontrado</p>
-      </main>
-    );
+    return <NotFoundState title="Proyecto no encontrado" backHref="/admin/dashboard/projects" backLabel="Volver a proyectos" />;
   }
 
-  const inputClass = "w-full px-3 py-2 bg-white/[0.04] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-indigo-500/50 transition-all";
-
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <Link href="/admin/dashboard/projects" className="p-2 hover:bg-white/[0.06] rounded-lg transition-colors">
-              <ArrowLeft size={18} className="text-slate-400" />
-            </Link>
-            <div>
-              <h1 className="text-2xl font-bold">{project.projectName}</h1>
-              <p className="text-slate-400 text-sm mt-1">
-                {project.clientFirstName} {project.clientLastNameP} — {project.clientEmail}
-              </p>
-            </div>
+    <div>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <div className="flex items-center gap-3">
+          <Link href="/admin/dashboard/projects" className="p-2 hover:bg-white/[0.06] rounded-lg transition-colors">
+            <ArrowLeft size={18} className="text-slate-400" />
+          </Link>
+          <div>
+            <h1 className="text-xl font-bold text-white">{project.projectName}</h1>
+            <p className="text-white/40 text-sm">
+              {project.clientFirstName} {project.clientLastNameP} — {project.clientEmail}
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
+        </div>
+        <div className="flex items-center gap-2">
+          <button
               onClick={() => fetchProject(token)}
               className="p-2 bg-white/[0.04] border border-white/10 rounded-lg hover:bg-white/[0.08] transition-colors"
             >
               <RefreshCw size={16} className="text-slate-400" />
             </button>
             <button
-              onClick={handleDelete}
+              onClick={() => setShowDeleteConfirm(true)}
               className="p-2 bg-red-500/10 border border-red-500/20 rounded-lg hover:bg-red-500/20 transition-colors"
             >
               <Trash2 size={16} className="text-red-400" />
@@ -300,8 +218,8 @@ export default function AdminProjectDetailPage() {
 
               <div>
                 <label className="block text-xs text-slate-500 mb-1">Estado del Proyecto</label>
-                <select value={status} onChange={(e) => setStatus(e.target.value)} className={inputClass}>
-                  {STATUSES.map((s) => (
+                <select value={status} onChange={(e) => setStatus(e.target.value)} className={INPUT_CLASS}>
+                  {PROJECT_STATUS_OPTIONS.map((s) => (
                     <option key={s.value} value={s.value} className="bg-slate-900">{s.label}</option>
                   ))}
                 </select>
@@ -309,7 +227,7 @@ export default function AdminProjectDetailPage() {
 
               <div>
                 <label className="block text-xs text-slate-500 mb-1">Fecha de Entrega</label>
-                <input type="date" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} className={inputClass} />
+                <input type="date" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} className={INPUT_CLASS} />
               </div>
 
               <div>
@@ -319,7 +237,7 @@ export default function AdminProjectDetailPage() {
                   onChange={(e) => setAdminNotes(e.target.value)}
                   rows={3}
                   placeholder="Solo visible para admins..."
-                  className={`${inputClass} resize-none`}
+                  className={`${INPUT_CLASS} resize-none`}
                 />
               </div>
 
@@ -331,12 +249,6 @@ export default function AdminProjectDetailPage() {
                 {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
                 Guardar Cambios
               </button>
-
-              {message && (
-                <p className={`text-xs text-center ${message.includes("Error") ? "text-red-400" : "text-emerald-400"}`}>
-                  {message}
-                </p>
-              )}
             </div>
           </div>
 
@@ -352,8 +264,8 @@ export default function AdminProjectDetailPage() {
               ) : (
                 <div className="space-y-3">
                   {project.changes.map((change) => {
-                    const badge = STATUS_BADGE[change.status] || STATUS_BADGE.pending;
-                    const pri = PRIORITY_LABELS[change.priority] || PRIORITY_LABELS.medium;
+                    const badge = CHANGE_STATUS_CONFIG[change.status] || CHANGE_STATUS_CONFIG.pending;
+                    const pri = PRIORITY_CONFIG[change.priority] || PRIORITY_CONFIG.medium;
                     const isEditing = editingChange === change.id;
 
                     return (
@@ -392,8 +304,8 @@ export default function AdminProjectDetailPage() {
                             <div className="grid grid-cols-2 gap-3">
                               <div>
                                 <label className="block text-[11px] text-slate-500 mb-1">Estado</label>
-                                <select value={changeStatus} onChange={(e) => setChangeStatus(e.target.value)} className={inputClass}>
-                                  {CHANGE_STATUSES.map((s) => (
+                                <select value={changeStatus} onChange={(e) => setChangeStatus(e.target.value)} className={INPUT_CLASS}>
+                                  {CHANGE_STATUS_OPTIONS.map((s) => (
                                     <option key={s.value} value={s.value} className="bg-slate-900">{s.label}</option>
                                   ))}
                                 </select>
@@ -405,7 +317,7 @@ export default function AdminProjectDetailPage() {
                                   value={changePrice}
                                   onChange={(e) => setChangePrice(e.target.value)}
                                   placeholder="Ej: 35000"
-                                  className={inputClass}
+                                  className={INPUT_CLASS}
                                 />
                               </div>
                             </div>
@@ -419,7 +331,7 @@ export default function AdminProjectDetailPage() {
                                 onChange={(e) => setChangeClientNotes(e.target.value)}
                                 rows={2}
                                 placeholder="Visible para el cliente..."
-                                className={`${inputClass} resize-none`}
+                                className={`${INPUT_CLASS} resize-none`}
                               />
                             </div>
                             <div className="flex items-center justify-end gap-2">
@@ -455,7 +367,17 @@ export default function AdminProjectDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Delete confirmation modal */}
+        <ConfirmModal
+          open={showDeleteConfirm}
+          title="Eliminar Proyecto"
+          message="¿Eliminar este proyecto? Esta acción no se puede deshacer. Se eliminarán también todas las solicitudes de cambio asociadas."
+          confirmLabel="Eliminar"
+          variant="danger"
+          onConfirm={handleDelete}
+          onCancel={() => setShowDeleteConfirm(false)}
+        />
       </div>
-    </main>
   );
 }
