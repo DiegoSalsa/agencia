@@ -76,33 +76,33 @@ export default function Pricing() {
 
   return (
     <section id="planes" ref={ref} className="relative py-24 px-6 overflow-hidden">
-      {/* Always-dark background */}
-      <div className="absolute inset-0 bg-[#07060b]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(75,43,238,0.1),transparent_60%)]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-600/[0.06] rounded-full blur-[120px]" />
-      {/* Grid pattern for dark section */}
-      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      {/* Section background — themed */}
+      <div className="absolute inset-0 bg-[var(--section-pricing)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.08),transparent_60%)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-600/[0.04] dark:bg-violet-600/[0.06] rounded-full blur-[120px]" />
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, rgba(109,40,217,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
       {/* Extra glow */}
-      <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.06)_0%,transparent_55%)]" />
+      <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(var(--primary-rgb),0.05)_0%,transparent_55%)]" />
       {/* Floating shapes */}
-      <svg className="geo-float absolute top-16 left-[6%] w-24 h-24 opacity-[0.04]" style={{ animationDelay: '0.5s' }} viewBox="0 0 100 100" fill="none">
-        <path d="M50 5 L95 50 L50 95 L5 50 Z" stroke="white" strokeWidth="1.5" />
-        <path d="M50 25 L75 50 L50 75 L25 50 Z" stroke="white" strokeWidth="1" opacity="0.5" />
+      <svg className="geo-float absolute top-16 left-[6%] w-24 h-24 opacity-[0.06] dark:opacity-[0.04]" style={{ animationDelay: '0.5s' }} viewBox="0 0 100 100" fill="none">
+        <path d="M50 5 L95 50 L50 95 L5 50 Z" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-tertiary)]" />
+        <path d="M50 25 L75 50 L50 75 L25 50 Z" stroke="currentColor" strokeWidth="1" opacity="0.5" className="text-[var(--text-tertiary)]" />
       </svg>
-      <svg className="geo-float absolute bottom-[20%] right-[15%] w-16 h-16 opacity-[0.03]" style={{ animationDelay: '4s' }} viewBox="0 0 100 100" fill="none">
-        <circle cx="50" cy="50" r="35" stroke="white" strokeWidth="2" />
-        <path d="M50 15 L50 85 M15 50 L85 50" stroke="white" strokeWidth="1.2" opacity="0.4" />
+      <svg className="geo-float absolute bottom-[20%] right-[15%] w-16 h-16 opacity-[0.05] dark:opacity-[0.03]" style={{ animationDelay: '4s' }} viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="2" className="text-[var(--text-tertiary)]" />
+        <path d="M50 15 L50 85 M15 50 L85 50" stroke="currentColor" strokeWidth="1.2" opacity="0.4" className="text-[var(--text-tertiary)]" />
       </svg>
-      <div className="geo-float absolute bottom-16 right-[8%] w-14 h-14 border border-white/[0.06] rotate-[20deg] rounded-lg" style={{ animationDelay: '3s' }} />
-      <div className="geo-float absolute top-[45%] left-[3%] w-10 h-10 border border-white/[0.05] -rotate-[15deg] rounded-sm" style={{ animationDelay: '2s' }} />
+      <div className="geo-float absolute bottom-16 right-[8%] w-14 h-14 border border-[var(--feat-border)] rotate-[20deg] rounded-lg" style={{ animationDelay: '3s' }} />
+      <div className="geo-float absolute top-[45%] left-[3%] w-10 h-10 border border-[var(--feat-border)] -rotate-[15deg] rounded-sm" style={{ animationDelay: '2s' }} />
       {/* Gradient line accents */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/15 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/10 to-transparent" />
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage:
-            'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+            'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%236d28d9\' fill-opacity=\'0.3\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
         }}
       />
 
@@ -115,14 +115,14 @@ export default function Pricing() {
           variants={fadeUp}
           custom={0}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/[0.08] border border-violet-500/20 text-violet-400 text-xs font-medium tracking-wider uppercase mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/[0.08] border border-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-medium tracking-wider uppercase mb-6">
             <Sparkles size={12} />
             {t('pricing_tag')}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--feat-text)] mb-4 tracking-tight">
             {t('pricing_title')}
           </h2>
-          <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-[var(--feat-text-muted)] text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             {t('pricing_subtitle')}
           </p>
         </motion.div>
@@ -138,7 +138,7 @@ export default function Pricing() {
           >
             <Link
               href="/formulario/oferta"
-              className="group relative block rounded-2xl border-2 border-violet-500/30 bg-gradient-to-br from-violet-950/40 via-purple-900/20 to-emerald-950/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-emerald-400/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10"
+              className="group relative block rounded-2xl border-2 border-violet-500/30 bg-gradient-to-br from-violet-950/40 via-purple-900/20 to-emerald-950/40 dark:from-violet-950/40 dark:via-purple-900/20 dark:to-emerald-950/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-emerald-400/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10"
             >
               {/* Animated glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-violet-500/5 via-purple-500/10 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -154,11 +154,11 @@ export default function Pricing() {
               <div className="p-8 pt-10 flex flex-col md:flex-row items-center gap-8">
                 {/* Left: Info */}
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-tight">
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--feat-text)] mb-2 tracking-tight">
                     {promo.title}
                   </h3>
                   {promo.description && (
-                    <p className="text-white/40 text-sm mb-4 max-w-lg">{promo.description}</p>
+                    <p className="text-[var(--feat-text-muted)] text-sm mb-4 max-w-lg">{promo.description}</p>
                   )}
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm">
                     {promo.remainingSlots > 0 && (
@@ -180,7 +180,7 @@ export default function Pricing() {
                 <div className="flex flex-col items-center gap-3 shrink-0">
                   <div className="text-center">
                     <div className="flex items-center gap-2 justify-center mb-1">
-                      <span className="text-lg text-white/30 line-through decoration-red-400/60">
+                      <span className="text-lg text-[var(--feat-text-faint)] line-through decoration-red-400/60">
                         ${promo.originalPrice.toLocaleString('es-CL')}
                       </span>
                       <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full">
@@ -188,10 +188,10 @@ export default function Pricing() {
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1.5 justify-center">
-                      <span className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+                      <span className="text-4xl md:text-5xl font-extrabold text-[var(--feat-text)] tracking-tight">
                         ${promo.price.toLocaleString('es-CL')}
                       </span>
-                      <span className="text-sm text-white/30 font-medium">CLP</span>
+                      <span className="text-sm text-[var(--feat-text-faint)] font-medium">CLP</span>
                     </div>
                   </div>
                   <div className="w-full py-3 px-8 rounded-xl bg-gradient-to-r from-violet-500 to-emerald-500 opacity-90 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-violet-500/20 group-hover:shadow-xl">
@@ -218,7 +218,7 @@ export default function Pricing() {
               >
               <Link
                 href={`/formulario/${plan.briefingType}`}
-                className={`group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-2 hover:shadow-2xl ${plan.glow} cursor-pointer h-full`}
+                className={`group relative flex flex-col rounded-2xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] backdrop-blur-sm transition-all duration-500 hover:border-[var(--feat-card-hover-border)] hover:-translate-y-2 hover:shadow-2xl ${plan.glow} cursor-pointer h-full`}
               >
                 {/* Popular badge */}
                 {plan.popular && (
@@ -242,8 +242,8 @@ export default function Pricing() {
                     <div
                       className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} p-[1px] shadow-lg shadow-black/20`}
                     >
-                      <div className="w-full h-full rounded-2xl bg-[#0d0c14] flex items-center justify-center">
-                        <Icon size={22} className="text-white/90" />
+                      <div className="w-full h-full rounded-2xl bg-[var(--surface)] dark:bg-[#0d0c14] flex items-center justify-center">
+                        <Icon size={22} className="text-[var(--feat-text-muted)]" />
                       </div>
                     </div>
                     <span
@@ -254,15 +254,15 @@ export default function Pricing() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                  <h3 className="text-2xl font-bold text-[var(--feat-text)] mb-2 tracking-tight">
                     {t(plan.nameKey)}
                   </h3>
-                  <p className="text-white/35 text-sm leading-relaxed mb-6">{t(plan.descKey)}</p>
+                  <p className="text-[var(--feat-text-faint)] text-sm leading-relaxed mb-6">{t(plan.descKey)}</p>
 
                   {/* Features */}
                   <ul className="space-y-2.5 mb-8">
                     {plan.features.map((fKey) => (
-                      <li key={fKey} className="flex items-center gap-2.5 text-sm text-white/50">
+                      <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
                         <Check size={14} className={`${plan.accent} shrink-0`} />
                         {t(fKey)}
                       </li>
@@ -272,23 +272,23 @@ export default function Pricing() {
                   {/* Price + discount + CTA */}
                   <div className="mt-auto">
                     <div className="flex items-baseline gap-2 mb-0.5">
-                      <span className="text-xs text-white/30 uppercase tracking-wider">
+                      <span className="text-xs text-[var(--feat-text-faint)] uppercase tracking-wider">
                         {t('pricing_from')}
                       </span>
-                      <span className="text-sm text-white/30 line-through decoration-red-400/60">
+                      <span className="text-sm text-[var(--feat-text-faint)] line-through decoration-red-400/60">
                         {getOriginalPrice(plan.key, currency)}
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-3xl font-extrabold text-white tracking-tight">
+                      <span className="text-3xl font-extrabold text-[var(--feat-text)] tracking-tight">
                         {getRegionalPrice(plan.key, currency)}
                       </span>
-                      <span className="text-sm text-white/30 font-medium">{currency}</span>
+                      <span className="text-sm text-[var(--feat-text-faint)] font-medium">{currency}</span>
                       <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
                         -40%
                       </span>
                     </div>
-                    <p className="text-[11px] text-white/25 mb-4">
+                    <p className="text-[11px] text-[var(--feat-text-faint)] mb-4">
                       {t('pricing_payment_note')}
                     </p>
 

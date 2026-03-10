@@ -20,6 +20,25 @@
   --text-tertiary: #9ca3af;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+
+  /* Section backgrounds — vibrante light palette */
+  --section-services: #f5f3ff;
+  --section-portfolio: #fffbeb;
+  --section-process: #ecfdf5;
+  --section-pricing: #eff6ff;
+  --section-faq: #fff7ed;
+
+  /* Portfolio/Pricing card system — light */
+  --feat-text: #111827;
+  --feat-text-muted: #6b7280;
+  --feat-text-faint: #9ca3af;
+  --feat-border: #e5e7eb;
+  --feat-card-bg: #ffffff;
+  --feat-card-hover-border: rgba(109, 40, 217, 0.2);
+  --feat-glow: rgba(109, 40, 217, 0.03);
+
+  /* Tech icon monochrome — dark on light bg */
+  --tech-mono: #111827;
 }
 
 .dark {
@@ -33,6 +52,24 @@
   --text-tertiary: #71717a;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   --card-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  /* Section backgrounds — dark palette */
+  --section-services: #111113;
+  --section-portfolio: #0a0810;
+  --section-process: #111113;
+  --section-pricing: #07060b;
+  --section-faq: #111113;
+
+  /* Portfolio/Pricing card system — dark */
+  --feat-text: #fafafa;
+  --feat-text-muted: #a1a1aa;
+  --feat-text-faint: #71717a;
+  --feat-border: rgba(255, 255, 255, 0.06);
+  --feat-card-bg: rgba(255, 255, 255, 0.02);
+  --feat-card-hover-border: rgba(255, 255, 255, 0.12);
+  --feat-glow: rgba(255, 255, 255, 0.02);
+
+  --tech-mono: #ffffff;
 }
 
 /* ========== Base ========== */
@@ -50,11 +87,14 @@ body {
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.thin-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+.thin-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent; }
 .thin-scrollbar::-webkit-scrollbar { width: 4px; }
 .thin-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.thin-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
-.thin-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+.thin-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+.thin-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
+.dark .thin-scrollbar { scrollbar-color: rgba(255,255,255,0.15) transparent; }
+.dark .thin-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+.dark .thin-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
 /* ========== Card Styles ========== */
 .card {
@@ -189,9 +229,14 @@ body {
   position: absolute;
   inset: 0;
   background:
+    radial-gradient(ellipse at 20% 50%, rgba(var(--primary-rgb), 0.06), transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(var(--primary-rgb), 0.04), transparent 60%);
+  pointer-events: none;
+}
+.dark .section-ambient::before {
+  background:
     radial-gradient(ellipse at 20% 50%, rgba(var(--primary-rgb), 0.08), transparent 60%),
     radial-gradient(ellipse at 80% 50%, rgba(var(--primary-rgb), 0.06), transparent 60%);
-  pointer-events: none;
 }
 
 /* Geometric angle decoration inspired by logo */

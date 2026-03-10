@@ -23,21 +23,24 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <Hero />
-        <div className="bg-[var(--bg-secondary)] section-ambient">
+        <div className="bg-[var(--section-services)] section-ambient">
           <Services />
         </div>
-        <SectionDivider fromColor="var(--bg-secondary)" toColor="#0a0810" />
+        <SectionDivider fromColor="var(--section-services)" toColor="var(--section-portfolio)" />
         <Portfolio />
-        <div className="bg-[var(--bg-secondary)] section-ambient">
+        <SectionDivider fromColor="var(--section-portfolio)" toColor="var(--section-process)" flip />
+        <div className="bg-[var(--section-process)] section-ambient">
           <Process />
         </div>
-        <SectionDivider fromColor="var(--bg-secondary)" toColor="var(--bg)" flip />
+        <SectionDivider fromColor="var(--section-process)" toColor="var(--bg)" />
         <CtaBanner />
+        <SectionDivider fromColor="var(--bg)" toColor="var(--section-pricing)" flip />
         <Pricing />
-        <div className="bg-[var(--bg-secondary)] section-ambient">
+        <SectionDivider fromColor="var(--section-pricing)" toColor="var(--section-faq)" />
+        <div className="bg-[var(--section-faq)] section-ambient">
           <FAQ />
         </div>
-        <SectionDivider fromColor="var(--bg-secondary)" toColor="var(--bg)" />
+        <SectionDivider fromColor="var(--section-faq)" toColor="var(--bg)" flip />
         <div className="section-ambient">
           <Contact />
         </div>

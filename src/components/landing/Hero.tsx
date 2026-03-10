@@ -13,7 +13,7 @@ const whatsappContacts = [
 
 const technologies = [
   { name: 'React', icon: 'Re', color: '#61DAFB' },
-  { name: 'Next.js', icon: '▲', color: '#ffffff' },
+  { name: 'Next.js', icon: '▲', color: 'var(--tech-mono)' },
   { name: 'TypeScript', icon: 'TS', color: '#3178C6' },
   { name: 'JavaScript', icon: 'JS', color: '#F7DF1E' },
   { name: 'HTML5', icon: 'H5', color: '#E34F26' },
@@ -24,7 +24,7 @@ const technologies = [
   { name: 'Node.js', icon: '⬢', color: '#5FA04E' },
   { name: 'Python', icon: 'Py', color: '#3776AB' },
   { name: 'Java', icon: 'Jv', color: '#ED8B00' },
-  { name: 'Express', icon: 'Ex', color: '#ffffff' },
+  { name: 'Express', icon: 'Ex', color: 'var(--tech-mono)' },
   { name: 'GraphQL', icon: '◈', color: '#E10098' },
   { name: 'REST API', icon: 'AP', color: '#6BA539' },
   { name: 'PostgreSQL', icon: 'PG', color: '#4169E1' },
@@ -33,7 +33,7 @@ const technologies = [
   { name: 'SQLite', icon: 'SL', color: '#003B57' },
   { name: 'Prisma', icon: '◆', color: '#2D3748' },
   { name: 'Redis', icon: 'Rd', color: '#DC382D' },
-  { name: 'Vercel', icon: '▲', color: '#ffffff' },
+  { name: 'Vercel', icon: '▲', color: 'var(--tech-mono)' },
   { name: 'AWS', icon: 'AW', color: '#FF9900' },
   { name: 'Docker', icon: 'Dk', color: '#2496ED' },
   { name: 'GitHub Actions', icon: 'GA', color: '#2088FF' },

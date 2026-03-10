@@ -49,13 +49,13 @@ export default function PromoPopup() {
             onClick={handleClose}
         >
             <div
-                className="relative w-full max-w-md bg-[rgba(9,9,11,0.92)] backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden animate-fadeIn"
+                className="relative w-full max-w-md bg-white/95 dark:bg-[rgba(9,9,11,0.92)] backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.08] rounded-2xl shadow-2xl shadow-black/20 dark:shadow-black/40 overflow-hidden animate-fadeIn"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     onClick={handleClose}
-                    className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-colors cursor-pointer"
+                    className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[var(--text-tertiary)] hover:text-[var(--text)] transition-colors cursor-pointer"
                 >
                     <X size={16} />
                 </button>
@@ -64,20 +64,20 @@ export default function PromoPopup() {
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
 
                 {/* Header */}
-                <div className="bg-gradient-to-br from-violet-600/15 via-purple-500/10 to-emerald-500/10 px-6 pt-6 pb-4 border-b border-white/[0.06]">
+                <div className="bg-gradient-to-br from-violet-600/15 via-purple-500/10 to-emerald-500/10 px-6 pt-6 pb-4 border-b border-[var(--border)]">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20 p-1.5">
                             <Image src="/img/logo.svg" alt="PuroCode" width={24} height={24} className="w-full h-full" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold text-white">
+                            <h2 className="text-lg font-bold text-[var(--text)]">
                                 {promo.popupTitle || "¡Oferta Especial!"}
                             </h2>
-                            <p className="text-xs text-white/40">PuroCode · Tiempo limitado</p>
+                            <p className="text-xs text-[var(--text-tertiary)]">PuroCode · Tiempo limitado</p>
                         </div>
                     </div>
 
-                    <p className="text-sm text-white/50 leading-relaxed">
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                         {promo.popupBody || promo.description || "Obtén tu landing page profesional a precio reducido"}
                     </p>
                 </div>
@@ -86,10 +86,10 @@ export default function PromoPopup() {
                 <div className="px-6 py-5">
                     {/* Price */}
                     <div className="flex items-baseline gap-3 mb-4">
-                        <span className="text-3xl font-extrabold text-white">
+                        <span className="text-3xl font-extrabold text-[var(--text)]">
                             ${promo.price.toLocaleString("es-CL")}
                         </span>
-                        <span className="text-lg text-white/30 line-through decoration-red-400/60">
+                        <span className="text-lg text-[var(--text-tertiary)] line-through decoration-red-400/60">
                             ${promo.originalPrice.toLocaleString("es-CL")}
                         </span>
                         <span className="text-xs font-bold text-violet-300 bg-violet-500/15 px-2 py-0.5 rounded-md">
@@ -100,22 +100,22 @@ export default function PromoPopup() {
                     {/* Features */}
                     <ul className="space-y-2.5 mb-5">
                         {features.map((f) => (
-                            <li key={f} className="flex items-center gap-2.5 text-sm text-white/50">
-                                <Check size={14} className="text-emerald-400 flex-shrink-0" />
+                            <li key={f} className="flex items-center gap-2.5 text-sm text-[var(--text-secondary)]">
+                                <Check size={14} className="text-emerald-500 dark:text-emerald-400 flex-shrink-0" />
                                 {f}
                             </li>
                         ))}
                     </ul>
 
                     {/* Cupos + time */}
-                    <div className="flex items-center gap-4 mb-5 text-xs text-white/40">
+                    <div className="flex items-center gap-4 mb-5 text-xs text-[var(--text-tertiary)]">
                         <div className="flex items-center gap-1.5">
-                            <Users size={12} className="text-amber-400" />
-                            <span><strong className="text-amber-400">{promo.remainingSlots}</strong> cupos disponibles</span>
+                            <Users size={12} className="text-amber-500 dark:text-amber-400" />
+                            <span><strong className="text-amber-500 dark:text-amber-400">{promo.remainingSlots}</strong> cupos disponibles</span>
                         </div>
                         {promo.endsAt && (
                             <div className="flex items-center gap-1.5">
-                                <Clock size={12} className="text-violet-400" />
+                                <Clock size={12} className="text-violet-500 dark:text-violet-400" />
                                 <span>Hasta {new Date(promo.endsAt).toLocaleDateString("es-CL")}</span>
                             </div>
                         )}
@@ -133,7 +133,7 @@ export default function PromoPopup() {
 
                     <button
                         onClick={handleClose}
-                        className="w-full mt-2 py-2 text-xs text-white/30 hover:text-white/50 transition-colors text-center cursor-pointer"
+                        className="w-full mt-2 py-2 text-xs text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors text-center cursor-pointer"
                     >
                         No, gracias
                     </button>

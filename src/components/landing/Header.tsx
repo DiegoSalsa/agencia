@@ -49,7 +49,7 @@ export default function Header() {
       >
         <nav className={`flex w-full max-w-[1200px] items-center justify-between px-6 transition-all duration-500 ${
           scrolled
-            ? 'py-2 rounded-xl bg-[rgba(9,9,11,0.85)] dark:bg-[rgba(9,9,11,0.9)] backdrop-blur-xl border border-white/[0.06] shadow-lg shadow-black/20'
+            ? 'py-2 rounded-xl bg-white/85 dark:bg-[rgba(9,9,11,0.9)] backdrop-blur-xl border border-black/[0.06] dark:border-white/[0.06] shadow-lg shadow-black/8 dark:shadow-black/20'
             : 'py-2.5 rounded-2xl nav-glass'
         }`}>
           {/* Logo */}
