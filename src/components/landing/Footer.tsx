@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-5 md:col-span-1">
             <div className="flex items-center gap-2">
-              <Image src="/img/logo.svg" alt="PuroCode Logo" width={32} height={32} className="h-8 w-auto" />
+              <Image src="/img/logo.svg" alt="PuroCode Logo" width={32} height={32} className="h-8 w-auto dark:brightness-100 brightness-0" />
               <span className="font-bold text-lg text-[var(--text)]">PuroCode</span>
             </div>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t('footer_desc')}</p>

@@ -13,7 +13,7 @@ export default function PrivacidadPage() {
         <div className="mx-auto max-w-[900px] px-6 py-4 flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors">
             <ArrowLeft size={18} />
-            <Image src="/img/logo.svg" alt="PuroCode" width={28} height={28} className="h-7 w-auto" />
+            <Image src="/img/logo.svg" alt="PuroCode" width={28} height={28} className="h-7 w-auto dark:brightness-100 brightness-0" />
             <span className="font-bold text-lg text-[var(--text)]">PuroCode</span>
           </Link>
         </div>
