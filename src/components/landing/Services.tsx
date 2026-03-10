@@ -20,14 +20,14 @@ const services = [
     accentColor: 'text-violet-400',
     borderAccent: 'group-hover:border-violet-500/30',
     features: [
-      { icon: Code, text: 'Next.js / React / TypeScript' },
-      { icon: Paintbrush, text: 'Tailwind CSS + Framer Motion' },
-      { icon: Smartphone, text: 'Mobile-First & Responsive' },
-      { icon: Zap, text: '90+ Lighthouse Performance' },
-      { icon: Palette, text: 'UI/UX Diseño personalizado' },
-      { icon: Search, text: 'SEO Optimizado desde día 1' },
+      { icon: Code, key: 'svc_feat_1_1' },
+      { icon: Paintbrush, key: 'svc_feat_1_2' },
+      { icon: Smartphone, key: 'svc_feat_1_3' },
+      { icon: Zap, key: 'svc_feat_1_4' },
+      { icon: Palette, key: 'svc_feat_1_5' },
+      { icon: Search, key: 'svc_feat_1_6' },
     ],
-    stat: { value: '90+', label: 'Lighthouse Score' },
+    stat: { value: '90+', labelKey: 'svc_stat_1' },
     techStack: ['React', 'Next.js', 'Tailwind', 'Framer Motion'],
   },
   {
@@ -39,14 +39,14 @@ const services = [
     accentColor: 'text-emerald-400',
     borderAccent: 'group-hover:border-emerald-500/30',
     features: [
-      { icon: Lock, text: 'SSL & Seguridad 24/7' },
-      { icon: Server, text: 'Uptime 99.9% garantizado' },
-      { icon: BarChart3, text: 'Monitoreo en tiempo real' },
-      { icon: Rocket, text: 'Deploy automático CI/CD' },
-      { icon: Settings, text: 'Mantenimiento preventivo' },
-      { icon: ShieldCheck, text: 'Backups diarios' },
+      { icon: Lock, key: 'svc_feat_2_1' },
+      { icon: Server, key: 'svc_feat_2_2' },
+      { icon: BarChart3, key: 'svc_feat_2_3' },
+      { icon: Rocket, key: 'svc_feat_2_4' },
+      { icon: Settings, key: 'svc_feat_2_5' },
+      { icon: ShieldCheck, key: 'svc_feat_2_6' },
     ],
-    stat: { value: '99.9%', label: 'Uptime' },
+    stat: { value: '99.9%', labelKey: 'svc_stat_2' },
     techStack: ['Vercel', 'Docker', 'GitHub Actions', 'Cloudflare'],
   },
   {
@@ -58,14 +58,14 @@ const services = [
     accentColor: 'text-blue-400',
     borderAccent: 'group-hover:border-blue-500/30',
     features: [
-      { icon: Cloud, text: 'Arquitectura cloud escalable' },
-      { icon: Server, text: 'API REST & GraphQL' },
-      { icon: Database, text: 'PostgreSQL / MongoDB / Prisma' },
-      { icon: Lock, text: 'Auth multi-nivel (OAuth2)' },
-      { icon: BarChart3, text: 'Dashboards & Analytics' },
-      { icon: GitBranch, text: 'Microservicios & Webhooks' },
+      { icon: Cloud, key: 'svc_feat_3_1' },
+      { icon: Server, key: 'svc_feat_3_2' },
+      { icon: Database, key: 'svc_feat_3_3' },
+      { icon: Lock, key: 'svc_feat_3_4' },
+      { icon: BarChart3, key: 'svc_feat_3_5' },
+      { icon: GitBranch, key: 'svc_feat_3_6' },
     ],
-    stat: { value: '∞', label: 'Escalabilidad' },
+    stat: { value: '∞', labelKey: 'svc_stat_3' },
     techStack: ['Node.js', 'Prisma', 'PostgreSQL', 'AWS'],
   },
 ];
@@ -158,13 +158,13 @@ export default function Services() {
                     {s.features.map((f) => {
                       const FIcon = f.icon;
                       return (
-                        <div key={f.text} className="flex items-center gap-2.5">
+                        <div key={f.key} className="flex items-center gap-2.5">
                           <div className={`w-5 h-5 rounded-md bg-gradient-to-br ${s.gradient} p-[1px] shrink-0`}>
                             <div className="w-full h-full rounded-md bg-[var(--surface)] flex items-center justify-center">
                               <FIcon size={10} className={s.accentColor} />
                             </div>
                           </div>
-                          <span className="text-sm text-[var(--text-secondary)]">{f.text}</span>
+                          <span className="text-sm text-[var(--text-secondary)]">{t(f.key)}</span>
                         </div>
                       );
                     })}
@@ -185,7 +185,7 @@ export default function Services() {
                   {/* Stat */}
                   <div className="pt-5 border-t border-[var(--border)] flex items-baseline gap-2">
                     <span className={`text-3xl font-extrabold ${s.accentColor}`}>{s.stat.value}</span>
-                    <span className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider">{s.stat.label}</span>
+                    <span className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider">{t(s.stat.labelKey)}</span>
                   </div>
                 </div>
               </motion.div>

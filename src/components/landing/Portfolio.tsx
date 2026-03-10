@@ -97,14 +97,15 @@ export default function Portfolio() {
 
   return (
     <section id="portafolio" ref={ref} className="relative py-24 px-6 overflow-hidden">
-      {/* Dark background like Pricing */}
-      <div className="absolute inset-0 bg-[#07060b]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(75,43,238,0.08),transparent_60%)]" />
-      {/* Grid pattern for dark section */}
-      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      {/* Dark background — warm-shifted to differentiate from Pricing */}
+      <div className="absolute inset-0 bg-[#0a0810]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.08),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.05),transparent_55%)]" />
+      {/* Diagonal line pattern unique to Portfolio */}
+      <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 40px)', backgroundSize: '56px 56px' }} />
       {/* Radial glows */}
-      <div className="absolute top-[10%] left-[5%] w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(109,40,217,0.1)_0%,transparent_55%)]" />
-      <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.06)_0%,transparent_55%)]" />
+      <div className="absolute top-[10%] left-[5%] w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_55%)]" />
+      <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(59,130,246,0.05)_0%,transparent_55%)]" />
       {/* Floating shapes */}
       <svg className="geo-float absolute top-20 right-[8%] w-28 h-28 opacity-[0.04]" style={{ animationDelay: '2s' }} viewBox="0 0 100 100" fill="none">
         <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
@@ -115,8 +116,8 @@ export default function Portfolio() {
       <div className="geo-float absolute bottom-20 left-[12%] w-16 h-16 border border-white/[0.06] rotate-45 rounded-lg" style={{ animationDelay: '4s' }} />
       <div className="geo-float absolute top-[50%] right-[4%] w-12 h-12 border border-white/[0.05] -rotate-12 rounded-md" style={{ animationDelay: '1s' }} />
       {/* Gradient line accents */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/10 to-transparent" />
       <div
         className="absolute inset-0 opacity-[0.012]"
         style={{
@@ -134,9 +135,18 @@ export default function Portfolio() {
           variants={fadeUp}
           custom={0}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400 mb-4">{t('portfolio_tag')}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400 mb-4">{t('portfolio_tag')}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">{t('portfolio_title')}</h2>
-          <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">{t('portfolio_subtitle')}</p>
+          <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-6">{t('portfolio_subtitle')}</p>
+          {/* Trust indicator */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08]">
+            <div className="flex -space-x-1">
+              {[...Array(7)].map((_, j) => (
+                <div key={j} className="w-2 h-2 rounded-full bg-emerald-400/80 ring-1 ring-[#07060b]" />
+              ))}
+            </div>
+            <span className="text-xs text-white/50 font-medium">{t('portfolio_trust_badge')}</span>
+          </div>
         </motion.div>
 
         {/* Featured row: first 3 large */}
@@ -147,7 +157,7 @@ export default function Portfolio() {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/5 cursor-pointer"
+              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/5 cursor-pointer"
               initial="hidden"
               animate={isVisible ? 'visible' : 'hidden'}
               variants={fadeUp}
@@ -170,7 +180,7 @@ export default function Portfolio() {
 
               {/* Content */}
               <div className="p-5 flex flex-col flex-1">
-                <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-violet-300 transition-colors">
+                <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-indigo-300 transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-sm text-white/35 leading-relaxed">{t(project.descKey)}</p>
@@ -187,7 +197,7 @@ export default function Portfolio() {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/5 cursor-pointer"
+              className="group relative flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/5 cursor-pointer"
               initial="hidden"
               animate={isVisible ? 'visible' : 'hidden'}
               variants={fadeUp}
@@ -209,7 +219,7 @@ export default function Portfolio() {
 
               {/* Content */}
               <div className="p-4 flex flex-col flex-1">
-                <h3 className="text-base font-bold text-white mb-1 group-hover:text-violet-300 transition-colors">
+                <h3 className="text-base font-bold text-white mb-1 group-hover:text-indigo-300 transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-xs text-white/35 leading-relaxed line-clamp-2">{t(project.descKey)}</p>

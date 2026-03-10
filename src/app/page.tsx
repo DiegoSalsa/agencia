@@ -2,9 +2,9 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
 import { PromoProvider } from '@/context/PromoContext';
+import SectionDivider from '@/components/shared/SectionDivider';
 
 const Services = dynamic(() => import('@/components/landing/Services'));
-const ClientLogos = dynamic(() => import('@/components/landing/ClientLogos'));
 const Portfolio = dynamic(() => import('@/components/landing/Portfolio'));
 const Process = dynamic(() => import('@/components/landing/Process'));
 const CtaBanner = dynamic(() => import('@/components/landing/CtaBanner'));
@@ -26,16 +26,18 @@ export default function Home() {
         <div className="bg-[var(--bg-secondary)] section-ambient">
           <Services />
         </div>
-        <ClientLogos />
+        <SectionDivider fromColor="var(--bg-secondary)" toColor="#0a0810" />
         <Portfolio />
         <div className="bg-[var(--bg-secondary)] section-ambient">
           <Process />
         </div>
+        <SectionDivider fromColor="var(--bg-secondary)" toColor="var(--bg)" flip />
         <CtaBanner />
         <Pricing />
         <div className="bg-[var(--bg-secondary)] section-ambient">
           <FAQ />
         </div>
+        <SectionDivider fromColor="var(--bg-secondary)" toColor="var(--bg)" />
         <div className="section-ambient">
           <Contact />
         </div>

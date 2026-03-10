@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, Instagram, Facebook } from 'lucide-react';
+import { Mail, MessageCircle, Instagram, Facebook, Send, Loader2, CheckCircle } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
 
@@ -50,6 +51,34 @@ const fadeUp = {
 export default function Contact() {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setStatus('sent');
+        setForm({ name: '', email: '', message: '', website: '' });
+      } else {
+        setErrorMsg(data.message || 'Error al enviar.');
+        setStatus('error');
+      }
+    } catch {
+      setErrorMsg('Error de conexión. Intenta más tarde.');
+      setStatus('error');
+    }
+  };
 
   return (
     <section id="contacto" ref={ref} className="py-24 px-6 border-t border-[var(--border)] relative overflow-hidden">
@@ -85,46 +114,158 @@ export default function Contact() {
         <p className="section-subtitle mx-auto">{t('contact_subtitle')}</p>
       </motion.div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
-        {contactCards.map((card, i) => {
-          const Icon = card.icon;
-          return (
-            <motion.div
-              key={card.titleKey}
-              className="card p-6"
-              initial="hidden"
-              animate={isVisible ? 'visible' : 'hidden'}
-              variants={fadeUp}
-              custom={i + 1}
-            >
-              <div className={`w-11 h-11 rounded-xl ${card.color} flex items-center justify-center mb-4`}>
-                <Icon size={20} />
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 relative z-10">
+        {/* Contact Form — 3 cols */}
+        <motion.div
+          className="lg:col-span-3"
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          custom={1}
+        >
+          <div className="card p-6 sm:p-8">
+            <h3 className="text-lg font-bold text-[var(--text)] mb-1">{t('contact_form_title')}</h3>
+            <p className="text-sm text-[var(--text-tertiary)] mb-6">{t('contact_form_subtitle')}</p>
+
+            {status === 'sent' ? (
+              <div className="flex flex-col items-center gap-3 py-10 text-center">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <CheckCircle size={28} className="text-emerald-500" />
+                </div>
+                <p className="text-[var(--text)] font-semibold">{t('contact_form_success_title')}</p>
+                <p className="text-sm text-[var(--text-tertiary)]">{t('contact_form_success_desc')}</p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="mt-2 text-sm text-[var(--primary)] hover:underline cursor-pointer"
+                >
+                  {t('contact_form_send_another')}
+                </button>
               </div>
-              <h3 className="text-sm font-semibold text-[var(--text-tertiary)] uppercase tracking-wider mb-2">
-                {t(card.titleKey)}
-              </h3>
-              <a
-                href={card.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--text)] font-medium hover:text-[var(--primary)] transition-colors cursor-pointer block"
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="website"
+                  value={form.website}
+                  onChange={(e) => setForm({ ...form, website: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+                <div>
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+                    {t('contact_form_name')}
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    required
+                    minLength={2}
+                    maxLength={200}
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all text-sm"
+                    placeholder={t('contact_form_name_placeholder')}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+                    {t('contact_form_email')}
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    maxLength={320}
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all text-sm"
+                    placeholder={t('contact_form_email_placeholder')}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+                    {t('contact_form_message')}
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    minLength={10}
+                    maxLength={2000}
+                    rows={4}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all text-sm resize-none"
+                    placeholder={t('contact_form_message_placeholder')}
+                  />
+                </div>
+
+                {errorMsg && (
+                  <p className="text-red-400 text-sm">{errorMsg}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white font-semibold text-sm hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+                >
+                  {status === 'sending' ? (
+                    <Loader2 size={18} className="animate-spin" />
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      {t('contact_form_submit')}
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </motion.div>
+
+        {/* Contact Cards — 2 cols */}
+        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          {contactCards.map((card, i) => {
+            const Icon = card.icon;
+            return (
+              <motion.div
+                key={card.titleKey}
+                className="card p-5"
+                initial="hidden"
+                animate={isVisible ? 'visible' : 'hidden'}
+                variants={fadeUp}
+                custom={i + 2}
               >
-                {card.value}
-              </a>
-              {card.value2 && card.href2 && (
+                <div className={`w-10 h-10 rounded-xl ${card.color} flex items-center justify-center mb-3`}>
+                  <Icon size={18} />
+                </div>
+                <h3 className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider mb-1.5">
+                  {t(card.titleKey)}
+                </h3>
                 <a
-                  href={card.href2}
+                  href={card.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--text)] font-medium hover:text-[var(--primary)] transition-colors cursor-pointer block mt-1"
+                  className="text-sm text-[var(--text)] font-medium hover:text-[var(--primary)] transition-colors cursor-pointer block"
                 >
-                  {card.value2}
+                  {card.value}
                 </a>
-              )}
-            </motion.div>
-          );
-        })}
+                {card.value2 && card.href2 && (
+                  <a
+                    href={card.href2}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[var(--text)] font-medium hover:text-[var(--primary)] transition-colors cursor-pointer block mt-0.5"
+                  >
+                    {card.value2}
+                  </a>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
