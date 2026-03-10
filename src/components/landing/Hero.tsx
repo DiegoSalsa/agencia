@@ -135,15 +135,16 @@ export default function Hero() {
         >
           {t('hero_title')}{' '}
           <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)] inline-block">
+          <span className="inline-block">
             <AnimatePresence mode="wait">
               <motion.span
                 key={highlightIndex}
-                initial={{ opacity: 0, y: 12, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -12, filter: 'blur(8px)' }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="inline-block"
+                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)]"
+                style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
               >
                 {highlights[highlightIndex]}
               </motion.span>
