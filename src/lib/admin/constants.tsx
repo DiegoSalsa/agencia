@@ -313,12 +313,12 @@ export function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
   if (mins < 1) return "ahora";
-  if (mins < 60) return `hace ${mins}m`;
+  if (mins < 60) return `hace ${mins} min`;
   const hrs = Math.floor(mins / 60);
   if (hrs < 24) return `hace ${hrs}h`;
   const days = Math.floor(hrs / 24);
-  if (days < 7) return `hace ${days}d`;
-  if (days < 30) return `hace ${Math.floor(days / 7)}sem`;
+  if (days < 7) return `hace ${days} día${days > 1 ? "s" : ""}`;
+  if (days < 30) return `hace ${Math.floor(days / 7)} sem`;
   return new Date(dateStr).toLocaleDateString("es-CL", { day: "numeric", month: "short" });
 }
 

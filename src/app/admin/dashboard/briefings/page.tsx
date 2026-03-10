@@ -518,7 +518,7 @@ export default function BriefingsPage() {
         /* ─── List View ─── */
         <div className="space-y-2">
           {/* Table header */}
-          <div className="hidden sm:grid grid-cols-[32px_1fr_130px_120px_110px_110px_160px] gap-3 px-4 py-2 text-[10px] text-white/30 font-medium uppercase tracking-wider">
+          <div className="hidden sm:grid grid-cols-[32px_1fr_120px_110px_100px_120px_200px] gap-4 px-4 py-2 text-[10px] text-white/30 font-medium uppercase tracking-wider">
             <button onClick={toggleSelectAll} className="text-white/20 hover:text-white/60 transition-colors">
               {selectedIds.size === paginatedBriefings.length && paginatedBriefings.length > 0 ? (
                 <CheckSquare size={14} className="text-indigo-400" />
@@ -545,7 +545,7 @@ export default function BriefingsPage() {
                     : "bg-white/[0.02] border-white/5 hover:border-white/10"
                 }`}
               >
-                <div className="sm:grid sm:grid-cols-[32px_1fr_130px_120px_110px_110px_160px] sm:gap-3 sm:items-center space-y-3 sm:space-y-0">
+                <div className="sm:grid sm:grid-cols-[32px_1fr_120px_110px_100px_120px_200px] sm:gap-4 sm:items-center space-y-3 sm:space-y-0">
                   {/* Checkbox */}
                   <button onClick={() => toggleSelect(b.id)} className="text-white/20 hover:text-white/60 transition-colors hidden sm:block">
                     {isSelected ? <CheckSquare size={14} className="text-indigo-400" /> : <Square size={14} />}
@@ -570,10 +570,10 @@ export default function BriefingsPage() {
                   <span className="text-xs text-emerald-400/70 font-medium">{tc.price}</span>
 
                   {/* Date */}
-                  <span className="text-[11px] text-white/30 whitespace-nowrap">{timeAgo(b.createdAt)}</span>
+                  <span className="text-[11px] text-white/30 whitespace-nowrap overflow-hidden text-ellipsis">{timeAgo(b.createdAt)}</span>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-1.5 justify-end">
+                  <div className="flex items-center gap-1.5 justify-end flex-shrink-0">
                     <select
                       value={b.status}
                       onChange={(e) => handleStatusChange(b.id, e.target.value)}
