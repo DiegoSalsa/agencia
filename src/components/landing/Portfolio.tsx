@@ -108,10 +108,12 @@ export default function Portfolio() {
       <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(59,130,246,0.05)_0%,transparent_55%)]" />
       {/* Floating shapes */}
       <svg className="geo-float absolute top-20 right-[8%] w-28 h-28 opacity-[0.04]" style={{ animationDelay: '2s' }} viewBox="0 0 100 100" fill="none">
-        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
+        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="white" strokeWidth="1.5" />
+        <line x1="5" y1="27.5" x2="95" y2="72.5" stroke="white" strokeWidth="0.8" opacity="0.4" />
+        <line x1="95" y1="27.5" x2="5" y2="72.5" stroke="white" strokeWidth="0.8" opacity="0.4" />
       </svg>
       <svg className="geo-float absolute bottom-[25%] left-[10%] w-20 h-20 opacity-[0.03]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
-        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="3" />
+        <path d="M50 5 L90 30 L90 70 L50 95 L10 70 L10 30 Z" stroke="white" strokeWidth="2" />
       </svg>
       <div className="geo-float absolute bottom-20 left-[12%] w-16 h-16 border border-white/[0.06] rotate-45 rounded-lg" style={{ animationDelay: '4s' }} />
       <div className="geo-float absolute top-[50%] right-[4%] w-12 h-12 border border-white/[0.05] -rotate-12 rounded-md" style={{ animationDelay: '1s' }} />

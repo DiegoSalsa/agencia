@@ -104,12 +104,14 @@ export default function Hero() {
         <div className="geo-float absolute top-[25%] right-[12%] w-14 h-14 border border-[rgba(var(--primary-rgb),0.08)] rotate-12 rounded-md" style={{ animationDelay: '2s' }} />
         <div className="geo-float absolute bottom-[30%] left-[15%] w-10 h-10 bg-[rgba(var(--primary-rgb),0.04)] rotate-[30deg] rounded-sm" style={{ animationDelay: '4s' }} />
         <div className="geo-float absolute bottom-[25%] right-[8%] w-16 h-16 border border-[rgba(var(--primary-rgb),0.06)] -rotate-12 rounded-lg" style={{ animationDelay: '1s' }} />
-        {/* Angular line like logo P shape */}
+        {/* Abstract geometric shapes */}
         <svg className="geo-float absolute top-[20%] right-[20%] w-24 h-24 opacity-[0.05]" style={{ animationDelay: '3s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
+          <polygon points="50,20 80,35 80,65 50,80 20,65 20,35" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.5" />
         </svg>
         <svg className="geo-float absolute bottom-[35%] left-[25%] w-16 h-16 opacity-[0.04]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="3" className="text-[var(--primary)]" />
+          <path d="M10 90 L50 10 L90 90 Z" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <line x1="30" y1="50" x2="70" y2="50" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" opacity="0.6" />
         </svg>
       </div>
 
@@ -137,10 +139,10 @@ export default function Hero() {
             <AnimatePresence mode="wait">
               <motion.span
                 key={highlightIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                initial={{ opacity: 0, y: 12, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -12, filter: 'blur(8px)' }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="inline-block"
               >
                 {highlights[highlightIndex]}

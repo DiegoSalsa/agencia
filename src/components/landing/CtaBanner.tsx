@@ -30,10 +30,10 @@ export default function CtaBanner() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.02] rounded-full blur-[80px]" />
         {/* Angular line decoration */}
         <svg className="absolute top-8 right-8 w-20 h-20 opacity-10" viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
+          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="white" strokeWidth="1.5" />
         </svg>
         <svg className="absolute bottom-8 left-8 w-14 h-14 opacity-[0.06]" viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="3" />
+          <path d="M50 5 L95 50 L50 95 L5 50 Z" stroke="white" strokeWidth="2" />
         </svg>
 
         <div className="relative z-10">

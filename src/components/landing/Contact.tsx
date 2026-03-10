@@ -91,10 +91,12 @@ export default function Contact() {
         <div className="absolute bottom-0 right-[15%] w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.07)_0%,transparent_60%)]" />
         {/* Floating geometric shapes */}
         <svg className="geo-float absolute bottom-16 right-[10%] w-28 h-28 opacity-[0.05]" style={{ animationDelay: '1.5s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
+          <polygon points="50,25 75,37.5 75,62.5 50,75 25,62.5 25,37.5" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.4" />
         </svg>
         <svg className="geo-float absolute top-[30%] left-[8%] w-16 h-16 opacity-[0.04]" style={{ animationDelay: '4s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="3" className="text-[var(--primary)]" />
+          <path d="M10 90 L50 10 L90 90" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" fill="none" />
+          <line x1="30" y1="50" x2="70" y2="50" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" opacity="0.5" />
         </svg>
         <div className="geo-float absolute top-20 left-[6%] w-14 h-14 border border-[rgba(var(--primary-rgb),0.1)] rotate-[30deg] rounded-md" style={{ animationDelay: '3.5s' }} />
         <div className="geo-float absolute bottom-[30%] left-[20%] w-10 h-10 bg-[rgba(var(--primary-rgb),0.04)] -rotate-12 rounded-sm" style={{ animationDelay: '0s' }} />

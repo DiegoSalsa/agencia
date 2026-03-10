@@ -94,10 +94,13 @@ export default function Services() {
         <div className="absolute bottom-0 left-[5%] w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
         {/* Floating geometric shapes */}
         <svg className="geo-float absolute top-16 right-[10%] w-28 h-28 opacity-[0.05]" style={{ animationDelay: '1s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
+          <circle cx="50" cy="50" r="25" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.5" />
+          <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="0.8" className="text-[var(--primary)]" opacity="0.3" />
         </svg>
         <svg className="geo-float absolute bottom-[20%] left-[15%] w-20 h-20 opacity-[0.04]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="3" className="text-[var(--primary)]" />
+          <rect x="15" y="15" width="70" height="70" rx="8" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" transform="rotate(15 50 50)" />
+          <rect x="28" y="28" width="44" height="44" rx="4" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" transform="rotate(15 50 50)" opacity="0.5" />
         </svg>
         <div className="geo-float absolute bottom-20 left-[5%] w-16 h-16 border border-[rgba(var(--primary-rgb),0.1)] rotate-45 rounded-lg" style={{ animationDelay: '3s' }} />
         <div className="geo-float absolute top-[30%] left-[3%] w-12 h-12 border border-[rgba(var(--primary-rgb),0.08)] -rotate-12 rounded-md" style={{ animationDelay: '0s' }} />

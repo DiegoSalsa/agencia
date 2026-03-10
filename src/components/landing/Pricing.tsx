@@ -86,10 +86,12 @@ export default function Pricing() {
       <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.06)_0%,transparent_55%)]" />
       {/* Floating shapes */}
       <svg className="geo-float absolute top-16 left-[6%] w-24 h-24 opacity-[0.04]" style={{ animationDelay: '0.5s' }} viewBox="0 0 100 100" fill="none">
-        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="2" />
+        <path d="M50 5 L95 50 L50 95 L5 50 Z" stroke="white" strokeWidth="1.5" />
+        <path d="M50 25 L75 50 L50 75 L25 50 Z" stroke="white" strokeWidth="1" opacity="0.5" />
       </svg>
       <svg className="geo-float absolute bottom-[20%] right-[15%] w-16 h-16 opacity-[0.03]" style={{ animationDelay: '4s' }} viewBox="0 0 100 100" fill="none">
-        <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="white" strokeWidth="3" />
+        <circle cx="50" cy="50" r="35" stroke="white" strokeWidth="2" />
+        <path d="M50 15 L50 85 M15 50 L85 50" stroke="white" strokeWidth="1.2" opacity="0.4" />
       </svg>
       <div className="geo-float absolute bottom-16 right-[8%] w-14 h-14 border border-white/[0.06] rotate-[20deg] rounded-lg" style={{ animationDelay: '3s' }} />
       <div className="geo-float absolute top-[45%] left-[3%] w-10 h-10 border border-white/[0.05] -rotate-[15deg] rounded-sm" style={{ animationDelay: '2s' }} />

@@ -64,10 +64,12 @@ export default function Process() {
         <div className="absolute bottom-0 right-[10%] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
         {/* Floating geometric shapes */}
         <svg className="geo-float absolute top-12 left-[8%] w-24 h-24 opacity-[0.05]" style={{ animationDelay: '2s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <path d="M10 50 L30 10 L70 10 L90 50 L70 90 L30 90 Z" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
+          <circle cx="50" cy="50" r="18" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.5" />
         </svg>
         <svg className="geo-float absolute bottom-[15%] right-[18%] w-16 h-16 opacity-[0.04]" style={{ animationDelay: '6s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M20 80 L20 20 L60 20 Q80 20 80 40 Q80 60 60 60 L20 60" stroke="currentColor" strokeWidth="3" className="text-[var(--primary)]" />
+          <path d="M20 20 L80 20 L80 80 L20 80 Z" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
+          <path d="M20 20 L80 80 M80 20 L20 80" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.4" />
         </svg>
         <div className="geo-float absolute bottom-16 right-[12%] w-18 h-18 border border-[rgba(var(--primary-rgb),0.1)] rotate-12 rounded-lg" style={{ animationDelay: '4s' }} />
         <div className="geo-float absolute top-[40%] right-[3%] w-14 h-14 border border-[rgba(var(--primary-rgb),0.08)] -rotate-[25deg] rounded-md" style={{ animationDelay: '0s' }} />
