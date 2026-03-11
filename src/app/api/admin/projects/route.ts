@@ -23,11 +23,11 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      data: projects.map((p) => ({
+      data: projects.map((p: typeof projects[number]) => ({
         ...p,
         technologies: safeParseJSON(p.technologies, []),
         documents: safeParseJSON(p.documents, []),
-        pendingChanges: p.changes.filter((c) => c.status === "pending").length,
+        pendingChanges: p.changes.filter((c: { status: string }) => c.status === "pending").length,
       })),
     });
   } catch (error) {

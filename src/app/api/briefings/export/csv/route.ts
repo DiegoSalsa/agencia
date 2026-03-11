@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
         });
 
         // Flatten JSON fields for CSV
-        const flatData = briefings.map((b) => {
+        const flatData = briefings.map((b: typeof briefings[number]) => {
             const contact = JSON.parse(b.contactData);
             const content = JSON.parse(b.contentData);
             const design = JSON.parse(b.designData);

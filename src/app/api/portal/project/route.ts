@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
         documents,
         createdAt: project.createdAt,
         updatedAt: project.updatedAt,
-        changes: project.changes.map((c) => ({
+        changes: project.changes.map((c: typeof project.changes[number]) => ({
           id: c.id,
           description: c.description,
           priority: c.priority,

@@ -20,8 +20,8 @@ export async function GET() {
 
         // Filter out promotions past their end date
         const activePromos = promotions
-            .filter((p) => !p.endsAt || new Date(p.endsAt) >= now)
-            .map((p) => ({
+            .filter((p: typeof promotions[number]) => !p.endsAt || new Date(p.endsAt) >= now)
+            .map((p: typeof promotions[number]) => ({
                 id: p.id,
                 title: p.title,
                 slug: p.slug,

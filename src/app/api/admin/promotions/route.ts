@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
         return NextResponse.json({
             ok: true,
-            data: promotions.map((p) => ({
+            data: promotions.map((p: typeof promotions[number]) => ({
                 ...p,
                 fixedSections: safeParseJSON(p.fixedSections, []),
                 codesCount: p._count.codes,

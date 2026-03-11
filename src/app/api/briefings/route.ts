@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
         ]);
 
         // Parse JSON fields
-        const parsed = briefings.map((b) => ({
+        const parsed = briefings.map((b: typeof briefings[number]) => ({
             ...b,
             contactData: JSON.parse(b.contactData),
             contentData: JSON.parse(b.contentData),

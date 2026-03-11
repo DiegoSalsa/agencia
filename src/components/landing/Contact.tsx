@@ -252,16 +252,6 @@ export default function Contact() {
                 >
                   {card.value}
                 </a>
-                {card.value2 && card.href2 && (
-                  <a
-                    href={card.href2}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[var(--text)] font-medium hover:text-[var(--primary)] transition-colors cursor-pointer block mt-0.5"
-                  >
-                    {card.value2}
-                  </a>
-                )}
               </motion.div>
             );
           })}

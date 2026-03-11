@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const prisma = getPrisma();
 
     // Fetch all briefings for calculations
-    const briefings = await prisma.briefing.findMany({
+    const briefings: { id: string; type: string; status: string; createdAt: Date }[] = await prisma.briefing.findMany({
       select: {
         id: true,
         type: true,
