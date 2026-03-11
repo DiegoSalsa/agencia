@@ -142,6 +142,10 @@ export function FieldRenderer({ field }: FieldRendererProps) {
             case "color":
                 return isValidColor(v) ? null : "Código hex inválido (ej: #6366f1)";
             default:
+                if (field.validation?.pattern) {
+                    const regex = new RegExp(field.validation.pattern);
+                    if (!regex.test(v)) return field.validation.message || "Valor inválido";
+                }
                 return null;
         }
     };

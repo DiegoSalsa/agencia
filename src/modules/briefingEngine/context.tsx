@@ -98,6 +98,11 @@ export function BriefingFormProvider({ children }: { children: ReactNode }) {
                     const val = state.formData[f.id];
                     if (val === undefined || val === "") return false;
                     if (Array.isArray(val) && val.length === 0) return false;
+                    if (f.validation?.pattern && typeof val === "string") {
+                        try {
+                            if (!new RegExp(f.validation.pattern).test(val)) return false;
+                        } catch { /* ignore invalid regex */ }
+                    }
                     return true;
                 });
         },

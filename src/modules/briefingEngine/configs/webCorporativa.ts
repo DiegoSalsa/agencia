@@ -21,6 +21,7 @@ export const webCorporativaConfig: BriefingTypeConfig = {
                     placeholder: "Ej: Juan",
                     required: true,
                     dataGroup: "contact",
+                    validation: { pattern: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s'-]+$", message: "Solo se permiten letras" },
                 },
                 {
                     id: "lastNameP",
@@ -29,6 +30,7 @@ export const webCorporativaConfig: BriefingTypeConfig = {
                     placeholder: "Ej: Pérez",
                     required: true,
                     dataGroup: "contact",
+                    validation: { pattern: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s'-]+$", message: "Solo se permiten letras" },
                 },
                 {
                     id: "lastNameM",
@@ -37,6 +39,7 @@ export const webCorporativaConfig: BriefingTypeConfig = {
                     placeholder: "Ej: González",
                     required: false,
                     dataGroup: "contact",
+                    validation: { pattern: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s'-]+$", message: "Solo se permiten letras" },
                 },
                 {
                     id: "businessName",
