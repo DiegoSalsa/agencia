@@ -193,7 +193,7 @@ export default function TerminosPage() {
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>Email: <a href="mailto:contactopurocode@gmail.com" className="text-[var(--primary)] hover:underline">contactopurocode@gmail.com</a></li>
-              <li>WhatsApp: <a href="https://wa.me/56956994930" className="text-[var(--primary)] hover:underline">+56 9 5699 4930</a></li>
+              <li>WhatsApp: <a href="https://wa.me/56949255006" className="text-[var(--primary)] hover:underline">+56 9 4925 5006</a></li>
             </ul>
           </section>
         </div>

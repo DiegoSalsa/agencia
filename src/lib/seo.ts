@@ -19,7 +19,7 @@ export const organizationJsonLd = {
   sameAs: [
     "https://www.instagram.com/purocodecl/",
     "https://www.facebook.com/PuroCode.com",
-    "https://wa.me/56956994930",
+    "https://wa.me/56949255006",
   ],
   address: {
     "@type": "PostalAddress",

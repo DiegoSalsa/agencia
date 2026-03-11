@@ -17,10 +17,8 @@ const contactCards = [
   {
     icon: MessageCircle,
     titleKey: 'contact_wsp_title',
-    value: 'Lucas: +56 9 5699 4930',
-    value2: 'Diego: +56 9 3490 8579',
-    href: 'https://wa.me/56956994930',
-    href2: 'https://wa.me/56934908579',
+    value: '+56 9 4925 5006',
+    href: 'https://wa.me/56949255006',
     color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
   },
   {

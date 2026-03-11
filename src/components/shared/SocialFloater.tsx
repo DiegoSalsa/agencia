@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Instagram, Facebook, X, ChevronUp } from 'lucide-react';
 
 const whatsappContacts = [
-  { name: 'Lucas', phone: '56956994930', label: '+56 9 5699 4930' },
-  { name: 'Diego', phone: '56934908579', label: '+56 9 3490 8579' },
+  { name: 'PuroCode', phone: '56949255006', label: '+56 9 4925 5006' },
 ];
 
 export default function SocialFloater() {

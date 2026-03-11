@@ -39,7 +39,7 @@ export default function Footer() {
                 <Facebook size={16} />
               </a>
               <a
-                href="https://wa.me/56956994930"
+                href="https://wa.me/56949255006"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[#25D366] hover:border-[#25D366]/30 transition-all cursor-pointer"
@@ -66,8 +66,7 @@ export default function Footer() {
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_contact')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
               <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="mailto:contactopurocode@gmail.com">contacto@purocode.com</a></li>
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="https://wa.me/56956994930" target="_blank" rel="noopener noreferrer">+56 9 5699 4930</a></li>
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="https://wa.me/56934908579" target="_blank" rel="noopener noreferrer">+56 9 3490 8579</a></li>
+              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="https://wa.me/56949255006" target="_blank" rel="noopener noreferrer">+56 9 4925 5006</a></li>
             </ul>
           </div>
 

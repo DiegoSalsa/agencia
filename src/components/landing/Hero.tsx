@@ -7,8 +7,7 @@ import { ArrowRight, Eye, MessageCircle, ChevronDown } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 
 const whatsappContacts = [
-  { name: 'Lucas', phone: '+56956994930', label: '+56 9 5699 4930' },
-  { name: 'Diego', phone: '+56934908579', label: '+56 9 3490 8579' },
+  { name: 'PuroCode', phone: '+56949255006', label: '+56 9 4925 5006' },
 ];
 
 const technologies = [
