@@ -206,7 +206,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_sections: 'Hasta 5 Secciones Personalizadas',
     feature_social: 'Integración Redes Sociales',
     feature_support: 'Soporte Técnico 3 Meses',
-    feature_payments: 'Pasarela de Pagos (Webpay/Flow)',
+    feature_payments: 'Pasarela de Pagos (Webpay/Flow/MercadoPago)',
     feature_admin: 'Panel de Administración',
     feature_inventory: 'Gestión de Inventario',
     feature_support_6: 'Soporte Técnico 6 Meses',

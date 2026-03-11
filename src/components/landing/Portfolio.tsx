@@ -39,7 +39,7 @@ const projects: Project[] = [
     href: 'https://www.floreriawildgarden.cl',
     title: 'Florería Wildgarden',
     descKey: 'portfolio_3_desc',
-    tag: 'Landing Page',
+    tag: 'E-commerce',
     tagColor: 'bg-pink-500/15 text-pink-400 border-pink-500/30',
     gradient: 'from-pink-600/40 via-rose-600/30 to-fuchsia-800/40',
     thumbnail: '/img/FotosPaginas/FloreriaWildGarden.png',
