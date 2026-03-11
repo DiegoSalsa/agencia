@@ -65,7 +65,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_contact')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="mailto:contactopurocode@gmail.com">contactopurocode@gmail.com</a></li>
+              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="mailto:contactopurocode@gmail.com">contacto@purocode.com</a></li>
               <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="https://wa.me/56956994930" target="_blank" rel="noopener noreferrer">+56 9 5699 4930</a></li>
               <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="https://wa.me/56934908579" target="_blank" rel="noopener noreferrer">+56 9 3490 8579</a></li>
             </ul>
