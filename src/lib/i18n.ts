@@ -113,7 +113,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_tag: 'Nuestro Trabajo',
     portfolio_title: 'Proyectos que Confían en Nosotros',
     portfolio_subtitle: 'Cada proyecto refleja nuestra dedicación al detalle, rendimiento y la confianza de quienes nos eligen.',
-    portfolio_trust_badge: '7 clientes satisfechos y contando',
+    portfolio_trust_badge: '8 clientes satisfechos y contando',
     portfolio_1_desc: 'Landing profesional para clínica de podología — diseño limpio, optimizada para conversión.',
     portfolio_2_desc: 'Sitio web para podóloga clínica en Ñuñoa — diseño enfocado en confianza y contacto.',
     portfolio_3_desc: 'Tienda online de florería artesanal — experiencia visual cuidada y pedidos directos.',
@@ -121,6 +121,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_5_desc: 'Demo de landing para restaurante japonés — estética elegante y menú interactivo.',
     portfolio_6_desc: 'Web corporativa de soluciones agroindustriales — información clara y profesional.',
     portfolio_7_desc: 'Plataforma SaaS de encuestas de satisfacción — dashboards y análisis en tiempo real.',
+    portfolio_8_desc: 'Demo de landing para banquetería premium — catering y eventos con diseño elegante.',
 
     // Services
     services_tag: 'Experiencia',
@@ -308,7 +309,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_tag: 'Our Work',
     portfolio_title: 'Projects That Trust Us',
     portfolio_subtitle: 'Each project reflects our dedication to detail, performance, and the trust of those who choose us.',
-    portfolio_trust_badge: '7 satisfied clients and counting',
+    portfolio_trust_badge: '8 satisfied clients and counting',
     portfolio_1_desc: 'Professional landing for a podiatry clinic — clean design, optimized for conversion.',
     portfolio_2_desc: 'Website for a clinical podiatrist in Ñuñoa — trust-focused design with easy contact.',
     portfolio_3_desc: 'Artisan flower shop online store — curated visual experience and direct orders.',
@@ -316,6 +317,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_5_desc: 'Landing demo for a Japanese restaurant — elegant aesthetic and interactive menu.',
     portfolio_6_desc: 'Corporate website for agro-industrial solutions — clear and professional information.',
     portfolio_7_desc: 'SaaS satisfaction survey platform — dashboards and real-time analytics.',
+    portfolio_8_desc: 'Premium catering landing demo — event planning and elegance in every detail.',
 
     // Services
     services_tag: 'Experience',

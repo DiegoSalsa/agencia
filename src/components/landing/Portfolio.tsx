@@ -80,6 +80,15 @@ const projects: Project[] = [
     gradient: 'from-violet-600/40 via-purple-600/30 to-indigo-800/40',
     thumbnail: '/img/FotosPaginas/ValoraLocal.png',
   },
+  {
+    href: 'https://banqueteria-demo.vercel.app',
+    title: 'Demo Banquetería',
+    descKey: 'portfolio_8_desc',
+    tag: 'Demo',
+    tagColor: 'bg-orange-500/15 text-orange-400 border-orange-500/30',
+    gradient: 'from-orange-600/40 via-amber-600/30 to-yellow-800/40',
+    thumbnail: '/img/FotosPaginas/DemoBanqueteria.png',
+  },
 ];
 
 const fadeUp = {
