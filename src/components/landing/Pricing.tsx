@@ -62,11 +62,11 @@ const plans = [
     descKey: 'plan_enterprise_desc',
     subtitleKey: 'plan_enterprise_subtitle',
     icon: Building2,
-    gradient: 'from-amber-600 to-orange-600',
-    gradientLight: 'from-amber-500/20 to-orange-500/20',
-    glow: 'group-hover:shadow-amber-500/20',
-    accent: 'text-amber-400',
-    accentBg: 'bg-amber-500/10',
+    gradient: 'from-indigo-600 to-violet-600',
+    gradientLight: 'from-indigo-500/20 to-violet-500/20',
+    glow: 'group-hover:shadow-indigo-500/20',
+    accent: 'text-indigo-300',
+    accentBg: 'bg-indigo-500/10',
     popular: false,
     quoteOnly: true,
     features: ['feature_enterprise_audit', 'feature_enterprise_architecture', 'feature_enterprise_integrations', 'feature_enterprise_sla'],
@@ -339,9 +339,9 @@ export default function Pricing() {
               href={enterpriseHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block overflow-hidden rounded-3xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] transition-all duration-500 hover:-translate-y-1 hover:border-amber-400/35"
+              className="group relative block overflow-hidden rounded-3xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] transition-all duration-500 hover:-translate-y-1 hover:border-indigo-400/35"
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/25 to-transparent opacity-80" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-300/25 to-transparent opacity-80" />
 
               {/* Mobile: same structure as the 3 regular cards */}
               <div className="md:hidden p-7 flex flex-col">
@@ -364,7 +364,7 @@ export default function Pricing() {
                 <ul className="space-y-2.5 mb-8">
                   {enterprisePlan.features.map((fKey) => (
                     <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
-                      <Check size={14} className="text-amber-300 shrink-0" />
+                      <Check size={14} className="text-indigo-300 shrink-0" />
                       {t(fKey)}
                     </li>
                   ))}
@@ -387,11 +387,11 @@ export default function Pricing() {
               {/* Desktop: horizontal enterprise layout */}
               <div className="hidden md:flex relative md:items-center gap-6 rounded-[22px] px-6 py-7 md:px-8 md:py-8">
                 <div className="relative z-10 flex items-start gap-4 md:w-[38%]">
-                  <div className="size-14 min-w-14 shrink-0 aspect-square rounded-xl border border-amber-400/55 bg-amber-500/5 flex items-center justify-center shadow-[0_0_0_1px_rgba(245,158,11,0.15)]">
-                    <enterprisePlan.icon size={22} className="text-amber-300" />
+                  <div className="size-14 min-w-14 shrink-0 aspect-square rounded-xl border border-indigo-400/55 bg-indigo-500/5 flex items-center justify-center shadow-[0_0_0_1px_rgba(99,102,241,0.18)]">
+                    <enterprisePlan.icon size={22} className="text-indigo-300" />
                   </div>
                   <div>
-                    <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.16em] uppercase text-amber-300/90 border border-amber-300/25 px-3 py-1 rounded-full mb-3">
+                    <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.16em] uppercase text-indigo-300/90 border border-indigo-300/25 px-3 py-1 rounded-full mb-3">
                       Plan Enterprise
                     </span>
                     <h3 className="text-2xl md:text-[30px] font-extrabold text-[var(--feat-text)] tracking-tight leading-[1.1]">
@@ -401,8 +401,8 @@ export default function Pricing() {
                       {t(enterprisePlan.descKey)}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      <span className="text-[10px] uppercase tracking-wider font-semibold text-amber-200 border border-amber-300/20 px-2.5 py-1 rounded-md">Integraciones complejas</span>
-                      <span className="text-[10px] uppercase tracking-wider font-semibold text-amber-200 border border-amber-300/20 px-2.5 py-1 rounded-md">Escalamiento empresarial</span>
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-indigo-200 border border-indigo-300/20 px-2.5 py-1 rounded-md">Integraciones complejas</span>
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-indigo-200 border border-indigo-300/20 px-2.5 py-1 rounded-md">Escalamiento empresarial</span>
                     </div>
                   </div>
                 </div>
@@ -410,14 +410,14 @@ export default function Pricing() {
                 <ul className="relative z-10 md:w-[36%] grid grid-cols-1 gap-y-2.5">
                   {enterprisePlan.features.map((fKey) => (
                     <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
-                      <Check size={14} className="text-amber-300 shrink-0" />
+                      <Check size={14} className="text-indigo-300 shrink-0" />
                       {t(fKey)}
                     </li>
                   ))}
                 </ul>
 
                 <div className="relative z-10 md:w-[26%]">
-                  <div className="rounded-2xl border border-amber-300/20 bg-transparent p-4 md:p-5 md:text-right">
+                  <div className="rounded-2xl border border-indigo-300/20 bg-transparent p-4 md:p-5 md:text-right">
                     <div className="text-2xl md:text-[28px] font-extrabold text-[var(--feat-text)] tracking-tight mb-1">
                       {t('pricing_custom_quote')}
                     </div>
