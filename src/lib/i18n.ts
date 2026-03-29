@@ -186,7 +186,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     pricing_popular: 'Más Popular',
     pricing_cta: 'Comenzar Proyecto',
     pricing_cta_briefing: 'Iniciar Briefing',
+    pricing_cta_whatsapp: 'Cotizar por WhatsApp',
     pricing_payment_note: '50% al inicio · 50% a la entrega',
+    pricing_custom_quote: 'Cotización personalizada',
 
     // Plan names
     plan_landing: 'Landing Page',
@@ -198,6 +200,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     plan_ecommerce: 'E-commerce',
     plan_ecommerce_desc: 'Tienda online completa con pagos y gestión.',
     plan_ecommerce_subtitle: 'Vende en línea',
+    plan_enterprise: 'Enterprise',
+    plan_enterprise_desc: 'Solución a medida para operaciones complejas, integraciones y escalamiento empresarial.',
+    plan_enterprise_subtitle: 'A medida',
 
     // Features
     feature_hosting: 'Dominio y Hosting GRATIS 1 año',
@@ -211,6 +216,10 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_admin: 'Panel de Administración',
     feature_inventory: 'Gestión de Inventario',
     feature_support_6: 'Soporte Técnico 6 Meses',
+    feature_enterprise_audit: 'Diagnóstico técnico y estratégico inicial',
+    feature_enterprise_architecture: 'Arquitectura personalizada para alto tráfico',
+    feature_enterprise_integrations: 'Integraciones avanzadas con sistemas internos',
+    feature_enterprise_sla: 'Soporte prioritario especializado',
 
     // CTA Banner
     cta_badge: 'Empecemos',
@@ -382,7 +391,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     pricing_popular: 'Most Popular',
     pricing_cta: 'Start Project',
     pricing_cta_briefing: 'Start Briefing',
+    pricing_cta_whatsapp: 'Quote on WhatsApp',
     pricing_payment_note: '50% upfront · 50% on delivery',
+    pricing_custom_quote: 'Custom quote',
 
     // Plan names
     plan_landing: 'Landing Page',
@@ -394,6 +405,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     plan_ecommerce: 'E-commerce',
     plan_ecommerce_desc: 'Complete online store with payments and management.',
     plan_ecommerce_subtitle: 'Sell online',
+    plan_enterprise: 'Enterprise',
+    plan_enterprise_desc: 'Tailored solution for complex operations, integrations, and enterprise-scale growth.',
+    plan_enterprise_subtitle: 'Tailored',
 
     // Features
     feature_hosting: 'FREE Domain and Hosting for 1 year',
@@ -407,6 +421,10 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     feature_admin: 'Admin Panel',
     feature_inventory: 'Inventory Management',
     feature_support_6: '6 Months Technical Support',
+    feature_enterprise_audit: 'Initial technical and strategic audit',
+    feature_enterprise_architecture: 'Custom architecture for high-traffic systems',
+    feature_enterprise_integrations: 'Advanced integrations with internal systems',
+    feature_enterprise_sla: 'Specialized priority support',
 
     // CTA Banner
     cta_badge: "Let's Start",

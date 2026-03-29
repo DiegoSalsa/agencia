@@ -8,6 +8,8 @@ import { getRegionalPrice, getOriginalPrice, type PlanKey } from '@/lib/i18n';
 import { useInView } from '@/hooks/useInView';
 import { usePromo } from '@/context/PromoContext';
 
+const WHATSAPP_PHONE = '56949255006';
+
 const plans = [
   {
     key: 'landing' as PlanKey,
@@ -54,6 +56,21 @@ const plans = [
     popular: false,
     features: ['feature_hosting', 'feature_payments', 'feature_admin', 'feature_inventory', 'feature_support_6'],
   },
+  {
+    key: 'enterprise',
+    nameKey: 'plan_enterprise',
+    descKey: 'plan_enterprise_desc',
+    subtitleKey: 'plan_enterprise_subtitle',
+    icon: Building2,
+    gradient: 'from-amber-600 to-orange-600',
+    gradientLight: 'from-amber-500/20 to-orange-500/20',
+    glow: 'group-hover:shadow-amber-500/20',
+    accent: 'text-amber-400',
+    accentBg: 'bg-amber-500/10',
+    popular: false,
+    quoteOnly: true,
+    features: ['feature_enterprise_audit', 'feature_enterprise_architecture', 'feature_enterprise_integrations', 'feature_enterprise_sla'],
+  },
 ];
 
 const fadeUp = {
@@ -70,6 +87,10 @@ export default function Pricing() {
   const { ref, isVisible } = useInView();
   const { promos } = usePromo();
   const promo = promos.find(p => p.showPricingCard) || null;
+  const enterpriseMessage = encodeURIComponent('Hola PuroCode, quiero cotizar un plan Enterprise.');
+  const enterpriseHref = `https://wa.me/${WHATSAPP_PHONE}?text=${enterpriseMessage}`;
+  const standardPlans = plans.filter((plan) => !plan.quoteOnly);
+  const enterprisePlan = plans.find((plan) => plan.quoteOnly);
 
   const discountPercent = promo ? Math.round((1 - promo.price / promo.originalPrice) * 100) : 0;
   const daysLeft = promo?.endsAt ? Math.max(0, Math.ceil((new Date(promo.endsAt).getTime() - Date.now()) / 86400000)) : null;
@@ -206,7 +227,7 @@ export default function Pricing() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
-          {plans.map((plan, i) => {
+          {standardPlans.map((plan, i) => {
             const Icon = plan.icon;
             return (
               <motion.div
@@ -216,95 +237,203 @@ export default function Pricing() {
                 variants={fadeUp}
                 custom={i + 1}
               >
-              <Link
-                href={`/formulario/${plan.briefingType}`}
-                className={`group relative flex flex-col rounded-2xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] backdrop-blur-sm transition-all duration-500 hover:border-[var(--feat-card-hover-border)] hover:-translate-y-2 hover:shadow-2xl ${plan.glow} cursor-pointer h-full`}
-              >
-                {/* Popular badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                    <div
-                      className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.gradient} text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-blue-500/25 flex items-center gap-1`}
-                    >
-                      <Sparkles className="w-3 h-3" /> {t('pricing_popular')}
-                    </div>
-                  </div>
-                )}
-
-                {/* Top gradient line */}
-                <div
-                  className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${plan.gradientLight} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                />
-
-                <div className="p-7 flex flex-col flex-1">
-                  {/* Icon + subtitle */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div
-                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} p-[1px] shadow-lg shadow-black/20`}
-                    >
-                      <div className="w-full h-full rounded-2xl bg-[var(--surface)] dark:bg-[#0d0c14] flex items-center justify-center">
-                        <Icon size={22} className="text-[var(--feat-text-muted)]" />
+                <Link
+                  href={`/formulario/${plan.briefingType}`}
+                  className={`group relative flex flex-col rounded-2xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] backdrop-blur-sm transition-all duration-500 hover:border-[var(--feat-card-hover-border)] hover:-translate-y-2 hover:shadow-2xl ${plan.glow} cursor-pointer h-full`}
+                >
+                  {/* Popular badge */}
+                  {plan.popular && (
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                      <div
+                        className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.gradient} text-white text-[11px] font-bold tracking-wider uppercase shadow-lg shadow-blue-500/25 flex items-center gap-1`}
+                      >
+                        <Sparkles className="w-3 h-3" /> {t('pricing_popular')}
                       </div>
                     </div>
-                    <span
-                      className={`text-[11px] font-medium tracking-wider uppercase ${plan.accent} ${plan.accentBg} px-2.5 py-1 rounded-md`}
-                    >
-                      {t(plan.subtitleKey)}
-                    </span>
+                  )}
+
+                  {/* Top gradient line */}
+                  <div
+                    className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${plan.gradientLight} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  />
+
+                  <div className="p-7 flex flex-col flex-1">
+                    {/* Icon + subtitle */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} p-[1px] shadow-lg shadow-black/20`}
+                      >
+                        <div className="w-full h-full rounded-2xl bg-[var(--surface)] dark:bg-[#0d0c14] flex items-center justify-center">
+                          <Icon size={22} className="text-[var(--feat-text-muted)]" />
+                        </div>
+                      </div>
+                      <span
+                        className={`text-[11px] font-medium tracking-wider uppercase ${plan.accent} ${plan.accentBg} px-2.5 py-1 rounded-md`}
+                      >
+                        {t(plan.subtitleKey)}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-[var(--feat-text)] mb-2 tracking-tight">
+                      {t(plan.nameKey)}
+                    </h3>
+                    <p className="text-[var(--feat-text-faint)] text-sm leading-relaxed mb-6">{t(plan.descKey)}</p>
+
+                    {/* Features */}
+                    <ul className="space-y-2.5 mb-8">
+                      {plan.features.map((fKey) => (
+                        <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
+                          <Check size={14} className={`${plan.accent} shrink-0`} />
+                          {t(fKey)}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Price + discount + CTA */}
+                    <div className="mt-auto">
+                      <div className="flex items-baseline gap-2 mb-0.5">
+                        <span className="text-xs text-[var(--feat-text-faint)] uppercase tracking-wider">
+                          {t('pricing_from')}
+                        </span>
+                        <span className="text-sm text-[var(--feat-text-faint)] line-through decoration-red-400/60">
+                          {getOriginalPrice(plan.key as PlanKey, currency)}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-1.5 mb-1">
+                        <span className="text-3xl font-extrabold text-[var(--feat-text)] tracking-tight">
+                          {getRegionalPrice(plan.key as PlanKey, currency)}
+                        </span>
+                        <span className="text-sm text-[var(--feat-text-faint)] font-medium">{currency}</span>
+                        <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
+                          -40%
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-[var(--feat-text-faint)] mb-4">
+                        {t('pricing_payment_note')}
+                      </p>
+
+                      <div
+                        className={`w-full py-3.5 rounded-xl bg-gradient-to-r ${plan.gradient} opacity-80 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20 group-hover:shadow-xl`}
+                      >
+                        {t('pricing_cta')}
+                        <ArrowRight size={15} />
+                      </div>
+                    </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-[var(--feat-text)] mb-2 tracking-tight">
-                    {t(plan.nameKey)}
-                  </h3>
-                  <p className="text-[var(--feat-text-faint)] text-sm leading-relaxed mb-6">{t(plan.descKey)}</p>
-
-                  {/* Features */}
-                  <ul className="space-y-2.5 mb-8">
-                    {plan.features.map((fKey) => (
-                      <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
-                        <Check size={14} className={`${plan.accent} shrink-0`} />
-                        {t(fKey)}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Price + discount + CTA */}
-                  <div className="mt-auto">
-                    <div className="flex items-baseline gap-2 mb-0.5">
-                      <span className="text-xs text-[var(--feat-text-faint)] uppercase tracking-wider">
-                        {t('pricing_from')}
-                      </span>
-                      <span className="text-sm text-[var(--feat-text-faint)] line-through decoration-red-400/60">
-                        {getOriginalPrice(plan.key, currency)}
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-3xl font-extrabold text-[var(--feat-text)] tracking-tight">
-                        {getRegionalPrice(plan.key, currency)}
-                      </span>
-                      <span className="text-sm text-[var(--feat-text-faint)] font-medium">{currency}</span>
-                      <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
-                        -40%
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-[var(--feat-text-faint)] mb-4">
-                      {t('pricing_payment_note')}
-                    </p>
-
-                    <div
-                      className={`w-full py-3.5 rounded-xl bg-gradient-to-r ${plan.gradient} opacity-80 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20 group-hover:shadow-xl`}
-                    >
-                      {t('pricing_cta')}
-                      <ArrowRight size={15} />
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                </Link>
               </motion.div>
             );
           })}
         </div>
+
+        {enterprisePlan && (
+          <motion.div
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+            variants={fadeUp}
+            custom={4}
+            className="mt-6"
+          >
+            <Link
+              href={enterpriseHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-3xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] transition-all duration-500 hover:-translate-y-1 hover:border-amber-400/35"
+            >
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/25 to-transparent opacity-80" />
+
+              {/* Mobile: same structure as the 3 regular cards */}
+              <div className="md:hidden p-7 flex flex-col">
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${enterprisePlan.gradient} p-[1px] shadow-lg shadow-black/20`}>
+                    <div className="w-full h-full rounded-2xl bg-[var(--surface)] dark:bg-[#0d0c14] flex items-center justify-center">
+                      <enterprisePlan.icon size={22} className="text-[var(--feat-text-muted)]" />
+                    </div>
+                  </div>
+                  <span className={`text-[11px] font-medium tracking-wider uppercase ${enterprisePlan.accent} ${enterprisePlan.accentBg} px-2.5 py-1 rounded-md`}>
+                    {t(enterprisePlan.subtitleKey)}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold text-[var(--feat-text)] mb-2 tracking-tight">
+                  {t(enterprisePlan.nameKey)}
+                </h3>
+                <p className="text-[var(--feat-text-faint)] text-sm leading-relaxed mb-6">{t(enterprisePlan.descKey)}</p>
+
+                <ul className="space-y-2.5 mb-8">
+                  {enterprisePlan.features.map((fKey) => (
+                    <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
+                      <Check size={14} className="text-amber-300 shrink-0" />
+                      {t(fKey)}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto">
+                  <div className="text-2xl font-extrabold text-[var(--feat-text)] tracking-tight mb-1">
+                    {t('pricing_custom_quote')}
+                  </div>
+                  <p className="text-[11px] text-[var(--feat-text-faint)] mb-4">
+                    {t('pricing_contact')}
+                  </p>
+                  <div className={`w-full py-3.5 rounded-xl bg-gradient-to-r ${enterprisePlan.gradient} opacity-95 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20`}>
+                    {t('pricing_cta_whatsapp')}
+                    <ArrowRight size={15} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop: horizontal enterprise layout */}
+              <div className="hidden md:flex relative md:items-center gap-6 rounded-[22px] px-6 py-7 md:px-8 md:py-8">
+                <div className="relative z-10 flex items-start gap-4 md:w-[38%]">
+                  <div className="size-14 min-w-14 shrink-0 aspect-square rounded-xl border border-amber-400/55 bg-amber-500/5 flex items-center justify-center shadow-[0_0_0_1px_rgba(245,158,11,0.15)]">
+                    <enterprisePlan.icon size={22} className="text-amber-300" />
+                  </div>
+                  <div>
+                    <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.16em] uppercase text-amber-300/90 border border-amber-300/25 px-3 py-1 rounded-full mb-3">
+                      Plan Enterprise
+                    </span>
+                    <h3 className="text-2xl md:text-[30px] font-extrabold text-[var(--feat-text)] tracking-tight leading-[1.1]">
+                      {t(enterprisePlan.nameKey)}
+                    </h3>
+                    <p className="text-[13px] text-[var(--feat-text-faint)] leading-relaxed mt-2 max-w-[520px]">
+                      {t(enterprisePlan.descKey)}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-amber-200 border border-amber-300/20 px-2.5 py-1 rounded-md">Integraciones complejas</span>
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-amber-200 border border-amber-300/20 px-2.5 py-1 rounded-md">Escalamiento empresarial</span>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="relative z-10 md:w-[36%] grid grid-cols-1 gap-y-2.5">
+                  {enterprisePlan.features.map((fKey) => (
+                    <li key={fKey} className="flex items-center gap-2.5 text-sm text-[var(--feat-text-muted)]">
+                      <Check size={14} className="text-amber-300 shrink-0" />
+                      {t(fKey)}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="relative z-10 md:w-[26%]">
+                  <div className="rounded-2xl border border-amber-300/20 bg-transparent p-4 md:p-5 md:text-right">
+                    <div className="text-2xl md:text-[28px] font-extrabold text-[var(--feat-text)] tracking-tight mb-1">
+                      {t('pricing_custom_quote')}
+                    </div>
+                    <p className="text-[11px] text-[var(--feat-text-faint)] mb-4">
+                      {t('pricing_contact')}
+                    </p>
+                    <div className={`w-full md:ml-auto md:max-w-[240px] py-3.5 rounded-xl bg-gradient-to-r ${enterprisePlan.gradient} opacity-95 group-hover:opacity-100 text-center text-sm font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20`}>
+                      {t('pricing_cta_whatsapp')}
+                      <ArrowRight size={15} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );
