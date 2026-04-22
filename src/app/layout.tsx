@@ -4,6 +4,7 @@ import { I18nProvider } from "@/context/I18nContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { organizationJsonLd, websiteJsonLd, professionalServiceJsonLd } from "@/lib/seo";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import GoogleTagManager from "@/components/shared/GoogleTagManager";
 import PageTransition from "@/components/shared/PageTransition";
 import CookieConsent from "@/components/shared/CookieConsent";
 import "./globals.css";
@@ -114,6 +115,15 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-display bg-[var(--bg)] text-[var(--text)] antialiased overflow-x-hidden`}
       >
+        {/* Google Tag Manager (noscript) — immediately after <body> per GTM docs */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PHCH2KNZ"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[var(--primary)] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm"
@@ -125,6 +135,7 @@ export default function RootLayout({
             <PageTransition>{children}</PageTransition>
           </I18nProvider>
         </ThemeProvider>
+        <GoogleTagManager />
         <GoogleAnalytics />
         <CookieConsent />
       </body>
