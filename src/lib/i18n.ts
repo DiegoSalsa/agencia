@@ -122,6 +122,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_6_desc: 'Web corporativa de soluciones agroindustriales — información clara y profesional.',
     portfolio_7_desc: 'Plataforma SaaS de encuestas de satisfacción — dashboards y análisis en tiempo real.',
     portfolio_8_desc: 'Demo de landing para banquetería premium — catering y eventos con diseño elegante.',
+    portfolio_9_desc: 'Sistema de reservas y gestión para negocios con suscripciones y agendamiento online.',
+    portfolio_web_title: 'Páginas Webs',
+    portfolio_saas_title: 'Plataformas SaaS',
 
     // Services
     services_tag: 'Experiencia',
@@ -327,6 +330,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     portfolio_6_desc: 'Corporate website for agro-industrial solutions — clear and professional information.',
     portfolio_7_desc: 'SaaS satisfaction survey platform — dashboards and real-time analytics.',
     portfolio_8_desc: 'Premium catering landing demo — event planning and elegance in every detail.',
+    portfolio_9_desc: 'Booking and management system for businesses with subscriptions and online scheduling.',
+    portfolio_web_title: 'Websites',
+    portfolio_saas_title: 'SaaS Platforms',
 
     // Services
     services_tag: 'Experience',
