@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
@@ -113,18 +113,32 @@ const fadeUp = {
   }),
 };
 
+const CARDS_PER_PAGE = 3;
+
+const slideVariants = {
+  enter: (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
+  center: { x: 0, opacity: 1, transition: { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] as number[] } },
+  exit: (d: number) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.28 } }),
+};
+
 export default function Portfolio() {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState(0);
+  const [dir, setDir] = useState(0);
 
-  const scrollCarousel = (dir: 'prev' | 'next') => {
-    if (!carouselRef.current) return;
-    const el = carouselRef.current;
-    const card = el.querySelector('a') as HTMLElement | null;
-    const cardWidth = card ? card.offsetWidth + 20 : el.offsetWidth / 3;
-    el.scrollBy({ left: dir === 'next' ? cardWidth : -cardWidth, behavior: 'smooth' });
-  };
+  const totalPages = Math.ceil(webProjects.length / CARDS_PER_PAGE);
+  const pageProjects = webProjects.slice(page * CARDS_PER_PAGE, (page + 1) * CARDS_PER_PAGE);
+
+  const go = useCallback((d: 1 | -1) => {
+    setDir(d);
+    setPage(p => (p + d + totalPages) % totalPages);
+  }, [totalPages]);
+
+  const goTo = useCallback((i: number) => {
+    setDir(i > page ? 1 : -1);
+    setPage(i);
+  }, [page]);
 
   return (
     <section id="portafolio" ref={ref} className="relative py-24 px-6 overflow-hidden">
@@ -184,84 +198,118 @@ export default function Portfolio() {
 
         {/* Webs Section */}
         <div className="mb-20">
-          <motion.h3 
-            className="text-2xl sm:text-3xl font-bold text-center text-[var(--feat-text)] mb-10"
+          {/* Title row + nav controls */}
+          <motion.div
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10"
             initial="hidden"
             animate={isVisible ? 'visible' : 'hidden'}
             variants={fadeUp}
             custom={1}
           >
-            {t('portfolio_web_title')}
-          </motion.h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-[var(--feat-text)]">
+              {t('portfolio_web_title')}
+            </h3>
+
+            {/* Controls */}
+            <div className="flex items-center gap-3">
+              {/* Dots */}
+              <div className="flex items-center gap-1.5">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className={`rounded-full transition-all duration-300 ${
+                      i === page
+                        ? 'w-6 h-2 bg-indigo-500'
+                        : 'w-2 h-2 bg-[var(--feat-border)] hover:bg-indigo-400/60'
+                    }`}
+                    aria-label={`Página ${i + 1}`}
+                  />
+                ))}
+              </div>
+              {/* Arrows */}
+              <div className="flex gap-2">
+                <button
+                  onClick={() => go(-1)}
+                  className="w-9 h-9 rounded-xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] hover:bg-indigo-500/10 hover:border-indigo-500/50 transition-all flex items-center justify-center group/btn"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft size={16} className="text-[var(--feat-text-faint)] group-hover/btn:text-indigo-400 transition-colors" />
+                </button>
+                <button
+                  onClick={() => go(1)}
+                  className="w-9 h-9 rounded-xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] hover:bg-indigo-500/10 hover:border-indigo-500/50 transition-all flex items-center justify-center group/btn"
+                  aria-label="Siguiente"
+                >
+                  <ChevronRight size={16} className="text-[var(--feat-text-faint)] group-hover/btn:text-indigo-400 transition-colors" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Carousel */}
-          <div className="relative group/carousel">
-            {/* Navigation — left */}
-            <button
-              onClick={() => scrollCarousel('prev')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 -translate-x-5 w-10 h-10 rounded-full bg-[var(--feat-card-bg)] border border-[var(--feat-border)] hidden sm:flex items-center justify-center shadow-lg hover:bg-[var(--feat-glow)] transition-all opacity-0 group-hover/carousel:opacity-100"
-              aria-label="Anterior"
-            >
-              <ChevronLeft size={18} className="text-[var(--feat-text)]" />
-            </button>
-
-            {/* Scrollable track */}
-            <div
-              ref={carouselRef}
-              className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4"
-              style={{ scrollbarWidth: 'none' }}
-            >
-              {webProjects.map((project, i) => (
-                <motion.a
-                  key={project.title}
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex flex-col rounded-2xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] overflow-hidden transition-all duration-500 hover:border-[var(--feat-card-hover-border)] hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/5 cursor-pointer snap-start shrink-0 w-[85%] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
-                  initial="hidden"
-                  animate={isVisible ? 'visible' : 'hidden'}
-                  variants={fadeUp}
-                  custom={i + 2}
-                >
-                  {/* Thumbnail */}
-                  <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-                    {project.thumbnail && (
-                      <Image
-                        src={project.thumbnail}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                      />
-                    )}
-                    <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-semibold border backdrop-blur-md ${project.tagColor}`}>
-                      {project.tag}
-                    </span>
-                    <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-black/30 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ExternalLink size={14} className="text-white" />
+          <motion.div
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+            variants={fadeUp}
+            custom={2}
+            className="overflow-hidden"
+          >
+            <AnimatePresence mode="wait" custom={dir}>
+              <motion.div
+                key={page}
+                custom={dir}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              >
+                {pageProjects.map((project) => (
+                  <a
+                    key={project.title}
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex flex-col rounded-2xl border border-[var(--feat-border)] bg-[var(--feat-card-bg)] overflow-hidden transition-all duration-500 hover:border-indigo-500/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/10 cursor-pointer"
+                  >
+                    {/* Thumbnail */}
+                    <div className={`relative h-52 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+                      {project.thumbnail && (
+                        <Image
+                          src={project.thumbnail}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        />
+                      )}
+                      {/* Bottom gradient */}
+                      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/50 to-transparent" />
+                      {/* Tag */}
+                      <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-semibold border backdrop-blur-md ${project.tagColor}`}>
+                        {project.tag}
+                      </span>
+                      {/* External link */}
+                      <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-black/40 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ExternalLink size={14} className="text-white" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-5 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold text-[var(--feat-text)] mb-1.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-[var(--feat-text-faint)] leading-relaxed">{t(project.descKey)}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Navigation — right */}
-            <button
-              onClick={() => scrollCarousel('next')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-5 w-10 h-10 rounded-full bg-[var(--feat-card-bg)] border border-[var(--feat-border)] hidden sm:flex items-center justify-center shadow-lg hover:bg-[var(--feat-glow)] transition-all opacity-0 group-hover/carousel:opacity-100"
-              aria-label="Siguiente"
-            >
-              <ChevronRight size={18} className="text-[var(--feat-text)]" />
-            </button>
-          </div>
+                    {/* Content */}
+                    <div className="p-5 flex flex-col flex-1">
+                      <h3 className="text-lg font-bold text-[var(--feat-text)] mb-1.5 group-hover:text-indigo-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-[var(--feat-text-faint)] leading-relaxed">
+                        {t(project.descKey)}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* SaaS Section */}
