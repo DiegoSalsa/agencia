@@ -13,7 +13,6 @@ const FAQ = dynamic(() => import('@/components/landing/FAQ'));
 const Contact = dynamic(() => import('@/components/landing/Contact'));
 const Footer = dynamic(() => import('@/components/landing/Footer'));
 const PromoBanner = dynamic(() => import('@/components/landing/PromoBanner'));
-const PromoPopup = dynamic(() => import('@/components/landing/PromoPopup'));
 import SocialFloater from '@/components/shared/SocialFloater';
 
 export default function Home() {
@@ -47,7 +46,6 @@ export default function Home() {
       </main>
       <Footer />
       <SocialFloater />
-      <PromoPopup />
     </PromoProvider>
   );
 }
