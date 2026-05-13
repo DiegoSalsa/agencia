@@ -117,8 +117,8 @@ const CARDS_PER_PAGE = 3;
 
 const slideVariants = {
   enter: (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
-  center: { x: 0, opacity: 1, transition: { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] as number[] } },
-  exit: (d: number) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.28 } }),
+  center: (_d: number) => ({ x: 0, opacity: 1 }),
+  exit: (d: number) => ({ x: d > 0 ? -60 : 60, opacity: 0 }),
 };
 
 export default function Portfolio() {
@@ -263,6 +263,7 @@ export default function Portfolio() {
                 initial="enter"
                 animate="center"
                 exit="exit"
+                transition={{ duration: 0.35, ease: 'easeInOut' }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
               >
                 {pageProjects.map((project) => (
