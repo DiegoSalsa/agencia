@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { 
   Globe, Shield, Layers, Zap, Code, Server, 
   Smartphone, Search, Rocket, Database, 
@@ -11,7 +11,7 @@ import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
 import Link from 'next/link';
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
