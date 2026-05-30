@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, Instagram, Facebook, Send, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Instagram, Facebook, Send, Loader2, CheckCircle } from 'lucide-react';
+import WhatsAppIcon from '@/components/shared/WhatsAppIcon';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
 
@@ -15,7 +16,7 @@ const contactCards = [
     color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
   },
   {
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
     titleKey: 'contact_wsp_title',
     value: '+56 9 4925 5006',
     href: 'https://wa.me/56949255006',

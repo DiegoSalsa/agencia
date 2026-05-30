@@ -36,6 +36,7 @@ import {
     ChevronRight,
     Navigation,
 } from "lucide-react";
+import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 
 // ── Placeholder images ──────────────────────────────────
 const pageImages: Record<string, string[]> = {
@@ -269,7 +270,7 @@ export function LiveWebCorporativaPreview() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
                     {hasSocial && (
                         <div className="flex items-center gap-1.5 mb-2">
-                            {normalizedPhone && <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }}><MessageCircle size={10} className="text-white" /></a>}
+                            {normalizedPhone && <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }}><WhatsAppIcon size={10} className="text-white" /></a>}
                             {instagramUrl && <a href={instagramUrl.startsWith("http") ? instagramUrl : `https://instagram.com/${instagramUrl.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full bg-pink-500 flex items-center justify-center hover:scale-110 transition-transform no-underline"><Instagram size={10} className="text-white" /></a>}
                             {facebookUrl && <a href={facebookUrl.startsWith("http") ? facebookUrl : `https://facebook.com/${facebookUrl}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center hover:scale-110 transition-transform no-underline"><Facebook size={10} className="text-white" /></a>}
                             {twitterUrl && <a href={twitterUrl.startsWith("http") ? twitterUrl : `https://x.com/${twitterUrl.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center hover:scale-110 transition-transform no-underline"><Twitter size={10} className="text-white" /></a>}
@@ -744,7 +745,7 @@ export function LiveWebCorporativaPreview() {
             <div ref={footerRef} className="px-4 py-3 text-center transition-colors duration-300" style={{ backgroundColor: `${accentColor}10` }}>
                 {hasSocial && (
                     <div className="flex justify-center gap-1.5 mb-2">
-                        {normalizedPhone && <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }}><MessageCircle size={8} className="text-white" /></a>}
+                        {normalizedPhone && <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }}><WhatsAppIcon size={8} className="text-white" /></a>}
                         {instagramUrl && <a href={instagramUrl.startsWith("http") ? instagramUrl : `https://instagram.com/${instagramUrl.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full bg-pink-500 text-white flex items-center justify-center hover:scale-110 transition-transform no-underline"><Instagram size={8} /></a>}
                         {facebookUrl && <a href={facebookUrl.startsWith("http") ? facebookUrl : `https://facebook.com/${facebookUrl}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform no-underline"><Facebook size={8} /></a>}
                         {twitterUrl && <a href={twitterUrl.startsWith("http") ? twitterUrl : `https://x.com/${twitterUrl.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full bg-gray-800 text-white flex items-center justify-center hover:scale-110 transition-transform no-underline"><Twitter size={8} /></a>}
@@ -844,11 +845,11 @@ export function LiveWebCorporativaPreview() {
                         <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer"
                             className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform no-underline"
                             style={{ backgroundColor: "#25D366" }}>
-                            <MessageCircle size={18} className="text-white" />
+                            <WhatsAppIcon size={18} className="text-white" />
                         </a>
                     ) : (
                         <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: "#25D366" }}>
-                            <MessageCircle size={18} className="text-white" />
+                            <WhatsAppIcon size={18} className="text-white" />
                         </div>
                     )}
                     {instagramUrl && (
@@ -876,7 +877,7 @@ export function LiveWebCorporativaPreview() {
             {features.includes("chat_en_vivo") && viewMode !== "sitemap" && showFloating && (
                 <div className="absolute bottom-4 left-4">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: accentColor }}>
-                        <MessageCircle size={18} className="text-white" />
+                        <WhatsAppIcon size={18} className="text-white" />
                     </div>
                 </div>
             )}

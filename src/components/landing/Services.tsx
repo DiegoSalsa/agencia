@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import {
   Globe, Shield, Layers, Zap, Code, Server,
   Paintbrush, Lock, BarChart3, Smartphone, Cloud,
   Palette, MonitorSmartphone, Search, Rocket,
   Database, ShieldCheck, GitBranch, Settings,
+  ShoppingCart, CreditCard, Box
 } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
@@ -50,6 +52,25 @@ const services = [
     techStack: ['Vercel', 'Docker', 'GitHub Actions', 'Cloudflare'],
   },
   {
+    icon: ShoppingCart,
+    titleKey: 'service_ecom_title',
+    descKey: 'service_ecom_desc',
+    gradient: 'from-fuchsia-600 to-pink-600',
+    glowColor: 'fuchsia',
+    accentColor: 'text-fuchsia-400',
+    borderAccent: 'group-hover:border-fuchsia-500/30',
+    features: [
+      { icon: CreditCard, key: 'svc_feat_ecom_1' },
+      { icon: Box, key: 'svc_feat_ecom_2' },
+      { icon: Search, key: 'svc_feat_ecom_3' },
+      { icon: Rocket, key: 'svc_feat_ecom_4' },
+      { icon: Database, key: 'svc_feat_ecom_5' },
+      { icon: Lock, key: 'svc_feat_ecom_6' },
+    ],
+    stat: { value: '+40%', labelKey: 'svc_stat_ecom' },
+    techStack: ['Shopify', 'Next.js', 'Stripe', 'Tailwind'],
+  },
+  {
     icon: Layers,
     titleKey: 'service_3_title',
     descKey: 'service_3_desc',
@@ -79,34 +100,16 @@ const fadeUp = {
   }),
 };
 
-export default function Services() {
+export default function Services({ isHome = false }: { isHome?: boolean }) {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
 
   return (
-    <section id="servicios" ref={ref} className="py-24 px-6 relative overflow-hidden">
-      {/* Rich brand background matching hero treatment */}
+    <section id="servicios" ref={ref} className="py-24 px-6 relative overflow-hidden bg-[#050505]">
+      {/* Minimalist background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-        {/* Radial glows — hero-level intensity */}
-        <div className="absolute top-0 right-[10%] w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.12)_0%,rgba(var(--primary-rgb),0.04)_40%,transparent_70%)]" />
-        <div className="absolute bottom-0 left-[5%] w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
-        {/* Floating geometric shapes */}
-        <svg className="geo-float absolute top-16 right-[10%] w-28 h-28 opacity-[0.05]" style={{ animationDelay: '1s' }} viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
-          <circle cx="50" cy="50" r="25" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.5" />
-          <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="0.8" className="text-[var(--primary)]" opacity="0.3" />
-        </svg>
-        <svg className="geo-float absolute bottom-[20%] left-[15%] w-20 h-20 opacity-[0.04]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
-          <rect x="15" y="15" width="70" height="70" rx="8" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" transform="rotate(15 50 50)" />
-          <rect x="28" y="28" width="44" height="44" rx="4" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" transform="rotate(15 50 50)" opacity="0.5" />
-        </svg>
-        <div className="geo-float absolute bottom-20 left-[5%] w-16 h-16 border border-[rgba(var(--primary-rgb),0.1)] rotate-45 rounded-lg" style={{ animationDelay: '3s' }} />
-        <div className="geo-float absolute top-[30%] left-[3%] w-12 h-12 border border-[rgba(var(--primary-rgb),0.08)] -rotate-12 rounded-md" style={{ animationDelay: '0s' }} />
-        <div className="geo-float absolute top-[60%] right-[4%] w-10 h-10 bg-[rgba(var(--primary-rgb),0.04)] rotate-[20deg] rounded-sm" style={{ animationDelay: '4s' }} />
-        {/* Gradient line accent */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(var(--primary-rgb),0.15)] to-transparent" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#222] to-transparent" />
       </div>
       <div className="max-w-[1200px] mx-auto relative z-10">
         {/* Header */}
@@ -117,78 +120,105 @@ export default function Services() {
           variants={fadeUp}
           custom={0}
         >
-          <p className="section-label mb-4">{t('services_tag')}</p>
-          <h2 className="section-title mb-4">
+          <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0A0A] border border-[#222] text-xs font-semibold tracking-wider text-[var(--text-secondary)] uppercase mb-6">
+            {t('services_tag')}
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black text-[var(--text)] mb-4 tracking-tight">
             {t('services_title')} <br className="hidden md:block" /> {t('services_title_2')}
           </h2>
         </motion.div>
 
-        {/* 3 equal columns in a row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Full-width alternating rows */}
+        <div className="flex flex-col gap-24 lg:gap-32">
           {services.map((s, i) => {
             const Icon = s.icon;
+            const isEven = i % 2 === 0;
+
             return (
               <motion.div
                 key={s.titleKey}
-                className={`group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${s.borderAccent}`}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
                 initial="hidden"
                 animate={isVisible ? 'visible' : 'hidden'}
                 variants={fadeUp}
                 custom={i + 1}
               >
-                {/* Top gradient bar */}
-                <div className={`h-1 bg-gradient-to-r ${s.gradient}`} />
-
-                {/* Glow effect on hover */}
-                <div
-                  className={`absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-40 rounded-full opacity-0 group-hover:opacity-[0.06] transition-opacity duration-700 blur-3xl bg-${s.glowColor}-500`}
-                />
-
-                <div className="relative p-7 flex flex-col h-full">
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} p-[1px] mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <div className="w-full h-full rounded-2xl bg-[var(--surface)] flex items-center justify-center">
-                      <Icon size={24} className={s.accentColor} />
-                    </div>
+                {/* Text Content */}
+                <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
+                  <div className="w-16 h-16 rounded-2xl bg-[#111] border border-[#222] flex items-center justify-center mb-8 shadow-xl shadow-black/50">
+                    <Icon size={28} className={s.accentColor} />
                   </div>
 
-                  {/* Title & Desc */}
-                  <h3 className="text-xl font-bold text-[var(--text)] mb-2">{t(s.titleKey)}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">{t(s.descKey)}</p>
+                  <h3 className="text-4xl sm:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1]">{t(s.titleKey)}</h3>
+                  <p className="text-lg text-[#888] leading-relaxed mb-10 max-w-[500px]">{t(s.descKey)}</p>
 
-                  {/* Features */}
-                  <div className="space-y-2.5 mb-6 flex-1">
+                  {/* Features List */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 w-full max-w-[600px]">
                     {s.features.map((f) => {
                       const FIcon = f.icon;
                       return (
-                        <div key={f.key} className="flex items-center gap-2.5">
-                          <div className={`w-5 h-5 rounded-md bg-gradient-to-br ${s.gradient} p-[1px] shrink-0`}>
-                            <div className="w-full h-full rounded-md bg-[var(--surface)] flex items-center justify-center">
-                              <FIcon size={10} className={s.accentColor} />
-                            </div>
+                        <div key={f.key} className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-[#111] border border-[#222] flex items-center justify-center shrink-0">
+                            <FIcon size={14} className={s.accentColor} />
                           </div>
-                          <span className="text-sm text-[var(--text-secondary)]">{t(f.key)}</span>
+                          <span className="text-sm font-medium text-[#ccc]">{t(f.key)}</span>
                         </div>
                       );
                     })}
                   </div>
 
-                  {/* Tech stack badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {s.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-[var(--surface-hover)] text-[var(--text-tertiary)] border border-[var(--border)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Stat */}
+                  <div className="pt-8 border-t border-[#222] w-full flex items-baseline gap-4 mb-8">
+                    <span className="text-5xl sm:text-6xl font-black text-white">{s.stat.value}</span>
+                    <span className="text-xs sm:text-sm text-[#666] uppercase tracking-[0.2em] font-semibold">{t(s.stat.labelKey)}</span>
                   </div>
 
-                  {/* Stat */}
-                  <div className="pt-5 border-t border-[var(--border)] flex items-baseline gap-2">
-                    <span className={`text-3xl font-extrabold ${s.accentColor}`}>{s.stat.value}</span>
-                    <span className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider">{t(s.stat.labelKey)}</span>
+                  {/* CTA for Homepage */}
+                  {isHome && (
+                    <Link
+                      href="/servicios"
+                      className="group flex items-center justify-between w-full p-4 rounded-xl border border-[#222] bg-[#111] hover:bg-[#151515] hover:border-[#333] transition-colors"
+                    >
+                      <span className="text-xs font-bold text-white uppercase tracking-wider">Ver más detalles</span>
+                      <div className="w-8 h-8 rounded-lg bg-[#222] flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
+                        <svg className="w-4 h-4 text-white group-hover:-rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+
+                {/* Visual Mockup (Right / Left) */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative aspect-[4/3] w-full rounded-3xl border border-[#222] bg-[#0A0A0A] overflow-hidden group">
+                    {/* Top gradient accent */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${s.gradient} opacity-70`} />
+                    
+                    {/* Abstract UI representation */}
+                    <div className="absolute inset-0 flex flex-col">
+                      {/* Fake header */}
+                      <div className="h-12 border-b border-[#222] flex items-center px-4 gap-2 bg-[#0F0F0F]">
+                        <div className="w-3 h-3 rounded-full bg-[#333]" />
+                        <div className="w-3 h-3 rounded-full bg-[#333]" />
+                        <div className="w-3 h-3 rounded-full bg-[#333]" />
+                      </div>
+                      
+                      {/* Fake content */}
+                      <div className="flex-1 p-8 flex flex-col gap-6 relative overflow-hidden">
+                        {/* Decorative background blur */}
+                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-${s.glowColor}-500/10 blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-1000`} />
+                        
+                        <div className="w-3/4 h-8 rounded-lg bg-[#151515] border border-[#222]" />
+                        <div className="w-full h-32 rounded-xl bg-[#111] border border-[#222] flex items-center justify-center">
+                          <Icon size={48} className={`${s.accentColor} opacity-20`} />
+                        </div>
+                        <div className="flex gap-4">
+                          <div className="w-1/2 h-24 rounded-xl bg-[#151515] border border-[#222]" />
+                          <div className="w-1/2 h-24 rounded-xl bg-[#151515] border border-[#222]" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>

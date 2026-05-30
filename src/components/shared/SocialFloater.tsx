@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Instagram, Facebook, X, ChevronUp } from 'lucide-react';
+import { Instagram, Facebook, X, ChevronUp } from 'lucide-react';
+import WhatsAppIcon from '@/components/shared/WhatsAppIcon';
 
 const whatsappContacts = [
   { name: 'PuroCode', phone: '56949255006', label: '+56 9 4925 5006' },
@@ -72,7 +73,7 @@ export default function SocialFloater() {
                     className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
                   >
                     <div className="w-8 h-8 rounded-full bg-[#25D366]/10 flex items-center justify-center shrink-0">
-                      <MessageCircle size={14} className="text-[#25D366]" />
+                      <WhatsAppIcon size={14} className="text-[#25D366]" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-[var(--text)]">{c.name}</p>
@@ -109,7 +110,7 @@ export default function SocialFloater() {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
               aria-label="WhatsApp"
             >
-              <MessageCircle size={22} />
+              <WhatsAppIcon size={22} />
             </button>
 
             {/* Instagram */}
