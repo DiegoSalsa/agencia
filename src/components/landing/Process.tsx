@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Search, PenTool, Code, Rocket, CheckCircle2, Wrench, ArrowRight } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
@@ -65,7 +65,7 @@ const steps = [
   },
 ];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
