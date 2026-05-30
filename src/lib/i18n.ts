@@ -366,7 +366,6 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     nav_dropdown_dev: 'Custom Software & Web Development',
     nav_dropdown_maint: 'Maintenance & Support',
     nav_faq: 'FAQ',
-    lang_select: 'Language',
     nav_cta: 'Get a Quote',
 
     // Hero
