@@ -210,7 +210,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white font-semibold text-sm hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+                  className="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-[var(--text)] font-semibold text-sm hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {status === 'sending' ? (
                     <Loader2 size={18} className="animate-spin" />

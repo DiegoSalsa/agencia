@@ -19,7 +19,7 @@ export default function MantenimientoPage() {
     <PromoProvider>
       <PromoBanner />
       <Header />
-      <main id="main-content" className="min-h-screen bg-[#050505] selection:bg-emerald-500/30 selection:text-emerald-200">
+      <main id="main-content" className="min-h-screen bg-[var(--bg)] selection:bg-emerald-500/30 selection:text-emerald-200">
         <PageHeader 
           title="Mantenimiento" 
           highlight="Web" 

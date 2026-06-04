@@ -47,11 +47,11 @@ export default function ServicesSummary() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section id="servicios-resumen" ref={ref} className="py-24 px-6 relative overflow-hidden bg-[#050505]">
+    <section id="servicios-resumen" ref={ref} className="py-24 px-6 relative overflow-hidden bg-[var(--bg)]">
       {/* Minimalist background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#222] to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
       </div>
 
       <div className="max-w-[1200px] mx-auto relative z-10">
@@ -64,7 +64,7 @@ export default function ServicesSummary() {
           custom={0}
         >
           <div>
-            <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0A0A] border border-[#222] text-xs font-semibold tracking-wider text-[var(--text-secondary)] uppercase mb-6">
+            <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] text-xs font-semibold tracking-wider text-[var(--text-secondary)] uppercase mb-6">
               {t('services_tag')}
             </p>
             <h2 className="text-4xl md:text-5xl font-black text-[var(--text)] tracking-tight">
@@ -73,7 +73,7 @@ export default function ServicesSummary() {
           </div>
           <Link
             href="/servicios"
-            className="group flex items-center gap-2 text-sm font-bold text-white uppercase tracking-widest pb-1 border-b border-transparent hover:border-indigo-500 transition-colors duration-300"
+            className="group flex items-center gap-2 text-sm font-bold text-[var(--text)] uppercase tracking-widest pb-1 border-b border-transparent hover:border-indigo-500 transition-colors duration-300"
           >
             Ver todos los servicios <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -86,7 +86,7 @@ export default function ServicesSummary() {
             return (
               <motion.div
                 key={s.titleKey}
-                className="group flex flex-col h-full relative overflow-hidden rounded-2xl border border-[#222] bg-[#0A0A0A] transition-all duration-500 hover:-translate-y-2 hover:border-[#444] hover:shadow-2xl hover:shadow-black"
+                className="group flex flex-col h-full relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] transition-all duration-500 hover:-translate-y-2 hover:border-[rgba(var(--primary-rgb),0.3)] hover:shadow-2xl"
                 initial="hidden"
                 animate={isVisible ? 'visible' : 'hidden'}
                 variants={fadeUp}
@@ -97,21 +97,21 @@ export default function ServicesSummary() {
 
                 <div className="relative p-8 flex flex-col flex-1">
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-[#111] border border-[#222] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
                     <Icon size={20} className={s.accentColor} />
                   </div>
 
                   {/* Title & Desc */}
-                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{t(s.titleKey)}</h3>
-                  <p className="text-sm text-[#888] leading-relaxed flex-1 mb-8">{t(s.descKey)}</p>
+                  <h3 className="text-2xl font-bold text-[var(--text)] mb-3 tracking-tight">{t(s.titleKey)}</h3>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed flex-1 mb-8">{t(s.descKey)}</p>
 
                   <Link
                     href={s.href}
-                    className="mt-auto flex items-center justify-between w-full p-4 rounded-xl border border-[#222] bg-[#111] group-hover:bg-[#151515] group-hover:border-[#333] transition-colors"
+                    className="mt-auto flex items-center justify-between w-full p-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] group-hover:bg-[var(--surface-hover)] transition-colors"
                   >
-                    <span className="text-xs font-bold text-white uppercase tracking-wider">Ver detalles</span>
-                    <div className="w-8 h-8 rounded-lg bg-[#222] flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
-                      <ArrowRight size={14} className="text-white group-hover:-rotate-45 transition-transform" />
+                    <span className="text-xs font-bold text-[var(--text)] uppercase tracking-wider">Ver detalles</span>
+                    <div className="w-8 h-8 rounded-lg bg-[var(--surface-hover)] flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
+                      <ArrowRight size={14} className="text-[var(--text)] group-hover:-rotate-45 transition-transform" />
                     </div>
                   </Link>
                 </div>

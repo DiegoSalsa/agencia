@@ -82,26 +82,7 @@ const webProjects: Project[] = [
   },
 ];
 
-const saasProjects: Project[] = [
-  {
-    href: 'https://satisfaccion-clientes-alpha.vercel.app',
-    title: 'ValoraLocal',
-    descKey: 'portfolio_7_desc',
-    tag: 'SaaS',
-    tagColor: 'bg-violet-500/15 text-violet-400 border-violet-500/30',
-    gradient: 'from-violet-600/40 via-purple-600/30 to-indigo-800/40',
-    thumbnail: '/img/FotosPaginas/ValoraLocal.png',
-  },
-  {
-    href: 'https://www.puragenda.cl/',
-    title: 'Puragenda',
-    descKey: 'portfolio_9_desc',
-    tag: 'SaaS',
-    tagColor: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30',
-    gradient: 'from-indigo-600/40 via-blue-600/30 to-violet-800/40',
-    thumbnail: '/img/FotosPaginas/Puragenda.png',
-  }
-];
+// SaaS projects moved to Labs.tsx
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -117,13 +98,13 @@ export default function Portfolio() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section id="portafolio" ref={ref} className="relative py-24 px-6 overflow-hidden bg-[#050505]">
+    <section id="portafolio" ref={ref} className="relative py-24 px-6 overflow-hidden bg-[var(--bg)]">
       {/* Minimalist background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
       </div>
       {/* Gradient line accents */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#222] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
       <div
         className="absolute inset-0 opacity-[0.012]"
         style={{
@@ -157,7 +138,7 @@ export default function Portfolio() {
 
         {/* Massive Portfolio Showcase */}
         <div className="flex flex-col gap-32 lg:gap-48 mt-24">
-          {[...webProjects.slice(0, 4), ...saasProjects].map((project, i) => {
+          {webProjects.map((project, i) => {
             const isEven = i % 2 === 0;
 
             return (
@@ -174,13 +155,12 @@ export default function Portfolio() {
               >
                 {/* Live Real-time Iframe Section */}
                 <div className="w-full lg:w-3/5">
-                  <div className={`relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden border border-[#222] bg-[#0A0A0A] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] group-hover:shadow-[rgba(var(--primary-rgb),0.1)]`}>
+                  <div className={`relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--bg-secondary)] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] group-hover:shadow-[rgba(var(--primary-rgb),0.1)]`}>
                     
-                    {/* Real-time Screenshot API (Microlink fallback) */}
                     <div className="absolute inset-0 z-0">
-                      <img 
-                        src={`https://api.microlink.io/?url=${encodeURIComponent(project.href)}&screenshot=true&meta=false&embed=screenshot.url`}
-                        alt={`Vista en vivo de ${project.title}`}
+                      <img
+                        src={project.thumbnail || '/img/placeholder.png'}
+                        alt={`Vista de ${project.title}`}
                         className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110 bg-[#111]"
                         loading="lazy"
                       />
@@ -210,15 +190,15 @@ export default function Portfolio() {
                     {project.tag}
                   </span>
                   
-                  <h3 className="text-4xl sm:text-5xl font-black text-white mb-6 tracking-tight leading-[1.1] group-hover:text-indigo-400 transition-colors duration-300">
+                  <h3 className="text-4xl sm:text-5xl font-black text-[var(--text)] mb-6 tracking-tight leading-[1.1] group-hover:text-indigo-400 transition-colors duration-300">
                     {project.title}
                   </h3>
                   
-                  <p className="text-lg text-[#888] leading-relaxed mb-8 max-w-[400px]">
+                  <p className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8 max-w-[400px]">
                     {t(project.descKey)}
                   </p>
 
-                  <div className="inline-flex items-center gap-3 text-sm font-bold text-white uppercase tracking-widest pb-1 border-b-2 border-transparent group-hover:border-indigo-500 transition-colors duration-300">
+                  <div className="inline-flex items-center gap-3 text-sm font-bold text-[var(--text)] uppercase tracking-widest pb-1 border-b-2 border-transparent group-hover:border-indigo-500 transition-colors duration-300">
                     Ver Proyecto <ExternalLink size={14} />
                   </div>
                 </div>

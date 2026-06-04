@@ -18,7 +18,7 @@ export default function FAQPage() {
     <PromoProvider>
       <PromoBanner />
       <Header />
-      <main id="main-content" className="min-h-screen bg-[#050505] selection:bg-emerald-500/30 selection:text-emerald-200">
+      <main id="main-content" className="min-h-screen bg-[var(--bg)] selection:bg-emerald-500/30 selection:text-emerald-200">
         <PageHeader 
           title="Preguntas" 
           highlight="Frecuentes" 
@@ -27,7 +27,7 @@ export default function FAQPage() {
             { label: 'FAQ', href: '/faq' }
           ]}
         />
-        <div className="bg-[#050505] pt-12 pb-20">
+        <div className="bg-[var(--bg)] pt-12 pb-20">
           <FAQ />
         </div>
         <CtaBanner />

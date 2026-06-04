@@ -98,6 +98,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     nav_contact: 'Contacto',
     nav_dropdown_dev: 'Desarrollo y Software a Medida',
     nav_dropdown_maint: 'Mantenimiento y Soporte',
+    nav_dropdown_web: 'Proyectos Web',
+    nav_dropdown_saas: 'PuroCode Labs',
     nav_faq: 'FAQ',
     nav_cta: 'Cotiza tu Proyecto',
 
@@ -108,7 +110,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     hero_title_highlights: 'Impulsa Negocios,Convierte Visitantes,Escala tu Marca',
     hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
     hero_cta_primary: 'Cotiza tu Proyecto',
-    hero_cta_secondary: 'Ver Portafolio',
+    hero_cta_secondary: 'Ver Planes',
     hero_cta_briefing: 'Completar Cuestionario',
     hero_payment_note: '50% al inicio · 50% al entregar',
 
@@ -365,6 +367,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     nav_pricing: 'Pricing',
     nav_dropdown_dev: 'Custom Software & Web Development',
     nav_dropdown_maint: 'Maintenance & Support',
+    nav_dropdown_web: 'Web Projects',
+    nav_dropdown_saas: 'PuroCode Labs',
     nav_faq: 'FAQ',
     nav_cta: 'Get a Quote',
 
@@ -375,7 +379,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     hero_title_highlights: 'Drives Business,Converts Visitors,Scales Your Brand',
     hero_subtitle: 'High-end web development, scalable SaaS solutions, and digital experiences that turn visitors into customers.',
     hero_cta_primary: 'Get a Quote',
-    hero_cta_secondary: 'View Portfolio',
+    hero_cta_secondary: 'View Plans',
     hero_cta_briefing: 'Complete Questionnaire',
     hero_payment_note: '50% upfront · 50% on delivery',
 

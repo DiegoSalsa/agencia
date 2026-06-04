@@ -17,7 +17,7 @@ export default function CtaBanner() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section ref={ref} className="py-24 px-6 bg-[#050505] border-t border-[#222]">
+    <section ref={ref} className="py-24 px-6 bg-[var(--bg)] border-t border-[var(--border)]">
       <motion.div
         className="max-w-6xl mx-auto relative overflow-hidden"
         initial={{ opacity: 0, y: 30 }}
@@ -28,18 +28,18 @@ export default function CtaBanner() {
           
           {/* Left Column: CTA */}
           <div className="flex flex-col items-start">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-black text-[10px] font-bold tracking-widest uppercase mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--text)] text-[var(--bg)] text-[10px] font-bold tracking-widest uppercase mb-8">
               {t('cta_badge')}
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--text)] mb-6 tracking-tight leading-tight">
               {t('cta_title')}
             </h2>
-            <p className="text-[#888] text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
+            <p className="text-[var(--text-secondary)] text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
               {t('cta_subtitle')}
             </p>
             <Link
               href="/formulario"
-              className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-[#eee] transition-colors cursor-pointer group"
+              className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-[var(--text)] text-[var(--bg)] font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-colors cursor-pointer group"
             >
               {t('cta_button')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -48,18 +48,18 @@ export default function CtaBanner() {
 
           {/* Right Column: Testimonial & Stats (Monochrome) */}
           <div className="flex flex-col gap-8">
-            <div className="bg-[#0A0A0A] border border-[#222] p-8 md:p-10 relative">
-              <Quote size={40} className="text-[#222] absolute top-6 left-6" />
-              <blockquote className="text-white/90 text-lg md:text-xl font-medium leading-relaxed italic mb-8 relative z-10 pt-4 px-2">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] p-8 md:p-10 relative">
+              <Quote size={40} className="text-[var(--border)] absolute top-6 left-6" />
+              <blockquote className="text-[var(--text)]/90 text-lg md:text-xl font-medium leading-relaxed italic mb-8 relative z-10 pt-4 px-2">
                 "{t('cta_testimonial_text')}"
               </blockquote>
               <div className="flex items-center gap-4 relative z-10 px-2">
-                <div className="w-12 h-12 bg-white text-black flex items-center justify-center font-bold text-sm">
+                <div className="w-12 h-12 bg-[var(--text)] text-[var(--bg)] flex items-center justify-center font-bold text-sm">
                   {t('cta_testimonial_initials')}
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm tracking-wide">{t('cta_testimonial_name')}</p>
-                  <p className="text-[#666] text-xs uppercase tracking-widest mt-1">{t('cta_testimonial_role')}</p>
+                  <p className="text-[var(--text)] font-bold text-sm tracking-wide">{t('cta_testimonial_name')}</p>
+                  <p className="text-[var(--text-tertiary)] text-xs uppercase tracking-widest mt-1">{t('cta_testimonial_role')}</p>
                 </div>
               </div>
             </div>
@@ -68,10 +68,10 @@ export default function CtaBanner() {
               {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={i} className="flex flex-col justify-center items-center text-center p-6 bg-[#0A0A0A] border border-[#222]">
-                    <Icon size={20} className="text-[#666] mb-3" />
-                    <p className="text-xl md:text-2xl font-black text-white mb-1">{t(stat.valueKey)}</p>
-                    <p className="text-[9px] text-[#666] uppercase tracking-widest font-bold">{t(stat.labelKey)}</p>
+                  <div key={i} className="flex flex-col justify-center items-center text-center p-6 bg-[var(--bg-secondary)] border border-[var(--border)]">
+                    <Icon size={20} className="text-[var(--text-tertiary)] mb-3" />
+                    <p className="text-xl md:text-2xl font-black text-[var(--text)] mb-1">{t(stat.valueKey)}</p>
+                    <p className="text-[9px] text-[var(--text-tertiary)] uppercase tracking-widest font-bold">{t(stat.labelKey)}</p>
                   </div>
                 );
               })}

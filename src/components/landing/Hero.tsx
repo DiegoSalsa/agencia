@@ -84,7 +84,7 @@ export default function Hero() {
   }, [highlights.length]);
 
   return (
-    <section id="hero" className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden border-b border-[var(--border)] bg-[#050505]">
+    <section id="hero" className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden border-b border-[var(--border)] bg-[var(--bg)]">
       {/* Premium subtle background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
@@ -136,20 +136,22 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link
-                href="/formulario"
+              <a
+                href="https://wa.me/56949255006?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary group text-[10px] sm:text-sm lg:text-base font-bold h-9 px-3 sm:h-14 sm:px-8 w-auto cursor-pointer shadow-lg hover:shadow-[rgba(var(--primary-rgb),0.3)] transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2"
               >
                 <span className="truncate">{t('hero_cta_primary')}</span>
                 <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="#portafolio"
+              </a>
+              <Link
+                href="/planes"
                 className="btn-secondary group text-[10px] sm:text-sm lg:text-base font-bold h-9 px-3 sm:h-14 sm:px-8 w-auto cursor-pointer bg-transparent hover:bg-[var(--surface)] border border-[var(--border)] transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2"
               >
                 <Eye className="w-3 h-3 sm:w-5 sm:h-5 shrink-0" />
                 <span className="truncate">{t('hero_cta_secondary')}</span>
-              </a>
+              </Link>
             </motion.div>
           </div>
 
@@ -161,23 +163,23 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             {/* Main floating window */}
-            <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-2xl border border-[#222] bg-[#0A0A0A] shadow-2xl shadow-black/50 overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-700">
+            <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/20 dark:shadow-black/50 overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-700">
               {/* Window Header */}
-              <div className="flex items-center px-3 py-1.5 sm:px-4 sm:py-3 border-b border-[#222] bg-[#0F0F0F]">
+              <div className="flex items-center px-3 py-1.5 sm:px-4 sm:py-3 border-b border-[var(--border)] bg-[var(--surface)]">
                 <div className="flex gap-1.5 sm:gap-2">
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF5F56]" />
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBD2E]" />
                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#27C93F]" />
                 </div>
-                <div className="mx-auto text-[7px] sm:text-[10px] font-mono text-[#666] tracking-widest uppercase truncate ml-2">
+                <div className="mx-auto text-[7px] sm:text-[10px] font-mono text-[var(--text-tertiary)] tracking-widest uppercase truncate ml-2">
                   purocode-architecture.tsx
                 </div>
               </div>
               
               {/* Window Body (Code Mockup) */}
-              <div className="p-3 sm:p-6 font-mono text-[8px] sm:text-sm leading-[1.6] text-[#888] h-full relative overflow-hidden">
+              <div className="p-3 sm:p-6 font-mono text-[8px] sm:text-sm leading-[1.6] text-[var(--text-secondary)] h-full relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10">
-                  <svg className="w-16 h-16 sm:w-32 sm:h-32 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-16 h-16 sm:w-32 sm:h-32 text-[var(--text)]" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0l12 12-12 12L0 12z" />
                   </svg>
                 </div>
@@ -198,7 +200,7 @@ export default function Hero() {
 
             {/* Floating stats card */}
             <motion.div 
-              className="absolute -bottom-3 -left-3 sm:-bottom-8 sm:-left-8 lg:-bottom-12 lg:-left-12 p-2 sm:p-5 rounded-lg sm:rounded-2xl border border-[#222] bg-[#0F0F0F]/90 backdrop-blur-xl shadow-2xl z-20"
+              className="absolute -bottom-3 -left-3 sm:-bottom-8 sm:-left-8 lg:-bottom-12 lg:-left-12 p-2 sm:p-5 rounded-lg sm:rounded-2xl border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-xl shadow-2xl z-20"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -208,8 +210,8 @@ export default function Hero() {
                   <ArrowRight className="text-emerald-400 -rotate-45 w-3 h-3 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <div className="text-sm sm:text-2xl font-black text-white leading-none">99.9%</div>
-                  <div className="text-[7px] sm:text-xs font-semibold text-[#888] uppercase tracking-wider mt-0.5 sm:mt-1">Uptime</div>
+                  <div className="text-sm sm:text-2xl font-black text-[var(--text)] leading-none">99.9%</div>
+                  <div className="text-[7px] sm:text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mt-0.5 sm:mt-1">Uptime</div>
                 </div>
               </div>
             </motion.div>
@@ -220,7 +222,7 @@ export default function Hero() {
 
       {/* Tech Marquee Row - Integrated cleanly at the bottom */}
       <motion.div
-        className="w-full mt-24 relative z-10 border-y border-[var(--border)] bg-[#0A0A0A] py-5"
+        className="w-full mt-24 relative z-10 border-y border-[var(--border)] bg-[var(--bg-secondary)] py-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.6 }}

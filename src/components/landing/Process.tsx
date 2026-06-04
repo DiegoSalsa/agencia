@@ -82,12 +82,12 @@ function StatCard({ labelKey, target, prefix, suffix, trendKey, noteKey, stars }
   const { ref, display } = useCounter({ target, prefix, suffix });
 
   return (
-    <div className="rounded-3xl border border-[#222] bg-[#0A0A0A] p-8 text-center sm:text-left shadow-2xl relative overflow-hidden group">
+    <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg-secondary)] p-8 text-center sm:text-left shadow-2xl relative overflow-hidden group">
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[60px] rounded-full group-hover:bg-white/10 transition-colors duration-500" />
-      <p className="text-xs font-semibold text-[#888] uppercase tracking-widest mb-2">{t(labelKey)}</p>
-      <p ref={ref} className="text-4xl lg:text-5xl font-black text-white mb-1 tracking-tight">{display}</p>
+      <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-widest mb-2">{t(labelKey)}</p>
+      <p ref={ref} className="text-4xl lg:text-5xl font-black text-[var(--text)] mb-1 tracking-tight">{display}</p>
       {trendKey && <span className="text-emerald-500 text-sm font-semibold">{t(trendKey)}</span>}
-      {noteKey && <p className="text-[#666] text-xs">{t(noteKey)}</p>}
+      {noteKey && <p className="text-[var(--text-tertiary)] text-xs">{t(noteKey)}</p>}
       {stars && (
         <div className="flex items-center gap-0.5 mt-2 justify-center sm:justify-start">
           {[...Array(5)].map((_, i) => (
@@ -107,7 +107,7 @@ export default function Process() {
   const { ref: statsRef, isVisible: statsVisible } = useInView();
 
   return (
-    <section id="proceso" ref={ref} className="py-24 px-6 relative bg-[#050505]">
+    <section id="proceso" ref={ref} className="py-24 px-6 relative bg-[var(--bg)]">
       {/* Premium Dark Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
@@ -124,16 +124,16 @@ export default function Process() {
               variants={fadeUp}
               custom={0}
             >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight leading-[1.05]">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--text)] mb-6 tracking-tight leading-[1.05]">
                 {t('process_title')}
               </h2>
               
-              <p className="text-lg text-[#888] leading-relaxed mb-8">
+              <p className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8">
                 {t('process_subtitle')}
               </p>
 
               {/* Progress Indicator Line (Desktop) */}
-              <div className="hidden lg:block w-full h-1 bg-[#111] rounded-full overflow-hidden mt-12 relative">
+              <div className="hidden lg:block w-full h-1 bg-[var(--surface)] rounded-full overflow-hidden mt-12 relative">
                  <motion.div 
                     className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-emerald-500 to-fuchsia-500"
                     initial={{ width: "0%" }}
@@ -154,7 +154,7 @@ export default function Process() {
             return (
               <motion.div
                 key={step.num}
-                className="relative rounded-3xl border border-[#222] bg-[#0A0A0A] p-8 md:p-12 shadow-2xl overflow-hidden group"
+                className="relative rounded-3xl border border-[var(--border)] bg-[var(--bg-secondary)] p-8 md:p-12 shadow-2xl overflow-hidden group"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
@@ -171,26 +171,26 @@ export default function Process() {
                   </div>
                   <div>
                     <Icon className={`w-10 h-10 md:w-12 md:h-12 ${step.classes.icon} mb-3`} />
-                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[var(--text)] tracking-tight">
                       {t(step.titleKey)}
                     </h3>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-[#888] text-lg leading-relaxed mb-10">
+                <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-10">
                   {t(step.descKey)}
                 </p>
 
                 {/* Deliverables & Tools Deep Dive */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-[#222]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-[var(--border)]">
                   <div>
-                    <div className="flex items-center gap-2 text-white font-bold mb-3 text-sm tracking-wider uppercase">
+                    <div className="flex items-center gap-2 text-[var(--text)] font-bold mb-3 text-sm tracking-wider uppercase">
                       <CheckCircle2 size={16} className={step.classes.text} /> Entregables
                     </div>
                     <ul className="flex flex-col gap-2">
                       {t(step.delivKey).split(', ').map((item, idx) => (
-                        <li key={idx} className="text-sm text-[#aaa] flex items-start gap-2">
+                        <li key={idx} className="text-sm text-[var(--text-secondary)] flex items-start gap-2">
                           <span className={`${step.classes.bullet} mt-1`}>▹</span> {item}
                         </li>
                       ))}
@@ -198,12 +198,12 @@ export default function Process() {
                   </div>
 
                   <div>
-                    <div className="flex items-center gap-2 text-white font-bold mb-3 text-sm tracking-wider uppercase">
+                    <div className="flex items-center gap-2 text-[var(--text)] font-bold mb-3 text-sm tracking-wider uppercase">
                       <Wrench size={16} className={step.classes.text} /> Stack & Herramientas
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {t(step.toolsKey).split(', ').map((tool, idx) => (
-                        <span key={idx} className="text-xs font-semibold px-3 py-1 bg-[#111] text-[#888] rounded-lg border border-[#333]">
+                        <span key={idx} className="text-xs font-semibold px-3 py-1 bg-[var(--surface)] text-[var(--text-secondary)] rounded-lg border border-[var(--border)]">
                           {tool}
                         </span>
                       ))}

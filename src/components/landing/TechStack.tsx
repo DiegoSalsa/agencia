@@ -31,7 +31,7 @@ export default function TechStack() {
                   {tech.icon}
                 </span>
               </div>
-              <h3 className="text-white font-bold text-lg">{t(tech.titleKey)}</h3>
+              <h3 className="text-[var(--text)] font-bold text-lg">{t(tech.titleKey)}</h3>
               <p className="text-slate-400 text-sm leading-relaxed">{t(tech.descKey)}</p>
             </div>
           ))}

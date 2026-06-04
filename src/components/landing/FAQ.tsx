@@ -23,7 +23,7 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
 
   return (
     <motion.div
-      className="border border-[#222] bg-[#0A0A0A] rounded-none overflow-hidden transition-colors hover:border-[#444]"
+      className="border border-[var(--border)] bg-[var(--bg-secondary)] rounded-none overflow-hidden transition-colors hover:border-[rgba(var(--primary-rgb),0.3)]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -32,12 +32,12 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer group"
       >
-        <span className="text-[15px] font-semibold text-white group-hover:text-gray-300 transition-colors leading-snug">
+        <span className="text-[15px] font-semibold text-[var(--text)] group-hover:text-[var(--primary)] transition-colors leading-snug">
           {question}
         </span>
         <ChevronDown
           size={18}
-          className={`flex-shrink-0 text-gray-500 transition-transform duration-300 ${open ? 'rotate-180 text-white' : ''}`}
+          className={`flex-shrink-0 text-gray-500 transition-transform duration-300 ${open ? 'rotate-180 text-[var(--text)]' : ''}`}
         />
       </button>
       <AnimatePresence initial={false}>
@@ -49,7 +49,7 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-[#222] pt-4">
+            <div className="px-6 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border)] pt-4">
               {answer}
             </div>
           </motion.div>
@@ -69,7 +69,7 @@ export default function FAQ() {
   const rightCol = faqData.slice(midPoint);
 
   return (
-    <section id="faq" ref={ref} className="py-24 px-6 bg-[#050505]">
+    <section id="faq" ref={ref} className="py-24 px-6 bg-[var(--bg)]">
       <motion.div
         className="max-w-[1200px] mx-auto"
         initial={{ opacity: 0, y: 30 }}
@@ -78,14 +78,14 @@ export default function FAQ() {
       >
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-black text-[10px] font-bold tracking-widest uppercase mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--text)] text-[var(--bg)] text-[10px] font-bold tracking-widest uppercase mb-5">
             <HelpCircle size={14} />
             {t('faq_tag')}
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-[var(--text)] mb-6 tracking-tight">
             {t('faq_title')}
           </h2>
-          <p className="text-lg text-[#888] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl mx-auto">
             {t('faq_subtitle')}
           </p>
         </div>

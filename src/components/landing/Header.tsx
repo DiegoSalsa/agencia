@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, X, ChevronDown, Code, Settings2 } from 'lucide-react';
+import { Sun, Moon, Menu, X, ChevronDown, Code, Settings2, Globe, Beaker } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useTheme } from '@/context/ThemeContext';
 import type { Lang } from '@/lib/i18n';
@@ -14,8 +14,8 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -35,7 +35,13 @@ export default function Header() {
 
   const navLinks = [
     { href: '/servicios', label: t('nav_services') },
-    { href: '/portafolio', label: t('nav_portfolio') },
+    { 
+      label: t('nav_portfolio'),
+      dropdown: [
+        { href: '/portafolio', label: t('nav_dropdown_web'), icon: Globe },
+        { href: '/labs', label: t('nav_dropdown_saas'), icon: Beaker },
+      ]
+    },
     { href: '/proceso', label: t('nav_process') },
     { 
       label: t('nav_pricing'),
@@ -75,17 +81,17 @@ export default function Header() {
                 <div 
                   key={link.label}
                   className="relative group"
-                  onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}
+                  onMouseEnter={() => setDropdownOpen(link.label)}
+                  onMouseLeave={() => setDropdownOpen(null)}
                 >
                   <button className="flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--text)] text-sm font-medium transition-colors cursor-pointer py-4">
                     {link.label}
-                    <ChevronDown size={14} className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={14} className={`transition-transform duration-300 ${dropdownOpen === link.label ? 'rotate-180' : ''}`} />
                   </button>
                   
                   {/* Dropdown Menu */}
                   <AnimatePresence>
-                    {dropdownOpen && (
+                    {dropdownOpen === link.label && (
                       <motion.div
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -100,7 +106,7 @@ export default function Header() {
                               key={item.href} 
                               href={item.href}
                               className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--surface-hover)] transition-colors group/item"
-                              onClick={() => setDropdownOpen(false)}
+                              onClick={() => setDropdownOpen(null)}
                             >
                               <div className="w-8 h-8 rounded-lg bg-[var(--surface-hover)] flex items-center justify-center shrink-0 group-hover/item:text-[var(--primary)] text-[var(--text-secondary)] transition-colors">
                                 <Icon size={16} />
@@ -198,13 +204,13 @@ export default function Header() {
                       <div key={link.label} className="flex flex-col">
                         <button 
                           className="flex items-center justify-between text-lg font-semibold text-[var(--text)] py-3 px-4 rounded-xl hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
-                          onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                          onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.label ? null : link.label)}
                         >
                           {link.label}
-                          <ChevronDown size={18} className={`transition-transform duration-300 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+                          <ChevronDown size={18} className={`transition-transform duration-300 ${mobileDropdownOpen === link.label ? 'rotate-180' : ''}`} />
                         </button>
                         <AnimatePresence>
-                          {mobileDropdownOpen && (
+                          {mobileDropdownOpen === link.label && (
                             <motion.div 
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: 'auto', opacity: 1 }}

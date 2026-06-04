@@ -12,16 +12,24 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const saved = localStorage.getItem('purocode-theme') as Theme | null;
+    const initial = saved || 'dark';
+    setTheme(initial);
+    document.documentElement.classList.toggle('dark', initial === 'dark');
     setMounted(true);
-    document.documentElement.classList.add('dark');
   }, []);
 
   const toggleTheme = useCallback(() => {
-    // Disabled toggle to maintain strict professional dark theme
+    setTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('purocode-theme', next);
+      document.documentElement.classList.toggle('dark', next === 'dark');
+      return next;
+    });
   }, []);
 
   // Prevent flash of wrong theme
