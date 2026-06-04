@@ -11,7 +11,7 @@ export default function FormularioPage() {
   }, [router]);
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#07060b]">
+    <main className="min-h-screen flex items-center justify-center bg-[var(--bg)]">
       <p className="text-white/40 text-sm">Redirigiendo...</p>
     </main>
   );

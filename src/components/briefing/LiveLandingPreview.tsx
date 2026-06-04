@@ -27,7 +27,9 @@ import {
     Calendar,
     Download,
     Languages,
+    ChevronRight,
 } from "lucide-react";
+import WhatsAppIcon from '@/components/shared/WhatsAppIcon';
 
 // Placeholder images per section generated via picsum with stable seeds
 const sectionImages: Record<string, string[]> = {
@@ -296,7 +298,7 @@ export function LiveLandingPreview() {
                                     <div className="flex items-center gap-1.5 mb-2">
                                         {normalizedPhone && (
                                             <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }} title="WhatsApp">
-                                                <MessageCircle size={10} className="text-white" />
+                                                <WhatsAppIcon size={10} className="text-white" />
                                             </a>
                                         )}
                                         {instagramUrl && (
@@ -675,7 +677,7 @@ export function LiveLandingPreview() {
                     {hasSocial && (
                         <div className="flex justify-center gap-1.5 mb-2">
                             {normalizedPhone && (
-                                <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }} title="WhatsApp"><MessageCircle size={8} className="text-white" /></a>
+                                <a href={`https://wa.me/${normalizedPhone}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full flex items-center justify-center hover:scale-110 transition-transform no-underline" style={{ backgroundColor: "#25D366" }} title="WhatsApp"><WhatsAppIcon size={8} className="text-white" /></a>
                             )}
                             {instagramUrl && (
                                 <a href={instagramUrl.startsWith("http") ? instagramUrl : `https://instagram.com/${instagramUrl.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="w-4 h-4 rounded-full bg-pink-500 text-white text-[6px] flex items-center justify-center hover:scale-110 transition-transform no-underline" title="Instagram"><Instagram size={8} /></a>
@@ -705,14 +707,14 @@ export function LiveLandingPreview() {
                             style={{ backgroundColor: "#25D366" }}
                             title="WhatsApp"
                         >
-                            <MessageCircle size={18} className="text-white" />
+                            <WhatsAppIcon size={18} className="text-white" />
                         </a>
                     ) : (
                         <div
                             className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg"
                             style={{ backgroundColor: "#25D366" }}
                         >
-                            <MessageCircle size={18} className="text-white" />
+                            <WhatsAppIcon size={18} className="text-white" />
                         </div>
                     )}
                     {/* Instagram */}

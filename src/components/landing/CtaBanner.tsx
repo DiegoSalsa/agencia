@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Quote, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
+import { ArrowRight, Quote, Check, Clock, TrendingUp } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
 
 const stats = [
-  { icon: CheckCircle2, valueKey: 'cta_stat_1_value', labelKey: 'cta_stat_1_label' },
+  { icon: Check, valueKey: 'cta_stat_1_value', labelKey: 'cta_stat_1_label' },
   { icon: TrendingUp, valueKey: 'cta_stat_2_value', labelKey: 'cta_stat_2_label' },
   { icon: Clock, valueKey: 'cta_stat_3_value', labelKey: 'cta_stat_3_label' },
 ];
@@ -17,101 +17,67 @@ export default function CtaBanner() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section ref={ref} className="py-20 px-6">
+    <section ref={ref} className="py-24 px-6 bg-[var(--bg)] border-t border-[var(--border)]">
       <motion.div
-        className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--primary)] via-[var(--primary-dark)] to-[#3b0d99] p-10 md:p-16"
+        className="max-w-6xl mx-auto relative overflow-hidden"
         initial={{ opacity: 0, y: 30 }}
         animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.6 }}
       >
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.02] rounded-full blur-[80px]" />
-        {/* Angular line decoration */}
-        <svg className="absolute top-8 right-8 w-20 h-20 opacity-10" viewBox="0 0 100 100" fill="none">
-          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="white" strokeWidth="1.5" />
-        </svg>
-        <svg className="absolute bottom-8 left-8 w-14 h-14 opacity-[0.06]" viewBox="0 0 100 100" fill="none">
-          <path d="M50 5 L95 50 L50 95 L5 50 Z" stroke="white" strokeWidth="2" />
-        </svg>
-
-        <div className="relative z-10">
-          {/* Stats strip */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-10"
-            initial={{ opacity: 0, y: 15 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {stats.map((stat, i) => {
-              const Icon = stat.icon;
-              return (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                    <Icon size={18} className="text-white/80" />
-                  </div>
-                  <div>
-                    <p className="text-xl sm:text-2xl font-extrabold text-white leading-none">{t(stat.valueKey)}</p>
-                    <p className="text-[11px] text-white/50 uppercase tracking-wider font-medium">{t(stat.labelKey)}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
-
-          {/* Divider */}
-          <div className="h-px bg-white/10 mb-10 max-w-md mx-auto" />
-
-          {/* Testimonial */}
-          <motion.div
-            className="max-w-2xl mx-auto text-center mb-10"
-            initial={{ opacity: 0, y: 15 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Quote size={28} className="text-white/20 mx-auto mb-4 rotate-180" />
-            <blockquote className="text-white/85 text-lg md:text-xl font-medium leading-relaxed italic mb-4">
-              {t('cta_testimonial_text')}
-            </blockquote>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
-                {t('cta_testimonial_initials')}
-              </div>
-              <div className="text-left">
-                <p className="text-white font-semibold text-sm">{t('cta_testimonial_name')}</p>
-                <p className="text-white/40 text-xs">{t('cta_testimonial_role')}</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CTA section */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 15 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-xs font-semibold uppercase tracking-widest mb-6">
-              <Sparkles size={14} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left Column: CTA */}
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--text)] text-[var(--bg)] text-[10px] font-bold tracking-widest uppercase mb-8">
               {t('cta_badge')}
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--text)] mb-6 tracking-tight leading-tight">
               {t('cta_title')}
             </h2>
-            <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="text-[var(--text-secondary)] text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
               {t('cta_subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/formulario"
-                className="inline-flex items-center justify-center gap-2 h-13 px-8 bg-white text-[var(--primary-dark)] font-bold rounded-xl hover:bg-white/90 transition-all hover:scale-[1.02] cursor-pointer text-base"
-              >
-                {t('cta_button')}
-                <ArrowRight size={18} />
-              </Link>
+            <Link
+              href="/formulario"
+              className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-[var(--text)] text-[var(--bg)] font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-colors cursor-pointer group"
+            >
+              {t('cta_button')}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* Right Column: Testimonial & Stats (Monochrome) */}
+          <div className="flex flex-col gap-8">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] p-8 md:p-10 relative">
+              <Quote size={40} className="text-[var(--border)] absolute top-6 left-6" />
+              <blockquote className="text-[var(--text)]/90 text-lg md:text-xl font-medium leading-relaxed italic mb-8 relative z-10 pt-4 px-2">
+                "{t('cta_testimonial_text')}"
+              </blockquote>
+              <div className="flex items-center gap-4 relative z-10 px-2">
+                <div className="w-12 h-12 bg-[var(--text)] text-[var(--bg)] flex items-center justify-center font-bold text-sm">
+                  {t('cta_testimonial_initials')}
+                </div>
+                <div>
+                  <p className="text-[var(--text)] font-bold text-sm tracking-wide">{t('cta_testimonial_name')}</p>
+                  <p className="text-[var(--text-tertiary)] text-xs uppercase tracking-widest mt-1">{t('cta_testimonial_role')}</p>
+                </div>
+              </div>
             </div>
-          </motion.div>
+
+            <div className="grid grid-cols-3 gap-4">
+              {stats.map((stat, i) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={i} className="flex flex-col justify-center items-center text-center p-6 bg-[var(--bg-secondary)] border border-[var(--border)]">
+                    <Icon size={20} className="text-[var(--text-tertiary)] mb-3" />
+                    <p className="text-xl md:text-2xl font-black text-[var(--text)] mb-1">{t(stat.valueKey)}</p>
+                    <p className="text-[9px] text-[var(--text-tertiary)] uppercase tracking-widest font-bold">{t(stat.labelKey)}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
       </motion.div>
     </section>

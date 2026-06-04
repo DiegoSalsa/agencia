@@ -5,12 +5,6 @@ import { PromoProvider } from '@/context/PromoContext';
 import SectionDivider from '@/components/shared/SectionDivider';
 
 const Services = dynamic(() => import('@/components/landing/Services'));
-const Portfolio = dynamic(() => import('@/components/landing/Portfolio'));
-const Process = dynamic(() => import('@/components/landing/Process'));
-const CtaBanner = dynamic(() => import('@/components/landing/CtaBanner'));
-const Pricing = dynamic(() => import('@/components/landing/Pricing'));
-const FAQ = dynamic(() => import('@/components/landing/FAQ'));
-const Contact = dynamic(() => import('@/components/landing/Contact'));
 const Footer = dynamic(() => import('@/components/landing/Footer'));
 const PromoBanner = dynamic(() => import('@/components/landing/PromoBanner'));
 import SocialFloater from '@/components/shared/SocialFloater';
@@ -23,25 +17,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <div className="bg-[var(--section-services)] section-ambient">
-          <Services />
-        </div>
-        <SectionDivider fromColor="var(--section-services)" toColor="var(--section-portfolio)" />
-        <Portfolio />
-        <SectionDivider fromColor="var(--section-portfolio)" toColor="var(--section-process)" flip />
-        <div className="bg-[var(--section-process)] section-ambient">
-          <Process />
-        </div>
-        <SectionDivider fromColor="var(--section-process)" toColor="var(--bg)" />
-        <CtaBanner />
-        <SectionDivider fromColor="var(--bg)" toColor="var(--section-pricing)" flip />
-        <Pricing />
-        <SectionDivider fromColor="var(--section-pricing)" toColor="var(--section-faq)" />
-        <div className="bg-[var(--section-faq)] section-ambient">
-          <FAQ />
-        </div>
-        <SectionDivider fromColor="var(--section-faq)" toColor="var(--bg)" flip />
-        <div className="section-ambient">
-          <Contact />
+          <Services isHome={true} />
         </div>
       </main>
       <Footer />

@@ -84,171 +84,150 @@ export default function Hero() {
   }, [highlights.length]);
 
   return (
-    <section id="hero" className="relative flex flex-col items-center justify-center pt-20 sm:pt-24 pb-6 sm:pb-8 overflow-hidden">
-      {/* Enhanced background */}
+    <section id="hero" className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden border-b border-[var(--border)] bg-[var(--bg)]">
+      {/* Premium subtle background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
-        {/* Main radial glow — boosted */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.15)_0%,rgba(var(--primary-rgb),0.05)_40%,transparent_70%)]" />
-        {/* Secondary accent glow */}
-        <div className="absolute top-[60%] left-[20%] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(var(--primary-rgb),0.06)_0%,transparent_60%)]" />
-        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(139,92,246,0.05)_0%,transparent_60%)]" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.08)_0%,transparent_60%)] opacity-70" />
       </div>
 
-      {/* Floating geometric shapes inspired by logo angular lines */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="geo-float absolute top-[15%] left-[8%] w-20 h-20 border border-[rgba(var(--primary-rgb),0.15)] bg-[rgba(var(--primary-rgb),0.03)] rotate-45 rounded-lg" style={{ animationDelay: '0s' }} />
-        <div className="geo-float absolute top-[25%] right-[12%] w-14 h-14 border border-[rgba(var(--primary-rgb),0.12)] bg-[rgba(var(--primary-rgb),0.04)] rotate-12 rounded-md" style={{ animationDelay: '2s' }} />
-        <div className="geo-float absolute bottom-[30%] left-[15%] w-10 h-10 bg-[rgba(var(--primary-rgb),0.06)] rotate-[30deg] rounded-sm" style={{ animationDelay: '4s' }} />
-        <div className="geo-float absolute bottom-[25%] right-[8%] w-16 h-16 border border-[rgba(var(--primary-rgb),0.1)] bg-[rgba(var(--primary-rgb),0.02)] -rotate-12 rounded-lg" style={{ animationDelay: '1s' }} />
-        {/* Abstract geometric shapes */}
-        <svg className="geo-float absolute top-[20%] right-[20%] w-24 h-24 opacity-[0.08]" style={{ animationDelay: '3s' }} viewBox="0 0 100 100" fill="none">
-          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" />
-          <polygon points="50,20 80,35 80,65 50,80 20,65 20,35" stroke="currentColor" strokeWidth="1" className="text-[var(--primary)]" opacity="0.5" />
-        </svg>
-        <svg className="geo-float absolute bottom-[35%] left-[25%] w-16 h-16 opacity-[0.07]" style={{ animationDelay: '5s' }} viewBox="0 0 100 100" fill="none">
-          <path d="M10 90 L50 10 L90 90 Z" stroke="currentColor" strokeWidth="2" className="text-[var(--primary)]" />
-          <line x1="30" y1="50" x2="70" y2="50" stroke="currentColor" strokeWidth="1.5" className="text-[var(--primary)]" opacity="0.6" />
-        </svg>
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
+        <div className="flex flex-row items-center gap-3 lg:gap-8">
+          
+          {/* Left Column: Text */}
+          <div className="flex flex-col items-start text-left w-[55%] sm:w-1/2">
+            <motion.h1
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-[4.5rem] xl:text-[5.5rem] font-black leading-[1.05] tracking-tight mb-3 sm:mb-8 text-[var(--text)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {t('hero_title')}{' '}
+              <br className="hidden lg:block" />
+              <span className="inline-block mt-2">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={highlightIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-block text-[var(--primary)]"
+                  >
+                    {highlights[highlightIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </motion.h1>
+
+            <motion.p
+              className="text-[var(--text-secondary)] text-xs sm:text-lg lg:text-xl leading-relaxed mb-5 sm:mb-12 font-medium max-w-[540px]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {t('hero_subtitle')}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              className="flex flex-col xl:flex-row gap-2 sm:gap-4 items-start xl:items-center w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <a
+                href="https://wa.me/56949255006?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary group text-[10px] sm:text-sm lg:text-base font-bold h-9 px-3 sm:h-14 sm:px-8 w-auto cursor-pointer shadow-lg hover:shadow-[rgba(var(--primary-rgb),0.3)] transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2"
+              >
+                <span className="truncate">{t('hero_cta_primary')}</span>
+                <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <Link
+                href="/planes"
+                className="btn-secondary group text-[10px] sm:text-sm lg:text-base font-bold h-9 px-3 sm:h-14 sm:px-8 w-auto cursor-pointer bg-transparent hover:bg-[var(--surface)] border border-[var(--border)] transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2"
+              >
+                <Eye className="w-3 h-3 sm:w-5 sm:h-5 shrink-0" />
+                <span className="truncate">{t('hero_cta_secondary')}</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Visual Mockup / Dashboard */}
+          <motion.div 
+            className="relative w-[45%] sm:w-1/2 flex items-center justify-end px-0"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {/* Main floating window */}
+            <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/20 dark:shadow-black/50 overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-700">
+              {/* Window Header */}
+              <div className="flex items-center px-3 py-1.5 sm:px-4 sm:py-3 border-b border-[var(--border)] bg-[var(--surface)]">
+                <div className="flex gap-1.5 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF5F56]" />
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBD2E]" />
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#27C93F]" />
+                </div>
+                <div className="mx-auto text-[7px] sm:text-[10px] font-mono text-[var(--text-tertiary)] tracking-widest uppercase truncate ml-2">
+                  purocode-architecture.tsx
+                </div>
+              </div>
+              
+              {/* Window Body (Code Mockup) */}
+              <div className="p-3 sm:p-6 font-mono text-[8px] sm:text-sm leading-[1.6] text-[var(--text-secondary)] h-full relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10">
+                  <svg className="w-16 h-16 sm:w-32 sm:h-32 text-[var(--text)]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0l12 12-12 12L0 12z" />
+                  </svg>
+                </div>
+                <p><span className="text-[#E2777A]">import</span> <span className="text-[#61DAFB]">{'{'}</span> scale <span className="text-[#61DAFB]">{'}'}</span> <span className="text-[#E2777A]">from</span> <span className="text-[#98C379]">'@purocode/core'</span>;</p>
+                <p className="mt-4"><span className="text-[#E2777A]">const</span> <span className="text-[#E5C07B]">App</span> <span className="text-[#61DAFB]">=</span> () <span className="text-[#E2777A]">=&gt;</span> {'{'}</p>
+                <p className="pl-4 mt-2"><span className="text-[#E2777A]">return</span> (</p>
+                <p className="pl-8 mt-2"><span className="text-[#61DAFB]">&lt;</span><span className="text-[#E06C75]">DigitalExperience</span></p>
+                <p className="pl-12 text-[#D19A66]">performance<span className="text-[#61DAFB]">={'{'}</span><span className="text-[#D19A66]">100</span><span className="text-[#61DAFB]">{'}'}</span></p>
+                <p className="pl-12 text-[#D19A66]">architecture<span className="text-[#61DAFB]">=</span><span className="text-[#98C379]">"scalable"</span></p>
+                <p className="pl-12 text-[#D19A66]">design<span className="text-[#61DAFB]">=</span><span className="text-[#98C379]">"pixel-perfect"</span></p>
+                <p className="pl-8"><span className="text-[#61DAFB]">&gt;</span></p>
+                <p className="pl-12 mt-2 text-[#ABB2BF]">/* Next-Gen Web Solutions */</p>
+                <p className="pl-8 mt-2"><span className="text-[#61DAFB]">&lt;/</span><span className="text-[#E06C75]">DigitalExperience</span><span className="text-[#61DAFB]">&gt;</span></p>
+                <p className="pl-4 mt-2">);</p>
+                <p className="mt-2">{'}'};</p>
+              </div>
+            </div>
+
+            {/* Floating stats card */}
+            <motion.div 
+              className="absolute -bottom-3 -left-3 sm:-bottom-8 sm:-left-8 lg:-bottom-12 lg:-left-12 p-2 sm:p-5 rounded-lg sm:rounded-2xl border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-xl shadow-2xl z-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="w-6 h-6 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 shrink-0">
+                  <ArrowRight className="text-emerald-400 -rotate-45 w-3 h-3 sm:w-5 sm:h-5" />
+                </div>
+                <div>
+                  <div className="text-sm sm:text-2xl font-black text-[var(--text)] leading-none">99.9%</div>
+                  <div className="text-[7px] sm:text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mt-0.5 sm:mt-1">Uptime</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+        </div>
       </div>
 
-      {/* Top Tech Marquee Row */}
+      {/* Tech Marquee Row - Integrated cleanly at the bottom */}
       <motion.div
-        className="w-full mb-5 sm:mb-10 relative z-10"
+        className="w-full mt-24 relative z-10 border-y border-[var(--border)] bg-[var(--bg-secondary)] py-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
       >
         <TechMarqueeRow />
-      </motion.div>
-
-      <div className="flex flex-col items-center text-center px-4 sm:px-6 max-w-[900px] relative z-10">
-        {/* Headline */}
-        <motion.h1
-          className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold leading-[1.08] tracking-[-0.035em] mb-4 sm:mb-6 text-[var(--text)]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          {t('hero_title')}{' '}
-          <br className="hidden sm:block" />
-          <span className="inline-block">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={highlightIndex}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] via-[#a78bfa] to-[var(--primary-light)]"
-                style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-              >
-                {highlights[highlightIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          className="text-[var(--text-secondary)] text-sm sm:text-lg md:text-xl leading-relaxed max-w-[640px] mb-6 sm:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {t('hero_subtitle')}
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 items-center w-full sm:w-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {/* Primary: Cotiza */}
-          <Link
-            href="/formulario"
-            className="btn-primary group text-sm sm:text-base !h-11 sm:!h-13 !px-6 sm:!px-8 w-full sm:w-auto cursor-pointer"
-          >
-            {t('hero_cta_primary')}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          {/* Secondary: Portafolio */}
-          <a
-            href="#portafolio"
-            className="btn-secondary group text-sm sm:text-base !h-11 sm:!h-13 !px-6 sm:!px-8 w-full sm:w-auto cursor-pointer"
-          >
-            <Eye size={18} />
-            {t('hero_cta_secondary')}
-          </a>
-
-          {/* WhatsApp with selector */}
-          <div className="relative">
-            <button
-              onClick={() => setWspOpen(!wspOpen)}
-              className="flex items-center justify-center gap-2.5 h-11 sm:h-[52px] px-6 sm:px-8 rounded-xl bg-[#25D366]/10 text-[#25D366] font-semibold text-sm sm:text-base hover:bg-[#25D366]/20 transition-all cursor-pointer border border-[#25D366]/20 w-full sm:w-auto"
-            >
-              <MessageCircle size={20} />
-              WhatsApp
-              <ChevronDown size={18} className={`transition-transform ${wspOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            <AnimatePresence>
-              {wspOpen && (
-                <motion.div
-                  className="absolute top-full mt-2 left-0 right-0 bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-lg overflow-hidden z-20 min-w-[220px]"
-                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  {whatsappContacts.map((c) => (
-                    <a
-                      key={c.phone}
-                      href={`https://wa.me/${c.phone.replace(/\+/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
-                      onClick={() => setWspOpen(false)}
-                    >
-                      <div className="w-8 h-8 rounded-full bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
-                        <MessageCircle size={14} className="text-[#25D366]" />
-                      </div>
-                      <div className="text-left">
-                        <p className="text-sm font-medium text-[var(--text)]">{c.name}</p>
-                        <p className="text-xs text-[var(--text-tertiary)]">{c.label}</p>
-                      </div>
-                    </a>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
-
-        {/* 50% upfront note */}
-        <motion.p
-          className="mt-4 sm:mt-8 text-xs text-[var(--text-tertiary)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          {t('hero_payment_note')}
-        </motion.p>
-      </div>
-
-      {/* Bottom Tech Marquee Row */}
-      <motion.div
-        className="w-full mt-4 sm:mt-6 relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <TechMarqueeRow reverse />
       </motion.div>
     </section>
   );

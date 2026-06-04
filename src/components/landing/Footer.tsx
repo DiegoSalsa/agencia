@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Instagram, Facebook, MessageCircle } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
+import WhatsAppIcon from '@/components/shared/WhatsAppIcon';
 import { useI18n } from '@/context/I18nContext';
 
 export default function Footer() {
@@ -45,7 +46,7 @@ export default function Footer() {
                 className="w-9 h-9 rounded-lg border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[#25D366] hover:border-[#25D366]/30 transition-all cursor-pointer"
                 aria-label="WhatsApp"
               >
-                <MessageCircle size={16} />
+                <WhatsAppIcon size={16} />
               </a>
             </div>
           </div>
@@ -54,10 +55,10 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_services')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#servicios">{t('nav_services')}</a></li>
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#portafolio">{t('nav_portfolio')}</a></li>
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#planes">{t('nav_pricing')}</a></li>
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#proceso">{t('nav_process')}</a></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/servicios">{t('nav_services')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/portafolio">{t('nav_portfolio')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/planes">{t('nav_pricing')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/proceso">{t('nav_process')}</Link></li>
             </ul>
           </div>
 
@@ -74,7 +75,8 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_company')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
-              <li><a className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="#contacto">{t('nav_contact')}</a></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/contacto">{t('nav_contact')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/faq">{t('faq_title')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors" href="/terminos">{t('footer_terms')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors" href="/privacidad">{t('footer_privacy')}</Link></li>
             </ul>
