@@ -166,7 +166,7 @@ export default function Process() {
                 
                 {/* Step Header */}
                 <div className="flex items-center gap-6 mb-8">
-                  <div className="text-6xl md:text-8xl font-black text-[#111] tracking-tighter group-hover:text-[#1a1a1a] transition-colors duration-500 select-none">
+                  <div className="text-6xl md:text-8xl font-black text-[var(--border)] tracking-tighter group-hover:text-[var(--text-tertiary)] transition-colors duration-500 select-none">
                     {step.num}
                   </div>
                   <div>

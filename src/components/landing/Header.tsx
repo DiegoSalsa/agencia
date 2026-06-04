@@ -241,12 +241,7 @@ export default function Header() {
                       </motion.div>
                     )
                   ))}
-                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: navLinks.length * 0.05 + 0.1 }}>
-                    <Link className="block text-lg font-semibold text-[var(--text)] hover:text-[var(--primary)] py-3 px-4 rounded-xl hover:bg-[var(--surface-hover)] transition-colors cursor-pointer" href="/contacto" onClick={closeMobile}>
-                      {t('nav_contact')}
-                    </Link>
-                  </motion.div>
-                </nav>
+                  </nav>
                 <button onClick={toggleTheme} className="mt-6 flex items-center gap-3 py-3 px-4 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] transition-colors cursor-pointer">
                   {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                   <span className="text-sm font-medium">{theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}</span>
