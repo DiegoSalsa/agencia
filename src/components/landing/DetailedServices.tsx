@@ -50,6 +50,10 @@ export default function DetailedServices() {
             <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               No hacemos simples páginas informativas. Construimos embudos visuales diseñados milimétricamente para captar atención, retener interés y convertir visitantes en clientes.
             </p>
+            <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
+              ¿Buscas una agencia local? Conoce nuestros servicios de{' '}
+              <Link href="/soluciones/desarrollo-web-concepcion" className="text-[var(--primary)] hover:underline">desarrollo web en Concepción</Link>.
+            </p>
           </div>
 
           {/* Bento Grid */}
@@ -236,6 +240,12 @@ export default function DetailedServices() {
             <h2 className="text-4xl md:text-6xl font-black text-[var(--text)] mb-6 tracking-tight">Sistemas Custom <br/> y Plataformas SaaS.</h2>
             <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Materializamos ideas complejas. Desde plataformas de software como servicio (SaaS) hasta ERPs internos y dashboards analíticos en tiempo real, diseñados para procesar millones de peticiones.
+            </p>
+            <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
+              Explora nuestros servicios de{' '}
+              <Link href="/soluciones/desarrollo-software-medida" className="text-[var(--primary)] hover:underline">desarrollo de software a medida</Link>
+              {' '}y{' '}
+              <Link href="/soluciones/desarrollo-aplicaciones-web" className="text-[var(--primary)] hover:underline">desarrollo de aplicaciones web</Link>.
             </p>
           </div>
 

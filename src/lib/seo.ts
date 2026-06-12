@@ -149,3 +149,70 @@ export function faqJsonLd(
     })),
   };
 }
+
+/* ── LocalBusiness (for geo-targeted landing pages) ── */
+export function localBusinessJsonLd(opts: {
+  city: string;
+  region: string;
+  description: string;
+  url: string;
+  areaServed?: string[];
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${SITE_URL}/#localbusiness`,
+    name: "PuroCode",
+    url: opts.url,
+    logo: `${SITE_URL}/img/logo.svg`,
+    image: `${SITE_URL}/img/og-image.png`,
+    description: opts.description,
+    priceRange: "$$",
+    telephone: "+56949255006",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: opts.city,
+      addressRegion: opts.region,
+      addressCountry: "CL",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: opts.city === "Concepción" ? -36.8201 : -33.4489,
+      longitude: opts.city === "Concepción" ? -73.0444 : -70.6693,
+    },
+    areaServed: (opts.areaServed || [opts.city]).map((name) => ({
+      "@type": "City",
+      name,
+    })),
+    sameAs: [
+      "https://www.instagram.com/purocodecl/",
+      "https://www.facebook.com/PuroCode.com",
+      "https://wa.me/56949255006",
+    ],
+  };
+}
+
+/* ── Service (for individual service landing pages) ── */
+export function serviceJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  provider?: string;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    provider: {
+      "@type": "Organization",
+      name: opts.provider || "PuroCode",
+      url: SITE_URL,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Chile",
+    },
+  };
+}
