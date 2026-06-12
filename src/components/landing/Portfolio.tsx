@@ -19,6 +19,24 @@ interface Project {
 
 const webProjects: Project[] = [
   {
+    href: 'https://www.agenciabrujula.com/',
+    title: 'Agencia Brújula',
+    descKey: 'portfolio_10_desc',
+    tag: 'Web Corporativa',
+    tagColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+    gradient: 'from-emerald-600/40 via-teal-600/30 to-green-800/40',
+    thumbnail: '/img/FotosPaginas/AgenciaBrujula.png',
+  },
+  {
+    href: 'https://www.deteccionesadolfogonzales.cl/',
+    title: 'Detecciones Adolfo Gonzales',
+    descKey: 'portfolio_11_desc',
+    tag: 'Landing Page',
+    tagColor: 'bg-sky-500/15 text-sky-400 border-sky-500/30',
+    gradient: 'from-sky-600/40 via-blue-600/30 to-indigo-800/40',
+    thumbnail: '/img/FotosPaginas/DeteccionesAdolfoGonzales.png',
+  },
+  {
     href: 'https://pagina-podomed-clinical.vercel.app',
     title: 'PodomedClinical',
     descKey: 'portfolio_1_desc',

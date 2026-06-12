@@ -23,6 +23,8 @@ const projects = [
   { url: 'https://banqueteria-demo.vercel.app', file: 'DemoBanqueteria.png' },
   { url: 'https://satisfaccion-clientes-alpha.vercel.app', file: 'ValoraLocal.png' },
   { url: 'https://www.puragenda.cl/', file: 'Puragenda.png' },
+  { url: 'https://www.agenciabrujula.com/', file: 'AgenciaBrujula.png' },
+  { url: 'https://www.deteccionesadolfogonzales.cl/', file: 'DeteccionesAdolfoGonzales.png' },
 ];
 
 const OUTPUT_DIR = path.join(__dirname, '..', 'public', 'img', 'FotosPaginas');
