@@ -33,6 +33,22 @@ export default function ServiciosPage() {
         <div className="bg-[var(--section-services)] pb-20 section-ambient">
           <DetailedServices />
         </div>
+
+        {/* Ecosistema Digital Subtle Integration */}
+        <div className="bg-[var(--bg)] border-t border-[var(--border)] py-12 px-6">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 bg-[var(--surface)] p-8 rounded-2xl border border-[var(--border)]">
+            <div>
+              <h3 className="text-xl font-bold text-[var(--text)] mb-2">¿Tu proyecto necesita más que solo desarrollo?</h3>
+              <p className="text-[var(--text-secondary)]">Conoce nuestro ecosistema de especialistas en marketing y crecimiento digital.</p>
+            </div>
+            <a 
+              href="/ecosistema-digital"
+              className="inline-flex items-center gap-2 h-12 px-6 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text)] font-semibold hover:border-[var(--text-tertiary)] hover:bg-[var(--surface-hover)] transition-all whitespace-nowrap"
+            >
+              Ver Ecosistema Digital
+            </a>
+          </div>
+        </div>
       </main>
       <Footer />
       <SocialFloater />
