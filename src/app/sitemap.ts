@@ -44,6 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // ── Existing pages (previously missing from sitemap) ──
     {
+      url: `${SITE_URL}/ecosistema-digital`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/servicios`,
       lastModified: now,
       changeFrequency: "monthly",
