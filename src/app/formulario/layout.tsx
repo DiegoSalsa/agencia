@@ -13,6 +13,10 @@ export const metadata: Metadata = {
       "Completa el briefing y recibe tu cotización personalizada al instante. Landing pages, sitios corporativos y e-commerce.",
     url: "https://www.purocode.com/formulario",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function FormularioLayout({
