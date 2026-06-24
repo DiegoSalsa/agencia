@@ -73,7 +73,6 @@ export async function streamGilberto(messages: UIMessage[], context?: GilbertoTo
         model: deepseek("deepseek-chat"),
         system,
         messages: await convertToModelMessages(messages),
-        maxSteps: 1,
         onError: ({ error }) => {
             console.error("[gilberto] ERROR REAL:", error);
         },
