@@ -42,7 +42,7 @@ export default function SocialFloater() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3 items-end"
+          className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col gap-2 sm:gap-3 items-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

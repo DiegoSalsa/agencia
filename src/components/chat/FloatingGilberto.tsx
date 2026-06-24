@@ -13,9 +13,9 @@ export default function FloatingGilberto() {
   // if (pathname.startsWith("/alguna-ruta")) return null;
 
   return (
-    <div className="fixed bottom-5 right-5 z-[9999]">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] flex flex-col items-end">
       {open && (
-        <div className="mb-3 w-[420px] max-w-[calc(100vw_-_2rem)] shadow-2xl rounded-lg overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="mb-4 w-[400px] max-w-[calc(100vw-2rem)] origin-bottom-right shadow-2xl rounded-lg overflow-hidden animate-in fade-in zoom-in-95">
           <div className="mb-2 flex justify-end px-2">
             <button
               type="button"
