@@ -121,7 +121,6 @@ function ChatContactForm({ reason }: { reason?: string }) {
 const initialMessage: UIMessage = {
     id: "initial-msg",
     role: "assistant",
-    content: "¡Hola! Soy Gilberto, asesor de PuroCode. ¿En qué te puedo ayudar hoy?",
     parts: [{ type: "text", text: "¡Hola! Soy Gilberto, asesor de PuroCode. ¿En qué te puedo ayudar hoy?" }],
 };
 
