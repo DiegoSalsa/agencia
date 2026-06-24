@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import FAQ from '@/components/landing/FAQ';
@@ -8,10 +10,11 @@ import PromoPopup from '@/components/landing/PromoPopup';
 import CtaBanner from '@/components/landing/CtaBanner';
 import PageHeader from '@/components/shared/PageHeader';
 
-export const metadata = {
-  title: 'Preguntas Frecuentes | PuroCode',
-  description: 'Resolvemos las dudas más comunes sobre nuestros servicios de desarrollo web y tiempos de entrega.',
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Preguntas Frecuentes sobre Desarrollo Web",
+  description: "Respuestas claras sobre tiempos de desarrollo, metodologías, costos y mantención de sitios web, e-commerce y sistemas SaaS.",
+  path: "/faq",
+});
 
 export default function FAQPage() {
   return (

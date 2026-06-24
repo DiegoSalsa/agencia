@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Contacto y Cotizaciones",
+  description: "Contacta a PuroCode para recibir asesoría gratuita y cotizar tu próximo proyecto de desarrollo web o software a medida.",
+  path: "/contacto",
+});
 import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Contact from '@/components/landing/Contact';

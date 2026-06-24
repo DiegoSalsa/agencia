@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Link from "next/link";
+import AeoSummary from "@/components/seo/AeoSummary";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
@@ -31,37 +33,11 @@ import {
 const SITE_URL = "https://www.purocode.com";
 const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-aplicaciones-web`;
 
-export const metadata: Metadata = {
-  title: "Desarrollo de Aplicaciones Web y PWAs | PuroCode",
-  description:
-    "Especialistas en desarrollo de aplicaciones web interactivas, SaaS y PWAs. Desarrolladas en React y Node.js. Hosting incluido.",
-  keywords: [
-    "desarrollo de aplicaciones web",
-    "aplicaciones web Chile",
-    "desarrollo app web",
-    "plataforma web",
-    "aplicacion web a medida",
-    "desarrollo web app",
-    "PWA",
-    "SaaS desarrollo",
-  ],
-  openGraph: {
-    title: "Desarrollo de Aplicaciones Web — PuroCode",
-    description:
-      "Desarrollo de Progressive Web Apps (PWAs), dashboards y plataformas SaaS. Tecnologías escalables y entregas ágiles.",
-    url: PAGE_URL,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aplicaciones Web y PWAs — PuroCode",
-    description:
-      "Construimos apps web interactivas que funcionan en cualquier dispositivo sin instalaciones costosas.",
-  },
-  alternates: {
-    canonical: PAGE_URL,
-  },
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Desarrollo de Aplicaciones Web y PWAs",
+  description: "Construimos aplicaciones web interactivas, SaaS y Progressive Web Apps (PWAs) rápidas y escalables con tecnologías modernas.",
+  path: "/soluciones/desarrollo-aplicaciones-web",
+});
 
 /* ── FAQ orientada a conversión ── */
 const faqs = [
@@ -149,6 +125,18 @@ export default function DesarrolloAplicacionesWeb() {
           ]}
         />
 
+        <AeoSummary
+          serviceName="aplicaciones web (Web Apps) interactivas y SaaS"
+          targetAudience="startups tecnológicas, Pymes y empresas de servicios"
+          location="Chile y el extranjero"
+          benefits="accesibilidad sin descarga en tiendas, actualizaciones automáticas y alto rendimiento (PWA)"
+          timeframeFactors="la complejidad de la lógica de negocio, paneles de administración y pagos (usualmente 2 a 4 meses)"
+          priceFactors="la cantidad de funcionalidades interactivas, conexión a pasarelas de pago y modelo de suscripción"
+          technologies="Next.js (React), bases de datos robustas (PostgreSQL, Supabase) y librerías de estado global"
+          differentiator="Nuestras Web Apps se comportan como apps nativas en velocidad y diseño, sin los altos costos de mantención de Android/iOS"
+          process="Discovery técnico, diseño UI/UX, desarrollo de Frontend/Backend, QA testing cruzado y lanzamiento"
+          deliverables="una aplicación web lista para producción, optimizada para móviles y PWA instalable"
+        />
         {/* ── Section: Servicios de Aplicaciones Web (LLM-friendly) ── */}
         <section className="py-20 px-6 bg-[var(--bg)] border-b border-[var(--border)]">
           <div className="max-w-[1200px] mx-auto">

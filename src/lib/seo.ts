@@ -1,4 +1,50 @@
+import type { Metadata } from "next";
+
 const SITE_URL = "https://www.purocode.com";
+
+/* ── Metadata Helper ── */
+export function generatePageMetadata(opts: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  noindex?: boolean;
+}): Metadata {
+  const url = `${SITE_URL}${opts.path === "/" ? "" : opts.path}`;
+  const image = opts.image || `${SITE_URL}/img/og-image.png`;
+
+  return {
+    title: opts.title,
+    description: opts.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: opts.title,
+      description: opts.description,
+      url: url,
+      type: "website",
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: `${opts.title} - PuroCode`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: opts.title,
+      description: opts.description,
+      images: [image],
+    },
+    robots: {
+      index: !opts.noindex,
+      follow: !opts.noindex,
+    },
+  };
+}
 
 /* ── Organization ── */
 export const organizationJsonLd = {
@@ -21,9 +67,9 @@ export const organizationJsonLd = {
     "https://www.facebook.com/PuroCode.com",
     "https://wa.me/56949255006",
   ],
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "CL",
+  areaServed: {
+    "@type": "Country",
+    name: "Chile",
   },
 };
 
@@ -213,6 +259,69 @@ export function serviceJsonLd(opts: {
     areaServed: {
       "@type": "Country",
       name: "Chile",
+    },
+  };
+}
+
+/* ── AboutPage ── */
+export const aboutPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Sobre PuroCode",
+  url: `${SITE_URL}/sobre-purocode`,
+  description: "Conoce a PuroCode, agencia chilena especializada en desarrollo web y software a medida.",
+  publisher: {
+    "@type": "Organization",
+    name: "PuroCode",
+  },
+};
+
+/* ── ContactPage ── */
+export const contactPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contacto | PuroCode",
+  url: `${SITE_URL}/contacto`,
+  description: "Contacta a PuroCode para cotizar tu proyecto web o desarrollo de software.",
+  publisher: {
+    "@type": "Organization",
+    name: "PuroCode",
+  },
+};
+
+/* ── Article ── */
+export function articleJsonLd(opts: {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished: string;
+  dateModified?: string;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.title,
+    description: opts.description,
+    image: opts.image || `${SITE_URL}/img/og-image.png`,
+    author: {
+      "@type": "Organization",
+      name: "PuroCode",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "PuroCode",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/img/logo.svg`,
+      },
+    },
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified || opts.datePublished,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": opts.url,
     },
   };
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Link from "next/link";
+import AeoSummary from "@/components/seo/AeoSummary";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
@@ -33,36 +35,11 @@ import {
 const SITE_URL = "https://www.purocode.com";
 const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-software-medida`;
 
-export const metadata: Metadata = {
-  title: "Desarrollo de Software a Medida | Sistemas Empresariales — PuroCode",
-  description:
-    "Desarrollo de software a medida en Chile. ERPs, plataformas SaaS y automatización con Node.js, Next.js y PostgreSQL. Cotiza gratis.",
-  keywords: [
-    "desarrollo de software a medida",
-    "software personalizado Chile",
-    "desarrollo software empresarial",
-    "sistema a medida",
-    "ERP personalizado",
-    "software custom",
-    "desarrollo de sistemas",
-  ],
-  openGraph: {
-    title: "Desarrollo de Software a Medida — PuroCode",
-    description:
-      "Desarrollo de software empresarial: ERPs, plataformas SaaS y automatización con tecnologías modernas y escalables.",
-    url: PAGE_URL,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Software a Medida — PuroCode",
-    description:
-      "Sistemas a medida en Chile con despliegue en infraestructura cloud (Vercel/AWS).",
-  },
-  alternates: {
-    canonical: PAGE_URL,
-  },
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Desarrollo de Software a Medida",
+  description: "Diseño y desarrollo de sistemas empresariales, plataformas SaaS y automatización de procesos operativos a medida.",
+  path: "/soluciones/desarrollo-software-medida",
+});
 
 /* ── FAQ orientada a conversión ── */
 const faqs = [
@@ -152,6 +129,18 @@ export default function DesarrolloSoftwareMedida() {
           ]}
         />
 
+        <AeoSummary
+          serviceName="software a medida, sistemas ERP y plataformas de gestión"
+          targetAudience="empresas medianas, corporativas y startups"
+          location="Chile y de forma remota para toda Latinoamérica"
+          benefits="automatización de procesos operativos, gestión centralizada de datos y dashboards a medida"
+          timeframeFactors="la escala del sistema, módulos requeridos e integraciones con APIs de terceros (usualmente 2 a 5 meses)"
+          priceFactors="la cantidad de vistas, roles de usuario, integraciones y nivel de seguridad requerido"
+          technologies="Next.js, Node.js, PostgreSQL y bases de datos NoSQL"
+          differentiator="Desarrollamos código propio que no amarra a licencias abusivas, con propiedad intelectual al 100% para el cliente"
+          process="Levantamiento de requerimientos, diseño de arquitectura, desarrollo por sprints, QA y capacitaciones"
+          deliverables="un sistema funcional desplegado en la nube, código fuente y documentación técnica"
+        />
         {/* ── Section: Servicios de Desarrollo de Software (LLM-friendly) ── */}
         <section className="py-20 px-6 bg-[var(--bg)] border-b border-[var(--border)]">
           <div className="max-w-[1200px] mx-auto">

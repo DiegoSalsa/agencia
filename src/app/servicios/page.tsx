@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Servicios de Desarrollo Web y Software",
+  description: "Conoce nuestros servicios profesionales de desarrollo web, tiendas online (e-commerce), SaaS y mantenimiento digital continuo.",
+  path: "/servicios",
+});
 import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import DetailedServices from '@/components/landing/DetailedServices';

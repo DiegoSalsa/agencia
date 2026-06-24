@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Nuestro Proceso de Trabajo Ágil",
+  description: "Conoce el paso a paso de cómo desarrollamos productos digitales de alto rendimiento. Desde la planificación hasta el despliegue.",
+  path: "/proceso",
+});
 import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Process from '@/components/landing/Process';

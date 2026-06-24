@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Desarrollo Web, Software y Automatización",
+  description: "Agencia chilena especializada en desarrollo web premium, aplicaciones SaaS, e-commerce y sistemas a medida. Automatizamos tus procesos.",
+  path: "/",
+});
 import dynamic from 'next/dynamic';
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';

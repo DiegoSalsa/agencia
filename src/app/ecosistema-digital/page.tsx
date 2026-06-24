@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SocialFloater from "@/components/shared/SocialFloater";
@@ -6,10 +7,11 @@ import { PromoProvider } from "@/context/PromoContext";
 import PromoBanner from '@/components/landing/PromoBanner';
 import EcosistemaContent from "./EcosistemaContent";
 
-export const metadata: Metadata = {
-  title: "Ecosistema Digital | PuroCode",
-  description: "Conoce nuestro ecosistema de partners estratégicos y cómo trabajamos para ofrecer soluciones digitales integrales.",
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Ecosistema Digital Integral",
+  description: "Construimos un ecosistema digital completo para tu empresa integrando web, software, automatizaciones y marketing.",
+  path: "/ecosistema-digital",
+});
 
 export default function EcosistemaDigitalPage() {
   const schema = {

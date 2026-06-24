@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import MaintenancePricing from '@/components/landing/MaintenancePricing';
@@ -9,10 +11,11 @@ import SectionDivider from '@/components/shared/SectionDivider';
 import PageHeader from '@/components/shared/PageHeader';
 import CtaBanner from '@/components/landing/CtaBanner';
 
-export const metadata = {
-  title: 'Mantenimiento Web y Soporte | PuroCode',
-  description: 'Asegura la estabilidad, seguridad y evolución de tus sistemas con nuestros planes de soporte técnico preventivo y evolutivo.',
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Mantenimiento Web y Soporte",
+  description: "Servicios profesionales de mantenimiento web, actualizaciones de seguridad, soporte técnico y optimización continua de tu plataforma.",
+  path: "/mantenimiento",
+});
 
 export default function MantenimientoPage() {
   return (

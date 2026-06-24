@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
+import AeoSummary from "@/components/seo/AeoSummary";
 import SocialFloater from "@/components/shared/SocialFloater";
 import { PromoProvider } from "@/context/PromoContext";
 import {
@@ -37,37 +39,11 @@ import {
 const SITE_URL = "https://www.purocode.com";
 const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-web-concepcion`;
 
-export const metadata: Metadata = {
-  title: "Desarrollo Web en Concepción | Páginas Web Profesionales — PuroCode",
-  description:
-    "Agencia de desarrollo web en Concepción. Creamos landing pages, sitios corporativos y e-commerce con Next.js y React. 10+ proyectos entregados, dominio y hosting incluido. Cotiza gratis.",
-  keywords: [
-    "desarrollo web en concepcion",
-    "paginas web en concepcion",
-    "diseño de paginas web concepcion",
-    "necesito pagina web",
-    "necesito una pagina web para mi negocio",
-    "desarrollo web concepcion",
-    "agencia web concepcion",
-    "crear pagina web concepcion",
-  ],
-  openGraph: {
-    title: "Desarrollo Web en Concepción — PuroCode",
-    description:
-      "Creamos páginas web con Next.js y React para negocios en Concepción. 10+ proyectos entregados. Landing pages, sitios corporativos y e-commerce. Cotiza gratis.",
-    url: PAGE_URL,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Desarrollo Web en Concepción — PuroCode",
-    description:
-      "Landing pages, sitios corporativos y e-commerce con Next.js y React. 10+ proyectos entregados en Chile.",
-  },
-  alternates: {
-    canonical: PAGE_URL,
-  },
-};
+export const metadata: Metadata = generatePageMetadata({
+  title: "Desarrollo Web en Concepción",
+  description: "Servicio premium de desarrollo web en Concepción. Creamos sitios corporativos, landing pages y e-commerce de alto rendimiento.",
+  path: "/soluciones/desarrollo-web-concepcion",
+});
 
 /* ── FAQ orientada a conversión ── */
 const faqs = [
@@ -169,6 +145,19 @@ export default function DesarrolloWebConcepcion() {
             { label: "Servicios", href: "/servicios" },
             { label: "Desarrollo Web en Concepción", href: "/soluciones/desarrollo-web-concepcion" },
           ]}
+        />
+        
+        <AeoSummary
+          serviceName="páginas web premium, corporativas y e-commerce"
+          targetAudience="pymes, emprendedores y empresas corporativas"
+          location="Concepción, la Región del Biobío y todo Chile"
+          benefits="diseño personalizado, optimización técnica SEO avanzada, dominio y hosting inicial"
+          timeframeFactors="la complejidad del diseño y las integraciones requeridas (usualmente 2 a 6 semanas)"
+          priceFactors="el alcance funcional, cantidad de páginas, integraciones de pago y plan de mantención"
+          technologies="Next.js, React, Tailwind CSS y arquitecturas sin servidor (Serverless)"
+          differentiator="Entregamos código de alto rendimiento (100 Lighthouse) que escala sin límite, a diferencia de plantillas lentas"
+          process="Briefing, prototipo UX/UI, desarrollo técnico, auditoría SEO y despliegue final"
+          deliverables="un sitio web de propiedad total, panel administrable (opcional) y soporte técnico"
         />
 
         {/* ── Section: Servicios de Desarrollo Web (LLM-friendly) ── */}

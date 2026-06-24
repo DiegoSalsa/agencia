@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     canonical: "https://www.purocode.com/formulario",
   },
   openGraph: {
-    title: "Cotiza tu Proyecto Web | PuroCode",
+    title: "Cotiza tu Proyecto Web",
     description:
       "Completa el briefing y recibe tu cotización personalizada al instante. Landing pages, sitios corporativos y e-commerce.",
     url: "https://www.purocode.com/formulario",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Mi Sitio | PuroCode",
+  title: "Mi Sitio",
   description: "Portal de clientes PuroCode — Revisa el estado de tu proyecto, solicita modificaciones y descarga documentos.",
 };
 
