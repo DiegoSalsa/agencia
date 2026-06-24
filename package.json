@@ -10,11 +10,14 @@
     "update-screenshots": "node scripts/update-screenshots.js"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "^2.0.39",
+    "@ai-sdk/react": "^3.0.211",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-better-sqlite3": "^7.4.2",
     "@prisma/adapter-libsql": "^7.4.2",
     "@prisma/client": "^7.4.2",
     "@sparticuz/chromium": "^149.0.0",
+    "ai": "^6.0.209",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "docx": "^9.6.0",

@@ -34,7 +34,7 @@ const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-aplicaciones-web`;
 export const metadata: Metadata = {
   title: "Desarrollo de Aplicaciones Web y PWAs | PuroCode",
   description:
-    "Especialistas en desarrollo de aplicaciones web interactivas, SaaS y PWAs. Desarrolladas en React y Node.js. Hosting incluido y código fuente entregable.",
+    "Especialistas en desarrollo de aplicaciones web interactivas, SaaS y PWAs. Desarrolladas en React y Node.js. Hosting incluido.",
   keywords: [
     "desarrollo de aplicaciones web",
     "aplicaciones web Chile",
@@ -218,7 +218,7 @@ export default function DesarrolloAplicacionesWeb() {
                   <h3 className="text-sm font-bold text-[var(--text)] uppercase tracking-wider mb-4">Evidencias Contractuales</h3>
                   <div className="flex flex-col gap-3">
                     {[
-                      { icon: FileText, text: "Código fuente entregado en GitHub privado" },
+                      { icon: FileText, text: "Arquitectura escalable y segura" },
                       { icon: Server, text: "Configuración de entorno de bases de datos de propiedad del cliente" },
                       { icon: Headphones, text: "Soporte técnico y garantía extendida" },
                     ].map((g) => {

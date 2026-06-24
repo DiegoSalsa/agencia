@@ -192,7 +192,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     
     process_3_title: 'Desarrollo Frontend & Backend',
     process_3_desc: 'Implementamos la solución con arquitecturas modernas y escalables (Headless, Serverless). Trabajamos en Sprints con metodologías ágiles para asegurar entregas continuas.',
-    process_3_deliverables: 'Código Fuente, Base de Datos, Entorno de Staging (Pruebas)',
+    process_3_deliverables: 'Base de Datos, Entorno de Staging (Pruebas)',
     process_3_tools: 'React/Next.js, Node.js, PostgreSQL, GitHub',
     
     process_4_title: 'Lanzamiento & Monitoreo (QA)',
@@ -321,8 +321,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     faq_a6: 'Sí, todos los planes incluyen soporte técnico (3 a 6 meses según el plan). Además ofrecemos planes de mantenimiento mensual que incluyen actualizaciones, backups, monitoreo de seguridad y cambios menores.',
     faq_q7: '¿Puedo ver ejemplos de trabajos anteriores?',
     faq_a7: 'Por supuesto. Puedes ver nuestro portafolio completo en la sección de arriba con proyectos reales como BioImpacto, PodomedClinical, Florería Wildgarden y ValoraLocal, entre otros.',
-    faq_q8: '¿Quién es dueño del código fuente y propiedad intelectual?',
-    faq_a8: 'Tú. A diferencia de las agencias que te mantienen atado a sus plataformas cerradas, nosotros entregamos el 100% de la propiedad intelectual y acceso total al código fuente una vez finalizado el proyecto.',
+    faq_q8: '¿Qué pasa si deseo finalizar el servicio?',
+    faq_a8: 'Te facilitamos todo lo necesario para migrar tu contenido y base de datos a otro proveedor, asegurando que mantengas tu información a salvo.',
     faq_q9: '¿Qué pasa si mi negocio crece y necesito escalar la plataforma?',
     faq_a9: 'Nuestra arquitectura (basada en Next.js y React) es la misma que usan gigantes como Netflix o Twitch. Está diseñada para escalar. Podrás agregar funciones complejas en el futuro sin tener que reconstruir todo desde cero.',
 
@@ -552,7 +552,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     process_2_tools: 'Figma, Adobe Creative Cloud',
     process_3_title: 'Frontend & Backend Development',
     process_3_desc: 'We implement the solution with modern and scalable architectures (Headless, Serverless). We work in Sprints with agile methodologies to ensure continuous delivery.',
-    process_3_deliverables: 'Source Code, Database, Staging Environment',
+    process_3_deliverables: 'Database, Staging Environment',
     process_3_tools: 'React/Next.js, Node.js, PostgreSQL, GitHub',
     process_4_title: 'Launch & Monitoring (QA)',
     process_4_desc: 'We execute security audits, load testing, and SEO optimization before going to production. Deployment on cloud infrastructures prepared for high traffic.',
@@ -680,8 +680,8 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     faq_a6: 'Yes, all plans include technical support (3 to 6 months depending on the plan). We also offer monthly maintenance plans that include updates, backups, security monitoring, and minor changes.',
     faq_q7: 'Can I see examples of previous work?',
     faq_a7: 'Absolutely. You can see our full portfolio in the section above with real projects like BioImpacto, PodomedClinical, Florería Wildgarden, and ValoraLocal, among others.',
-    faq_q8: 'Who owns the source code and intellectual property?',
-    faq_a8: 'You do. Unlike agencies that lock you into their closed platforms, we hand over 100% of the intellectual property and full access to the source code upon project completion.',
+    faq_q8: 'What happens if I want to cancel the service?',
+    faq_a8: 'We provide you with everything necessary to migrate your content and database to another provider, ensuring you keep your data safe.',
     faq_q9: 'What if my business grows and I need to scale the platform?',
     faq_a9: 'Our architecture (based on Next.js and React) is the same used by giants like Netflix or Twitch. It is designed to scale. You can add complex features in the future without having to rebuild everything from scratch.',
 

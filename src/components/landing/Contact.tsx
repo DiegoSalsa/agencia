@@ -12,7 +12,7 @@ const contactCards = [
     icon: Mail,
     titleKey: 'contact_email_title',
     value: 'contacto@purocode.com',
-    href: 'mailto:contactopurocode@gmail.com',
+    href: 'mailto:contacto@purocode.com',
     color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
   },
   {

@@ -114,9 +114,6 @@ export default function TerminosPage() {
               <li>
                 Las librerías, frameworks y componentes de código abierto utilizados mantienen sus respectivas licencias.
               </li>
-              <li>
-                El código fuente desarrollado específicamente para el proyecto es transferido al cliente tras el pago completo.
-              </li>
             </ul>
           </section>
 
@@ -192,7 +189,7 @@ export default function TerminosPage() {
               Para consultas sobre estos términos, puede contactarnos a través de:
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Email: <a href="mailto:contactopurocode@gmail.com" className="text-[var(--primary)] hover:underline">contactopurocode@gmail.com</a></li>
+              <li>Email: <a href="mailto:contacto@purocode.com" className="text-[var(--primary)] hover:underline">contacto@purocode.com</a></li>
               <li>WhatsApp: <a href="https://wa.me/56949255006" className="text-[var(--primary)] hover:underline">+56 9 4925 5006</a></li>
             </ul>
           </section>

@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     `;
 
     await sendEmail({
-      to: "contactopurocode@gmail.com",
+      to: "contacto@purocode.com",
       subject: `[PuroCode Contacto] Mensaje de ${name}`,
       html,
     });

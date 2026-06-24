@@ -104,7 +104,7 @@ const faqs = [
   {
     question: "¿Qué pasa después de la entrega?",
     answer:
-      "Todos los planes incluyen soporte técnico posterior (3 a 6 meses según el plan). Esto cubre corrección de errores, ajustes menores y consultas técnicas. También ofrecemos planes de mantenimiento mensual con actualizaciones, backups automáticos y monitoreo de seguridad. Y lo más importante: el código fuente es 100% tuyo.",
+      "Todos los planes incluyen soporte técnico posterior (3 a 6 meses según el plan). Esto cubre corrección de errores, ajustes menores y consultas técnicas. También ofrecemos planes de mantenimiento mensual con actualizaciones, backups automáticos y monitoreo de seguridad.",
   },
 ];
 
@@ -237,7 +237,7 @@ export default function DesarrolloWebConcepcion() {
                   <div className="flex flex-col gap-3">
                     {[
                       { icon: ShieldCheck, text: "Certificado SSL y seguridad HTTPS" },
-                      { icon: FileText, text: "Código fuente 100% de tu propiedad" },
+                      { icon: FileText, text: "Diseño personalizado UX/UI" },
                       { icon: Headphones, text: "Soporte técnico post-entrega (3-6 meses)" },
                       { icon: Target, text: "SEO técnico desde el primer día" },
                     ].map((g) => {
@@ -395,7 +395,7 @@ export default function DesarrolloWebConcepcion() {
                 { step: "01", title: "Briefing", desc: "Reunión inicial para entender tu negocio, objetivos y público. Definimos alcance, secciones y funcionalidades.", deliverable: "Propuesta técnica con presupuesto y tiempos" },
                 { step: "02", title: "Diseño en Figma", desc: "Creamos prototipos navegables de tu sitio completo. Iteramos hasta que estés conforme con el diseño.", deliverable: "Prototipo interactivo aprobado" },
                 { step: "03", title: "Desarrollo", desc: "Construimos tu sitio con Next.js, React y TypeScript. Desplegamos en un entorno de pruebas para que lo revises.", deliverable: "Sitio funcional en staging" },
-                { step: "04", title: "Entrega", desc: "Configuramos dominio, SSL y hosting. Te damos capacitación para administrar tu contenido. Código fuente incluido.", deliverable: "Sitio en producción + soporte técnico" },
+                { step: "04", title: "Entrega", desc: "Configuramos dominio, SSL y hosting. Te damos capacitación para administrar tu contenido.", deliverable: "Sitio en producción + soporte técnico" },
               ].map((step) => (
                 <div key={step.step}>
                   <div className="text-4xl font-black text-[var(--primary)] opacity-20 mb-3">

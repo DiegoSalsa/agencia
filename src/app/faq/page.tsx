@@ -10,7 +10,7 @@ import PageHeader from '@/components/shared/PageHeader';
 
 export const metadata = {
   title: 'Preguntas Frecuentes | PuroCode',
-  description: 'Resolvemos las dudas más comunes sobre nuestros servicios de desarrollo web, propiedad intelectual y tiempos de entrega.',
+  description: 'Resolvemos las dudas más comunes sobre nuestros servicios de desarrollo web y tiempos de entrega.',
 };
 
 export default function FAQPage() {

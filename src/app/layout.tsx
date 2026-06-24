@@ -7,6 +7,7 @@ import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
 import GoogleTagManager from "@/components/shared/GoogleTagManager";
 import PageTransition from "@/components/shared/PageTransition";
 import CookieConsent from "@/components/shared/CookieConsent";
+import FloatingGilberto from "@/components/chat/FloatingGilberto";
 import "./globals.css";
 
 const inter = Inter({
@@ -138,6 +139,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <GoogleAnalytics />
         <CookieConsent />
+        <FloatingGilberto />
       </body>
     </html>
   );

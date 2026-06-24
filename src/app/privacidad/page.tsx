@@ -176,8 +176,8 @@ export default function PrivacidadPage() {
             </ul>
             <p className="mt-2">
               Para ejercer cualquiera de estos derechos, puede contactarnos a{' '}
-              <a href="mailto:contactopurocode@gmail.com" className="text-[var(--primary)] hover:underline">
-                contactopurocode@gmail.com
+              <a href="mailto:contacto@purocode.com" className="text-[var(--primary)] hover:underline">
+                contacto@purocode.com
               </a>.
               Responderemos a su solicitud en un plazo máximo de 15 días hábiles.
             </p>
@@ -224,7 +224,7 @@ export default function PrivacidadPage() {
               Si tiene preguntas o inquietudes sobre esta Política de Privacidad, puede contactarnos a través de:
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Email: <a href="mailto:contactopurocode@gmail.com" className="text-[var(--primary)] hover:underline">contactopurocode@gmail.com</a></li>
+              <li>Email: <a href="mailto:contacto@purocode.com" className="text-[var(--primary)] hover:underline">contacto@purocode.com</a></li>
               <li>WhatsApp: <a href="https://wa.me/56949255006" className="text-[var(--primary)] hover:underline">+56 9 4925 5006</a></li>
             </ul>
           </section>

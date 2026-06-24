@@ -36,7 +36,7 @@ const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-software-medida`;
 export const metadata: Metadata = {
   title: "Desarrollo de Software a Medida | Sistemas Empresariales — PuroCode",
   description:
-    "Desarrollo de software a medida en Chile. ERPs, plataformas SaaS y automatización con Node.js, Next.js y PostgreSQL. Código fuente 100% de tu propiedad. Cotiza gratis.",
+    "Desarrollo de software a medida en Chile. ERPs, plataformas SaaS y automatización con Node.js, Next.js y PostgreSQL. Cotiza gratis.",
   keywords: [
     "desarrollo de software a medida",
     "software personalizado Chile",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Software a Medida — PuroCode",
     description:
-      "Sistemas a medida en Chile. Código fuente 100% tuyo y despliegue en infraestructura cloud (Vercel/AWS).",
+      "Sistemas a medida en Chile con despliegue en infraestructura cloud (Vercel/AWS).",
   },
   alternates: {
     canonical: PAGE_URL,
@@ -77,9 +77,9 @@ const faqs = [
       "Un MVP funcional (la primera versión utilizable) puede estar listo en 4 a 8 semanas. Para sistemas empresariales complejos, el tiempo estimado oscila entre 3 a 6 meses. Trabajamos en iteraciones (sprints) de 2 semanas, por lo que verás avances funcionales constantemente.",
   },
   {
-    question: "¿Quién es dueño del código fuente?",
+    question: "¿Qué pasa si mi negocio crece?",
     answer:
-      "Tú. Al finalizar el desarrollo, entregamos el 100% del código fuente, derechos de propiedad intelectual y acceso a los repositorios (ej. GitHub). No te atamos a la agencia mediante tecnologías propietarias u oscuras.",
+      "Nuestra arquitectura está diseñada para escalar. Te garantizamos que la plataforma podrá crecer y evolucionar junto con tu empresa, sin cuellos de botella técnicos.",
   },
   {
     question: "¿Puedo solicitar cambios a medida que avanza el proyecto?",
