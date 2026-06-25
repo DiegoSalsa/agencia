@@ -52,8 +52,18 @@ export default function CuantoCuestaEcommerce() {
               <li><strong>Desarrollo a Medida vs SaaS:</strong> Usar Shopify/WooCommerce (costo inicial menor pero mantención constante) vs un desarrollo Headless personalizado para máxima velocidad.</li>
               <li><strong>Integraciones ERP/CRM:</strong> Sincronizar stock y facturación electrónica directamente con sistemas como Bsale o Defontana.</li>
             </ul>
-            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 rounded-lg">
-              <span className="font-semibold">TODO_REQUIRES_REAL_DATA:</span> Próximamente publicaremos una tabla de rangos de precios estimativos para implementaciones e-commerce base y avanzadas.
+            <div className="mt-8">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Precios de E-commerce</h3>
+              <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 dark:text-white">Tienda Online Completa</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Pagos integrados, gestión de inventario y optimización SEO.</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-500 uppercase tracking-wide">Inversión base desde</p>
+                  <p className="text-3xl font-black text-blue-600 dark:text-blue-400">$550.000 <span className="text-sm font-bold text-gray-500">CLP</span></p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

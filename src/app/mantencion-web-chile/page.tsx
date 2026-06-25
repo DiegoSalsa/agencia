@@ -53,8 +53,25 @@ export default function MantencionWebChile() {
               <li><strong>Mejoras SEO y Performance:</strong> Auditorías continuas para mantener tu sitio rápido (Core Web Vitals) y visible en Google.</li>
               <li><strong>Soporte Dedicado:</strong> Horas mensuales reservadas para subir nuevos contenidos, realizar cambios de diseño o agregar pequeñas funcionalidades.</li>
             </ul>
-            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 rounded-lg">
-              <span className="font-semibold">TODO_REQUIRES_REAL_DATA:</span> Próximamente publicaremos los planes mensuales y bolsas de horas disponibles para soporte web.
+            <div className="mt-8">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Nuestros Planes Mensuales</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <h4 className="font-bold text-gray-900 dark:text-white">Básico</h4>
+                  <p className="text-sm text-gray-500 mb-2">Preventivo</p>
+                  <p className="text-xl font-bold text-blue-600 dark:text-blue-400">$49.000 <span className="text-xs font-normal">CLP/mes</span></p>
+                </div>
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <h4 className="font-bold text-gray-900 dark:text-white">Soporte Pro</h4>
+                  <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">Recomendado</p>
+                  <p className="text-xl font-bold text-blue-600 dark:text-blue-400">$149.000 <span className="text-xs font-normal">CLP/mes</span></p>
+                </div>
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <h4 className="font-bold text-gray-900 dark:text-white">Avanzado</h4>
+                  <p className="text-sm text-gray-500 mb-2">Crecimiento Continuo</p>
+                  <p className="text-xl font-bold text-blue-600 dark:text-blue-400">$249.000 <span className="text-xs font-normal">CLP/mes</span></p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
