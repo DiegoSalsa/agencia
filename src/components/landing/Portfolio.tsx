@@ -19,6 +19,15 @@ interface Project {
 
 const webProjects: Project[] = [
   {
+    href: 'https://www.caminandootrosendero.cl/',
+    title: 'Caminando Otro Sendero',
+    descKey: 'portfolio_12_desc',
+    tag: 'Web Corporativa',
+    tagColor: 'bg-lime-500/15 text-lime-400 border-lime-500/30',
+    gradient: 'from-lime-700/40 via-green-600/30 to-emerald-900/40',
+    thumbnail: '/img/FotosPaginas/CaminandoOtroSendero.png',
+  },
+  {
     href: 'https://www.agenciabrujula.com/',
     title: 'Agencia Brújula',
     descKey: 'portfolio_10_desc',

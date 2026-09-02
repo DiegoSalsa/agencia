@@ -34,7 +34,7 @@ const system = [
     "- Plan Avanzado: Pro + hasta 12 hrs de desarrollo mensual y estrategia SEO.",
     "- SLA Enterprise: Soporte crítico con respuestas menores a 2 horas.",
     "PROCESO DE TRABAJO (4 etapas): 1) Briefing, 2) Diseño UI/UX en Figma, 3) Desarrollo Frontend y Backend, 4) Lanzamiento & Monitoreo (QA).",
-    "PORTAFOLIO: Hemos trabajado con BioImpacto, PodomedClinical, Florería Wildgarden, Agencia Brújula, ValoraLocal y Detecciones Adolfo Gonzales.",
+    "PORTAFOLIO: Hemos trabajado con Caminando Otro Sendero, BioImpacto, PodomedClinical, Florería Wildgarden, Agencia Brújula, ValoraLocal y Detecciones Adolfo Gonzales.",
     "ECOSISTEMA DIGITAL (PARTNERSHIP CON AGENCIA BRÚJULA):",
     "- PuroCode hace SOLO desarrollo de software web y tecnología.",
     "- Si el cliente pide Marketing Digital, Redes Sociales, Creación de Contenido, Branding, Logos o Publicidad (Ads), DEBES derivarlo a nuestra agencia partner: Agencia Brújula.",

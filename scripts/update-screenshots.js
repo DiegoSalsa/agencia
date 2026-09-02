@@ -14,6 +14,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 const projects = [
+  { url: 'https://www.caminandootrosendero.cl/', file: 'CaminandoOtroSendero.png' },
   { url: 'https://pagina-podomed-clinical.vercel.app', file: 'PodoMedLanding.png' },
   { url: 'https://jessica-belmar-podologia.vercel.app', file: 'JessicaBelmarPodologia.png' },
   { url: 'https://www.floreriawildgarden.cl', file: 'FloreriaWildGarden.png' },
