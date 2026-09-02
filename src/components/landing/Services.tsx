@@ -29,7 +29,7 @@ const services = [
       { icon: Palette, key: 'svc_feat_1_5' },
       { icon: Search, key: 'svc_feat_1_6' },
     ],
-    stat: { value: '90+', labelKey: 'svc_stat_1' },
+    stat: { value: '$220.000', labelKey: 'svc_stat_1' },
     techStack: ['React', 'Next.js', 'Tailwind', 'Framer Motion'],
   },
   {
@@ -48,7 +48,7 @@ const services = [
       { icon: Settings, key: 'svc_feat_2_5' },
       { icon: ShieldCheck, key: 'svc_feat_2_6' },
     ],
-    stat: { value: '99.9%', labelKey: 'svc_stat_2' },
+    stat: { value: '$49.000', labelKey: 'svc_stat_2' },
     techStack: ['Vercel', 'Docker', 'GitHub Actions', 'Cloudflare'],
   },
   {
@@ -67,7 +67,7 @@ const services = [
       { icon: Database, key: 'svc_feat_ecom_5' },
       { icon: Lock, key: 'svc_feat_ecom_6' },
     ],
-    stat: { value: '+40%', labelKey: 'svc_stat_ecom' },
+    stat: { value: '$550.000', labelKey: 'svc_stat_ecom' },
     techStack: ['Shopify', 'Next.js', 'Stripe', 'Tailwind'],
   },
   {
@@ -86,7 +86,7 @@ const services = [
       { icon: BarChart3, key: 'svc_feat_3_5' },
       { icon: GitBranch, key: 'svc_feat_3_6' },
     ],
-    stat: { value: '∞', labelKey: 'svc_stat_3' },
+    stat: { value: 'Cotizar', labelKey: 'svc_stat_3' },
     techStack: ['Node.js', 'Prisma', 'PostgreSQL', 'AWS'],
   },
 ];
@@ -126,6 +126,13 @@ export default function Services({ isHome = false }: { isHome?: boolean }) {
           <h2 className="text-4xl md:text-5xl font-black text-[var(--text)] mb-4 tracking-tight">
             {t('services_title')} <br className="hidden md:block" /> {t('services_title_2')}
           </h2>
+          {isHome && (
+            <p className="mt-6 text-sm text-[var(--text-secondary)]">
+              Precios en{" "}
+              <a href="/planes" className="text-[var(--primary)] font-semibold hover:underline">/planes</a>
+              : landing desde $220.000 · corporativa $380.000 · e-commerce $550.000 (50/50 + IVA). Apps/SaaS cotización. Mantención $49.000 / $149.000 / $249.000 IVA incluido.
+            </p>
+          )}
         </motion.div>
 
         {/* Full-width alternating rows */}
