@@ -36,7 +36,7 @@ const SITE_URL = "https://www.purocode.com";
 const PAGE_URL = `${SITE_URL}/soluciones/desarrollo-software-medida`;
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Desarrollo de Software a Medida",
+  title: "Apps web y SaaS a medida Chile",
   description: "Diseño y desarrollo de sistemas empresariales, plataformas SaaS y automatización de procesos operativos a medida.",
   path: "/soluciones/desarrollo-software-medida",
 });
@@ -120,8 +120,8 @@ export default function DesarrolloSoftwareMedida() {
       <Header />
       <main id="main-content">
         <PageHeader
-          title="Desarrollo de Software"
-          highlight="a Medida"
+          title="Apps web y SaaS a medida"
+          highlight="Chile"
           subtitle="Sistemas empresariales y plataformas escalables construidos con tecnologías de alto rendimiento. Automatizamos tus procesos con código 100% de tu propiedad."
           breadcrumb={[
             { label: "Servicios", href: "/servicios" },

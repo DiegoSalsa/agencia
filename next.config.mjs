@@ -3,6 +3,15 @@ const nextConfig = {
     output: 'standalone',
     serverExternalPackages: ['@libsql/client', '@prisma/adapter-libsql', 'better-sqlite3', '@prisma/adapter-better-sqlite3'],
     devIndicators: false,
+    async redirects() {
+        return [
+            {
+                source: "/soluciones/desarrollo-aplicaciones-web",
+                destination: "/soluciones/desarrollo-software-medida",
+                permanent: true,
+            },
+        ];
+    },
     async headers() {
         return [
             {

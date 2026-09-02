@@ -105,10 +105,10 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
 
     // Hero
     hero_badge: 'Transformación Digital Premium',
-    hero_title: 'Creamos Software que',
-    hero_title_highlight: 'Impulsa Negocios',
-    hero_title_highlights: 'Impulsa Negocios,Convierte Visitantes,Escala tu Marca',
-    hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
+    hero_title: 'Agencia de desarrollo web',
+    hero_title_highlight: 'Chile',
+    hero_title_highlights: 'Chile',
+    hero_subtitle: 'Armamos sitios y software para empresas que quieren contratar ahora: landing, corporativo, tienda, app o mantención. Remoto, para todo Chile.',
     hero_cta_primary: 'Cotiza tu Proyecto',
     hero_cta_secondary: 'Ver Planes',
     hero_cta_briefing: 'Completar Cuestionario',

@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const SITE_URL = "https://www.purocode.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModifiedDate = "2026-06-24";
+  const lastModifiedDate = "2026-09-02";
 
   return [
     {
@@ -60,21 +60,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    // ── SEO Landing Pages ──
+    {
+      url: `${SITE_URL}/soluciones`,
+      lastModified: lastModifiedDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/soluciones/landing-pages`,
+      lastModified: lastModifiedDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/soluciones/paginas-web-corporativas`,
+      lastModified: lastModifiedDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/soluciones/tienda-online`,
+      lastModified: lastModifiedDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     {
       url: `${SITE_URL}/soluciones/desarrollo-web-concepcion`,
       lastModified: lastModifiedDate,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.5,
     },
     {
       url: `${SITE_URL}/soluciones/desarrollo-software-medida`,
-      lastModified: lastModifiedDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/soluciones/desarrollo-aplicaciones-web`,
       lastModified: lastModifiedDate,
       changeFrequency: "monthly",
       priority: 0.8,
