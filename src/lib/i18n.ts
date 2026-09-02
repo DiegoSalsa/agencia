@@ -216,7 +216,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     maint_plan_basic: 'Mantenimiento Básico',
     maint_plan_basic_desc: 'Ideal para webs informativas que necesitan seguridad y actualizaciones regulares.',
     maint_plan_basic_subtitle: 'Preventivo',
-    maint_feature_basic_1: 'Actualizaciones de seguridad (CMS/Plugins)',
+    maint_feature_basic_1: 'Actualizaciones de seguridad de código y dependencias',
     maint_feature_basic_2: 'Respaldos semanales en la nube',
     maint_feature_basic_3: 'Monitoreo de Uptime 24/7',
     
@@ -576,7 +576,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     maint_plan_basic: 'Basic Maintenance',
     maint_plan_basic_desc: 'Ideal for informative websites that need regular security updates.',
     maint_plan_basic_subtitle: 'Preventive',
-    maint_feature_basic_1: 'Security updates (CMS/Plugins)',
+    maint_feature_basic_1: 'Code and dependency security updates',
     maint_feature_basic_2: 'Weekly cloud backups',
     maint_feature_basic_3: '24/7 Uptime monitoring',
     
