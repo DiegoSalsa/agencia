@@ -1,64 +1,101 @@
 import type { Metadata } from "next";
-import { generatePageMetadata, breadcrumbJsonLd, serviceJsonLd } from "@/lib/seo";
-import Link from "next/link";
+import { generatePageMetadata } from "@/lib/seo";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import PageHeader from "@/components/shared/PageHeader";
 import SocialFloater from "@/components/shared/SocialFloater";
 import { PromoProvider } from "@/context/PromoContext";
-import { ArrowRight, MessageCircle } from "lucide-react";
-
-const SITE_URL = "https://www.purocode.com";
-const PAGE_URL = `{SITE_URL}/soluciones/tienda-online`;
+import ServiceFicha from "@/components/seo/ServiceFicha";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'E-commerce Chile',
-  description: 'Desarrollo de tienda online Chile: catálogo, carrito, checkout y pagos locales. Desde $550.000 CLP.',
-  path: '/soluciones/tienda-online',
+  title: "E-commerce Chile",
+  description:
+    "Tienda online con catálogo, carrito, checkout y pagos locales. Desde $550.000 CLP. A medida cuando el template no alcanza. Remoto para todo Chile.",
+  path: "/soluciones/tienda-online",
 });
 
 export default function Page() {
   return (
     <PromoProvider>
       <Header />
-      <main id="main-content">
-        <PageHeader
-          title={'E-commerce'}
-          highlight={'Chile'}
-          subtitle={'Si el template no alcanza, tienda online a medida Chile. No un PDF con transferencia.'}
-          breadcrumb={[
-            { label: "Servicios", href: "/servicios" },
-            { label: 'E-commerce', href: '/soluciones/tienda-online' },
-          ]}
-        />
-        <section className="py-16 px-6 bg-[var(--bg)]">
-          <div className="max-w-[800px] mx-auto flex flex-col gap-6 text-[var(--text-secondary)] text-lg leading-relaxed">
-            <p>Desarrollo de tienda online Chile: catálogo, carrito, checkout y pagos locales.</p><p>Si el template no alcanza, tienda online a medida Chile. Desarrollo ecommerce Chile, no un PDF con transferencia.</p>
-            <p>
-              Desde $550.000 CLP (50% al inicio · 50% a la entrega + IVA). Detalle en <Link href="/planes" className="text-[var(--primary)] font-semibold hover:underline">/planes</Link>.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Link href="/formulario" className="btn-primary text-sm !py-3 !px-6 !rounded-xl">
-                Cotizar <ArrowRight size={16} />
-              </Link>
-              <a href="https://wa.me/56949255006?text=Hola,%20quiero%20cotizar%20una%20tienda%20online" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm !py-3 !px-6 !rounded-xl">
-                <MessageCircle size={16} /> WhatsApp +56 9 4925 5006
-              </a>
-            </div>
-            <p className="text-sm">contacto@purocode.com · Instagram @purocodecl · Remoto, todo Chile.</p>
-          </div>
-        </section>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            breadcrumbJsonLd([
-              { name: "Inicio", url: SITE_URL },
-              { name: "Servicios", url: `${SITE_URL}/servicios` },
-              { name: 'E-commerce Chile', url: PAGE_URL },
-            ]),
-            serviceJsonLd({ name: 'E-commerce Chile', description: 'Desarrollo de tienda online Chile: catálogo, carrito, checkout y pagos locales. Desde $550.000 CLP.', url: PAGE_URL }),
-          ]),
-        }} />
-      </main>
+      <ServiceFicha
+        title="E-commerce"
+        highlight="Chile"
+        subtitle="Catálogo, carrito y pagos. Si el template se queda corto, la tienda se arma a medida. No un PDF con transferencia."
+        path="/soluciones/tienda-online"
+        breadcrumbLabel="E-commerce"
+        lead={[
+          "Una tienda online tiene que dejar comprar: ver el producto, armar el carrito, pagar y recibir el pedido. En Chile eso implica Webpay, Flow o Mercado Pago, no solo una ficha de Instagram.",
+          "Si Shopify o un tema genérico te alcanza, úsalos. Acá entramos cuando el flujo, el catálogo o la marca piden algo que el template no da.",
+        ]}
+        priceLabel="Desde $550.000 CLP"
+        timeline="15–25 días hábiles"
+        includes={[
+          "Catálogo de productos con fichas, fotos y stock",
+          "Carrito y checkout",
+          "Pasarela de pago local (Webpay, Flow o Mercado Pago)",
+          "Diseño a medida, móvil primero",
+          "Dominio .cl o .com y hosting el primer año",
+          "Soporte técnico 6 meses",
+        ]}
+        excludes={[
+          "Marketplace tipo Mercado Libre (eso es otro canal)",
+          "Fotos de producto ni operación logística",
+          "Pauta de Meta/Google ni community management",
+          "ERP o facturación electrónica, salvo que se cotice aparte",
+        ]}
+        forWho={[
+          "Marcas que ya venden y se les quedó chico el template",
+          "Negocios con catálogo real (no tres productos y un WhatsApp)",
+          "Quien necesita checkout y pago en Chile, no solo transferencia",
+        ]}
+        notFor={[
+          "Un servicio que se cotiza a medida: eso es corporativa o landing",
+          "Quien todavía no tiene productos, fotos ni cómo despacha",
+        ]}
+        example={{
+          client: "Florería Wildgarden",
+          type: "E-commerce",
+          problem:
+            "Vendían arreglos por Instagram. No tenían canal propio ni un pedido que no dependiera del chat.",
+          solution:
+            "Tienda con catálogo visual, flujo de pedido y diseño pensado para elegir el arreglo y comprar.",
+          result:
+            "Canal de venta 24/7, independiente de la red social.",
+          href: "https://www.floreriawildgarden.cl",
+        }}
+        faqs={[
+          {
+            question: "¿Por qué no usar solo Shopify?",
+            answer:
+              "Si Shopify te sirve, úsalo. Cotizamos a medida cuando el checkout, el catálogo o la marca no entran en el tema: combos, pedidos con fecha, catálogo visual pesado, o un front que tenga que cargar rápido y rankear.",
+          },
+          {
+            question: "¿Qué medios de pago incluyen?",
+            answer:
+              "Webpay, Flow o Mercado Pago, según el negocio. Transferencia como respaldo si la quieres. El alta en Transbank o similar la hace el cliente; nosotros integramos.",
+          },
+          {
+            question: "¿Cuánto demora y cómo se paga?",
+            answer:
+              "15 a 25 días hábiles después de aprobar diseño y estructura del catálogo. 50% al inicio y 50% a la entrega, más IVA. Dominio y hosting el primer año, soporte 6 meses.",
+          },
+          {
+            question: "¿Quién carga los productos?",
+            answer:
+              "El plan base deja el catálogo armado para que cargues. Si el listado es grande, se puede cotizar la carga inicial. Fotos y precios los defines tú.",
+          },
+        ]}
+        quoteHref="/formulario/ecommerce"
+        whatsappText="Hola, quiero cotizar una tienda online"
+        schemaName="E-commerce Chile"
+        schemaDescription="Tienda online con catálogo, carrito, checkout y pagos locales. Desde $550.000 CLP. Remoto para todo Chile."
+        related={[
+          { href: "/soluciones/landing-pages", label: "Landing pages" },
+          { href: "/soluciones/paginas-web-corporativas", label: "Páginas corporativas" },
+          { href: "/mantenimiento", label: "Mantención" },
+          { href: "/planes", label: "Ver planes" },
+        ]}
+      />
       <Footer />
       <SocialFloater />
     </PromoProvider>

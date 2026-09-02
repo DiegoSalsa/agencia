@@ -51,7 +51,9 @@ export default function DetailedServices() {
               No hacemos simples páginas informativas. Construimos embudos visuales diseñados milimétricamente para captar atención, retener interés y convertir visitantes en clientes.
             </p>
             <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
-              ¿Buscas una agencia local? Conoce nuestros servicios de{' '}
+              Ficha del servicio:{' '}
+              <Link href="/soluciones/landing-pages" className="text-[var(--primary)] hover:underline">landing pages en Chile</Link>
+              {' · '}
               <Link href="/soluciones/desarrollo-web-concepcion" className="text-[var(--primary)] hover:underline">desarrollo web en Concepción</Link>.
             </p>
           </div>
@@ -117,6 +119,10 @@ export default function DetailedServices() {
             <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Desarrollamos el cuartel general digital de tu empresa. Arquitectura escalable, diseño que transmite autoridad y sistemas integrados que automatizan tus procesos internos.
             </p>
+            <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
+              Ficha del servicio:{' '}
+              <Link href="/soluciones/paginas-web-corporativas" className="text-[var(--primary)] hover:underline">páginas web corporativas en Chile</Link>.
+            </p>
           </div>
 
           {/* Bento Grid */}
@@ -177,6 +183,10 @@ export default function DetailedServices() {
             <h2 className="text-4xl md:text-6xl font-black text-[var(--text)] mb-6 tracking-tight">E-commerce <br/> Optimizado.</h2>
             <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
               Tiendas online rápidas, seguras y preparadas para alto tráfico. Eliminamos la fricción en el proceso de compra e integramos los métodos de pago que tus clientes prefieren.
+            </p>
+            <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
+              Ficha del servicio:{' '}
+              <Link href="/soluciones/tienda-online" className="text-[var(--primary)] hover:underline">e-commerce en Chile</Link>.
             </p>
           </div>
 
@@ -242,10 +252,8 @@ export default function DetailedServices() {
               Materializamos ideas complejas. Desde plataformas de software como servicio (SaaS) hasta ERPs internos y dashboards analíticos en tiempo real, diseñados para procesar millones de peticiones.
             </p>
             <p className="text-sm text-[var(--text-tertiary)] mt-3 max-w-2xl">
-              Explora nuestros servicios de{' '}
-              <Link href="/soluciones/desarrollo-software-medida" className="text-[var(--primary)] hover:underline">desarrollo de software a medida</Link>
-              {' '}y{' '}
-              <Link href="/soluciones/desarrollo-aplicaciones-web" className="text-[var(--primary)] hover:underline">desarrollo de aplicaciones web</Link>.
+              Ficha del servicio:{' '}
+              <Link href="/soluciones/desarrollo-software-medida" className="text-[var(--primary)] hover:underline">apps web y SaaS a medida</Link>.
             </p>
           </div>
 

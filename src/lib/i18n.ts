@@ -105,10 +105,10 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
 
     // Hero
     hero_badge: 'Transformación Digital Premium',
-    hero_title: 'Agencia de desarrollo web',
-    hero_title_highlight: 'Chile',
-    hero_title_highlights: 'Chile',
-    hero_subtitle: 'Armamos sitios y software para empresas que quieren contratar ahora: landing, corporativo, tienda, app o mantención. Remoto, para todo Chile.',
+    hero_title: 'Creamos Software que',
+    hero_title_highlight: 'Impulsa Negocios',
+    hero_title_highlights: 'Impulsa Negocios,Convierte Visitantes,Escala tu Marca',
+    hero_subtitle: 'Desarrollo web de alta gama, soluciones SaaS escalables y experiencias digitales que convierten visitantes en clientes.',
     hero_cta_primary: 'Cotiza tu Proyecto',
     hero_cta_secondary: 'Ver Planes',
     hero_cta_briefing: 'Completar Cuestionario',
@@ -352,6 +352,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     // Footer
     footer_desc: 'Transformamos ideas en productos digitales de clase mundial.',
     footer_services: 'Servicios',
+    footer_landing: 'Landing pages',
+    footer_corp: 'Páginas corporativas',
+    footer_shop: 'Tienda online',
     footer_company: 'Empresa',
     footer_contact: 'Contacto',
     footer_rights: 'Todos los derechos reservados.',
@@ -712,6 +715,9 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     // Footer
     footer_desc: 'We transform ideas into world-class digital products.',
     footer_services: 'Services',
+    footer_landing: 'Landing pages',
+    footer_corp: 'Corporate websites',
+    footer_shop: 'Online store',
     footer_company: 'Company',
     footer_contact: 'Contact',
     footer_rights: 'All rights reserved.',

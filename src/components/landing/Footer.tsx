@@ -55,10 +55,11 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_services')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/soluciones/landing-pages">{t('footer_landing')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/soluciones/paginas-web-corporativas">{t('footer_corp')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/soluciones/tienda-online">{t('footer_shop')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/servicios">{t('nav_services')}</Link></li>
-              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/portafolio">{t('nav_portfolio')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/planes">{t('nav_pricing')}</Link></li>
-              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/proceso">{t('nav_process')}</Link></li>
             </ul>
           </div>
 

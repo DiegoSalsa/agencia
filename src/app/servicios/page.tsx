@@ -14,6 +14,7 @@ import SocialFloater from '@/components/shared/SocialFloater';
 import PromoBanner from '@/components/landing/PromoBanner';
 import PromoPopup from '@/components/landing/PromoPopup';
 import PageHeader from '@/components/shared/PageHeader';
+import ServiceFichaNav from '@/components/seo/ServiceFichaNav';
 
 export default function ServiciosPage() {
   return (
@@ -38,6 +39,7 @@ export default function ServiciosPage() {
             { label: 'Servicios', href: '/servicios' }
           ]}
         />
+        <ServiceFichaNav title="Elige un servicio" />
         <div className="bg-[var(--section-services)] pb-20 section-ambient">
           <DetailedServices />
         </div>

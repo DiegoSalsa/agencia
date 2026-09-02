@@ -1,64 +1,101 @@
 import type { Metadata } from "next";
-import { generatePageMetadata, breadcrumbJsonLd, serviceJsonLd } from "@/lib/seo";
-import Link from "next/link";
+import { generatePageMetadata } from "@/lib/seo";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import PageHeader from "@/components/shared/PageHeader";
 import SocialFloater from "@/components/shared/SocialFloater";
 import { PromoProvider } from "@/context/PromoContext";
-import { ArrowRight, MessageCircle } from "lucide-react";
-
-const SITE_URL = "https://www.purocode.com";
-const PAGE_URL = `{SITE_URL}/soluciones/landing-pages`;
+import ServiceFicha from "@/components/seo/ServiceFicha";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Landing pages Chile',
-  description: 'Desarrollo de landing pages Chile para campañas: un producto, un evento, un lead. Desde $220.000 CLP.',
-  path: '/soluciones/landing-pages',
+  title: "Landing pages Chile",
+  description:
+    "Landing page para una campaña: un producto, un evento o un lead. Desde $220.000 CLP. Diseño a medida, entrega en 5-7 días. Remoto para todo Chile.",
+  path: "/soluciones/landing-pages",
 });
 
 export default function Page() {
   return (
     <PromoProvider>
       <Header />
-      <main id="main-content">
-        <PageHeader
-          title={'Landing pages'}
-          highlight={'Chile'}
-          subtitle={'Una página, un mensaje, un botón. Para contratar ahora, no para reemplazar el sitio corporativo.'}
-          breadcrumb={[
-            { label: "Servicios", href: "/servicios" },
-            { label: 'Landing pages', href: '/soluciones/landing-pages' },
-          ]}
-        />
-        <section className="py-16 px-6 bg-[var(--bg)]">
-          <div className="max-w-[800px] mx-auto flex flex-col gap-6 text-[var(--text-secondary)] text-lg leading-relaxed">
-            <p>Desarrollo de landing pages Chile para una campaña con fecha: un producto, un evento, un lead. Una página, un mensaje, un botón (formulario o WhatsApp).</p><p>Landing page para campañas Chile (Meta, Google, email), móvil primero. No reemplaza el sitio corporativo.</p>
-            <p>
-              Desde $220.000 CLP (50% al inicio · 50% a la entrega + IVA). Detalle en <Link href="/planes" className="text-[var(--primary)] font-semibold hover:underline">/planes</Link>.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Link href="/formulario" className="btn-primary text-sm !py-3 !px-6 !rounded-xl">
-                Cotizar <ArrowRight size={16} />
-              </Link>
-              <a href="https://wa.me/56949255006?text=Hola,%20quiero%20cotizar%20una%20landing%20page" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm !py-3 !px-6 !rounded-xl">
-                <MessageCircle size={16} /> WhatsApp +56 9 4925 5006
-              </a>
-            </div>
-            <p className="text-sm">contacto@purocode.com · Instagram @purocodecl · Remoto, todo Chile.</p>
-          </div>
-        </section>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            breadcrumbJsonLd([
-              { name: "Inicio", url: SITE_URL },
-              { name: "Servicios", url: `${SITE_URL}/servicios` },
-              { name: 'Landing pages Chile', url: PAGE_URL },
-            ]),
-            serviceJsonLd({ name: 'Landing pages Chile', description: 'Desarrollo de landing pages Chile para campañas: un producto, un evento, un lead. Desde $220.000 CLP.', url: PAGE_URL }),
-          ]),
-        }} />
-      </main>
+      <ServiceFicha
+        title="Landing pages"
+        highlight="Chile"
+        subtitle="Una página, un mensaje, un botón. Para una campaña con fecha, no para reemplazar el sitio de la empresa."
+        path="/soluciones/landing-pages"
+        breadcrumbLabel="Landing pages"
+        lead={[
+          "Una landing sirve para una campaña concreta: lanzar un producto, inscribir a un evento o pedir un dato. El visitante llega desde un anuncio o un mail y tiene una sola cosa que hacer.",
+          "La armamos móvil primero, con diseño a medida. Formulario o WhatsApp a la vista. No es un sitio corporativo recortado ni un template con el logo pegado.",
+        ]}
+        priceLabel="Desde $220.000 CLP"
+        timeline="5–7 días hábiles"
+        includes={[
+          "Diseño a medida en Figma, aprobado antes de programar",
+          "Una página con las secciones de la campaña",
+          "Formulario de contacto o botón a WhatsApp",
+          "SEO técnico base (título, descripción, carga rápida)",
+          "Dominio .cl o .com y hosting el primer año",
+          "Soporte técnico 3 meses",
+        ]}
+        excludes={[
+          "Varias páginas (quiénes somos, blog, servicios)",
+          "Catálogo, carrito o pagos",
+          "Pauta, copy de anuncios ni gestión de Meta/Google Ads",
+          "Sesión de fotos o video (usas el material que ya tienes)",
+        ]}
+        forWho={[
+          "Una oferta o un evento con fecha de cierre",
+          "Captar leads desde Meta, Google o email sin armar un sitio completo",
+          "Probar un producto antes de invertir en web corporativa",
+        ]}
+        notFor={[
+          "Quien necesita presentar la empresa completa: eso es una web corporativa",
+          "Quien quiere vender un catálogo con carrito: eso es e-commerce",
+        ]}
+        example={{
+          client: "PodomedClinical",
+          type: "Landing page",
+          problem:
+            "Clínica de podología que necesitaba captar pacientes online y transmitir confianza, sin un sitio de diez páginas.",
+          solution:
+            "Landing con servicios claros, prueba social y CTA directo a WhatsApp y formulario.",
+          result:
+            "Canal propio para pedir hora, independiente de Instagram.",
+          href: "https://pagina-podomed-clinical.vercel.app",
+        }}
+        faqs={[
+          {
+            question: "¿En qué se diferencia de una web corporativa?",
+            answer:
+              "La landing tiene una página y un objetivo. La corporativa presenta la empresa: servicios, equipo, contacto, a veces blog. Si el visitante tiene que entender quiénes son, no es landing.",
+          },
+          {
+            question: "¿Cuánto demora y cómo se paga?",
+            answer:
+              "5 a 7 días hábiles después de aprobar el diseño. 50% al inicio y 50% a la entrega, más IVA. Dominio y hosting van incluidos el primer año.",
+          },
+          {
+            question: "¿Puedo usarla en campañas de Meta o Google?",
+            answer:
+              "Sí. La página está pensada para tráfico de pauta: carga rápida en el celular y un solo llamado a la acción. La pauta en sí no está incluida; si la necesitas, te conectamos con el ecosistema.",
+          },
+          {
+            question: "¿Qué pasa si después quiero un sitio más grande?",
+            answer:
+              "Se puede partir por la landing y sumar corporativa o tienda después. No tiras el trabajo: el diseño y el dominio quedan.",
+          },
+        ]}
+        quoteHref="/formulario/landing"
+        whatsappText="Hola, quiero cotizar una landing page"
+        schemaName="Landing pages Chile"
+        schemaDescription="Landing page para campañas: un producto, un evento o un lead. Desde $220.000 CLP. Remoto para todo Chile."
+        related={[
+          { href: "/soluciones/paginas-web-corporativas", label: "Páginas corporativas" },
+          { href: "/soluciones/tienda-online", label: "E-commerce" },
+          { href: "/mantenimiento", label: "Mantención" },
+          { href: "/planes", label: "Ver planes" },
+        ]}
+      />
       <Footer />
       <SocialFloater />
     </PromoProvider>
