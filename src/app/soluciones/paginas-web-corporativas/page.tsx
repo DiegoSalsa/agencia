@@ -9,7 +9,7 @@ import { PromoProvider } from "@/context/PromoContext";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const SITE_URL = "https://www.purocode.com";
-const PAGE_URL = `{SITE_URL}/soluciones/paginas-web-corporativas`;
+const PAGE_URL = "https://www.purocode.com/soluciones/paginas-web-corporativas";
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Páginas web corporativas Chile',

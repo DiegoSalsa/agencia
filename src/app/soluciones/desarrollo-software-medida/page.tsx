@@ -129,6 +129,20 @@ export default function DesarrolloSoftwareMedida() {
           ]}
         />
 
+        <section className="px-6 py-10 bg-[var(--bg)] border-b border-[var(--border)]">
+          <div className="max-w-[800px] mx-auto text-[var(--text-secondary)] text-lg leading-relaxed flex flex-col gap-4">
+            <p>
+              Desarrollo de software a medida Chile: paneles, flujos internos o un producto SaaS en el navegador.
+              Desarrollo de aplicaciones web Chile y desarrollo SaaS Chile; el código queda en tu repositorio.
+              Reservas, portales e integraciones API van dentro de este proyecto, no como fichas aparte.
+            </p>
+            <p>
+              Apps/SaaS se cotiza (en <Link href="/planes" className="text-[var(--primary)] font-semibold hover:underline">/planes</Link> aparece como Enterprise, sin tarifa única).
+              WhatsApp +56 9 4925 5006 · contacto@purocode.com.
+            </p>
+          </div>
+        </section>
+
         <AeoSummary
           serviceName="software a medida, sistemas ERP y plataformas de gestión"
           targetAudience="empresas medianas, corporativas y startups"

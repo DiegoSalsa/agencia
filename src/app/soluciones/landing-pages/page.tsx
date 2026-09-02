@@ -9,7 +9,7 @@ import { PromoProvider } from "@/context/PromoContext";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const SITE_URL = "https://www.purocode.com";
-const PAGE_URL = `{SITE_URL}/soluciones/landing-pages`;
+const PAGE_URL = "https://www.purocode.com/soluciones/landing-pages";
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Landing pages Chile',
