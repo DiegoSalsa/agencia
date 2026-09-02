@@ -55,12 +55,15 @@ export const organizationJsonLd = {
   logo: `${SITE_URL}/img/logo.svg`,
   description:
     "Agencia chilena de desarrollo web profesional. Landing pages, sitios corporativos, e-commerce y soluciones SaaS a medida.",
-  foundingDate: "2024",
+  email: "contacto@purocode.com",
+  telephone: "+56949255006",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
+    email: "contacto@purocode.com",
+    telephone: "+56949255006",
     availableLanguage: ["Spanish", "English"],
-    url: `${SITE_URL}/#contacto`,
+    url: `${SITE_URL}/contacto`,
   },
   sameAs: [
     "https://www.instagram.com/purocodecl/",
@@ -89,14 +92,6 @@ export const websiteJsonLd = {
       url: `${SITE_URL}/img/logo.svg`,
     },
   },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 /* ── ProfessionalService (local business rich result) ── */
@@ -108,8 +103,9 @@ export const professionalServiceJsonLd = {
   logo: `${SITE_URL}/img/logo.svg`,
   image: `${SITE_URL}/img/og-image.png`,
   description:
-    "Servicio profesional de desarrollo web y software a medida. Landing pages desde $220.000 CLP, sitios corporativos, e-commerce y SaaS.",
-  priceRange: "$$",
+    "Servicio profesional de desarrollo web y software a medida. Landing pages, sitios corporativos, e-commerce y SaaS. Remoto para todo Chile.",
+  email: "contacto@purocode.com",
+  telephone: "+56949255006",
   address: {
     "@type": "PostalAddress",
     addressCountry: "CL",

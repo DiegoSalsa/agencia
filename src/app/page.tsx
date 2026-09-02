@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Desarrollo Web, Software y Automatización",
-  description: "Agencia chilena especializada en desarrollo web premium, aplicaciones SaaS, e-commerce y sistemas a medida. Automatizamos tus procesos.",
+  title: "Agencia de desarrollo web Chile",
+  description: "Agencia de desarrollo web en Chile. Landing, corporativas, e-commerce, apps web/SaaS y mantención. Remoto para todo Chile. Cotiza por WhatsApp.",
   path: "/",
 });
 import dynamic from 'next/dynamic';

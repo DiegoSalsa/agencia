@@ -12,7 +12,7 @@ import PageHeader from '@/components/shared/PageHeader';
 import CtaBanner from '@/components/landing/CtaBanner';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Mantenimiento Web y Soporte",
+  title: "Mantención web Chile",
   description: "Servicios profesionales de mantenimiento web, actualizaciones de seguridad, soporte técnico y optimización continua de tu plataforma.",
   path: "/mantenimiento",
 });
@@ -24,9 +24,9 @@ export default function MantenimientoPage() {
       <Header />
       <main id="main-content" className="min-h-screen bg-[var(--bg)] selection:bg-emerald-500/30 selection:text-emerald-200">
         <PageHeader 
-          title="Mantenimiento" 
-          highlight="Web" 
-          subtitle="Asegura la estabilidad, seguridad y evolución de tus sistemas con nuestros planes de soporte técnico preventivo y evolutivo." 
+          title="Mantención web" 
+          highlight="Chile" 
+          subtitle="Actualizaciones, respaldos, monitoreo y horas para cambios. Remoto. Planes en esta página; cotización también por WhatsApp o mail." 
           breadcrumb={[
             { label: 'Mantenimiento', href: '/mantenimiento' }
           ]}
