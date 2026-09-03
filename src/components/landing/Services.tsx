@@ -100,7 +100,7 @@ const fadeUp = {
   }),
 };
 
-export default function Services({ isHome = false }: { isHome?: boolean }) {
+export default function Services() {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
 
@@ -126,13 +126,6 @@ export default function Services({ isHome = false }: { isHome?: boolean }) {
           <h2 className="text-4xl md:text-5xl font-black text-[var(--text)] mb-4 tracking-tight">
             {t('services_title')} <br className="hidden md:block" /> {t('services_title_2')}
           </h2>
-          {isHome && (
-            <p className="mt-6 text-sm text-[var(--text-secondary)]">
-              Precios en{" "}
-              <a href="/planes" className="text-[var(--primary)] font-semibold hover:underline">/planes</a>
-              : landing desde $220.000 · corporativa $380.000 · e-commerce $550.000 (50/50 + IVA). Apps/SaaS cotización. Mantención $49.000 / $149.000 / $249.000 IVA incluido.
-            </p>
-          )}
         </motion.div>
 
         {/* Full-width alternating rows */}
