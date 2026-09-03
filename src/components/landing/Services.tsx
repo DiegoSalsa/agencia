@@ -100,7 +100,7 @@ const fadeUp = {
   }),
 };
 
-export default function Services() {
+export default function Services({ isHome = false }: { isHome?: boolean }) {
   const { t } = useI18n();
   const { ref, isVisible } = useInView();
 

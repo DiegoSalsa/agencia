@@ -25,7 +25,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <div className="bg-[var(--section-services)] section-ambient">
-          <Services />
+          <Services isHome={true} />
         </div>
       </main>
       <Footer />
