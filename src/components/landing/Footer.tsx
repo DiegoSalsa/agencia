@@ -77,6 +77,7 @@ export default function Footer() {
             <h3 className="font-semibold text-sm text-[var(--text)]">{t('footer_company')}</h3>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
               <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/contacto">{t('nav_contact')}</Link></li>
+              <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/labs">{t('footer_labs')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors cursor-pointer" href="/faq">{t('faq_title')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors" href="/terminos">{t('footer_terms')}</Link></li>
               <li><Link className="hover:text-[var(--primary)] transition-colors" href="/privacidad">{t('footer_privacy')}</Link></li>

@@ -34,6 +34,7 @@ export default function SobrePuroCode() {
             <ul className="space-y-4 text-gray-700 dark:text-gray-300 list-disc pl-5">
               <li><strong>¿Qué es PuroCode?:</strong> PuroCode desarrolla sitios web, aplicaciones web y software a medida para empresas en Chile.</li>
               <li><strong>Servicios principales:</strong> Landing pages, e-commerce, sitios corporativos, plataformas SaaS y mantención web.</li>
+              <li><strong>Producto propio:</strong> <a href="https://www.puragenda.cl">Puragenda</a> es una plataforma SaaS de agendamiento y reservas desarrollada por PuroCode. Está presentada en <a href="/labs">PuroCode Labs</a>.</li>
               <li><strong>Tecnologías que usamos:</strong> Trabajamos con tecnologías modernas de alto rendimiento como Next.js, React, TypeScript, Node.js y bases de datos escalables (PostgreSQL).</li>
               <li><strong>Nuestros clientes:</strong> Atendemos proyectos para pymes, startups, emprendedores y empresas corporativas que necesitan sistemas digitales a medida.</li>
               <li><strong>Zonas atendidas:</strong> Trabajamos activamente en Concepción, la Región del Biobío y de forma remota para todo Chile y el extranjero.</li>

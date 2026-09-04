@@ -79,11 +79,13 @@ const faqs = [
 const realProjects = [
   {
     client: "Puragenda",
-    type: "Plataforma SaaS Multi-tenant",
-    problem: "Los centros de estética gestionaban reservas por WhatsApp o libretas de papel, generando pérdida de tiempo, inasistencias de clientes (no-shows) y descontrol en las comisiones de su personal.",
-    solution: "Desarrollamos desde cero una plataforma SaaS con React y Node.js. Incluye agendamiento online, recordatorios automáticos integrados con WhatsApp, y paneles de administración de ingresos por local.",
-    result: "Reducción documentada de inasistencias a través de recordatorios automáticos y escalamiento a decenas de centros activos mediante infraestructura Vercel/AWS.",
+    type: "Plataforma SaaS de agendamiento",
+    problem: "Negocios de servicios coordinaban horas por WhatsApp, Instagram o libretas, sin una agenda pública con disponibilidad real.",
+    solution: "PuroCode desarrolló Puragenda, una plataforma SaaS de reservas online con disponibilidad por profesional, abonos, recordatorios por correo, Google Calendar y un panel web instalable como PWA.",
+    result: "Puragenda es un producto propio de PuroCode. El cliente reserva solo; el negocio administra citas, profesionales y clientes en un panel.",
     href: "https://www.puragenda.cl",
+    internalHref: "/labs",
+    internalLabel: "Puragenda en PuroCode Labs",
   },
   {
     client: "Agencia Brújula (Sistemas Internos)",
@@ -355,6 +357,14 @@ export default function DesarrolloSoftwareMedida() {
                       <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Impacto de Negocio</span>
                       <p className="text-sm text-[var(--text-secondary)] mt-1">{project.result}</p>
                     </div>
+                    {"internalHref" in project && project.internalHref ? (
+                      <Link
+                        href={project.internalHref}
+                        className="text-sm font-semibold text-[var(--primary)] hover:underline"
+                      >
+                        {project.internalLabel}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               ))}

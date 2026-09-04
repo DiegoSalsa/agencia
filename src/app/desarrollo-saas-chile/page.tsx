@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { generatePageMetadata, serviceJsonLd } from "@/lib/seo";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
@@ -45,6 +46,11 @@ export default function DesarrolloSaasChile() {
           </h2>
           <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-4 text-gray-700 dark:text-gray-300">
             <p>Un <strong>Software as a Service (SaaS)</strong> es una plataforma alojada en la nube donde los clientes pagan una suscripción recurrente por acceder a sus funcionalidades. Es el modelo de negocio más rentable y escalable en la industria tecnológica actual.</p>
+            <p>
+              Un ejemplo propio es <a href="https://www.puragenda.cl" className="text-[var(--primary)] font-semibold hover:underline">Puragenda</a>,
+              plataforma SaaS de agendamiento y reservas desarrollada por PuroCode. La ficha corporativa está en{" "}
+              <Link href="/labs" className="text-[var(--primary)] font-semibold hover:underline">PuroCode Labs</Link>.
+            </p>
             
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">Arquitectura de un SaaS exitoso:</h3>
             <ul className="list-disc pl-5 space-y-2">

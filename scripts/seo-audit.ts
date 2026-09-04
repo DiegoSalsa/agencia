@@ -18,6 +18,7 @@ const urlsToTest = [
   "http://localhost:3000/desarrollo-saas-chile",
   "http://localhost:3000/mantencion-web-chile",
   "http://localhost:3000/casos-de-exito",
+  "http://localhost:3000/labs",
 ];
 
 async function runAudit() {

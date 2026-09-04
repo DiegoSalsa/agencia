@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -13,8 +14,8 @@ import { PromoProvider } from '@/context/PromoContext';
 import SectionDivider from '@/components/shared/SectionDivider';
 
 const Services = dynamic(() => import('@/components/landing/Services'));
-const Footer = dynamic(() => import('@/components/landing/Footer'));
 const PromoBanner = dynamic(() => import('@/components/landing/PromoBanner'));
+import Footer from '@/components/landing/Footer';
 import SocialFloater from '@/components/shared/SocialFloater';
 
 export default function Home() {
@@ -24,6 +25,10 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <Hero />
+        <p className="max-w-[1200px] mx-auto px-6 py-6 text-sm text-[var(--text-secondary)]">
+          PuroCode también desarrolla productos propios. Puragenda es una plataforma SaaS de agendamiento y reservas; la ficha corporativa está en{" "}
+          <Link href="/labs" className="text-[var(--primary)] font-semibold hover:underline">PuroCode Labs</Link>.
+        </p>
         <div className="bg-[var(--section-services)] section-ambient">
           <Services isHome={true} />
         </div>

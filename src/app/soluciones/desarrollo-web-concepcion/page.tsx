@@ -113,10 +113,12 @@ const realProjects = [
   {
     client: "Puragenda",
     type: "Plataforma SaaS",
-    problem: "Centros de estética y barberías gestionaban citas manualmente, generando conflictos de horario y pérdida de clientes.",
-    solution: "Desarrollamos un sistema integral de reservas con agendamiento 24/7, recordatorios por WhatsApp y reportes financieros en tiempo real.",
-    result: "Automatización completa del proceso de agendamiento con reducción de citas perdidas.",
+    problem: "Negocios de servicios en Chile coordinaban citas a mano o por mensajes, sin una agenda pública.",
+    solution: "PuroCode desarrolló Puragenda, un SaaS de agendamiento online con reservas 24/7, disponibilidad por profesional, abonos y recordatorios por correo.",
+    result: "Puragenda es el producto propio de PuroCode para reservas. No sustituye un sitio corporativo: es software de agenda.",
     href: "https://www.puragenda.cl",
+    internalHref: "/labs",
+    internalLabel: "Puragenda en PuroCode Labs",
   },
 ];
 
@@ -357,6 +359,14 @@ export default function DesarrolloWebConcepcion() {
                       <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Resultado</span>
                       <p className="text-sm text-[var(--text-secondary)] mt-1">{project.result}</p>
                     </div>
+                    {"internalHref" in project && project.internalHref ? (
+                      <Link
+                        href={project.internalHref}
+                        className="text-sm font-semibold text-[var(--primary)] hover:underline"
+                      >
+                        {project.internalLabel}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               ))}

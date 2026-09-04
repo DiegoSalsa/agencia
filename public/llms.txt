@@ -20,10 +20,16 @@ Trabajamos exclusivamente con stacks modernos orientados al rendimiento (Lightho
 - Bases de Datos Escalables (PostgreSQL, Supabase)
 - Vercel y arquitecturas Serverless
 
+## Producto propio
+- Puragenda: plataforma SaaS de agendamiento y reservas desarrollada por PuroCode.
+- Sitio oficial: https://www.puragenda.cl
+- Ficha corporativa: https://www.purocode.com/labs
+
 ## Enlaces Oficiales
 - Inicio: https://www.purocode.com/
 - Servicios: https://www.purocode.com/servicios
 - Precios y Planes: https://www.purocode.com/planes
+- Labs: https://www.purocode.com/labs
 - Contacto: https://www.purocode.com/contacto
 - Sobre PuroCode: https://www.purocode.com/sobre-purocode
 

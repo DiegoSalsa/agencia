@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -38,6 +39,12 @@ export default function PortafolioPage() {
             { label: 'Portafolio', href: '/portafolio' }
           ]}
         />
+        <p className="max-w-[1200px] mx-auto px-6 pb-4 text-[var(--text-secondary)]">
+          El portafolio reúne sitios de clientes. Los productos propios de PuroCode, incluido{" "}
+          <a href="https://www.puragenda.cl" className="text-[var(--primary)] font-semibold hover:underline">Puragenda</a>,
+          están en{" "}
+          <Link href="/labs" className="text-[var(--primary)] font-semibold hover:underline">PuroCode Labs</Link>.
+        </p>
         <div className="pb-20">
           <Portfolio />
         </div>

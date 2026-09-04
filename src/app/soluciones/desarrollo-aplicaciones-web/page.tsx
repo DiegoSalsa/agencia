@@ -77,11 +77,13 @@ const faqs = [
 const realProjects = [
   {
     client: "Puragenda",
-    type: "Aplicación Web (SaaS) y PWA",
-    problem: "Los dueños de locales de belleza gestionaban agendas desde su celular personal. Sus clientes no tenían forma autogestionada de pedir una hora de atención, generando barreras en la conversión y pérdida de ingresos en horas vacías.",
-    solution: "Desarrollo de una Aplicación Web con PWA (Progressive Web App). Las clientas finales agendan horas como en un comercio electrónico y los negocios gestionan a su personal en un panel interactivo. Implementación de Webhooks para notificaciones de WhatsApp automáticas.",
-    result: "Los comercios redujeron a cero los cruces de horas. Se gestionan más de miles de citas en tiempo real con 99.99% de uptime histórico bajo la plataforma.",
+    type: "Aplicación web SaaS (PWA)",
+    problem: "Dueños de locales de servicios gestionaban la agenda desde el celular personal. El cliente final no tenía un flujo autogestionado para pedir hora.",
+    solution: "PuroCode desarrolló Puragenda como aplicación web: el cliente reserva desde el navegador y el negocio administra profesionales y citas en un panel que se puede instalar como PWA.",
+    result: "Puragenda es un producto propio de PuroCode, con reservas online, disponibilidad por profesional y recordatorios por correo. Sitio oficial: puragenda.cl.",
     href: "https://www.puragenda.cl",
+    internalHref: "/labs",
+    internalLabel: "Puragenda en PuroCode Labs",
   },
   {
     client: "BioImpacto (Gestión Corporativa)",
@@ -335,6 +337,14 @@ export default function DesarrolloAplicacionesWeb() {
                       <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Hito Logrado</span>
                       <p className="text-sm text-[var(--text-secondary)] mt-1">{project.result}</p>
                     </div>
+                    {"internalHref" in project && project.internalHref ? (
+                      <Link
+                        href={project.internalHref}
+                        className="text-sm font-semibold text-[var(--primary)] hover:underline"
+                      >
+                        {project.internalLabel}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               ))}
