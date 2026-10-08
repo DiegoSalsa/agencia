@@ -61,7 +61,7 @@ export default function Header() {
         className={`fixed left-0 right-0 z-50 flex justify-center px-4 transition-all duration-500 ${
           scrolled ? 'py-1.5 scrolled' : 'py-4'
         }`}
-        style={{ top: 'var(--promo-banner-height, 0px)' }}
+        style={{ top: 'calc(var(--promo-banner-height, 0px) + var(--cookie-visible-height, 0px))' }}
       >
         <nav className={`flex w-full max-w-[1200px] items-center justify-between px-6 transition-all duration-500 relative ${
           scrolled

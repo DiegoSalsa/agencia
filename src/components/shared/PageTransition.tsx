@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
+  // The Home's headline stays visible in server HTML; motion is isolated to its isotipo.
+  if (pathname === '/') return <>{children}</>;
+
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.div

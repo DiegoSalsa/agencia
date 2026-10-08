@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Instagram, Facebook, X, ChevronUp } from 'lucide-react';
 import WhatsAppIcon from '@/components/shared/WhatsAppIcon';
 
@@ -10,6 +10,7 @@ const whatsappContacts = [
 ];
 
 export default function SocialFloater() {
+  const reducedMotion = useReducedMotion();
   const [visible, setVisible] = useState(true);
   const [wspOpen, setWspOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -35,18 +36,18 @@ export default function SocialFloater() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   };
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col gap-2 sm:gap-3 items-start"
+          className="social-floater fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col gap-2 sm:gap-3 items-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: reducedMotion ? 0 : 0.3 }}
         >
           {/* WhatsApp Selector Popup */}
           <AnimatePresence>
@@ -56,11 +57,11 @@ export default function SocialFloater() {
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: reducedMotion ? 0 : 0.2 }}
               >
                 <div className="px-4 py-3 border-b border-[var(--border)] flex items-center justify-between">
                   <span className="text-sm font-semibold text-[var(--text)]">WhatsApp</span>
-                  <button onClick={() => setWspOpen(false)} className="text-[var(--text-tertiary)] hover:text-[var(--text)] cursor-pointer">
+                  <button onClick={() => setWspOpen(false)} aria-label="Cerrar contactos de WhatsApp" className="w-11 h-11 grid place-items-center text-[var(--text-secondary)] hover:text-[var(--text)] cursor-pointer">
                     <X size={14} />
                   </button>
                 </div>
@@ -86,7 +87,7 @@ export default function SocialFloater() {
           </AnimatePresence>
 
           {/* Buttons */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-row sm:flex-col gap-2">
             {/* Scroll to top */}
             <AnimatePresence>
               {showScrollTop && (
@@ -97,7 +98,7 @@ export default function SocialFloater() {
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.5 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.2 }}
                 >
                   <ChevronUp size={22} />
                 </motion.button>
@@ -109,6 +110,7 @@ export default function SocialFloater() {
               onClick={() => setWspOpen(!wspOpen)}
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
               aria-label="WhatsApp"
+              aria-expanded={wspOpen}
             >
               <WhatsAppIcon size={22} />
             </button>

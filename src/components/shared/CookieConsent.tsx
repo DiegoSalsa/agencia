@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import styles from "./CookieConsent.module.css";
 
 type ConsentValue = "all" | "essential" | null;
 
@@ -18,15 +19,36 @@ function setConsent(value: "all" | "essential") {
 }
 
 export default function CookieConsent() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const banner = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Small delay so it doesn't flash on page load
-    const timer = setTimeout(() => {
-      if (!getConsent()) setVisible(true);
-    }, 1500);
-    return () => clearTimeout(timer);
+    // Saved consent is also applied by the pre-paint layout script, so this
+    // inline notice reserves its own space and never overlays project content.
+    setVisible(!getConsent());
   }, []);
+  useEffect(() => {
+    if (!visible || !banner.current) return;
+    const updateVisible = () => {
+      const rect = banner.current?.getBoundingClientRect();
+      document.documentElement.style.setProperty("--cookie-visible-height", `${rect ? Math.max(0, Math.min(rect.height, rect.bottom)) : 0}px`);
+    };
+    const update = () => {
+      document.documentElement.style.setProperty("--cookie-notice-height", `${banner.current?.getBoundingClientRect().height || 0}px`);
+      updateVisible();
+    };
+    update();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    observer?.observe(banner.current);
+    window.addEventListener("resize", update);
+    window.addEventListener("scroll", updateVisible, { passive: true });
+    return () => {
+      observer?.disconnect(); window.removeEventListener("scroll", updateVisible);
+      window.removeEventListener("resize", update);
+      document.documentElement.style.removeProperty("--cookie-notice-height");
+      document.documentElement.style.removeProperty("--cookie-visible-height");
+    };
+  }, [visible]);
 
   function handleAcceptAll() {
     setConsent("all");
@@ -42,43 +64,40 @@ export default function CookieConsent() {
 
   return (
     <div
+      ref={banner}
       role="dialog"
       aria-label="Configuración de cookies"
-      className="fixed bottom-0 left-0 right-0 z-[9999] p-4 sm:p-6"
+      className={styles.banner}
     >
-      <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--bg)] shadow-2xl backdrop-blur-xl p-5 sm:p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex-1">
-            <h3 className="text-sm font-semibold text-[var(--text)] mb-1">
+      <div className={styles.content}>
+          <div className={styles.copy}>
+            <h3>
               🍪 Uso de Cookies
             </h3>
-            <p className="text-xs text-[var(--muted)] leading-relaxed">
-              Usamos cookies esenciales para el funcionamiento del sitio y cookies analíticas
-              (Google Analytics) para mejorar tu experiencia. Puedes aceptar todas o solo las
-              esenciales.{" "}
+            <p>
+              Usamos cookies esenciales para que el sitio funcione y Google Analytics,
+              si lo aceptas, para mejorar la experiencia.{" "}
               <a
                 href="/privacidad"
-                className="text-[var(--primary)] hover:underline"
               >
                 Política de privacidad
               </a>
             </p>
           </div>
-          <div className="flex gap-3 shrink-0">
+          <div className={styles.actions}>
             <button
               onClick={handleEssentialOnly}
-              className="rounded-lg border border-[var(--border)] px-4 py-2 text-xs font-medium text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--text)] transition-colors cursor-pointer"
+              className={styles.essential}
             >
               Solo esenciales
             </button>
             <button
               onClick={handleAcceptAll}
-              className="rounded-lg bg-[var(--primary)] px-4 py-2 text-xs font-medium text-white hover:opacity-90 transition-opacity cursor-pointer"
+              className={styles.all}
             >
               Aceptar todas
             </button>
           </div>
-        </div>
       </div>
     </div>
   );

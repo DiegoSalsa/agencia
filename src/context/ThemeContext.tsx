@@ -13,27 +13,26 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('purocode-theme') as Theme | null;
-    const initial = saved || 'dark';
+    let initial: Theme = 'dark';
+    try {
+      initial = localStorage.getItem('purocode-theme') === 'light' ? 'light' : 'dark';
+    } catch {
+      // Storage may be unavailable; the server-rendered dark theme still works.
+    }
     setTheme(initial);
     document.documentElement.classList.toggle('dark', initial === 'dark');
-    setMounted(true);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('purocode-theme', next);
-      document.documentElement.classList.toggle('dark', next === 'dark');
-      return next;
-    });
-  }, []);
-
-  // Prevent flash of wrong theme
-  if (!mounted) return null;
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('purocode-theme', next); } catch {
+      // The theme can still be changed for this visit.
+    }
+    document.documentElement.classList.toggle('dark', next === 'dark');
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

@@ -1,0 +1,17 @@
+.banner { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 14px 24px; }
+:global(.cookie-consent-known) .banner { display: none; }
+.content { max-width: 1280px; margin-inline: auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.copy { max-width: 730px; }
+.copy h3 { font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.copy p { font-size: 12px; line-height: 1.6; color: var(--text-secondary); }
+.copy a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.actions { display: flex; gap: 12px; flex-shrink: 0; }
+.actions button { min-height: 44px; padding: 0 18px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+.essential { border: 1px solid var(--border); color: var(--text); }
+.all { background: var(--primary); color: white; }
+@media (max-width: 700px) {
+  .banner { padding: 16px 22px; }
+  .content { display: block; }
+  .actions { margin-top: 14px; }
+  .actions button { flex: 1; }
+}

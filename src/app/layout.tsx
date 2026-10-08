@@ -95,8 +95,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: "try{document.documentElement.classList.toggle('dark',localStorage.getItem('purocode-theme')!=='light');var consent=localStorage.getItem('cookie_consent');document.documentElement.classList.toggle('cookie-consent-known',consent==='all'||consent==='essential')}catch(e){}" }} />
         <link rel="manifest" href="/img/favicon/site.webmanifest" />
         <meta name="theme-color" content="#6d28d9" />
         <script
@@ -128,6 +129,7 @@ export default function RootLayout({
         >
           Saltar al contenido
         </a>
+        <CookieConsent />
         <ThemeProvider>
           <I18nProvider>
             <PageTransition>{children}</PageTransition>
@@ -135,7 +137,6 @@ export default function RootLayout({
         </ThemeProvider>
         <GoogleTagManager />
         <GoogleAnalytics />
-        <CookieConsent />
         <FloatingGilberto />
       </body>
     </html>

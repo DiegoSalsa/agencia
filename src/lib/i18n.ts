@@ -461,6 +461,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     // Header
     nav_portfolio: 'Portfolio',
     nav_services: 'Services',
+    nav_process: 'Process',
     nav_contact: 'Contact',
     nav_pricing: 'Pricing',
     nav_dropdown_dev: 'Custom Software & Web Development',

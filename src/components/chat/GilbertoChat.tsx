@@ -21,7 +21,7 @@ function renderInlineMarkdown(text: string) {
     return pieces.map((piece, index) => {
         if (piece.startsWith("**") && piece.endsWith("**")) {
             return (
-                <strong key={index} className="font-semibold text-neutral-50">
+                <strong key={index} className="font-semibold text-[var(--text)]">
                     {piece.slice(2, -2)}
                 </strong>
             );
@@ -96,20 +96,20 @@ function ChatContactForm({ reason }: { reason?: string }) {
 
     if (status === "success") {
         return (
-            <div className="mt-3 rounded-md bg-green-500/10 p-3 text-sm text-green-200 border border-green-500/20 text-center">
+            <div className="mt-3 rounded-md bg-green-500/10 p-3 text-sm text-green-700 dark:text-green-200 border border-green-500/20 text-center">
                 ¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.
             </div>
         );
     }
 
     return (
-        <form onSubmit={handleSubmit} className="mt-3 flex flex-col gap-2 rounded-md border border-white/10 bg-neutral-900/50 p-3">
-            {reason && <p className="text-[12px] font-medium text-indigo-300 mb-1">{reason}</p>}
-            <input name="name" required placeholder="Tu nombre" className="rounded border border-white/10 bg-neutral-950 px-2 py-1.5 text-[13px] text-neutral-100 outline-none focus:border-indigo-500/50" />
-            <input name="email" type="email" required placeholder="tu@email.com" className="rounded border border-white/10 bg-neutral-950 px-2 py-1.5 text-[13px] text-neutral-100 outline-none focus:border-indigo-500/50" />
-            <textarea name="message" required placeholder="¿En qué te podemos ayudar?" rows={2} className="resize-none rounded border border-white/10 bg-neutral-950 px-2 py-1.5 text-[13px] text-neutral-100 outline-none focus:border-indigo-500/50" />
+        <form onSubmit={handleSubmit} className="mt-3 flex flex-col gap-2 rounded-md border border-[var(--border)] bg-[var(--surface)] p-3">
+            {reason && <p className="text-[12px] font-medium text-indigo-700 dark:text-indigo-300 mb-1">{reason}</p>}
+            <input name="name" required aria-label="Tu nombre" placeholder="Tu nombre" className="rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1.5 text-[13px] text-[var(--text)] outline-none focus:border-indigo-500/50" />
+            <input name="email" type="email" required aria-label="Tu email" placeholder="tu@email.com" className="rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1.5 text-[13px] text-[var(--text)] outline-none focus:border-indigo-500/50" />
+            <textarea name="message" required aria-label="Consulta de contacto" placeholder="¿En qué te podemos ayudar?" rows={2} className="resize-none rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1.5 text-[13px] text-[var(--text)] outline-none focus:border-indigo-500/50" />
             
-            {status === "error" && <p className="text-[12px] text-red-400">{errorMsg}</p>}
+            {status === "error" && <p className="text-[12px] text-red-700 dark:text-red-400">{errorMsg}</p>}
             
             <button type="submit" disabled={status === "loading"} className="mt-1 rounded bg-indigo-600 py-1.5 text-[13px] font-medium text-white transition-colors hover:bg-indigo-500 disabled:opacity-50">
                 {status === "loading" ? "Enviando..." : "Enviar mensaje"}
@@ -173,7 +173,7 @@ export default function GilbertoChat({ className = "" }: { className?: string })
     const isBusy = status === "submitted" || status === "streaming";
 
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        messagesEndRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "end" });
     }, [messages, status]);
 
     useEffect(() => {
@@ -195,15 +195,15 @@ export default function GilbertoChat({ className = "" }: { className?: string })
     }
 
     return (
-        <section className={`mx-auto flex h-[min(720px,calc(100vh-2rem))] w-full max-w-3xl flex-col rounded-lg border border-white/10 bg-neutral-950 shadow-2xl ${className}`}>
-            <header className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <section className={`mx-auto flex w-full max-w-3xl flex-col rounded-lg border border-[var(--border)] bg-[var(--bg)] shadow-2xl ${className || "h-[min(720px,calc(100dvh-2rem))]"}`}>
+            <header className="flex flex-col gap-3 border-b border-[var(--border)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-indigo-600">
                         <Bot size={17} className="text-white" />
                     </div>
                     <div className="min-w-0">
-                        <h2 className="truncate text-[15px] font-semibold text-neutral-100">Gilberto</h2>
-                        <p className="truncate text-[12px] text-neutral-500">Asesor Comercial de PuroCode</p>
+                        <h2 className="truncate text-[15px] font-semibold text-[var(--text)]">Gilberto</h2>
+                        <p className="truncate text-[12px] text-[var(--text-secondary)]">Asesor Comercial de PuroCode</p>
                     </div>
                 </div>
             </header>
@@ -223,8 +223,8 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                             <div
                                 className={`max-w-[85%] rounded-lg border px-4 py-3 text-[14px] leading-6 ${
                                     isUser
-                                        ? "border-indigo-500/30 bg-indigo-600/20 text-indigo-50"
-                                        : "border-white/10 bg-neutral-900 text-neutral-200"
+                                        ? "border-indigo-500/30 bg-indigo-600/15 text-[var(--text)]"
+                                        : "border-[var(--border)] bg-[var(--surface)] text-[var(--text)]"
                                 }`}
                             >
                                 {text ? <MessageText text={text} /> : message.role === "assistant" && !showForm ? "Escribiendo..." : ""}
@@ -236,14 +236,14 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                 })}
 
                 {isBusy && (
-                    <div className="flex items-center gap-2 text-[13px] text-neutral-500">
+                    <div className="flex items-center gap-2 text-[13px] text-[var(--text-secondary)]">
                         <Loader2 size={14} className="animate-spin" />
                         Gilberto está escribiendo
                     </div>
                 )}
 
                 {error && (
-                    <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-[13px] text-red-200">
+                    <div role="alert" className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-[13px] text-red-700 dark:text-red-200">
                         {error.message || "No se pudo completar la respuesta."}
                     </div>
                 )}
@@ -251,8 +251,8 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                 <div ref={messagesEndRef} />
             </div>
 
-            <form onSubmit={handleSubmit} className="border-t border-white/10 p-3">
-                <div className="flex items-end gap-2 rounded-lg border border-white/10 bg-neutral-900 p-2 focus-within:border-indigo-500/50 transition-colors">
+            <form onSubmit={handleSubmit} className="border-t border-[var(--border)] p-3">
+                <div className="flex items-end gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-2 focus-within:border-indigo-500/50 transition-colors">
                     <textarea
                         value={input}
                         onChange={(event) => setInput(event.target.value)}
@@ -263,8 +263,9 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                             }
                         }}
                         rows={1}
+                        aria-label="Mensaje para Gilberto"
                         placeholder="Escríbele a Gilberto..."
-                        className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-2 py-2 text-[14px] text-neutral-100 outline-none placeholder:text-neutral-600"
+                        className="max-h-32 min-h-10 min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-[14px] text-[var(--text)] outline-none placeholder:text-[var(--text-secondary)]"
                     />
                     <button
                         type={isBusy ? "button" : "submit"}
@@ -272,6 +273,7 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                         disabled={!isBusy && !input.trim()}
                         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-indigo-600 text-white transition-colors hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
                         title={isBusy ? "Detener respuesta" : "Enviar"}
+                        aria-label={isBusy ? "Detener respuesta" : "Enviar mensaje"}
                     >
                         {isBusy ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
                     </button>

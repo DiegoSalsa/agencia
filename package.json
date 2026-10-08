@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "seo:audit": "tsx scripts/seo-audit.ts",
+    "test:home": "node --test scripts/brand-model.test.mjs scripts/home-regression.test.mjs",
+    "build:brand": "node scripts/build-brand-model.mjs && node scripts/build-home-og.mjs",
     "update-screenshots": "node scripts/update-screenshots.js"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
     "react-hook-form": "^7.71.2",
     "recharts": "^3.8.0",
     "resend": "^6.9.3",
+    "three": "0.186.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -48,6 +51,8 @@
     "@types/papaparse": "^5.5.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "0.186.0",
+    "@xmldom/xmldom": "0.9.12",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8",

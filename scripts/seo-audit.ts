@@ -1,7 +1,4 @@
-import fs from "fs";
-import path from "path";
-import https from "https";
-import http from "http";
+const auditBase = process.env.SEO_AUDIT_BASE_URL || "http://localhost:3000";
 
 const urlsToTest = [
   "http://localhost:3000/",
@@ -19,7 +16,7 @@ const urlsToTest = [
   "http://localhost:3000/mantencion-web-chile",
   "http://localhost:3000/casos-de-exito",
   "http://localhost:3000/labs",
-];
+].map(url => new URL(new URL(url).pathname, auditBase).href);
 
 async function runAudit() {
   console.log("Starting Static SEO Audit...");

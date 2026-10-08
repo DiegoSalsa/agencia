@@ -22,14 +22,18 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     const savedLang = getCookie('userLang') as Lang | null;
     const savedCurrency = getCookie('userCurrency') as Currency | null;
 
+    if (savedLang) setLangState(savedLang);
+    if (savedCurrency) setCurrencyState(savedCurrency);
     if (savedLang && savedCurrency) {
       setLangState(savedLang);
       setCurrencyState(savedCurrency);
     } else {
       detectCountry().then(({ currency: c, lang: l }) => {
-        setLangState(l);
+        // A pending country lookup must not overwrite an explicit ES/EN choice.
+        const preferred = getCookie('userLang') as Lang | null;
+        setLangState(preferred || l);
         setCurrencyState(c);
-        setCookie('userLang', l, 30);
+        if (!preferred) setCookie('userLang', l, 30);
         setCookie('userCurrency', c, 30);
       });
     }
