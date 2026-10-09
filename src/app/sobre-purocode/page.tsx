@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { generatePageMetadata, aboutPageJsonLd, organizationJsonLd } from "@/lib/seo";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
 import { PromoProvider } from "@/context/PromoContext";
@@ -18,7 +17,7 @@ export default function SobrePuroCode() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify([aboutPageJsonLd, organizationJsonLd]) }}
       />
-      <Header />
+
       <main id="main-content">
         <PageHeader
           title="Sobre"

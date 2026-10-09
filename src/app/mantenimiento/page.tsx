@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import MaintenancePricing from '@/components/landing/MaintenancePricing';
 import { PromoProvider } from '@/context/PromoContext';
@@ -21,7 +20,7 @@ export default function MantenimientoPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content" className="min-h-screen bg-[var(--bg)] selection:bg-emerald-500/30 selection:text-emerald-200">
         <PageHeader 
           title="Mantención web" 

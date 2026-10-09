@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
 import Link from "next/link";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
 import SocialFloater from "@/components/shared/SocialFloater";
@@ -18,7 +17,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function SolucionesHub() {
   return (
     <PromoProvider>
-      <Header />
+
       <main id="main-content">
         <PageHeader
           title="Soluciones de desarrollo web"

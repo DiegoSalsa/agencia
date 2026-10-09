@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import AeoSummary from "@/components/seo/AeoSummary";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
 import SocialFloater from "@/components/shared/SocialFloater";
@@ -115,7 +114,7 @@ const industriasList = [
 export default function DesarrolloAplicacionesWeb() {
   return (
     <PromoProvider>
-      <Header />
+
       <main id="main-content">
         <PageHeader
           title="Desarrollo de Aplicaciones"

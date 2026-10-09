@@ -6,7 +6,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Descubre nuestros planes y precios para sitios web corporativos, tiendas online y mantenimiento digital integral.",
   path: "/planes",
 });
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Pricing from '@/components/landing/Pricing';
 import { PromoProvider } from '@/context/PromoContext';
@@ -20,7 +19,7 @@ export default function PlanesPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader 
           title="Planes y" 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import Labs from "@/components/landing/Labs";
 import { PromoProvider } from "@/context/PromoContext";
@@ -36,7 +35,7 @@ export default function LabsPage() {
         }}
       />
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader
           title="PuroCode"

@@ -139,7 +139,7 @@ function readSessionMessages() {
     return [initialMessage];
 }
 
-export default function GilbertoChat({ className = "" }: { className?: string }) {
+export default function GilbertoChat({ className = "", autoFocus = false }: { className?: string; autoFocus?: boolean }) {
     const pathname = usePathname();
     const pathnameRef = useRef(pathname);
     const [input, setInput] = useState("");
@@ -263,6 +263,7 @@ export default function GilbertoChat({ className = "" }: { className?: string })
                             }
                         }}
                         rows={1}
+                        autoFocus={autoFocus}
                         aria-label="Mensaje para Gilberto"
                         placeholder="Escríbele a Gilberto..."
                         className="max-h-32 min-h-10 min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-[14px] text-[var(--text)] outline-none placeholder:text-[var(--text-secondary)]"

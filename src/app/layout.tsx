@@ -8,6 +8,7 @@ import GoogleTagManager from "@/components/shared/GoogleTagManager";
 import PageTransition from "@/components/shared/PageTransition";
 import CookieConsent from "@/components/shared/CookieConsent";
 import FloatingGilberto from "@/components/chat/FloatingGilberto";
+import SiteHeader from "@/components/shared/SiteHeader";
 import "./globals.css";
 
 const inter = Inter({
@@ -132,12 +133,13 @@ export default function RootLayout({
         <CookieConsent />
         <ThemeProvider>
           <I18nProvider>
+            <SiteHeader />
             <PageTransition>{children}</PageTransition>
+            <FloatingGilberto />
           </I18nProvider>
         </ThemeProvider>
         <GoogleTagManager />
         <GoogleAnalytics />
-        <FloatingGilberto />
       </body>
     </html>
   );

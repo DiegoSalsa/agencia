@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SocialFloater from "@/components/shared/SocialFloater";
 import { PromoProvider } from "@/context/PromoContext";
@@ -128,7 +127,7 @@ export default function EcosistemaDigitalPage() {
     <PromoProvider>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <EcosistemaContent />
       </main>

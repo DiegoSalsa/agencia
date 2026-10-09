@@ -6,6 +6,11 @@ const nextConfig = {
     async redirects() {
         return [
             {
+                source: "/formulario",
+                destination: "/planes#planes",
+                permanent: false,
+            },
+            {
                 source: "/soluciones/desarrollo-aplicaciones-web",
                 destination: "/soluciones/desarrollo-software-medida",
                 permanent: true,

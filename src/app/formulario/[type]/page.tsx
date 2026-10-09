@@ -45,7 +45,7 @@ function FullscreenPreviewModal({ onClose, type }: { onClose: () => void; type: 
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn"
             onClick={onClose}
         >
             {/* Close button */}
@@ -212,7 +212,7 @@ function BriefingFormContent({ config }: { config: BriefingTypeConfig }) {
             )}
 
             {/* Top nav */}
-            <div className="sticky top-0 z-20 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+            <div className="sticky top-[var(--site-header-height)] z-20 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
                     <Link
                         href="/"

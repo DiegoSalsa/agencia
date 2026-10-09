@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Quote, Check, Clock, TrendingUp } from 'lucide-react';
 import { useI18n } from '@/context/I18nContext';
 import { useInView } from '@/hooks/useInView';
+import { CONTACT_PATH } from '@/lib/navigation';
 
 const stats = [
   { icon: Check, valueKey: 'cta_stat_1_value', labelKey: 'cta_stat_1_label' },
@@ -38,10 +39,10 @@ export default function CtaBanner() {
               {t('cta_subtitle')}
             </p>
             <Link
-              href="/formulario"
+              href={CONTACT_PATH}
               className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-[var(--text)] text-[var(--bg)] font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-colors cursor-pointer group"
             >
-              {t('cta_button')}
+              {t('contact_tag')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

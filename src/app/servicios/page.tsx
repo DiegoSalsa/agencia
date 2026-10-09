@@ -6,7 +6,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Conoce nuestros servicios profesionales de desarrollo web, tiendas online (e-commerce), SaaS y mantenimiento digital continuo.",
   path: "/servicios",
 });
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import DetailedServices from '@/components/landing/DetailedServices';
 import { PromoProvider } from '@/context/PromoContext';
@@ -20,7 +19,7 @@ export default function ServiciosPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader 
           title="Soluciones a tu" 

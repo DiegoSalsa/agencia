@@ -1,0 +1,64 @@
+:global(:root) { --site-header-height: 110px; }
+.header {
+  --nav-bg: #f7f5f2; --nav-surface: #eeece8; --nav-text: #211c29;
+  --nav-muted: #62596b; --nav-accent: #6936a5; --nav-line: #ded9e1;
+  position: fixed; top: calc(var(--promo-banner-height, 0px) + var(--cookie-visible-height, 0px));
+  inset-inline: 0; z-index: 60; height: var(--site-header-height);
+  background: var(--nav-bg); color: var(--nav-text);
+  font-family: var(--font-inter), Inter, sans-serif; -webkit-font-smoothing: antialiased;
+}
+:global(.dark) .header {
+  --nav-bg: #0c0b0e; --nav-surface: #16141b; --nav-text: #f1ede7;
+  --nav-muted: #b7b2bd; --nav-accent: #c0a2ec; --nav-line: #302a35;
+}
+.inner { width: min(100% - 96px, 1280px); height: 100%; margin-inline: auto; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.spacer { height: var(--site-header-height); }
+.header a, .header button { -webkit-tap-highlight-color: transparent; cursor: pointer; }
+.header a:focus-visible, .header button:focus-visible { outline: 2px solid var(--nav-accent); outline-offset: 6px; border-radius: 3px; }
+.header a { transition: color 180ms ease; }
+.header a:hover, .header a[aria-current="page"], .navGroup > button[data-active="true"] { color: var(--nav-accent); }
+.brand { display: inline-flex; align-items: center; gap: 14px; font-size: 24px; font-weight: 650; letter-spacing: -.045em; flex-shrink: 0; }
+.logoMark { display: block; width: 35px; height: 39px; background: currentColor; mask: url('/img/pc-mark.svg') center / contain no-repeat; }
+.desktopNav { display: flex; align-items: center; gap: 22px; font-size: 13px; }
+.navGroup { position: relative; }
+.navGroup > button { display: flex; align-items: center; gap: 5px; min-height: 44px; }
+.navDropdown { position: absolute; top: 46px; left: -20px; min-width: 275px; padding: 10px; border: 1px solid var(--nav-line); border-radius: 6px; background: var(--nav-surface); box-shadow: 0 16px 40px #0002; }
+.navDropdown a { display: block; padding: 14px 12px; }
+.languages, .mobileLanguages { display: flex; align-items: center; }
+.languages button { min-height: 44px; min-width: 32px; font-size: 11px; color: var(--nav-muted); }
+.languages button[aria-pressed="true"], .mobileLanguages button[aria-pressed="true"] { color: var(--nav-accent); }
+.mobileLanguages { border-top: 1px solid var(--nav-line); margin: 8px 14px; }
+.mobileLanguages button { min-width: 64px; min-height: 44px; font-size: 12px; }
+.headerActions { display: flex; align-items: center; gap: 8px; }
+.themeButton, .menuButton { display: grid; place-items: center; width: 44px; height: 44px; color: var(--nav-muted); border-radius: 50%; transition: color 180ms ease, background 180ms ease; }
+.themeButton:hover, .menuButton:hover { color: var(--nav-text); background: var(--nav-surface); }
+.headerContact { font-size: 12px; color: var(--nav-accent); display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
+.menuButton { display: none; }
+.menuButton svg { width: 26px; height: 26px; }
+.mobileNav { position: absolute; top: calc(var(--site-header-height) - 5px); right: 0; width: min(360px, 100%); max-height: calc(100dvh - var(--site-header-height) - var(--cookie-visible-height, 0px) - 12px); overflow-y: auto; overscroll-behavior: contain; padding: 12px; background: var(--nav-surface); border: 1px solid var(--nav-line); border-radius: 8px; z-index: 70; box-shadow: 0 16px 40px #0002; font-size: 14px; }
+.mobileNav a { display: flex; align-items: center; justify-content: space-between; padding: 14px; min-height: 48px; }
+.mobileGroup { border-block: 1px solid var(--nav-line); }
+.mobileGroup p { padding: 14px 14px 2px; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--nav-muted); }
+.mobileQuote { color: var(--nav-accent); }
+:global(body:has(#site-mobile-menu:not([hidden])) .gilberto-widget),
+:global(body:has(#site-mobile-menu:not([hidden])) .social-floater) { visibility: hidden; }
+@supports not (mask-image: url('/img/pc-mark.svg')) {
+  .logoMark { background: url('/img/pc-mark.svg') center / contain no-repeat; filter: brightness(0); }
+  :global(.dark) .logoMark { filter: none; }
+}
+@media (max-width: 1100px) {
+  .inner { width: calc(100% - 64px); }
+  .desktopNav, .languages, .headerContact { display: none; }
+  .menuButton { display: grid; }
+}
+@media (max-width: 700px) {
+  :global(:root) { --site-header-height: 90px; }
+  .inner { width: calc(100% - 44px); gap: 16px; }
+  .brand { font-size: 21px; gap: 11px; }
+  .logoMark { width: 28px; height: 32px; }
+  .headerActions { gap: 3px; }
+}
+@media (max-width: 400px) and (max-height: 700px) {
+  :global(:root) { --site-header-height: 76px; }
+}
+@media (prefers-reduced-motion: reduce) { .header * { transition: none !important; } }

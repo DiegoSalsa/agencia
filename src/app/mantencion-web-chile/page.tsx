@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { generatePageMetadata, serviceJsonLd } from "@/lib/seo";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import PageHeader from "@/components/shared/PageHeader";
 import { PromoProvider } from "@/context/PromoContext";
@@ -27,7 +26,7 @@ export default function MantencionWebChile() {
           ])
         }}
       />
-      <Header />
+
       <main id="main-content">
         <PageHeader
           title="Servicio de"

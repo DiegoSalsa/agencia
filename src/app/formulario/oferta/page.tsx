@@ -313,7 +313,7 @@ function OfertaFormContent() {
             </div>
 
             {/* Top nav */}
-            <div className="sticky top-0 z-20 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+            <div className="sticky top-[var(--site-header-height)] z-20 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
                     <Link
                         href="/"

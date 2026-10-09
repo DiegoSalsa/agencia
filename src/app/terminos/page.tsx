@@ -1,26 +1,12 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import Footer from '@/components/landing/Footer';
 
 export default function TerminosPage() {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)]">
-        <div className="mx-auto max-w-[900px] px-6 py-4 flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors">
-            <ArrowLeft size={18} />
-            <Image src="/img/logo.svg" alt="PuroCode" width={28} height={28} className="h-7 w-auto dark:brightness-100 brightness-0" />
-            <span className="font-bold text-lg text-[var(--text)]">PuroCode</span>
-          </Link>
-        </div>
-      </header>
-
       {/* Content */}
-      <main className="mx-auto max-w-[900px] px-6 py-12 md:py-20">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-[900px] px-6 py-12 md:py-20">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">Términos de Servicio</h1>
         <p className="text-[var(--text-tertiary)] text-sm mb-10">Última actualización: 8 de marzo de 2026</p>
 

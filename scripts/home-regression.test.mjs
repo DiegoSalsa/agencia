@@ -28,6 +28,23 @@ test("all original navigation destinations still return HTTP 200", async () => {
   }
 });
 
+test("general conversation CTAs open the contact page and keep direct channels in the footer", async () => {
+  const html = await (await fetch(base)).text();
+  for (const id of ["hero", "contacto"]) {
+    const section = html.match(new RegExp(`<section id="${id}"[^>]*>(.*?)<\\/section>`, "s"))?.[1];
+    assert.ok(section, id);
+    assert.match(section, /<a\b[^>]*href="\/contacto"[^>]*>Conversemos/);
+    assert.doesNotMatch(section, /href="(?:mailto:|https:\/\/wa\.me)/);
+  }
+  for (const route of ["/faq", "/mantenimiento", "/casos-de-exito", "/desarrollo-saas-chile"]) {
+    const page = await (await fetch(base + route)).text();
+    assert.match(page, /<a\b[^>]*href="\/contacto"[^>]*>Conversemos/, route);
+  }
+  const footer = html.match(/<footer\b[^>]*>(.*?)<\/footer>/s)?.[1];
+  assert.ok(footer?.includes('href="mailto:contacto@purocode.com"'));
+  assert.ok(footer?.includes('href="https://wa.me/56949255006"'));
+});
+
 test("Home has one descriptive H1, aligned metadata and a working sharing image", async () => {
   const html = await (await fetch(base)).text();
   const headings = [...html.matchAll(/<(h[123])\b[^>]*>(.*?)<\/\1>/gs)]

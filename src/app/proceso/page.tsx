@@ -6,7 +6,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Conoce el paso a paso de cómo desarrollamos productos digitales de alto rendimiento. Desde la planificación hasta el despliegue.",
   path: "/proceso",
 });
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Process from '@/components/landing/Process';
 import { PromoProvider } from '@/context/PromoContext';
@@ -19,7 +18,7 @@ export default function ProcesoPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader 
           title="Nuestro" 

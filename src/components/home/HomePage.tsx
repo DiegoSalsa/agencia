@@ -2,10 +2,10 @@
 import { useI18n } from "@/context/I18nContext";
 import Image from "next/image";
 import Link from "next/link";
-import HomeHeader from "./HomeHeader";
 import HomeFooter from "./HomeFooter";
 import SocialFloater from "@/components/shared/SocialFloater";
 import BrandSculpture from "./BrandSculpture";
+import { CONTACT_PATH } from "@/lib/navigation";
 import styles from "./home.module.css";
 
 const projects = [
@@ -35,7 +35,6 @@ export default function HomePage() {
   return (
     <div lang={lang} className={styles.home}>
       <div className={styles.container}>
-        <HomeHeader />
         <main id="main-content" tabIndex={-1}>
           <section id="hero" className={styles.hero} aria-labelledby="hero-title">
             <div className={styles.heroContent}>
@@ -44,7 +43,7 @@ export default function HomePage() {
                 <span className={styles.accent}>{copy.accent}</span>
               </h1>
               <p className={styles.heroDescription}>{copy.description}</p>
-              <a href="https://wa.me/56949255006?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" className={styles.primaryLink}>{copy.talk} <span aria-hidden="true">→</span></a>
+              <Link href={CONTACT_PATH} className={styles.primaryLink}>{copy.talk} <span aria-hidden="true">→</span></Link>
             </div>
             <BrandSculpture />
           </section>
@@ -90,7 +89,7 @@ export default function HomePage() {
           </section>
           <section id="contacto" className={styles.contact} aria-labelledby="contact-title">
             <h2 id="contact-title" className={styles.sectionTitle}>{copy.contact}</h2>
-            <a href="mailto:contacto@purocode.com" className={`${styles.textLink} ${styles.contactLink}`}>contacto@purocode.com <span aria-hidden="true">→</span></a>
+            <Link href={CONTACT_PATH} className={`${styles.textLink} ${styles.contactLink}`}>{copy.talk} <span aria-hidden="true">→</span></Link>
           </section>
         </main>
         <HomeFooter />

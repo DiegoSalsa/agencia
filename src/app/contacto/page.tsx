@@ -6,7 +6,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Contacta a PuroCode para recibir asesoría gratuita y cotizar tu próximo proyecto de desarrollo web o software a medida.",
   path: "/contacto",
 });
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Contact from '@/components/landing/Contact';
 import { PromoProvider } from '@/context/PromoContext';
@@ -19,7 +18,7 @@ export default function ContactoPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader 
           title="Ponte en" 

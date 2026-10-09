@@ -27,11 +27,11 @@ export default function HomeFooter() {
           <Link href="/servicios">{t("nav_services")}</Link>
           <Link href="/planes">{t("nav_pricing")}</Link>
         </nav>
-        <div><h3>{t("footer_contact")}</h3>
+        <div className={styles.footerContact}><h3>{t("footer_contact")}</h3>
           <a href="mailto:contacto@purocode.com">contacto@purocode.com</a>
           <a href="https://wa.me/56949255006" target="_blank" rel="noopener noreferrer">+56 9 4925 5006</a>
         </div>
-        <nav aria-label={t("footer_company")}><h3>{t("footer_company")}</h3>
+        <nav className={styles.footerCompany} aria-label={t("footer_company")}><h3>{t("footer_company")}</h3>
           <Link href="/contacto">{t("nav_contact")}</Link>
           <Link href="/labs">{t("footer_labs")}</Link>
           <Link href="/faq">{t("faq_title")}</Link>

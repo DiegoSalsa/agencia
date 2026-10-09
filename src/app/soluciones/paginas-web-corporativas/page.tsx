@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SocialFloater from "@/components/shared/SocialFloater";
 import { PromoProvider } from "@/context/PromoContext";
@@ -16,7 +15,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function Page() {
   return (
     <PromoProvider>
-      <Header />
+
       <ServiceFicha
         title="Páginas web corporativas"
         highlight="Chile"

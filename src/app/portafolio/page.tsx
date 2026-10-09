@@ -7,7 +7,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Explora los proyectos, páginas web, e-commerce y sistemas desarrollados por nuestro equipo de ingenieros para clientes de distintas industrias.",
   path: "/portafolio",
 });
-import Header from '@/components/landing/Header';
 import Footer from '@/components/landing/Footer';
 import Portfolio from '@/components/landing/Portfolio';
 import { PromoProvider } from '@/context/PromoContext';
@@ -20,7 +19,7 @@ export default function PortafolioPage() {
   return (
     <PromoProvider>
       <PromoBanner />
-      <Header />
+
       <main id="main-content">
         <PageHeader 
           title="Nuestro" 
