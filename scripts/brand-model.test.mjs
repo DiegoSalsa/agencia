@@ -7,7 +7,7 @@ import { buildBrandModel, depth } from "./build-brand-model.mjs";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
-const official = fs.readFileSync(new URL("public/img/logo.svg", root), "utf8");
+const official = fs.readFileSync(new URL("public/img/logo.svg", root), "utf8").replace(/\r\n/g, "\n");
 const model = buildBrandModel(official);
 test("P and C remain independent contours; P retains the official masked counter", () => {
   assert.equal(model.shapes.length, 2);

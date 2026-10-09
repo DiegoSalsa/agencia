@@ -45,9 +45,7 @@ export async function mountBrandRenderer(host: HTMLElement, signal: AbortSignal,
   const camera = new OrthographicCamera(-1.7, 1.7, 1.7, -1.7, .1, 30);
   camera.position.set(0, 0, 8);
   const renderer = new WebGLRenderer({ alpha: true, antialias: true, powerPreference: "low-power" });
-  let mobile = window.matchMedia("(max-width: 900px)").matches;
-  let maxFps = mobile ? 24 : 30;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.5));
+  let maxFps = window.matchMedia("(max-width: 900px)").matches ? 24 : 30;
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1;
@@ -57,8 +55,9 @@ export async function mountBrandRenderer(host: HTMLElement, signal: AbortSignal,
   host.appendChild(canvas);
   let frame = 0, elapsed = 0, previous = 0, lastRender = 0;
   let running = false, frontal = false, disposed = false;
+  let devicePixelRatio = window.devicePixelRatio || 1;
   const pose = () => {
-    const angle = elapsed * Math.PI * 2 / 18;
+    const angle = elapsed * Math.PI * 2 / 18 + Math.PI / 5;
     mesh.rotation.set(frontal ? 0 : .1 * Math.sin(angle), frontal ? 0 : .62 * Math.sin(angle), frontal ? 0 : .035 * Math.sin(angle));
     mesh.position.y = frontal ? 0 : .025 * Math.sin(angle);
   };
@@ -73,7 +72,8 @@ export async function mountBrandRenderer(host: HTMLElement, signal: AbortSignal,
     if (now - lastRender >= 1000 / maxFps) {
       elapsed += Math.min((now - previous) / 1000, .1);
       previous = lastRender = now;
-      render();
+      if (devicePixelRatio !== (window.devicePixelRatio || 1)) resize();
+      else render();
     }
     frame = requestAnimationFrame(tick);
   };
@@ -82,26 +82,35 @@ export async function mountBrandRenderer(host: HTMLElement, signal: AbortSignal,
     running = value;
     canvas.dataset.motion = value ? "running" : "paused";
     cancelAnimationFrame(frame);
-    if (value) { previous = lastRender = performance.now(); frame = requestAnimationFrame(tick); }
+    if (value) { resize(); previous = lastRender = performance.now(); frame = requestAnimationFrame(tick); }
   };
   const resize = () => {
-    const isMobile = window.matchMedia("(max-width: 900px)").matches;
-    if (mobile !== isMobile) {
-      mobile = isMobile;
-      maxFps = mobile ? 24 : 30;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.5));
-    }
+    if (disposed) return;
+    maxFps = window.matchMedia("(max-width: 900px)").matches ? 24 : 30;
     const { width, height } = host.getBoundingClientRect();
     if (!width || !height) return;
+    // Match Retina displays instead of stretching a DPR-1 buffer on mobile.
+    // Bound GPU work by canvas area, independently of animation frame rate.
+    devicePixelRatio = window.devicePixelRatio || 1;
+    const pixelRatio = Math.min(devicePixelRatio, 3, Math.sqrt(1_440_000 / (width * height)));
     const aspect = width / height;
     camera.left = -1.7 * aspect;
     camera.right = 1.7 * aspect;
     camera.updateProjectionMatrix();
-    renderer.setSize(width, height, false);
+    renderer.setDrawingBufferSize(width, height, pixelRatio);
     render();
   };
   const observer = new ResizeObserver(resize);
   observer.observe(host);
+  let densityQuery: MediaQueryList;
+  const onDensityChange = () => { watchDensity(); resize(); };
+  const watchDensity = () => {
+    densityQuery?.removeEventListener("change", onDensityChange);
+    densityQuery = window.matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    densityQuery.addEventListener("change", onDensityChange);
+  };
+  watchDensity();
+  window.addEventListener("resize", resize);
   const onLost = (event: Event) => { event.preventDefault(); setRunning(false); onFailure(); };
   canvas.addEventListener("webglcontextlost", onLost);
   resize();
@@ -119,9 +128,12 @@ export async function mountBrandRenderer(host: HTMLElement, signal: AbortSignal,
     },
     setFront(value) { frontal = value; render(); },
     dispose() {
+      if (disposed) return;
       setRunning(false);
       disposed = true;
       observer.disconnect();
+      densityQuery.removeEventListener("change", onDensityChange);
+      window.removeEventListener("resize", resize);
       canvas.removeEventListener("webglcontextlost", onLost);
       geometry.dispose(); front.dispose(); sides.dispose(); renderer.dispose();
       renderer.forceContextLoss();

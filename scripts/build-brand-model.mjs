@@ -83,7 +83,8 @@ function curvePath(shape) {
 }
 
 export function generate(root) {
-  const svg = fs.readFileSync(path.join(root, "public/img/logo.svg"), "utf8");
+  // Git may check the SVG out as CRLF on Windows; keep its fingerprint stable.
+  const svg = fs.readFileSync(path.join(root, "public/img/logo.svg"), "utf8").replace(/\r\n/g, "\n");
   const { shapes, geometry, bounds } = buildBrandModel(svg);
   const positions = geometry.getAttribute("position").array;
   const normals = geometry.getAttribute("normal").array;

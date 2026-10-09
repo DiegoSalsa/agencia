@@ -9,6 +9,7 @@
     "lint": "next lint",
     "seo:audit": "tsx scripts/seo-audit.ts",
     "test:home": "node --test scripts/brand-model.test.mjs scripts/home-regression.test.mjs scripts/navigation-regression.test.mjs",
+    "test:home:browser": "node --test scripts/home-browser.test.mjs",
     "build:brand": "node scripts/build-brand-model.mjs && node scripts/build-home-og.mjs",
     "update-screenshots": "node scripts/update-screenshots.js"
   },

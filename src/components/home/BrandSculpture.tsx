@@ -17,11 +17,8 @@ export default function BrandSculpture() {
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene || !("IntersectionObserver" in window) || !("ResizeObserver" in window)) return;
-    // Check the same breakpoint as the mobile composition BEFORE importing
-    // the renderer: CSS hiding alone would still download Three and geometry.
-    const desktop = window.matchMedia("(min-width: 901px)");
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    const updateMotion = () => setEligible(desktop.matches && motion.matches);
+    const updateMotion = () => setEligible(motion.matches);
     const updateVisibility = () => setVisible(document.visibilityState === "visible");
     const observer = new IntersectionObserver(([entry]) => {
       setInView(entry.isIntersecting);
@@ -30,9 +27,8 @@ export default function BrandSculpture() {
     observer.observe(scene);
     updateMotion(); updateVisibility();
     motion.addEventListener("change", updateMotion);
-    desktop.addEventListener("change", updateMotion);
     document.addEventListener("visibilitychange", updateVisibility);
-    return () => { observer.disconnect(); motion.removeEventListener("change", updateMotion); desktop.removeEventListener("change", updateMotion); document.removeEventListener("visibilitychange", updateVisibility); };
+    return () => { observer.disconnect(); motion.removeEventListener("change", updateMotion); document.removeEventListener("visibilitychange", updateVisibility); };
   }, []);
   useEffect(() => {
     const host = hostRef.current;
